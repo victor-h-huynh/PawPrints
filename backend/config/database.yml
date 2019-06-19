@@ -1,3 +1,5 @@
+
+
 # PostgreSQL. Versions 9.1 and up are supported.
 #
 # Install the pg driver:
@@ -30,10 +32,10 @@ development:
   # To create additional roles in postgres see `$ createuser --help`.
   # When left blank, postgres will use the default role. This is
   # the same name as the operating system user that initialized the database.
-  username: caillou
+  username: ENV[]
 
   # The password associated with the postgres role (username).
-  password: 1234
+  password: ENV[]
 
   # Connect on a TCP socket. Omitted by default since the client uses a
   # domain socket that doesn't need configuration. Windows does not have
