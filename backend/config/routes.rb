@@ -9,3 +9,9 @@ Rails.application.routes.draw do
     resources :pets
   end
 end
+
+Rails.application.routes.draw do
+  namespace :api do
+    resources :addresses
+  end
+end
