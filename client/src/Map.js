@@ -4,8 +4,10 @@ import { GoogleApiWrapper, InfoWindow, Marker, Map } from 'google-maps-react';
 
 const mapStyles = {
   width: '70vw',
-  height: '70vh'
+  height: '70vh',
+  margin: 'auto'
 };
+
 
 class MapContainer extends Component {
    state = {
@@ -33,14 +35,17 @@ class MapContainer extends Component {
   renderMarkers() {
   return this.props.addresses.map(address => {
     return <Marker
+      icon={{url: 'https://cdn1.medicalnewstoday.com/content/images/articles/322/322868/golden-retriever-puppy.jpg', 
+        scaledSize: new this.props.google.maps.Size(60, 40)}}
       key={address.id}
-      // onClick = { this.onMarkerClick }
       position = {{lat: Number(address.latitude), lng: -(Number(address.longitude))}}
-      name = {address.name} />
+      name = {address.name}
+       />
   })
 }
 
   componentDidMount() {
+   
   }
 
   render() {
