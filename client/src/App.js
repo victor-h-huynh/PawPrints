@@ -1,26 +1,48 @@
-import React from 'react';
-import logo from './logo.svg';
+import axios from 'axios';
+import React, { Component } from 'react';
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+state = {users:[], pets:[]};
+
+  componentDidMount() {
+    axios
+      .get("http://localhost:3001/api/pets.json")
+      .then(response => {
+        console.log(response);
+        this.setState({
+          pets: response.data
+        });
+      })
+      .catch(error => console.log(error));
+
+      axios
+      .get("http://localhost:3001/api/users.json")
+      .then(response => {
+        console.log(response);
+        this.setState({
+          users: response.data
+        });
+      })
+      .catch(error => console.log(error));
+  }
+
+  render() {
+    return (
+      <div className="App">
+      <h1>Users</h1>
+        {this.state.users.map(user =>
+          <div key={user.id}>{user.name}</div>
+        )}
+        <h1>Pets</h1>
+        {this.state.pets.map(pet =>
+          <div key={pet.id}>{pet.name}</div>
+        )}
+      </div>
+      
+      
+    );
+  }
 }
 
 export default App;
