@@ -7,6 +7,11 @@ const mapStyles = {
   height: '70vh'
 };
 
+const markerStyles = {
+  url: 'https://cdn1.medicalnewstoday.com/content/images/articles/322/322868/golden-retriever-puppy.jpg'
+  // height: 
+}
+
 class MapContainer extends Component {
    state = {
     showingInfoWindow: false,  //Hides or the shows the infoWindow
@@ -33,10 +38,12 @@ class MapContainer extends Component {
   renderMarkers() {
   return this.props.addresses.map(address => {
     return <Marker
+      icon={{url: 'https://cdn1.medicalnewstoday.com/content/images/articles/322/322868/golden-retriever-puppy.jpg', scaledSize: new this.props.google.maps.Size(30, 30)}}
       key={address.id}
       // onClick = { this.onMarkerClick }
       position = {{lat: Number(address.latitude), lng: -(Number(address.longitude))}}
-      name = {address.name} />
+      name = {address.name}
+       />
   })
 }
 
