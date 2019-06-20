@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Map from './Map.js';
+import { Route } from 'react-router-dom'
 
 class Home extends Component {
 
@@ -14,8 +15,8 @@ class Home extends Component {
               {this.props.pets.map(pet =>
                 <div key={pet.id}>{pet.name}</div>
               )}
-            <Map></Map>
-              
+            <Route exact path="/" render={props => <Map {...props} pets={this.props.pets} users={this.props.users} addresses={this.props.addresses}/>}/>
+
             </div>
   
       );
