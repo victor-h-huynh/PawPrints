@@ -1,6 +1,8 @@
 import axios from 'axios';
 import React, { Component } from 'react';
 import './App.css';
+import Map from './Map.js';
+
 
 class App extends Component {
 state = {users:[], pets:[]};
@@ -38,9 +40,12 @@ state = {users:[], pets:[]};
         {this.state.pets.map(pet =>
           <div key={pet.id}>{pet.name}</div>
         )}
+        <Map></Map>
       </div>
-      
-      
+
+
+
+
     );
   }
 }
