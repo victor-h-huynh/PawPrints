@@ -38,7 +38,6 @@ class MapContainer extends Component {
       icon={{url: 'https://cdn1.medicalnewstoday.com/content/images/articles/322/322868/golden-retriever-puppy.jpg', 
         scaledSize: new this.props.google.maps.Size(60, 40)}}
       key={address.id}
-      // onClick = { this.onMarkerClick }
       position = {{lat: Number(address.latitude), lng: -(Number(address.longitude))}}
       name = {address.name}
        />
@@ -46,7 +45,7 @@ class MapContainer extends Component {
 }
 
   componentDidMount() {
-    
+   
   }
 
   render() {
