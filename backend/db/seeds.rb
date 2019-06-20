@@ -32,8 +32,8 @@ Address.destroy_all
   city: Faker::Address.city,
   province: "Quebec",
   postal_code: Faker::Address.zip,
-  latitude: Faker::Address.latitude,
-  longitude: Faker::Address.longitude,
+  latitude: rand(45.50..45.70),
+  longitude: rand(-73.56..-73.76),
 })
 end
 
