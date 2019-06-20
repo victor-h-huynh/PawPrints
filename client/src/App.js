@@ -5,10 +5,20 @@ import Map from './Map.js';
 
 
 class App extends Component {
-state = {users:[], pets:[]};
+state = {users:[], pets:[], addresses:[]};
 
   componentDidMount() {
-    axios
+   axios
+      .get("http://localhost:3001/api/addresses.json")
+      .then(response => {
+        console.log(response);
+        this.setState({
+          addresses: response.data
+        });
+      })
+      .catch(error => console.log(error));
+
+   axios
       .get("http://localhost:3001/api/pets.json")
       .then(response => {
         console.log(response);
@@ -40,7 +50,7 @@ state = {users:[], pets:[]};
         {this.state.pets.map(pet =>
           <div key={pet.id}>{pet.name}</div>
         )}
-        <Map></Map>
+        <Map addresses={this.state.addresses} ></Map>
       </div>
 
 
