@@ -29,6 +29,20 @@ class MapContainer extends Component {
       });
     }
   };
+
+  renderMarkers() {
+  return this.props.addresses.map(address => {
+    return <Marker
+      key={address.id}
+      // onClick = { this.onMarkerClick }
+      position = {{lat: Number(address.latitude), lng: -(Number(address.longitude))}}
+      name = {address.name} />
+  })
+}
+
+  componentDidMount() {
+  }
+
   render() {
     return (
       <div>
@@ -38,10 +52,8 @@ class MapContainer extends Component {
         style={mapStyles}
         initialCenter={{ lat: 45.50, lng: -73.56 }}
       >
-        <Marker
-          onClick={this.onMarkerClick}
-          name={'Kenyatta International Convention Centre'}
-        />
+        {this.renderMarkers()}
+
         <div>
         <InfoWindow
           marker={this.state.activeMarker}
@@ -63,3 +75,4 @@ class MapContainer extends Component {
 export default GoogleApiWrapper({
   apiKey: process.env.REACT_APP_GOOGLE_API_KEY
 })(MapContainer);
+
