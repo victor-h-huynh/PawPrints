@@ -43,8 +43,7 @@ state = {users:[], pets:[], addresses:[]};
   render() {
     return (
       <Switch>
-        <Route exact path="/" render={props => <Home {...props} pets={this.state.pets} users={this.state.users} />}
-        />
+        <Route exact path="/" render={props => <Home {...props} pets={this.state.pets} users={this.state.users} addresses={this.state.addresses}/>}/>
       </Switch>
     );
   }
