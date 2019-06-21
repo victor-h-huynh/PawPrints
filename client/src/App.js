@@ -38,13 +38,16 @@ state = {users:[], pets:[], addresses:[]};
         });
       })
       .catch(error => console.log(error));
+
   }
 
   render() {
     return (
+
       <Switch>
         <Route exact path="/" render={props => <Home {...props} pets={this.state.pets} users={this.state.users} addresses={this.state.addresses}/>}/>
       </Switch>
+
     );
   }
 }
