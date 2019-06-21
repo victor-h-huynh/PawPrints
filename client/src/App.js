@@ -1,12 +1,10 @@
 import axios from 'axios';
 import React, { Component } from 'react';
-import './App.css';
+import './App.scss';
 import Home from './Home.js';
 import Login from './Login.js';
 import Register from './Register.js';
 import { Switch, Route} from 'react-router-dom';
-import Navigationbar from './Navigationbar.js';
-import { Jumbotron } from './Jumbotron';
 import ReportAPet from './ReportAPet.js';
 
 
@@ -45,22 +43,28 @@ state = {users:[], pets:[], addresses:[]};
       })
       .catch(error => console.log(error));
 
+      axios
+      .get("http://localhost:3001/api/descriptions.json")
+      .then(response => {
+        console.log(response);
+        this.setState({
+          descriptions: response.data
+        });
+      })
+      .catch(error => console.log(error));
+
   }
 
   render() {
     return (
-      <React.Fragment>
-        <Navigationbar></Navigationbar>
-          <Jumbotron></Jumbotron>
+
           <Switch>
               {/* Creates routes on your pages. */}
               <Route exact path="/" render={props => <Home {...props} pets={this.state.pets} users={this.state.users} addresses={this.state.addresses}/>}/>
-              {/* Add a Navbar route */}
               <Route path="/ReportAPet" component={ReportAPet}/>
               <Route path="/Login" component={Login}/>
               <Route path="/Register" component={Register}/>
           </Switch>
-      </React.Fragment>
     );
   }
 }
