@@ -32,7 +32,10 @@ export const Jumbotron = () => (
       <div className="overlay"></div>
         <Container>
           <h1>Paw Print!</h1>
-          <p>Reunite your lost pets!</p>
+          <p>Bringing your pets back together</p>
+          <p>	ʕっ•ᴥ•ʔっ</p>
+          <p>(•_•) ( •_•)>⌐■-■ (⌐■_■)</p>
+          <p>( ╥﹏╥) ノシ</p>
         </Container>
     </Jumbo>
   </Styles>

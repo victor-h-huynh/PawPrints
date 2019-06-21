@@ -1,6 +1,7 @@
 import React from 'react';
-import { Nav, Navbar, NavDropdown } from 'react-bootstrap';
+import { Nav, Navbar, NavDropdown} from 'react-bootstrap';
 import styled from 'styled-components';
+import { LinkContainer } from 'react-router-bootstrap';
 
 const Styles = styled.div`
   .navbar {
@@ -21,12 +22,15 @@ const Styles = styled.div`
 export const Navigationbar = () => (
   <Styles>
     <Navbar collapseOnSelect expand="lg">
-      <Navbar.Brand href="#home">Paw Print</Navbar.Brand>
+      <LinkContainer to="/">
+            <Navbar.Brand>Paw Print</Navbar.Brand>
+      </LinkContainer>
       <Navbar.Toggle aria-controls="responsive-navbar-nav" />
       <Navbar.Collapse id="responsive-navbar-nav">
         <Nav className="mr-auto">
-          <Nav.Link href="#home">Home</Nav.Link>
-          <Nav.Link href="#reportAPet">Report a Pet</Nav.Link>
+          <LinkContainer to="/ReportAPet">
+            <Nav.Link>Report a pet</Nav.Link>
+          </LinkContainer>
           <NavDropdown title="CHANGE THIS IF YOU WANT DROPDOWN" id="collasible-nav-dropdown">
             <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
             <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
@@ -36,10 +40,12 @@ export const Navigationbar = () => (
           </NavDropdown>
         </Nav>
         <Nav>
-          <Nav.Link href="#login">Login</Nav.Link>
-          <Nav.Link eventKey={2} href="#register">
-            Register
-          </Nav.Link>
+          <LinkContainer to="/Login">
+            <Nav.Link>Login</Nav.Link>
+          </LinkContainer>
+          <LinkContainer to="/Register">
+            <Nav.Link>Register</Nav.Link>
+          </LinkContainer>
         </Nav>
       </Navbar.Collapse>
     </Navbar>
