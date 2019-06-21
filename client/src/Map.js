@@ -3,9 +3,8 @@ import { GoogleApiWrapper, InfoWindow, Marker, Map } from 'google-maps-react';
 
 
 const mapStyles = {
-  width: '70vw',
-  height: '70vh',
-  margin: 'auto'
+  width: '60vw',
+  height: '70vh'
 };
 
 
@@ -41,7 +40,7 @@ class MapContainer extends Component {
           visible={this.state.showingInfoWindow}
           onClose={this.onClose}
         >
-          <div>
+          <div className="InfoWindow">
             <h4>{this.state.selectedPlace.name}</h4>
           </div>
         </InfoWindow>
@@ -73,7 +72,7 @@ class MapContainer extends Component {
 
   render() {
     return (
-      <div>
+ 
       <Map
         google={this.props.google}
         zoom={11}
@@ -84,7 +83,7 @@ class MapContainer extends Component {
         {this.renderInfoWindow()}
 
       </Map>
-      </div>
+ 
     );
   }
 }

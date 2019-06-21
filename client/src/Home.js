@@ -1,24 +1,20 @@
 import React, { Component } from 'react';
 import Map from './Map.js';
-import { Route } from 'react-router-dom'
+import Pets from './Pets.js';
+import Navigationbar from './Navigationbar.js';
+import { Jumbotron } from './Jumbotron'
 
 class Home extends Component {
 
     render() {
         return (
-            <div className="App">
-            <h1>Users</h1>
-              {this.props.users.map(user =>
-                <div key={user.id}>{user.name}</div>
-              )}
-              <h1>Pets</h1>
-              {this.props.pets.map(pet =>
-                <div key={pet.id}>{pet.name}</div>
-              )}
-            <Route exact path="/" render={props => <Map {...props} pets={this.props.pets} users={this.props.users} addresses={this.props.addresses}/>}/>
-
+            <div className="Home">
+              <Navigationbar></Navigationbar>
+              <Jumbotron></Jumbotron>
+              <h4>Welcome to Paw Prints</h4>
+                <Map pets={this.props.pets} users={this.props.users} addresses={this.props.addresses}/>
+                <Pets pets={this.props.pets} users={this.props.users} addresses={this.props.addresses} descriptions={this.props.descriptions}/>
             </div>
-  
       );
     }
 };
