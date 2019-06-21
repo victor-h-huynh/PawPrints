@@ -1,24 +1,18 @@
 import React, { Component } from 'react';
 import Map from './Map.js';
-import { Route } from 'react-router-dom'
+import Pets from './Pets.js';
 
 class Home extends Component {
 
     render() {
         return (
             <div className="App">
-            <h1>Users</h1>
-              {this.props.users.map(user =>
-                <div key={user.id}>{user.name}</div>
-              )}
-              <h1>Pets</h1>
-              {this.props.pets.map(pet =>
-                <div key={pet.id}>{pet.name}</div>
-              )}
-            <Route exact path="/" render={props => <Map {...props} pets={this.props.pets} users={this.props.users} addresses={this.props.addresses}/>}/>
-
+              <h4>Welcome to Paw Prints</h4>
+              <div className="Container">
+                <Map pets={this.props.pets} users={this.props.users} addresses={this.props.addresses}/>
+                <Pets pets={this.props.pets} users={this.props.users} addresses={this.props.addresses}/>
+              </div>
             </div>
-  
       );
     }
 };
