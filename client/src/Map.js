@@ -43,7 +43,7 @@ class MapContainer extends Component {
       name = {pet.name}
       onClick = {this.onMarkerClick}
       icon={{url: 'https://cdn1.medicalnewstoday.com/content/images/articles/322/322868/golden-retriever-puppy.jpg',
-        scaledSize: new this.props.google.maps.Size(60, 40)}}
+      scaledSize: new this.props.google.maps.Size(60, 40)}}
        >
         <InfoWindow
          marker={this.state.activeMarker}
