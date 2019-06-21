@@ -1,6 +1,15 @@
+
 import React, { Component } from "react";
 import { withGoogleMap, withScriptjs, GoogleMap, Marker, InfoWindow } from "react-google-maps";
 import { compose, withProps, withStateHandlers } from "recompose"
+
+
+
+const mapStyles = {
+  width: '60vw',
+  height: '70vh'
+};
+
 
 
 
