@@ -37,6 +37,7 @@ state = {users:[], pets:[], addresses:[]};
         });
       })
       .catch(error => console.log(error));
+
   }
 
   render() {
@@ -50,7 +51,7 @@ state = {users:[], pets:[], addresses:[]};
         {this.state.pets.map(pet =>
           <div key={pet.id}>{pet.name}</div>
         )}
-        <Map addresses={this.state.addresses} ></Map>
+        <Map pets={this.state.pets} ></Map>
       </div>
 
 

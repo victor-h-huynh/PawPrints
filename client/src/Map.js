@@ -14,12 +14,13 @@ class MapContainer extends Component {
     selectedPlace: {}          //Shows the infoWindow to the selected place upon a marker
   };
 
-    onMarkerClick = (props, marker, e) =>
+    onMarkerClick = (props, marker, e) => {
     this.setState({
       selectedPlace: props,
       activeMarker: marker,
       showingInfoWindow: true
     });
+  }
 
   onClose = props => {
     if (this.state.showingInfoWindow) {
@@ -31,16 +32,31 @@ class MapContainer extends Component {
   };
 
   renderMarkers() {
-  return this.props.addresses.map(address => {
+  return this.props.pets.map(pet => {
     return <Marker
-      key={address.id}
+      key={pet.id}
       // onClick = { this.onMarkerClick }
-      position = {{lat: Number(address.latitude), lng: -(Number(address.longitude))}}
-      name = {address.name} />
+      position = {{lat: Number(pet.address.latitude), lng: -(Number(pet.address.longitude))}}
+      name = {pet.name}
+      onClick = {this.onMarkerClick} >
+        <InfoWindow
+         marker={this.state.activeMarker}
+         visible={this.state.showingInfoWindow}
+         onClose={this.onClose}
+        >
+          <div>
+            <h4>{this.state.selectedPlace.name}</h4>
+          </div>
+        </InfoWindow>
+
+
+
+      </Marker>
   })
 }
 
   componentDidMount() {
+    console.log(this.props.google)
   }
 
   render() {
@@ -54,17 +70,6 @@ class MapContainer extends Component {
       >
         {this.renderMarkers()}
 
-        <div>
-        <InfoWindow
-          marker={this.state.activeMarker}
-          visible={this.state.showingInfoWindow}
-          onClose={this.onClose}
-        >
-          <div>
-            <h4>{this.state.selectedPlace.name}</h4>
-          </div>
-        </InfoWindow>
-        </div>
       </Map>
       </div>
     );
