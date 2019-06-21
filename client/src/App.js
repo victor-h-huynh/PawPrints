@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React, { Component } from 'react';
-import './App.css';
+import './App.scss';
 import Home from './Home.js';
 import { Switch, Route } from 'react-router-dom';
 
