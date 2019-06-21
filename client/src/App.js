@@ -10,53 +10,43 @@ import PetProfile from './PetProfile.js';
 
 
 class App extends Component {
-state = {users:[], pets:[], addresses:[]};
+  constructor(props) {
+    super(props);
+    this.state = {
+      loading: true,
+      users:[], 
+      pets:[], 
+      addresses:[]
+    };
+  }
 
   componentDidMount() {
-   axios
-      .get("http://localhost:3001/api/addresses.json")
-      .then(response => {
-        console.log(response);
-        this.setState({
-          addresses: response.data
-        });
+    axios.all([
+      axios.get('http://localhost:3001/api/addresses.json'),
+      axios.get('http://localhost:3001/api/pets.json'),
+      axios.get('http://localhost:3001/api/users.json'),
+      axios.get('http://localhost:3001/api/descriptions.json'),
+    ])
+    .then(axios.spread((addressesRes, petsRes, usersRes, descriptionsRes) => {
+      this.setState({
+        addresses: addressesRes.data,
+        pets: petsRes.data,
+        users: usersRes.data,
+        descriptions: descriptionsRes.data,
       })
-      .catch(error => console.log(error));
-
-   axios
-      .get("http://localhost:3001/api/pets.json")
-      .then(response => {
-        console.log(response);
-        this.setState({
-          pets: response.data
-        });
+    }))
+    .then(res => {
+      this.setState({
+        loading:false,
       })
-      .catch(error => console.log(error));
-
-      axios
-      .get("http://localhost:3001/api/users.json")
-      .then(response => {
-        console.log(response);
-        this.setState({
-          users: response.data
-        });
-      })
-      .catch(error => console.log(error));
-
-      axios
-      .get("http://localhost:3001/api/descriptions.json")
-      .then(response => {
-        console.log(response);
-        this.setState({
-          descriptions: response.data
-        });
-      })
-      .catch(error => console.log(error));
-
+    })
+    .catch(error => console.log(error));
   }
 
   render() {
-    if (this.state.pets.length > 0 && this.state.users.length > 0) {
+    if (this.state.loading) {
+      return <h1>Loading...</h1>;
+    } else {
     return (
           <Switch>
               <Route exact path="/" render={props => <Home {...props} pets={this.state.pets} users={this.state.users} addresses={this.state.addresses}/>}/>
@@ -66,9 +56,6 @@ state = {users:[], pets:[], addresses:[]};
               <Route path="/Pets/:id" render={props => <PetProfile {...props} pets={this.state.pets} users={this.state.users} addresses={this.state.addresses}/>}/>
           </Switch>
     );
-    }
-    else {
-      return (<div>Loading...</div>)
     }
   }
 }
