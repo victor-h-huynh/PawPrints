@@ -44,20 +44,6 @@ state = {users:[], pets:[], addresses:[]};
   render() {
     return (
 
-      <div className="App">
-      <h1>Users</h1>
-        {this.state.users.map(user =>
-          <div key={user.id}>{user.name}</div>
-        )}
-        <h1>Pets</h1>
-        {this.state.pets.map(pet =>
-          <div key={pet.id}>{pet.name}</div>
-        )}
-        <Map pets={this.state.pets} ></Map>
-      </div>
-
-
-
       <Switch>
         <Route exact path="/" render={props => <Home {...props} pets={this.state.pets} users={this.state.users} addresses={this.state.addresses}/>}/>
       </Switch>
