@@ -13,7 +13,7 @@ class Home extends Component {
               <Jumbotron></Jumbotron>
               <h4>Welcome to Paw Prints</h4>
                 <Map pets={this.props.pets} users={this.props.users} addresses={this.props.addresses}/>
-                <Pets pets={this.props.pets} users={this.props.users} addresses={this.props.addresses}/>
+                <Pets pets={this.props.pets} users={this.props.users} addresses={this.props.addresses} descriptions={this.props.descriptions}/>
             </div>
       );
     }

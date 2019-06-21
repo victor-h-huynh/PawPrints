@@ -17,7 +17,7 @@ class Pets extends Component {
                       <h4 className="card-title">{pet.name}, {pet.status}</h4>
                       <p className="card-text">{pet.species}</p>
                       <TimeAgo date={pet.date_lost}/>
-                      <p className="card-text">{pet.address.street_number} {pet.address.street_name}</p>
+                      <p className="card-text">{pet.description.breed}</p>
                       <p className="card-text">{pet.address.apartment}</p>
                       <p className="card-text">{pet.address.city}</p>
                       <p className="card-text">{pet.address.province} {pet.address.postal_code}</p>

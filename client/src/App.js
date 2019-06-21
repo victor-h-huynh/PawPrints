@@ -39,6 +39,16 @@ state = {users:[], pets:[], addresses:[]};
       })
       .catch(error => console.log(error));
 
+      axios
+      .get("http://localhost:3001/api/descriptions.json")
+      .then(response => {
+        console.log(response);
+        this.setState({
+          descriptions: response.data
+        });
+      })
+      .catch(error => console.log(error));
+
   }
 
   render() {
