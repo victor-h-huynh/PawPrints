@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
 import Map from './Map.js';
 import { Route } from 'react-router-dom'
+import Navbar from './Navbar.js';
 
 class Home extends Component {
 
     render() {
         return (
             <div className="App">
+              <Navbar></Navbar>
             <h1>Users</h1>
               {this.props.users.map(user =>
                 <div key={user.id}>{user.name}</div>
