@@ -54,22 +54,12 @@ class MapContainer extends Component {
             <h4>{this.state.selectedPlace.name}</h4>
           </div>
         </InfoWindow>
-
-
-
       </Marker>
-
-
-
-
   })
 }
 
   componentDidMount() {
-
     console.log(this.props.google)
-
-
   }
 
   render() {
@@ -89,8 +79,6 @@ class MapContainer extends Component {
   }
 }
 
-
 export default GoogleApiWrapper({
   apiKey: process.env.REACT_APP_GOOGLE_API_KEY
 })(MapContainer);
-
