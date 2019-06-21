@@ -1,96 +1,91 @@
-import React, { Component } from 'react';
-import { GoogleApiWrapper, InfoWindow, Marker, Map } from 'google-maps-react';
+import React, { Component } from "react";
+import { withGoogleMap, withScriptjs, GoogleMap, Marker, InfoWindow } from "react-google-maps";
+import { compose, withProps, withStateHandlers } from "recompose"
 
 
-const mapStyles = {
-  width: '70vw',
-  height: '70vh',
-  margin: 'auto'
-};
 
-
-class MapContainer extends Component {
-   state = {
-    showingInfoWindow: false,  //Hides or the shows the infoWindow
-    activeMarker: {},          //Shows the active marker upon click
-    selectedPlace: {}          //Shows the infoWindow to the selected place upon a marker
-  };
-
-    onMarkerClick = (props, marker, e) => {
-      console.log(InfoWindow)
-    this.setState({
-      selectedPlace: props,
-      activeMarker: marker,
-      showingInfoWindow: true
-    });
-    console.log(this.state)
+class Map extends Component {
+  constructor(props) {
+    super(props);
+    this.map = React.createRef();
+  }
+  state = {
+    pets: this.props.pets
   }
 
-  onClose = props => {
-    if (this.state.showingInfoWindow) {
-      this.setState({
-        showingInfoWindow: false,
-        activeMarker: null
-      });
-    }
-  };
+  //Make showINfo function returning InfoWindow
+  //OnClick => {}
 
-  renderInfoWindow() {
-    return (<InfoWindow
-          marker={this.state.activeMarker}
-          visible={this.state.showingInfoWindow}
-          onClose={this.onClose}
-        >
-          <div>
-            <h4>{this.state.selectedPlace.name}</h4>
-          </div>
-        </InfoWindow>
-        )
 
-  }
-
-  renderMarkers() {
+  renderMarkers(props2) {
   return this.props.pets.map(pet => {
-    return <Marker
+    return (
+
+    <Marker
 
       key={pet.id}
-      // onClick = { this.onMarkerClick }
       position = {{lat: Number(pet.address.latitude), lng: -(Number(pet.address.longitude))}}
       name = {pet.name}
-      onClick = {this.onMarkerClick}
+      onClick={props2.onToggleOpen}
       title = "test"
-      icon={{url: 'https://cdn1.medicalnewstoday.com/content/images/articles/322/322868/golden-retriever-puppy.jpg',
-             scaledSize: new this.props.google.maps.Size(60, 40)}}
-       />
+
+       >
+        {props2.isOpen && <InfoWindow onCloseClick={props2.onToggleOpen}>
+        <h4>{pet.name}</h4>
+        </InfoWindow>}
+         </Marker>
+         )
   })
 }
 
-  componentDidMount() {
-
-    console.log(this.props.google)
-
-  }
+componentDidMount() {
+  console.log(this.state)
+}
 
   render() {
+    const GoogleMapExample = compose(
+  withStateHandlers(() => ({
+    isOpen: false,
+  }), {
+    onToggleOpen: ({ isOpen }) => () => ({
+      isOpen: !isOpen,
+    })
+  }),
+  withScriptjs,
+  withGoogleMap
+)(props2 => (
+        <GoogleMap
+          ref={map => {
+            this.map = map;
+          }}
+          onIdle={props2.onMapIdle}
+          defaultCenter={{ lat: 45.50, lng: -73.56 }}
+          defaultZoom={11}
+        >
+          {this.renderMarkers(props2)}
+        </GoogleMap>
+      ))
+
     return (
       <div>
-      <Map
-        google={this.props.google}
-        zoom={11}
-        style={mapStyles}
-        initialCenter={{ lat: 45.50, lng: -73.56 }}
-      >
-        {this.renderMarkers()}
-        {this.renderInfoWindow()}
+        <GoogleMapExample
+          onMapIdle={() => {
+            let ne = this.map.getBounds().getNorthEast();
+            let sw = this.map.getBounds().getSouthWest();
+            console.log(ne.lat() + ";" + ne.lng());
+            console.log(sw.lat() + ";" + sw.lng());
+          }}
 
-      </Map>
+          googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyCZo4EZUupTl2upWKh2W7xWD_12ixbr8PU"
+          loadingElement={<div style={{ height: `70vh`, width: `70vw` }} />}
+          containerElement={<div style={{ height: `70vh`, width: `70vw` }} />}
+          mapElement={<div style={{ height: `70vh`, width: `70vw` }} />}
+
+
+        />
       </div>
     );
   }
 }
 
-
-export default GoogleApiWrapper({
-  apiKey: process.env.REACT_APP_GOOGLE_API_KEY
-})(MapContainer);
-
+export default Map;
