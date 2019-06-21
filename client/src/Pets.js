@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom'
 
 class Pets extends Component {
 
@@ -15,7 +16,7 @@ class Pets extends Component {
                       <h4 className="card-title">{pet.name}, {pet.status}</h4>
                       <p className="card-text">{pet.species}</p>
                       <p className="card-text">{pet.date_lost}</p>
-                      <a href="#" className="btn btn-primary">See Pet</a>
+                      <Link to={`/pets/${pet.id}`} className="btn btn-primary">See Pet</Link>
                     </div>
                   </div>
                   <div className="col-md-6">
