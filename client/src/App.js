@@ -6,7 +6,7 @@ import Login from './Login.js';
 import Register from './Register.js';
 import { Switch, Route} from 'react-router-dom';
 import ReportAPet from './ReportAPet.js';
-
+import PetProfile from './PetProfile.js';
 
 
 class App extends Component {
@@ -56,16 +56,20 @@ state = {users:[], pets:[], addresses:[]};
   }
 
   render() {
+    if (this.state.pets.length > 0 && this.state.users.length > 0) {
     return (
-
           <Switch>
-              {/* Creates routes on your pages. */}
               <Route exact path="/" render={props => <Home {...props} pets={this.state.pets} users={this.state.users} addresses={this.state.addresses}/>}/>
               <Route path="/ReportAPet" component={ReportAPet}/>
               <Route path="/Login" component={Login}/>
               <Route path="/Register" component={Register}/>
+              <Route path="/Pets/:id" render={props => <PetProfile {...props} pets={this.state.pets} users={this.state.users} addresses={this.state.addresses}/>}/>
           </Switch>
     );
+    }
+    else {
+      return (<div>Loading...</div>)
+    }
   }
 }
 
