@@ -21,7 +21,6 @@ class Pets extends Component {
                       <p className="card-text">{pet.address.apartment}</p>
                       <p className="card-text">{pet.address.city}</p>
                       <p className="card-text">{pet.address.province} {pet.address.postal_code}</p>
-                      
                       <Link to={`/pets/${pet.id}`} className="btn btn-primary">See Pet</Link>
                     </div>
                   </div>
