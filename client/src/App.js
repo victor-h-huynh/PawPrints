@@ -1,7 +1,8 @@
 import axios from 'axios';
 import React, { Component } from 'react';
 import './App.css';
-import Map from './Map.js';
+import Home from './Home.js';
+import { Switch, Route } from 'react-router-dom'
 
 
 class App extends Component {
@@ -42,6 +43,7 @@ state = {users:[], pets:[], addresses:[]};
 
   render() {
     return (
+
       <div className="App">
       <h1>Users</h1>
         {this.state.users.map(user =>
@@ -56,6 +58,9 @@ state = {users:[], pets:[], addresses:[]};
 
 
 
+      <Switch>
+        <Route exact path="/" render={props => <Home {...props} pets={this.state.pets} users={this.state.users} addresses={this.state.addresses}/>}/>
+      </Switch>
 
     );
   }
