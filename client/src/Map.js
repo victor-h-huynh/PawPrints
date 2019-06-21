@@ -16,11 +16,13 @@ class MapContainer extends Component {
   };
 
     onMarkerClick = (props, marker, e) => {
+      console.log(InfoWindow)
     this.setState({
       selectedPlace: props,
       activeMarker: marker,
       showingInfoWindow: true
     });
+    console.log(this.state)
   }
 
   onClose = props => {
@@ -32,6 +34,20 @@ class MapContainer extends Component {
     }
   };
 
+  renderInfoWindow() {
+    return (<InfoWindow
+          marker={this.state.activeMarker}
+          visible={this.state.showingInfoWindow}
+          onClose={this.onClose}
+        >
+          <div>
+            <h4>{this.state.selectedPlace.name}</h4>
+          </div>
+        </InfoWindow>
+        )
+
+  }
+
   renderMarkers() {
   return this.props.pets.map(pet => {
     return <Marker
@@ -41,33 +57,16 @@ class MapContainer extends Component {
       position = {{lat: Number(pet.address.latitude), lng: -(Number(pet.address.longitude))}}
       name = {pet.name}
       onClick = {this.onMarkerClick}
+      title = "test"
       icon={{url: 'https://cdn1.medicalnewstoday.com/content/images/articles/322/322868/golden-retriever-puppy.jpg',
-      scaledSize: new this.props.google.maps.Size(60, 40)}}
-       >
-        <InfoWindow
-         marker={this.state.activeMarker}
-         visible={this.state.showingInfoWindow}
-         onClose={this.onClose}
-        >
-          <div>
-            <h4>{this.state.selectedPlace.name}</h4>
-          </div>
-        </InfoWindow>
-
-
-
-      </Marker>
-
-
-
-
+             scaledSize: new this.props.google.maps.Size(60, 40)}}
+       />
   })
 }
 
   componentDidMount() {
 
     console.log(this.props.google)
-
 
   }
 
@@ -81,6 +80,7 @@ class MapContainer extends Component {
         initialCenter={{ lat: 45.50, lng: -73.56 }}
       >
         {this.renderMarkers()}
+        {this.renderInfoWindow()}
 
       </Map>
       </div>
