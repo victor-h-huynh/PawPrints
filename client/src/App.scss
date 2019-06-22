@@ -2,7 +2,7 @@ body {
 
   .map {
     height: 70vh; 
-    width: 60vw;
+    width: 50vw;
     margin-left: 25px;
     float: left;
   }
@@ -12,6 +12,7 @@ body {
       position: relative;
       float: left;
       margin-left: 25px;
+      // width: 40vw;
 
     // CARD VIEW
     h1, p{
@@ -54,7 +55,7 @@ body {
       border-radius: 5px;
       box-shadow: 0px 7px 9px grey;
       position: relative;
-      transition: margin 0.6s ease-in-out;
+      
     }
 
     .card .btn btn-primary {
