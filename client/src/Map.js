@@ -8,14 +8,24 @@ class Map extends Component {
     this.map = React.createRef();
   }
   state = {
-    pets: this.props.pets,
     markerId: null
   }
 
+  setMapRef = (map) => {
+    this.map = map
+  }
+
   onMarkerClick = (id) => {
-    this.setState({
+    if (this.state.markerId === id){
+      this.setState({
+      markerId: null
+      })
+    }
+    else {
+      this.setState({
       markerId: id
     })
+    }
   }
 
   renderMarkers() {
@@ -45,16 +55,36 @@ componentDidMount() {
 
   render() {
 
-
 return (
 <MyMapComponent
-  googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyBtBq7JJA3X8tnZT8n6HEPXuqSuDf4AsOQ"
+  googleMapURL={`https://maps.googleapis.com/maps/api/js?key=${process.env.REACT_APP_GOOGLE_API_KEY}`}
   loadingElement={<div style={{ height: `70vh`, width: `70vw`, margin: 'auto' }} />}
   containerElement={<div style={{ height: `70vh`, width: `70vw`, margin: 'auto' }} />}
   mapElement={<div style={{ height: `70vh`, width: `70vw`, margin: 'auto' }} />}
+  setMapRef={this.setMapRef}
+   onMapIdle={() => {
+            let ne = this.map.getBounds().getNorthEast();
+            let sw = this.map.getBounds().getSouthWest();
+            console.log(ne.lat() + ";" + ne.lng());
+            console.log(sw.lat() + ";" + sw.lng());
+
+            const petOnMapArray = this.props.pets.filter(pet =>
+
+              Number(pet.address.latitude) > sw.lat() &&
+                Number(pet.address.latitude) < ne.lat() &&
+              -Number(pet.address.longitude) > sw.lng() &&
+              -Number(pet.address.longitude) < ne.lng()
+            )
+
+            this.props.updatePetsOnMap(petOnMapArray)
+
+          }}
+
+
 
 >
 {this.renderMarkers()}
+
 </MyMapComponent>
 )
 
@@ -62,12 +92,12 @@ return (
 
 }
 
-
-
 const MyMapComponent = withScriptjs(withGoogleMap((props) =>
   <GoogleMap
+    ref={props.setMapRef}
     defaultZoom={11}
     defaultCenter={{ lat: 45.50, lng: -73.56 }}
+    onIdle={props.onMapIdle}
   >
     {props.children}
   </GoogleMap>
@@ -75,4 +105,11 @@ const MyMapComponent = withScriptjs(withGoogleMap((props) =>
 
 
 export default Map;
+
+
+
+
+
+
+
 
