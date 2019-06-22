@@ -3,6 +3,7 @@ import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 import TimeAgo from 'react-timeago';
 import { Map, Marker, GoogleApiWrapper } from 'google-maps-react';
+import Navigationbar from './Navigationbar.js';
 
 class PetProfile extends Component {
 
@@ -18,13 +19,15 @@ class PetProfile extends Component {
         const latitude = Number(pet.address.latitude);
         const longitude = Number(pet.address.longitude);
         const mapStyles = {
-            width: '60vw',
-            height: '200px'
+            width: '75vw',
+            height: '200px',
           };
         return (
-            <Card key="{pet.id}">
+            <div className="petProfilePage">
+            <Navigationbar></Navigationbar>
+            <Card className="pet">
             <Card.Header>{pet.name}</Card.Header>
-            <Card.Img variant="top" src={pet.picture} />
+            <Card.Img className="petPic" variant="top" src={pet.picture} />
             <Card.Body>
               <Card.Title>{pet.name}, a {pet.status} {pet.species} in {pet.address.city}, {pet.address.postal_code}</Card.Title>
               <Card.Title className="StatusIcon">{pet.status}</Card.Title>
@@ -37,24 +40,25 @@ class PetProfile extends Component {
               </Card.Text>
               <hr></hr>
               <Card.Text>
-                  <p>{pet.name} was {pet.status.toLowerCase()} near {pet.address.street_name}, {pet.address.city}</p>
+                  <p>{pet.name} was {pet.status.toLowerCase()} near {pet.address.street_name}, {pet.address.city}:</p>
               </Card.Text>
-              <div className="PetMap">
-              <Map
-                google={this.props.google}
-                zoom={10}
-                initialCenter={{
-                lat: latitude,
-                lng: longitude
-                }}
-                style={mapStyles}>
-                < Marker/>
+              <div className="petMap">
+                <Map
+                    google={this.props.google}
+                    zoom={10}
+                    initialCenter={{
+                    lat: latitude,
+                    lng: longitude
+                    }}
+                    style={mapStyles}>
+                    < Marker/>
                 </Map>
                 </div>
               <hr></hr>
-              <Button variant="primary">Go somewhere</Button>
+              <Button variant="success">Edit</Button>
             </Card.Body>
           </Card>
+          </div>
       );
     }
 };
