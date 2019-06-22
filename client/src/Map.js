@@ -78,6 +78,7 @@ class MapContainer extends Component {
         zoom={11}
         style={mapStyles}
         initialCenter={{ lat: 45.50, lng: -73.56 }}
+        className="map"
       >
         {this.renderMarkers()}
         {this.renderInfoWindow()}
