@@ -58,9 +58,9 @@ componentDidMount() {
 return (
 <MyMapComponent
   googleMapURL={`https://maps.googleapis.com/maps/api/js?key=${process.env.REACT_APP_GOOGLE_API_KEY}`}
-  loadingElement={<div style={{ height: `70vh`, width: `70vw`, margin: 'auto' }} />}
-  containerElement={<div style={{ height: `70vh`, width: `70vw`, margin: 'auto' }} />}
-  mapElement={<div style={{ height: `70vh`, width: `70vw`, margin: 'auto' }} />}
+  loadingElement={<div className='loading' />}
+  containerElement={<div className='container-element' />}
+  mapElement={<div className={'map'}/>}
   setMapRef={this.setMapRef}
    onMapIdle={() => {
             let ne = this.map.getBounds().getNorthEast();
