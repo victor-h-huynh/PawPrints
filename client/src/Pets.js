@@ -1,11 +1,40 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom'
 import TimeAgo from 'react-timeago'
+import InfiniteScroll from 'react-infinite-scroll-component';
 
 class Pets extends Component {
 
+    state = {
+      items: Array.from({ length: 20 }),
+      hasMore: true
+    };
+
+    fetchMoreData = () => {
+      if (this.state.items.length >= 500) {
+        this.setState({ hasMore: false });
+        return;
+      }
+      // a fake async api call like which sends
+      // 20 more records in .5 secs
+      setTimeout(() => {
+        this.setState({
+          items: this.state.items.concat(Array.from({ length: 20 }))
+        });
+      }, 500);
+    };
+
     render() {
       return (
+        <InfiniteScroll dataLength={this.state.items.length}
+        next={this.fetchMoreData}
+        hasMore={this.state.hasMore}
+        height={600}
+        endMessage={
+          <p style={{ textAlign: "center" }}>
+            <b>Yay! You have seen it all</b>
+          </p>
+        }>
             <div className="Pets">
             {this.props.pets.map(pet =>
           //   <section key={pet.id}>
@@ -52,6 +81,7 @@ class Pets extends Component {
 </section>
           )}
           </div>
+          </InfiniteScroll>
   
       );
     }
