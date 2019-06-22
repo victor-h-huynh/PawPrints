@@ -1,4 +1,4 @@
-class Api::DescriptionsController < ApplicationController
+class API::DescriptionsController < ApplicationController
     def index
         descriptions = Description.all
         render json: descriptions

@@ -1,4 +1,4 @@
-class Api::AddressesController < ApplicationController
+class API::AddressesController < ApplicationController
   def index
       addresses = Address.all
       render json: addresses

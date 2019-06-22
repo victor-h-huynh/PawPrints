@@ -1,10 +1,44 @@
 import React, { Component } from "react";
 import { Form, Button, Col } from "react-bootstrap";
+import axios from 'axios';
 
 class ReportAPet extends Component {
+
+  constructor(props) {
+    super(props);
+
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  handleSubmit(event) {
+    event.preventDefault();
+    console.log("form submitted");
+    axios.post("http://localhost:3001/api/pets", {
+      description: {
+        breed: "mutt",
+        colour: "orange",
+        sex: "male",
+        additional: "Very fat boy",
+      },
+        name: "Tom",
+        species: "Cat",
+        status: "Lost",
+        date_lost: "Jan9",
+        picture: "./src/assets/catImage.jpg",
+        user_id: 1,
+    })
+    .then(response => {
+      console.log('response: ', response);
+    })
+    .catch(err => {
+      console.log('report pet error: ', err);
+    })
+  }  
+
   render() {
     return (
-      <Form>
+      
+      <Form onSubmit={this.handleSubmit}>
         <Form.Row>
           <Form.Group as={Col} controlId="formGridName">
             <Form.Label>Name</Form.Label>
