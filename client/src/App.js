@@ -14,10 +14,19 @@ class App extends Component {
     super(props);
     this.state = {
       loading: true,
-      users:[], 
-      pets:[], 
-      addresses:[]
+      users:[],
+      pets:[],
+      petsOnMap: [],
+      addresses:[],
+
     };
+  }
+
+
+  updatePetsOnMap = (petsOnMap) => {
+    this.setState({
+      petsOnMap: petsOnMap
+    })
   }
 
   componentDidMount() {
@@ -49,7 +58,7 @@ class App extends Component {
     } else {
     return (
           <Switch>
-              <Route exact path="/" render={props => <Home {...props} pets={this.state.pets} users={this.state.users} addresses={this.state.addresses}/>}/>
+              <Route exact path="/" render={props => <Home {...props} updatePetsOnMap={this.updatePetsOnMap} pets={this.state.pets} users={this.state.users} addresses={this.state.addresses} petsOnMap={this.state.petsOnMap}/>}/>
               <Route path="/ReportAPet" component={ReportAPet}/>
               <Route path="/Login" component={Login}/>
               <Route path="/Register" component={Register}/>
