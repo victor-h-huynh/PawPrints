@@ -65,8 +65,6 @@ return (
    onMapIdle={() => {
             let ne = this.map.getBounds().getNorthEast();
             let sw = this.map.getBounds().getSouthWest();
-            console.log(ne.lat() + ";" + ne.lng());
-            console.log(sw.lat() + ";" + sw.lng());
 
             const petOnMapArray = this.props.pets.filter(pet =>
 
