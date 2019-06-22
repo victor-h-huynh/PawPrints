@@ -64,15 +64,15 @@ class Pets extends Component {
           // </section>
           <section key={pet.id}>
           
-          <article class="card">
-  <div class="image">
+          <article className="card">
+  <div className="image">
   <img key={pet.id} src={pet.picture} alt=""/>
   </div>
-  <div class="entry">
-    <div class="container">
-      <div class="text">
+  <div className="entry">
+    <div className="container">
+      <div className="text">
         <h1 className="card-title">{pet.name}</h1>
-        <span class="meta"> <TimeAgo date={pet.date_lost}/></span><span class="button button3">{pet.status}</span>
+        <span className="meta"> <TimeAgo date={pet.date_lost}/></span><span className="button button3">{pet.status}</span>
         <p>{pet.species}, {pet.description.breed} </p> <Link to={`/pets/${pet.id}`} className="btn btn-primary">more details</Link>
       </div>
     </div>

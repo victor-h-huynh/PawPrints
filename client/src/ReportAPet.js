@@ -3,13 +3,13 @@ import { Form, Button, Col } from 'react-bootstrap';
 import axios from 'axios';
 
 class ReportAPet extends Component {
+
   state = {
-    selectedFile: null,
     name: '',
     species: '',
     status: '',
     date_lost: '',
-    picture: './src/assets/catImage.jpg',
+    picture: null,
     user_id: '',
     breed: '',
     colour: '',
@@ -22,13 +22,13 @@ class ReportAPet extends Component {
     province: '',
     postal_code: '',
     latitude: 45.7,
-    longitude: -73.1,
+    longitude: 73.1,
   };
 
   fileSelectedHandler = event => {
     console.log(event.target.files[0]);
     this.setState({
-      selectedFile: event.target.files[0]
+      picture: event.target.files[0]
     });
   };
 
@@ -145,7 +145,7 @@ class ReportAPet extends Component {
         </Form.Row>
 
         <Form.Row>
-          <input type='file' onChange={this.fileSelectedHandler} />
+          <input type='file' name="picture" onChange={this.fileSelectedHandler} />
         </Form.Row>
 
         <Button variant='primary' type='submit'>
