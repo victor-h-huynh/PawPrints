@@ -1,11 +1,11 @@
-class API::PetsController < ApplicationController
+class Api::PetsController < ApplicationController
     def index
       pets = Pet.all
       render :json => pets, :include=> [:address, :user, :description]
     end
 
     # def create
-      # address = Adress.create!(
+      # address = Address.create!(
       #   street_number: params['streetNumber'],
       #   street_name: params['streetName'],
       #   apartment: params['apartment'],
