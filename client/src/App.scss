@@ -1,9 +1,136 @@
 body {
 
-    div.Pets {
-      float: right;
-      margin-right: 25px;
+  .map {
+    height: 70vh; 
+    width: 50vw;
+    margin-left: 25px;
+    float: left;
+  }
+
+  div.Pets {
+
+      position: relative;
+      float: left;
+      margin-left: 25px;
+
+    // CARD VIEW
+    h1, p{
+      margin: 0;
+      padding: 0;
     }
+
+    .button3 {
+      border-radius: 8px;
+      
+    }
+
+    .button {
+      background-color: #4CAF50; /* Green */
+      
+      color: white;
+      padding: 8px;
+    display: inline-block;
+      font-size: 15px;
+      margin: 4px 2px;
+      margin-left: 50px;
+
+    }
+
+    h1 {
+      color: #639e8d;
+    }
+
+    p {
+      font-size: 14px;
+      color: #626262;
+    }
+
+    .card {
+      display: grid;
+      grid-template-columns: 150px 350px;
+      height: auto;
+      margin: 5% auto;
+      background: white;
+      border-radius: 5px;
+      box-shadow: 0px 7px 9px grey;
+      position: relative;
+      
+    }
+
+    .card .btn btn-primary {
+      margin: auto;
+    }
+
+    .card > .entry {
+      height: auto;
+      position: relative;
+      top: 0;
+      right: 0;
+      background: white;
+    }
+
+    .card > .entry > .container{
+      position: relative;
+      width: auto;
+    }
+
+    .card > .entry, .card > .entry > .container > .text {
+      right: 0;
+      top: 0;
+      position: relative;
+      border-top-right-radius: 5px;
+      border-bottom-right-radius: 5px;
+    }
+    
+    .card > .entry > .container > .text {
+      left: 0;
+
+    }
+
+    .card >.entry h1, .card > .entry p {
+      text-shadow: 0 0 0 #333;
+      transition-delay: 0.4s;
+    }
+
+    .card > .entry .meta {
+      font-size: 12px;
+      color: #c9c9c9;
+      padding-left: 10px;
+      text-align: right;
+    }
+
+    h1 {
+      display: inline-block;
+      margin-bottom: 5px;
+    }
+
+    .card > .entry > .container > .text h1, .card > .entry > .container > .text p {
+      padding: 5px 15px;
+
+    }
+
+    .card > .image {
+      left: 0;
+      top: 0;
+      position: relative;
+      background:white;
+      height: 150px;
+      border-top-left-radius: 5px;
+      border-bottom-left-radius: 5px;
+      
+    }
+
+    .card > .image > img {
+      border-top-left-radius: 5px;
+      border-bottom-left-radius: 5px;
+    }
+
+    }
+    }
+    
+    .clearfix{
+      clear:both
+  }
 
 //PET PROFILE
     div.pet.card {
@@ -33,123 +160,7 @@ body {
 
     }
     
-    
-    
-    
-    // CARD VIEW
 
-h1, p{
-	margin: 0;
-	padding: 0;
-}
-
-.button3 {
-  border-radius: 8px;
-  
-}
-
-.button {
-  background-color: #4CAF50; /* Green */
-  
-  color: white;
-  padding: 8px;
-display: inline-block;
-  font-size: 15px;
-  margin: 4px 2px;
-  margin-left: 50px;
-
-}
-
-h1 {
-	color: #639e8d;
-}
-
-p {
-	font-size: 14px;
-	color: #626262;
-}
-
-.card {
-	display: grid;
-	grid-template-columns: 150px 350px;
-	height: auto;
-	margin: 5% auto;
-	background: white;
-  border-radius: 5px;
-	box-shadow: 0px 7px 9px grey;
-	position: relative;
-	transition: margin 0.6s ease-in-out;
-}
-
-.card .btn btn-primary {
-  margin-left: 25px;
-}
-
-.card > .entry {
-	height: auto;
-	position: relative;
-	top: 0;
-	right: 0;
-	background: white;
-}
-
-.card > .entry > .container{
-	position: relative;
-	width: auto;
-}
-
-.card > .entry, .card > .entry > .container > .text {
-	right: 0;
-	top: 0;
-	position: relative;
-	border-top-right-radius: 5px;
-	border-bottom-right-radius: 5px;
- }
- 
- .card > .entry > .container > .text {
-	left: 0;
-
-}
-
-.card >.entry h1, .card > .entry p {
-	text-shadow: 0 0 0 #333;
-	transition-delay: 0.4s;
-}
-
-.card > .entry .meta {
-	font-size: 12px;
-	color: #c9c9c9;
-	padding-left: 10px;
-	text-align: right;
-}
-
-h1 {
-	display: inline-block;
-	margin-bottom: 5px;
-}
-
-.card > .entry > .container > .text h1, .card > .entry > .container > .text p {
-	 padding: 5px 15px;
-
-}
-
-.card > .image {
-	left: 0;
-	top: 0;
-	position: relative;
-	background:white;
-	height: 150px;
-	border-top-left-radius: 5px;
-  border-bottom-left-radius: 5px;
-  
-}
-
-.card > .image > img {
-	border-top-left-radius: 5px;
-	border-bottom-left-radius: 5px;
-}
-
-}
 
 
 
