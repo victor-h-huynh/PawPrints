@@ -7,8 +7,9 @@ import Navigationbar from './Navigationbar.js';
 
 class PetProfile extends Component {
 
-    getPet() {       
+    getPet() { 
         const id = Number(this.props.match.params.id);
+        console.log(id);
         const pets = this.props.pets;
         const [pet] = pets.filter(pet => pet.id === id);
         return pet;
@@ -22,6 +23,7 @@ class PetProfile extends Component {
             width: '75vw',
             height: '200px',
           };
+    
         return (
             <div className="petProfilePage">
             <Navigationbar></Navigationbar>
