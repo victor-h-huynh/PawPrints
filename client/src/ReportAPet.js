@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Form, Button, Col } from 'react-bootstrap';
 import axios from 'axios';
-import { Redirect, Link } from 'react-router-dom'
+import { Redirect } from 'react-router-dom'
 
 class ReportAPet extends Component {
   constructor(props) {
