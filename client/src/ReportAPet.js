@@ -34,7 +34,18 @@ class ReportAPet extends Component {
       latitude: 45.7,
       longitude: 73.1
     };
+
+
   }
+
+
+  setPictureState = picture => {
+    this.setState({
+      picture: picture
+    })
+    console.log(this.state.picture)
+  }
+
 
   fileSelectedHandler = event => {
     console.log(event.target.files[0]);
@@ -43,15 +54,41 @@ class ReportAPet extends Component {
     });
   };
 
+  // fileUploadHandler = () => {
+  //   axios.post('https://us-central1-final-project-1561040119727.cloudfunctions.net/uploadFile')
+  // }
+
   handleChange = event => {
     this.setState({
       [event.target.name]: event.target.value
     });
   };
 
+
   handleSubmit = event => {
     event.preventDefault();
-    axios
+
+
+    const file = this.state.picture
+    const storageRef = this.state.storage.ref();
+    // const petPictureRef = storageRef.child(this.state.picture.name)
+    // petPictureRef.put(file).then(function(snapshot) {
+
+    // console.log(snapshot)
+
+const uploadPicture = storageRef.child(this.state.picture.name).put(file);
+uploadPicture.then('state_changed', function(snapshot){
+         const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+         console.log('Upload is ' + progress + '% done');
+         return snapshot.ref.getDownloadURL();
+})
+
+    .then(url  => {
+        this.setState({ picture: url });
+        console.log(this.state);
+    })
+
+    .then(axios
       .post('http://localhost:3001/api/pets', {
         description: {
           breed: this.state.breed,
@@ -87,14 +124,16 @@ class ReportAPet extends Component {
       })
       .catch(err => {
         console.log('report pet error: ', err);
-      });
+      }))
+
+
+
   };
 
 componentDidMount() {
  this.setState({
     storage: window.firebase.storage()
  })
-const storageRef = this.storage.ref();
 
 }
 
