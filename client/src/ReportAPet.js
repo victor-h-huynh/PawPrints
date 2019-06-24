@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Form, Button, Col } from 'react-bootstrap';
 import axios from 'axios';
+// import Navigationbar from './Navigationbar.js';
+// import DayPicker from 'react-day-picker'
 import { Redirect } from 'react-router-dom'
 
 class ReportAPet extends Component {
@@ -76,7 +78,6 @@ class ReportAPet extends Component {
         }
       })
       .then(response => {
-        console.log("Response data pet: ", response.data);
         this.props.addAPet(response.data);
         this.setState({
           id: response.data.id,

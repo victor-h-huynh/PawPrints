@@ -54,4 +54,7 @@ return (
     )
    }
 }
- export default Pet;
+
+ export default GoogleApiWrapper({
+  apiKey: process.env.REACT_APP_GOOGLE_API_KEY
+})(Pet);

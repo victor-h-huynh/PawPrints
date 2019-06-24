@@ -8,7 +8,7 @@ const Styles = styled.div`
     background: url(${catImageCropped}) no-repeat fixed bottom;
     background-size: cover;
     color: #ccc;
-    height: 35rem;
+    height: 15rem;
     position: relative;
     z-index: -2;
   }
