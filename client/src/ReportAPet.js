@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Form, Button, Col } from 'react-bootstrap';
 import axios from 'axios';
+import PetMap from './PetMap.js';
 
 class ReportAPet extends Component {
   state = {
@@ -143,6 +144,13 @@ class ReportAPet extends Component {
             <Form.Control placeholder='' name="additional" value={this.state.additional} onChange={this.handleChange}/>
           </Form.Group>
         </Form.Row>
+
+        <PetMap
+        google={this.props.google}
+        center={{lat: 45.7000, lng: -73.1000}}
+        height='300px'
+        zoom={12}
+        />
 
         <Form.Row>
           <input type='file' onChange={this.fileSelectedHandler} />
