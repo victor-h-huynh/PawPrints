@@ -94,6 +94,8 @@ class ReportAPet extends Component {
         return <Redirect to={`/pets/${this.state.id}`}/>
       } else {
       return (
+<div>
+<Navigationbar></Navigationbar>
         <Form onSubmit={this.handleSubmit}>
           <Form.Row>
             <Form.Group as={Col} controlId='formGridName'>
@@ -219,6 +221,7 @@ class ReportAPet extends Component {
             Submit
           </Button>
         </Form>
+        </div>
       );
   }
 }
