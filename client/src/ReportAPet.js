@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import { Form, Button, Col } from 'react-bootstrap';
 import axios from 'axios';
-// import Navigationbar from './Navigationbar.js';
+import Navigationbar from './Navigationbar.js';
 // import DayPicker from 'react-day-picker'
 import { Redirect } from 'react-router-dom'
+
 
 class ReportAPet extends Component {
   constructor(props) {
@@ -88,6 +89,14 @@ class ReportAPet extends Component {
         console.log('report pet error: ', err);
       });
   };
+
+componentDidMount() {
+ this.setState({
+    storage: window.firebase.storage()
+ })
+const storageRef = this.storage.ref();
+
+}
 
   render() {
       if (this.state.redirectToProfile === true) {
