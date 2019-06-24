@@ -30,10 +30,10 @@ class App extends Component {
 
   componentDidMount() {
     axios.all([
-      axios.get('http://localhost:3001/api/addresses.json'),
-      axios.get('http://localhost:3001/api/pets.json'),
-      axios.get('http://localhost:3001/api/users.json'),
-      axios.get('http://localhost:3001/api/descriptions.json'),
+      axios.get('/api/addresses.json'),
+      axios.get('/api/pets.json'),
+      axios.get('/api/users.json'),
+      axios.get('/api/descriptions.json'),
     ])
     .then(axios.spread((addressesRes, petsRes, usersRes, descriptionsRes) => {
       this.setState({
@@ -56,6 +56,7 @@ class App extends Component {
   }
 
   render() {
+  
     if (this.state.loading) {
       return <h1>Loading...</h1>;
     } else {
@@ -72,5 +73,6 @@ class App extends Component {
     }
   }
 }
+
 
 export default App;
