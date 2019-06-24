@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Form, Button, Col } from 'react-bootstrap';
 import axios from 'axios';
-import Navigationbar from './Navigationbar.js';
+// import Navigationbar from './Navigationbar.js';
 // import DayPicker from 'react-day-picker'
 import { Redirect } from 'react-router-dom'
 
