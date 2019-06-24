@@ -1,5 +1,5 @@
 import React from 'react';
-import { Nav, Navbar, NavDropdown} from 'react-bootstrap';
+import { Nav, Navbar} from 'react-bootstrap';
 import styled from 'styled-components';
 import { LinkContainer } from 'react-router-bootstrap';
 
@@ -31,13 +31,10 @@ export const Navigationbar = () => (
           <LinkContainer to="/ReportAPet">
             <Nav.Link>Report a pet</Nav.Link>
           </LinkContainer>
-          <NavDropdown title="CHANGE THIS IF YOU WANT DROPDOWN" id="collasible-nav-dropdown">
-            <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-            <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
-            <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
-            <NavDropdown.Divider />
-            <NavDropdown.Item href="#action/3.4">Separated link</NavDropdown.Item>
-          </NavDropdown>
+          <LinkContainer to="/Success">
+            <Nav.Link>Success Stories!</Nav.Link>
+          </LinkContainer>
+ 
         </Nav>
         <Nav>
           <LinkContainer to="/Login">
@@ -53,3 +50,4 @@ export const Navigationbar = () => (
 )
 
 export default Navigationbar;
+

@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Form, Button, Col } from 'react-bootstrap';
 import axios from 'axios';
+import Navigationbar from './Navigationbar.js';
+// import DayPicker from 'react-day-picker'
 
 class ReportAPet extends Component {
   state = {
@@ -76,6 +78,7 @@ class ReportAPet extends Component {
   render() {
     return (
       <Form onSubmit={this.handleSubmit}>
+        <Navigationbar></Navigationbar>
         <Form.Row>
           <Form.Group as={Col} controlId='formGridName'>
             <Form.Label>Name</Form.Label>
@@ -90,7 +93,6 @@ class ReportAPet extends Component {
               <option>Dog</option>
               <option>[̲̅$̲̅(̲̅2οο̲̅)̲̅$̲̅]</option>
               <option>__̴ı̴̴̡̡̡ ̡͌l̡̡̡ ̡͌l̡*̡̡ ̴̡ı̴̴̡ ̡̡͡|̲̲̲͡͡͡ ̲▫̲͡ ̲̲̲͡͡π̲̲͡͡ ̲̲͡▫̲̲͡͡ ̲|̡̡̡ ̡ ̴̡ı̴̡̡ ̡͌l̡̡̡̡.___</option>
-              <option>(╭ರ_•́)</option>
               <option>( ^​_^）o自自o（^_​^ )</option>
             </Form.Control>
           </Form.Group>
@@ -121,7 +123,7 @@ class ReportAPet extends Component {
             </Form.Control>
           </Form.Group>
 
-          <Form.Group as={Col} controlId='formGridColoir'>
+          <Form.Group as={Col} controlId='formGridColour'>
             <Form.Label>Colour</Form.Label>
             <Form.Control type='name' name="colour" placeholder='Colour' value={this.state.colour} onChange={this.handleChange}/>
           </Form.Group>
@@ -151,7 +153,11 @@ class ReportAPet extends Component {
         <Button variant='primary' type='submit'>
           Submit
         </Button>
+
       </Form>
+      
+      
+
     );
   }
 }
