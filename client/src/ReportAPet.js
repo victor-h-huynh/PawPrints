@@ -22,8 +22,8 @@ class ReportAPet extends Component {
     city: '',
     province: '',
     postal_code: '',
-    latitude: 45.7,
-    longitude: -73.1,
+    latitude: '',
+    longitude: '',
   };
 
   fileSelectedHandler = event => {
