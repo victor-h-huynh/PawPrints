@@ -8,27 +8,27 @@ import { Redirect } from 'react-router-dom'
 
 class PetProfile extends Component {
 
-    getPet() { 
+    getPet() {
         const id = Number(this.props.match.params.id);
         const pets = this.props.pets;
         const [pet] = pets.filter(pet => pet.id === id);
         return pet;
-    } 
+    }
 
     handleClick = event => {
       event.preventDefault();
       return <Redirect to={`/ReportAPet`}/>
     }
-    
+
     render() {
         const pet = this.getPet();
         const latitude = Number(pet.address.latitude);
-        const longitude = Number(pet.address.longitude);
+        const longitude = -Number(pet.address.longitude);
         const mapStyles = {
             width: '75vw',
             height: '200px',
           };
-    
+
         return (
             <div className="petProfilePage">
             <Navigationbar></Navigationbar>

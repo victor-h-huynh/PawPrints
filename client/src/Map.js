@@ -59,6 +59,8 @@ class Map extends Component {
       options={{ icon:
                 { url: pet.picture,
                   scaledSize: { width: 28, height: 28 },
+                  shape:{coords:[17,17,18],type:'circle'},
+
                   } }}
 
        >
