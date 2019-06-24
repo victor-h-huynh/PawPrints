@@ -73,9 +73,7 @@ class Pets extends Component {
     <div className="container">
       <div className="text">
         <h1 className="card-title">{pet.name}</h1>
-
-        <span className="meta"> <TimeAgo date={pet.date_lost}/></span><Badge pill variant="danger" class="button button3">{pet.status}</Badge>
-
+        <span className="meta"> <TimeAgo date={pet.date_lost}/></span><Badge pill variant="danger" className="button button3">{pet.status}</Badge>
         <p>{pet.species}, {pet.description.breed} </p> <Link to={`/pets/${pet.id}`} className="btn btn-primary">more details</Link>
       </div>
     </div>
