@@ -78,11 +78,11 @@ class ReportAPet extends Component {
         }
       })
       .then(response => {
+        this.props.addAPet(response.data);
         this.setState({
           id: response.data.id,
-          redirectToProfile: true
+          redirectToProfile: true,
         });
-        // this.props.history.push(`/pets/${this.state.id}`);
       })
       .catch(err => {
         console.log('report pet error: ', err);

@@ -19,10 +19,8 @@ class App extends Component {
       pets:[],
       petsOnMap: [],
       addresses:[],
-
     };
   }
-
 
   updatePetsOnMap = (petsOnMap) => {
     this.setState({
@@ -53,6 +51,10 @@ class App extends Component {
     .catch(error => console.log(error));
   }
 
+  addAPet = (newPet) => {
+    this.setState({pets: [...this.state.pets, newPet]})
+  }
+
   render() {
     if (this.state.loading) {
       return <h1>Loading...</h1>;
@@ -60,11 +62,11 @@ class App extends Component {
     return (
           <Switch>
               <Route exact path="/" render={props => <Home {...props} updatePetsOnMap={this.updatePetsOnMap} pets={this.state.pets} users={this.state.users} addresses={this.state.addresses} petsOnMap={this.state.petsOnMap}/>}/>
-              <Route path="/ReportAPet" component={ReportAPet}/>
-              <Route path="/Success" component={Success}/>
+              <Route path="/ReportAPet" render={props => <ReportAPet {...props} addAPet={this.addAPet}/>}/>
               <Route path="/Login" component={Login}/>
               <Route path="/Register" component={Register}/>
               <Route path="/Pets/:id" render={props => <PetProfile {...props} pets={this.state.pets} users={this.state.users} addresses={this.state.addresses}/>}/>
+              <Route path="/Success" component={Success}/>
           </Switch>
     );
     }
