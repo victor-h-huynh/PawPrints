@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom'
-import TimeAgo from 'react-timeago'
+import TimeAgo from 'react-timeago';
 import InfiniteScroll from 'react-infinite-scroll-component';
+import { Badge } from 'react-bootstrap';
 
 class Pets extends Component {
 
@@ -72,7 +73,11 @@ class Pets extends Component {
     <div className="container">
       <div className="text">
         <h1 className="card-title">{pet.name}</h1>
+<<<<<<< HEAD
+        <span class="meta"> <TimeAgo date={pet.date_lost}/></span><Badge pill variant="danger" class="button button3">{pet.status}</Badge>
+=======
         <span className="meta"> <TimeAgo date={pet.date_lost}/></span><span className="button button3">{pet.status}</span>
+>>>>>>> master
         <p>{pet.species}, {pet.description.breed} </p> <Link to={`/pets/${pet.id}`} className="btn btn-primary">more details</Link>
       </div>
     </div>

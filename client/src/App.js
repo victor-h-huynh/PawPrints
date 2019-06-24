@@ -4,7 +4,8 @@ import './App.scss';
 import Home from './Home.js';
 import Login from './Login.js';
 import Register from './Register.js';
-import { Switch, Route} from 'react-router-dom';
+import Success from './Success.js'
+import { Switch, Route } from 'react-router-dom';
 import ReportAPet from './ReportAPet.js';
 import PetProfile from './PetProfile.js';
 
@@ -60,6 +61,7 @@ class App extends Component {
           <Switch>
               <Route exact path="/" render={props => <Home {...props} updatePetsOnMap={this.updatePetsOnMap} pets={this.state.pets} users={this.state.users} addresses={this.state.addresses} petsOnMap={this.state.petsOnMap}/>}/>
               <Route path="/ReportAPet" component={ReportAPet}/>
+              <Route path="/Success" component={Success}/>
               <Route path="/Login" component={Login}/>
               <Route path="/Register" component={Register}/>
               <Route path="/Pets/:id" render={props => <PetProfile {...props} pets={this.state.pets} users={this.state.users} addresses={this.state.addresses}/>}/>
