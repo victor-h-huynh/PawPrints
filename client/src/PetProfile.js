@@ -4,16 +4,22 @@ import Button from 'react-bootstrap/Button';
 import TimeAgo from 'react-timeago';
 import { Map, Marker, GoogleApiWrapper } from 'google-maps-react';
 import Navigationbar from './Navigationbar.js';
+import { Redirect } from 'react-router-dom'
 
 class PetProfile extends Component {
 
-    getPet() {       
+    getPet() { 
         const id = Number(this.props.match.params.id);
         const pets = this.props.pets;
         const [pet] = pets.filter(pet => pet.id === id);
         return pet;
     } 
 
+    handleClick = event => {
+      event.preventDefault();
+      return <Redirect to={`/ReportAPet`}/>
+    }
+    
     render() {
         const pet = this.getPet();
         const latitude = Number(pet.address.latitude);
@@ -22,6 +28,7 @@ class PetProfile extends Component {
             width: '75vw',
             height: '200px',
           };
+    
         return (
             <div className="petProfilePage">
             <Navigationbar></Navigationbar>
@@ -55,7 +62,7 @@ class PetProfile extends Component {
                 </Map>
                 </div>
               <hr></hr>
-              <Button variant="success">Edit</Button>
+              <Button onClick={this.handleClick} variant="success">Edit</Button>
             </Card.Body>
           </Card>
           </div>
