@@ -48,10 +48,44 @@ class ReportAPet extends Component {
 
   handleSubmit = event => {
     event.preventDefault();
-    this.props.addAPet(this.state)
-    this.setState({
-      redirectToProfile: true,
-    });
+    axios
+      .post('http://localhost:3001/api/pets', {
+        description: {
+          breed: this.state.breed,
+          colour: this.state.colour,
+          sex: this.state.sex,
+          additional: this.state.additional
+        },
+        address: {
+          street_number: this.state.street_number,
+          street_name: this.state.street_name,
+          apartment: this.state.apartment,
+          city: this.state.city,
+          province: this.state.province,
+          postal_code: this.state.postal_code,
+          latitude: 45.7,
+          longitude: -73.1
+        },
+        pet: {
+          name: this.state.name,
+          species: this.state.species,
+          status: this.state.status,
+          date_lost: this.state.date,
+          picture: this.state.picture,
+          user_id: 1
+        }
+      })
+      .then(response => {
+        console.log("Response data pet: ", response.data);
+        this.props.addAPet(response.data);
+        this.setState({
+          id: response.data.id,
+          redirectToProfile: true,
+        });
+      })
+      .catch(err => {
+        console.log('report pet error: ', err);
+      });
   };
 
   render() {

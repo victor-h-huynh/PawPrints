@@ -18,10 +18,8 @@ class App extends Component {
       pets:[],
       petsOnMap: [],
       addresses:[],
-
     };
   }
-
 
   updatePetsOnMap = (petsOnMap) => {
     this.setState({
@@ -53,43 +51,7 @@ class App extends Component {
   }
 
   addAPet = (newPet) => {
-    axios
-      .post('http://localhost:3001/api/pets', {
-        description: {
-          breed: newPet.breed,
-          colour: newPet.colour,
-          sex: newPet.sex,
-          additional: newPet.additional
-        },
-        address: {
-          street_number: newPet.street_number,
-          street_name: newPet.street_name,
-          apartment: newPet.apartment,
-          city: newPet.city,
-          province: newPet.province,
-          postal_code: newPet.postal_code,
-          latitude: 45.7,
-          longitude: -73.1
-        },
-        pet: {
-          name: newPet.name,
-          species: newPet.species,
-          status: newPet.status,
-          date_lost: newPet.date,
-          picture: newPet.picture,
-          user_id: 1
-        }
-      })
-      .then(response => {
-        this.setState({
-          pets: [...this.state.pets, response.data],
-        });
-        const id = this.state.pets.length > 0 ? this.state.pets[this.state.pets.length-1].id : null;
-        this.props.history.push(`/pets/${id}`);
-      })
-      .catch(err => {
-        console.log('report pet error: ', err);
-      });
+    this.setState({pets: [...this.state.pets, newPet]})
   }
 
   render() {
