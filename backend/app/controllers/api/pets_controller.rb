@@ -5,8 +5,7 @@ class Api::PetsController < ApplicationController
     end
 
     def create
-      puts params
-      address = Address.create!(
+      @address = Address.create!(
         street_number: params['address']['street_number'],
         street_name: params['address']['street_name'],
         apartment: params['address']['apartment'],
@@ -16,22 +15,29 @@ class Api::PetsController < ApplicationController
         latitude: params['address']['latitude'],
         longitude: params['address']['longitude']
       )
-      description = Description.create!(
+      @description = Description.create!(
         breed: params['description']['breed'],
         colour: params['description']['colour'],
         sex: params['description']['sex]'],
         additional: params['description']['additional'],
       )
-      pet = Pet.create!(
-        name: params['name'],
-        species: params['species'],
-        status: params['status'],
-        date_lost: params['date'],
-        picture: params['picture'],
-        address_id: address.id,
-        description_id: description.id,
-        user_id: params['user_id'],
+      @pet = Pet.create!(
+        name: params['pet']['name'],
+        species: params['pet']['species'],
+        status: params['pet']['status'],
+        date_lost: params['pet']['date'],
+        picture: params['pet']['picture'],
+        address_id: @address.id,
+        description_id: @description.id,
+        user_id: params['pet']['user_id'],
       )
+
+      if @pet.save
+        render :json => @pet, :include=> [:address, :user, :description]
+      else
+        render :new
+      end
+
     end
 
 end
