@@ -5,6 +5,17 @@ import Navigationbar from './Navigationbar.js';
 // import DayPicker from 'react-day-picker'
 import { Redirect } from 'react-router-dom'
 
+
+// service firebase.storage {
+//   match /b/{bucket}/o {
+//     match /{allPaths=**} {
+//       allow read, write: if request.auth != null;
+//     }
+//   }
+// }
+
+//"gs://final-project-1561040119727.appspot.com/"
+
 class ReportAPet extends Component {
   constructor(props) {
     super(props);
