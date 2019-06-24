@@ -19,10 +19,8 @@ class App extends Component {
       pets:[],
       petsOnMap: [],
       addresses:[],
-
     };
   }
-
 
   updatePetsOnMap = (petsOnMap) => {
     this.setState({
@@ -32,10 +30,10 @@ class App extends Component {
 
   componentDidMount() {
     axios.all([
-      axios.get('http://localhost:3001/api/addresses.json'),
-      axios.get('http://localhost:3001/api/pets.json'),
-      axios.get('http://localhost:3001/api/users.json'),
-      axios.get('http://localhost:3001/api/descriptions.json'),
+      axios.get('/api/addresses.json'),
+      axios.get('/api/pets.json'),
+      axios.get('/api/users.json'),
+      axios.get('/api/descriptions.json'),
     ])
     .then(axios.spread((addressesRes, petsRes, usersRes, descriptionsRes) => {
       this.setState({
@@ -53,22 +51,28 @@ class App extends Component {
     .catch(error => console.log(error));
   }
 
+  addAPet = (newPet) => {
+    this.setState({pets: [...this.state.pets, newPet]})
+  }
+
   render() {
+  
     if (this.state.loading) {
       return <h1>Loading...</h1>;
     } else {
     return (
           <Switch>
               <Route exact path="/" render={props => <Home {...props} updatePetsOnMap={this.updatePetsOnMap} pets={this.state.pets} users={this.state.users} addresses={this.state.addresses} petsOnMap={this.state.petsOnMap}/>}/>
-              <Route path="/ReportAPet" component={ReportAPet}/>
-              <Route path="/Success" component={Success}/>
+              <Route path="/ReportAPet" render={props => <ReportAPet {...props} addAPet={this.addAPet}/>}/>
               <Route path="/Login" component={Login}/>
               <Route path="/Register" component={Register}/>
               <Route path="/Pets/:id" render={props => <PetProfile {...props} pets={this.state.pets} users={this.state.users} addresses={this.state.addresses}/>}/>
+              <Route path="/Success" component={Success}/>
           </Switch>
     );
     }
   }
 }
+
 
 export default App;
