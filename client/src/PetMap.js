@@ -36,7 +36,7 @@ class PetMap extends Component{
 					// area = this.getArea( addressArray ),
 					// state = this.getState( addressArray );
 
-				console.log( 'city', city, area, state );
+				// console.log( 'city', city, area, state );
 
 				this.setState( {
 					address: ( address ) ? address : '',
