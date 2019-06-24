@@ -31,8 +31,8 @@ class ReportAPet extends Component {
       city: '',
       province: '',
       postal_code: '',
-      latitude: 45.7,
-      longitude: 73.1
+      latitude: 45.501,
+      longitude: -73.567
     };
   }
 
@@ -208,11 +208,12 @@ class ReportAPet extends Component {
             </Form.Group>
           </Form.Row>
 
-          <Form.Row>
+          <Form.Row style={{margin: '25px', marginBottom: '50px'}}>
             <PetMap
             google={this.props.google}
-            center={{lat: 18.5204, lng: 73.8567}}
+            center={{lat: this.state.latitude, lng: this.state.longitude}}
             height='300px'
+            width='90vw'
             zoom={15}/>
           </Form.Row>
 
