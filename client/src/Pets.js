@@ -63,7 +63,7 @@ class Pets extends Component {
           //   </div>
           // </section>
           <section key={pet.id}>
-          
+
           <article className="card">
   <div className="image">
   <img key={pet.id} src={pet.picture} alt=""/>
@@ -82,7 +82,7 @@ class Pets extends Component {
           )}
           </div>
           </InfiniteScroll>
-  
+
       );
     }
 };
