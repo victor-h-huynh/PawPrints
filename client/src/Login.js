@@ -1,5 +1,9 @@
 import React, { Component } from 'react';
-import { Form, Button} from 'react-bootstrap';
+import { Form } from 'react-bootstrap';
+import { AwesomeButton } from "react-awesome-button";
+import "react-awesome-button/dist/styles.css"
+import Navigationbar from './Navigationbar.js';
+
 
 class Login extends Component {
     state = {
@@ -10,6 +14,7 @@ class Login extends Component {
     render(){
         return (
         <Form>
+          <Navigationbar></Navigationbar>
           <Form.Group controlId="formBasicEmail">
             <Form.Label>Email address</Form.Label>
             <Form.Control type="email" placeholder="Enter email" />
@@ -25,10 +30,8 @@ class Login extends Component {
           <Form.Group controlId="formBasicChecbox">
             <Form.Check type="checkbox" label="Remember Me" />
           </Form.Group>
-          <Button variant="primary" type="submit">
-            Submit
-          </Button>
-        </Form>
+          <AwesomeButton type="secondary">Login</AwesomeButton>
+          </Form>
       )
     }
 }

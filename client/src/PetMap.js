@@ -28,6 +28,7 @@ class PetMap extends Component{
 	 * Get the current address from the default map position and set those values in the state
 	 */
 	componentDidMount() {
+		console.log(this.props);
 		Geocode.fromLatLng( this.state.mapPosition.lat , this.state.mapPosition.lng ).then(
 			response => {
 				const address = response.results[0].formatted_address,

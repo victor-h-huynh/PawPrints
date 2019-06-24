@@ -1,56 +1,93 @@
 import React, { Component } from "react";
-import { withGoogleMap, withScriptjs, GoogleMap, Marker, InfoWindow } from "react-google-maps";
+import { withGoogleMap, withScriptjs, GoogleMap, Marker, InfoWindow, Circle } from "react-google-maps";
+
 
 
 class Map extends Component {
   constructor(props) {
     super(props);
     this.map = React.createRef();
+    this.marker = React.createRef();
   }
+
   state = {
-    markerId: null
+    markerId: null,
+    circleVisible: null
   }
 
   setMapRef = (map) => {
     this.map = map
   }
 
+  setMarkerRef = (marker) => {
+    this.marker = marker
+  }
+
   onMarkerClick = (id) => {
     if (this.state.markerId === id){
       this.setState({
-      markerId: null
+      markerId: null,
+      circleVisible: null
       })
     }
     else {
       this.setState({
-      markerId: id
+      markerId: id,
+      circleVisible: id
     })
     }
   }
 
   renderMarkers() {
   return this.props.pets.map(pet => {
+     const timeLost = new Date(pet.date_lost).getTime()
+     const timeNow = Date.now()
+     const daySinceLost = Math.floor((timeNow - timeLost)/86400000)
+     let radius = 500 + (daySinceLost*500)
+     if (radius > 4000) {
+      radius = 4000
+     }
     return (
 
     <Marker
-
+      setMarkerRef={this.setMarkerRef}
       key={pet.id}
       position = {{lat: Number(pet.address.latitude), lng: -(Number(pet.address.longitude))}}
       name = {pet.name}
       onClick={() => this.onMarkerClick(pet.id)}
       title = "test"
+      options={{ icon:
+                { url: pet.picture,
+                  scaledSize: { width: 28, height: 28 },
+                  } }}
 
        >
         {this.state.markerId === pet.id && <InfoWindow >
         <h4>{pet.name}</h4>
         </InfoWindow>}
+
+
+
+
+        {this.state.circleVisible === pet.id && <Circle
+          options={{
+            visible: this.state.circleVisible,
+            radius: radius,
+            fillColor:'#84bcaf',
+            strokeOpacity: 0,
+            fillOpacity: 0.4,
+            center: {lat: Number(pet.address.latitude),
+                            lng: -Number(pet.address.longitude)}
+          }
+          }
+           />}
          </Marker>
          )
   })
 }
 
 componentDidMount() {
-  console.log(this.state)
+
 }
 
   render() {
@@ -65,8 +102,6 @@ return (
    onMapIdle={() => {
             let ne = this.map.getBounds().getNorthEast();
             let sw = this.map.getBounds().getSouthWest();
-            console.log(ne.lat() + ";" + ne.lng());
-            console.log(sw.lat() + ";" + sw.lng());
 
             const petOnMapArray = this.props.pets.filter(pet =>
 
