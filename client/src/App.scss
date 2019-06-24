@@ -1,5 +1,4 @@
 body {
-
   .map {
     height: 70vh;
     width: 50vw;
@@ -7,30 +6,28 @@ body {
     float: left;
   }
 
-div.Marker img {
-
-  background-color: red;
-}
+  div.Marker img {
+    background-color: red;
+  }
 
   div.Pets {
-
-      position: relative;
-      float: left;
-      margin-left: 25px;
+    position: relative;
+    float: left;
+    margin-left: 25px;
 
     // CARD VIEW
-    h1, p{
+    h1,
+    p {
       margin: 0;
       padding: 0;
     }
 
     .button3 {
       border-radius: 8px;
-
     }
 
     .button {
-      background-color: #4CAF50; /* Green */
+      background-color: #4caf50; /* Green */
 
       color: white;
       padding: 8px;
@@ -38,7 +35,6 @@ div.Marker img {
       font-size: 15px;
       margin: 4px 2px;
       margin-left: 50px;
-
     }
 
     h1 {
@@ -59,7 +55,6 @@ div.Marker img {
       border-radius: 5px;
       box-shadow: 0px 7px 9px grey;
       position: relative;
-
     }
 
     .card .btn btn-primary {
@@ -74,12 +69,13 @@ div.Marker img {
       background: white;
     }
 
-    .card > .entry > .container{
+    .card > .entry > .container {
       position: relative;
       width: auto;
     }
 
-    .card > .entry, .card > .entry > .container > .text {
+    .card > .entry,
+    .card > .entry > .container > .text {
       right: 0;
       top: 0;
       position: relative;
@@ -89,10 +85,10 @@ div.Marker img {
 
     .card > .entry > .container > .text {
       left: 0;
-
     }
 
-    .card >.entry h1, .card > .entry p {
+    .card > .entry h1,
+    .card > .entry p {
       text-shadow: 0 0 0 #333;
       transition-delay: 0.4s;
     }
@@ -109,81 +105,73 @@ div.Marker img {
       margin-bottom: 5px;
     }
 
-    .card > .entry > .container > .text h1, .card > .entry > .container > .text p {
+    .card > .entry > .container > .text h1,
+    .card > .entry > .container > .text p {
       padding: 5px 15px;
-
     }
 
     .card > .image {
       left: 0;
       top: 0;
       position: relative;
-      background:white;
+      background: white;
       height: 150px;
       border-top-left-radius: 5px;
       border-bottom-left-radius: 5px;
-
     }
 
     .card > .image > img {
       border-top-left-radius: 5px;
       border-bottom-left-radius: 5px;
     }
-
-    }
-    }
-
-    .clearfix{
-      clear:both
   }
+}
+
+.clearfix {
+  clear: both;
+}
 
 //PET PROFILE
-    div.pet.card {
-        width: 80vw;
-        margin: auto;
-        margin-top: 10vh;
+div.pet.card {
+  width: 80vw;
+  margin: auto;
+  margin-top: 10vh;
 
-      div.card-header {
-        background-color: lightblue;
-        font-size: 2em;
-      }
-      p.card-text {
-        line-height: 0.5em;
-      }
-      .petPic {
-        height: 200px;
-        width: 200px;
-      }
-      div.StatusIcon.card-title.h5 {
-        float: right;
-      }
-      div.petMap {
-        height: 200px;
-      }
-    }
+  div.card-header {
+    background-color: lightblue;
+    font-size: 2em;
+  }
+  p.card-text {
+    line-height: 0.5em;
+  }
+  .petPic {
+    height: 200px;
+    width: 200px;
+  }
+  div.StatusIcon.card-title.h5 {
+    float: right;
+  }
+  div.petMap {
+    height: 200px;
+  }
+}
 
-    // SUCCESS SECTION
+// SUCCESS SECTION
 
-    .success-petOwner1 {
-      float: left;
-      width: 25rem;
-      margin: 20rem;
-    }
+.success-petOwner1 {
+  float: left;
+  width: 25rem;
+  margin: 20rem;
+}
 
+.person-wrapper {
+  margin-bottom: 10rem;
+}
 
-    .person-wrapper {
-      margin-bottom: 10rem;
-    }
+.profile-pic {
+  width: 50%;
 
-    .profile-pic {
-      width: 50%;
-      border: 1px solid black;
-      border-radius: 7rem;
-    }
-
-    h3 {
-      margin-bottom: 1rem;
-    }
-
-
-
+  h3 {
+    margin-bottom: 1rem;
+  }
+}
