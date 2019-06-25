@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import { Form, Button, Col } from 'react-bootstrap';
 import axios from 'axios';
 import PetMap from './PetMap.js';
-// import Navigationbar from './Navigationbar.js';
+import Navigationbar from './Navigationbar.js';
 // import DayPicker from 'react-day-picker'
-import { Redirect } from 'react-router-dom'
+import { Redirect } from 'react-router-dom';
 
 class ReportAPet extends Component {
   constructor(props) {
@@ -36,12 +36,23 @@ class ReportAPet extends Component {
     };
   }
 
+  setPictureState = picture => {
+    this.setState({
+      picture: picture
+    });
+    console.log(this.state.picture);
+  };
+
   fileSelectedHandler = event => {
     console.log(event.target.files[0]);
     this.setState({
       picture: event.target.files[0]
     });
   };
+
+  // fileUploadHandler = () => {
+  //   axios.post('https://us-central1-final-project-1561040119727.cloudfunctions.net/uploadFile')
+  // }
 
   handleChange = event => {
     this.setState({
@@ -51,50 +62,86 @@ class ReportAPet extends Component {
 
   handleSubmit = event => {
     event.preventDefault();
-    axios
-      .post('http://localhost:3001/api/pets', {
-        description: {
-          breed: this.state.breed,
-          colour: this.state.colour,
-          sex: this.state.sex,
-          additional: this.state.additional
-        },
-        address: {
-          street_number: this.state.street_number,
-          street_name: this.state.street_name,
-          apartment: this.state.apartment,
-          city: this.state.city,
-          province: this.state.province,
-          postal_code: this.state.postal_code,
-          latitude: this.state.latitude,
-          longitude: this.state.longitude,
-        },
-        pet: {
-          name: this.state.name,
-          species: this.state.species,
-          status: this.state.status,
-          date_lost: this.state.date,
-          picture: this.state.picture,
-          user_id: 1
-        }
-      })
-      .then(response => {
-        this.props.addAPet(response.data);
-        this.setState({
-          id: response.data.id,
-          redirectToProfile: true,
+
+    const file = this.state.picture;
+    const storageRef = this.state.storage.ref();
+    const that = this;
+
+    const uploadPicture = storageRef.child(this.state.picture.name).put(file);
+    uploadPicture.on(
+      'state_changed',
+      function(snapshot) {
+        var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+        console.log('Upload is ' + progress + '% done');
+      },
+      function(error) {
+        console.log(error);
+      },
+      function() {
+        uploadPicture.snapshot.ref.getDownloadURL().then(downloadURL => {
+          console.log(downloadURL);
+          that.setState(
+            {
+              picture: downloadURL
+            },
+            () => {
+              axios
+                .post('http://localhost:3001/api/pets', {
+                  description: {
+                    breed: that.state.breed,
+                    colour: that.state.colour,
+                    sex: that.state.sex,
+                    additional: that.state.additional
+                  },
+                  address: {
+                    street_number: that.state.street_number,
+                    street_name: that.state.street_name,
+                    apartment: that.state.apartment,
+                    city: that.state.city,
+                    province: that.state.province,
+                    postal_code: that.state.postal_code,
+                    latitude: 45.7,
+                    longitude: -73.1
+                  },
+                  pet: {
+                    name: that.state.name,
+                    species: that.state.species,
+                    status: that.state.status,
+                    date_lost: that.state.date,
+                    picture: that.state.picture,
+                    user_id: 1
+                  }
+                })
+                .then(response => {
+                  that.props.addAPet(response.data);
+                  that.setState({
+                    id: response.data.id,
+                    redirectToProfile: true
+                  });
+                })
+                .catch(err => {
+                  console.log('report pet error: ', err);
+                });
+            }
+          );
         });
-      })
-      .catch(err => {
-        console.log('report pet error: ', err);
-      });
+      }
+    );
   };
 
+  componentDidMount() {
+    this.setState({
+      storage: window.firebase.storage()
+    });
+  }
+
   render() {
-      if (this.state.redirectToProfile === true) {
-        return <Redirect to={`/pets/${this.state.id}`}/>
-      } else {
+    if (this.state.redirectToProfile === true) {
+      return <Redirect to={`/pets/${this.state.id}`} />;
+    } else {
       return (
+        <React.Fragment>
+          <Navigationbar/>
         <Form onSubmit={this.handleSubmit}>
           <Form.Row>
             <Form.Group as={Col} controlId='formGridName'>
@@ -208,8 +255,6 @@ class ReportAPet extends Component {
             </Form.Group>
           </Form.Row>
 
-
-
           <Form.Row>
             <input
               type='file'
@@ -218,25 +263,24 @@ class ReportAPet extends Component {
             />
           </Form.Row>
 
-
-          <Form style={{margin: '25px', marginBottom: '50px'}}>
-          <PetMap
-            google={this.props.google}
-            center={{lat: this.state.latitude, lng: this.state.longitude}}
-            height='300px'
-            width='100%'
-            zoom={15}/>
+          <Form style={{ margin: '25px', marginBottom: '50px' }}>
+            <PetMap
+              google={this.props.google}
+              center={{ lat: this.state.latitude, lng: this.state.longitude }}
+              height='300px'
+              width='100%'
+              zoom={15}
+            />
           </Form>
 
           <Button variant='primary' type='submit'>
             Submit
           </Button>
-
-
         </Form>
+        </React.Fragment>
       );
+    }
   }
-}
 }
 
 export default ReportAPet;
