@@ -208,14 +208,7 @@ class ReportAPet extends Component {
             </Form.Group>
           </Form.Row>
 
-          <Form.Row style={{margin: '25px', marginBottom: '50px'}}>
-            <PetMap
-            google={this.props.google}
-            center={{lat: this.state.latitude, lng: this.state.longitude}}
-            height='300px'
-            width='90vw'
-            zoom={15}/>
-          </Form.Row>
+
 
           <Form.Row>
             <input
@@ -225,9 +218,21 @@ class ReportAPet extends Component {
             />
           </Form.Row>
 
+
+          <Form style={{margin: '25px', marginBottom: '50px'}}>
+          <PetMap
+            google={this.props.google}
+            center={{lat: this.state.latitude, lng: this.state.longitude}}
+            height='300px'
+            width='100%'
+            zoom={15}/>
+          </Form>
+
           <Button variant='primary' type='submit'>
             Submit
           </Button>
+
+
         </Form>
       );
   }

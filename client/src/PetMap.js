@@ -167,6 +167,14 @@ class PetMap extends Component{
 					city: ( city ) ? city : '',
 					province: ( province ) ? province : '',
 					postal_code: (postal_code) ? postal_code : '',
+					markerPosition: {
+						lat: newLat,
+						lng: newLng
+					},
+					mapPosition: {
+						lat: newLat,
+						lng: newLng
+					},
 				} )
 			},
 			error => {
