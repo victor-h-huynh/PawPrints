@@ -291,7 +291,6 @@ export default PetMap;
 					   center={{ lat: props.markerLat, lng: props.markerLng }}
 
 					>
-					{console.log(props)}
 						{/* InfoWindow on top of marker */}
 						<InfoWindow
 							onClose={props.onInfoWindowClose}
