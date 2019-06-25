@@ -55,10 +55,13 @@ class App extends Component {
     this.setState({pets: [...this.state.pets, newPet]})
   }
 
-  
+
+  addAUser = (newUser) => {
+    this.setState({users: [...this.state.users, newUser]})
+  }
 
   render() {
-  
+
     if (this.state.loading) {
       return <h1>Loading...</h1>;
     } else {
@@ -67,7 +70,7 @@ class App extends Component {
               <Route exact path="/" render={props => <Home {...props} updatePetsOnMap={this.updatePetsOnMap} pets={this.state.pets} users={this.state.users} addresses={this.state.addresses} petsOnMap={this.state.petsOnMap}/>}/>
               <Route path="/ReportAPet" render={props => <ReportAPet {...props} addAPet={this.addAPet}/>}/>
               <Route path="/Login" component={Login}/>
-              <Route path="/Register" component={Register}/>
+              <Route path="/Register" render={props => <Register {...props} addAUser={this.addAUser}/>}/>
               <Route path="/Pets/:id" render={props => <PetProfile {...props} pets={this.state.pets} users={this.state.users} addresses={this.state.addresses}/>}/>
               <Route path="/Success" component={Success}/>
           </Switch>

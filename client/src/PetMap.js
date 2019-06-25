@@ -297,6 +297,10 @@ export default PetMap;
 						defaultZoom={ props.zoom }
 					   center={{ lat: props.markerLat, lng: props.markerLng }}
 					>
+<<<<<<< HEAD
+=======
+						{/* InfoWindow on top of marker */}
+>>>>>>> master
 						<InfoWindow
 							onClose={props.onInfoWindowClose}
 							position={{ lat: ( props.markerLat + 0.0010 ), lng: props.markerLng }}
