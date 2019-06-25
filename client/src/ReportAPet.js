@@ -123,6 +123,7 @@ class ReportAPet extends Component {
                 }
               })
               .then(response => {
+                that.props.addAPet(response.data);
                 that.setState({
                   id: response.data.id,
                   redirectToProfile: true
