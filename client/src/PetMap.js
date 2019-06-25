@@ -194,7 +194,6 @@ class PetMap extends Component{
 	//  When the user types an address in the search box
 
 	onPlaceSelected = ( place ) => {
-		console.log( 'place', place );
 		const address = place.formatted_address,
 			addressArray =  place.address_components,
 			street_number = this.getStreetNumber( addressArray ),
@@ -249,6 +248,8 @@ class PetMap extends Component{
 					onPlaceSelected={this.onPlaceSelected}
 					/>
 					<p></p>
+					<br></br>
+					<br></br>
 				<div>
 					<p></p>
 					<div className="form-group">
@@ -295,19 +296,16 @@ export default PetMap;
 					<GoogleMap
 						defaultZoom={ props.zoom }
 					   center={{ lat: props.markerLat, lng: props.markerLng }}
-
 					>
-					
-						{/* InfoWindow on top of marker */}
 						<InfoWindow
 							onClose={props.onInfoWindowClose}
-							position={{ lat: ( props.markerLat + 0.0018 ), lng: props.markerLng }}
+							position={{ lat: ( props.markerLat + 0.0010 ), lng: props.markerLng }}
 						>
 							<div>
 								<span style={{ padding: 0, margin: 0 }}>{ props.address }</span>
 							</div>
 						</InfoWindow>
-						{/*Marker*/}
+					
 						<Marker
 						        name={'Dolores park'}
 						        draggable={true}
@@ -315,14 +313,14 @@ export default PetMap;
 						        position={{ lat: props.markerLat, lng: props.markerLng }}
 						/>
 						<Marker />
-						{/* For Auto complete Search Box */}
+						
 						<Autocomplete
 							style={{
 								width: '100%',
 								height: '40px',
 								paddingLeft: '16px',
-								marginTop: '2px',
-								marginBottom: '600px'
+								marginTop: '20px',
+								marginBottom: '50px', 
 							}}
 							onPlaceSelected={ props.onPlaceSelected }
 							types={['address']}
