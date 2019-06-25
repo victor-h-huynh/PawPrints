@@ -86,6 +86,8 @@ end
 
 puts "Re-creating Pets ..."
 
+pet_images = ['https://placedog.net/500', 'https://placedog.net/499', 'https://placedog.net/498', 'https://placedog.net/497', 'https://placedog.net/496']
+
 Pet.destroy_all
 
 description_ids = Description.all.pluck(:id)
@@ -98,7 +100,7 @@ Pet.create!({
   species: 'Dog',
   status: "Lost",
   date_lost: Faker::Date.between(7.days.ago, Date.today),
-  picture: "https://b.thumbs.redditmedia.com/F82n9T2HtoYxNmxbe1CL0RKxBdeUEw-HVyd-F-Lb91o.png",
+  picture: pet_images[0],
   address_id: address_ids[0],
   user_id: users_ids[0],
   description_id: description_ids[0]
@@ -108,6 +110,7 @@ Pet.create!({
 address_ids.rotate!
 description_ids.rotate!
 users_ids.rotate!
+pet_images.rotate!
 
 end
 

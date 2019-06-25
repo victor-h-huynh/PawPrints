@@ -55,6 +55,7 @@ class App extends Component {
     this.setState({pets: [...this.state.pets, newPet]})
   }
 
+
   addAUser = (newUser) => {
     this.setState({users: [...this.state.users, newUser]})
   }
