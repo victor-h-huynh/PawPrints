@@ -23,7 +23,8 @@ class Register extends Component {
       id: '',
       name: '',
       email: '',
-      password_digest: '',
+      password: '',
+      password_confirmation: '',
       phone_number: '',
       alerts: false,
 
@@ -57,13 +58,9 @@ class Register extends Component {
 
   handleSubmit = event => {
     event.preventDefault();
-    console.log('hello')
 
     axios
-
       .post('http://localhost:3001/api/users', {
-
-
         address: {
           street_number: this.state.street_number,
           street_name: this.state.street_name,
@@ -77,7 +74,8 @@ class Register extends Component {
         user: {
           name: this.state.name,
           email: this.state.email,
-          password_digest: this.state.password,
+          password: this.state.password,
+          password_confirmation: this.state.password_confirmation,
           phone_number: this.state.phone_number,
           alerts: this.state.alerts
 
@@ -135,7 +133,7 @@ class Register extends Component {
                 type='password'
                 name='password'
                 placeholder='Enter Password'
-                value={this.state.password_digest}
+                value={this.state.password}
                 onChange={this.handleChange}
               />
             </Form.Group>
@@ -144,9 +142,9 @@ class Register extends Component {
               <Form.Label>Password Confirmation</Form.Label>
               <Form.Control
                 type='password'
-                name='password'
+                name='password_confirmation'
                 placeholder='Enter Password Confirmation'
-                value={this.state.password_digest}
+                value={this.state.password_confirmation}
                 onChange={this.handleChange}
               />
             </Form.Group>

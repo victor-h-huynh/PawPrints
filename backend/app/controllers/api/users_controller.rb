@@ -19,7 +19,8 @@ class Api::UsersController < ApplicationController
       @user = User.create!(
         name: params['user']['name'],
         email: params['user']['email'],
-        password_digest: params['user']['password'],
+        password: params['user']['password'],
+        password_confirmation: params['user']['password_confirmation'],
         phone_number: params['user']['phone_number'],
         alerts: params['user']['alerts'],
         address_id: @address.id,
