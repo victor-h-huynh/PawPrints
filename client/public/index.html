@@ -21,5 +21,26 @@
     <body>
       <noscript>You need to enable JavaScript to run this app.</noscript>
       <div id="root"></div>
+      <!-- Insert these scripts at the bottom of the HTML, but before you use any Firebase services -->
+      <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
+      <!--<script src="https://www.gstatic.com/firebasejs/6.2.2/firebase-app.js"></script>-->
+      <!-- Add Firebase products that you want to use -->
+      <!--<script src="https://www.gstatic.com/firebasejs/6.2.2/firebase-auth.js"></script>-->
+      <!-- <script src="https://www.gstatic.com/firebasejs/6.2.2/firebase-firestore.js"></script>-->
+      <script src="https://www.gstatic.com/firebasejs/6.2.2/firebase.js"></script>
+      <script>
+      // TODO: Replace the following with your app's Firebase project configuration
+      const firebaseConfig = {
+      apiKey: "AIzaSyDwXCaf3hwwY2Vvmorq4YoyRdHnJsM4ka0",
+      authDomain: "final-project-1561040119727.firebaseapp.com",
+      databaseURL: "https://final-project-1561040119727.firebaseio.com",
+      projectId: "final-project-1561040119727",
+      storageBucket: "final-project-1561040119727.appspot.com",
+      messagingSenderId: "90861626288",
+      appId: "1:90861626288:web:1c4419e8eea3f069"
+      };
+      // Initialize Firebase
+      firebase.initializeApp(firebaseConfig);
+      </script>
     </body>
   </html>
