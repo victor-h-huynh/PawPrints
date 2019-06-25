@@ -6,6 +6,7 @@ import Navigationbar from './Navigationbar.js';
 // import DayPicker from 'react-day-picker'
 import { Redirect } from 'react-router-dom';
 
+
 class ReportAPet extends Component {
   constructor(props) {
     super(props);
@@ -31,8 +32,8 @@ class ReportAPet extends Component {
       city: '',
       province: '',
       postal_code: '',
-      latitude: 45.501,
-      longitude: -73.567
+      latitude: 45.527535,
+      longitude: -73.59643,
     };
   }
 
@@ -74,13 +75,58 @@ class ReportAPet extends Component {
   //   });
   }
 
+  sendToDB = () => {
+    console.log(this.state.date_lost);
+    var date = new Date(this.state.date_lost).getTime();
+    console.log(typeof date);
+    axios
+    .post('http://localhost:3001/api/pets', {
+      description: {
+        breed: this.state.breed,
+        colour: this.state.colour,
+        sex: this.state.sex,
+        additional: this.state.additional
+      },
+      address: {
+        street_number: this.state.street_number,
+        street_name: this.state.street_name,
+        apartment: this.state.apartment,
+        city: this.state.city,
+        province: this.state.province,
+        postal_code: this.state.postal_code,
+        latitude: this.state.latitude,
+        longitude: this.state.longitude,
+      },
+      pet: {
+        name: this.state.name,
+        species: this.state.species,
+        status: this.state.status,
+        date_lost: this.state.date_lost,
+        picture: this.state.picture,
+        user_id: this.state.user_id,
+      },
+    })
+    .then(response => {
+      console.log(response);
+      this.props.addAPet(response.data);
+      this.setState({
+        id: response.data.id,
+        redirectToProfile: true
+      });
+    })
+    .catch(err => {
+      console.log('report pet error: ', err);
+    });
+  }
+
   handleSubmit = event => {
     event.preventDefault();
 
     const file = this.state.picture;
     const storageRef = this.state.storage.ref();
     const that = this;
-
+    
+    if (file) {
     const uploadPicture = storageRef.child(this.state.picture.name).put(file);
     uploadPicture.on(
       'state_changed',
@@ -99,48 +145,14 @@ class ReportAPet extends Component {
               picture: downloadURL
             },
             () => {
-              axios
-                .post('http://localhost:3001/api/pets', {
-                  description: {
-                    breed: that.state.breed,
-                    colour: that.state.colour,
-                    sex: that.state.sex,
-                    additional: that.state.additional
-                  },
-                  address: {
-                    street_number: that.state.street_number,
-                    street_name: that.state.street_name,
-                    apartment: that.state.apartment,
-                    city: that.state.city,
-                    province: that.state.province,
-                    postal_code: that.state.postal_code,
-                    latitude: 45.7,
-                    longitude: -73.1
-                  },
-                  pet: {
-                    name: that.state.name,
-                    species: that.state.species,
-                    status: that.state.status,
-                    date_lost: that.state.date,
-                    picture: that.state.picture,
-                    user_id: 1
-                  }
-                })
-                .then(response => {
-                  that.props.addAPet(response.data);
-                  that.setState({
-                    id: response.data.id,
-                    redirectToProfile: true
-                  });
-                })
-                .catch(err => {
-                  console.log('report pet error: ', err);
-                });
+              that.sendToDB();
+                }) 
             }
           );
         });
-      }
-    );
+    } else {
+      this.sendToDB();
+    }
   };
 
   componentDidMount() {
@@ -157,7 +169,8 @@ class ReportAPet extends Component {
         <React.Fragment>
           <Navigationbar/>
         <Form onSubmit={this.handleSubmit}>
-          <Form.Row>
+
+          
           <Form.Group as={Col} controlId='formGridStatus'>
               <Form.Label>Status</Form.Label>
               <Form.Control
@@ -172,7 +185,7 @@ class ReportAPet extends Component {
                 <option>Reunited</option>
               </Form.Control>
             </Form.Group>
-            </Form.Row>
+           
 
             <Form.Row>
             <Form.Group as={Col} controlId='formGridName'>
@@ -218,8 +231,6 @@ class ReportAPet extends Component {
           </Form.Row>
 
           <Form.Row>
-
-
             <Form.Group as={Col} controlId='formGridStatus'>
               <Form.Label>Sex</Form.Label>
               <Form.Control
@@ -254,11 +265,6 @@ class ReportAPet extends Component {
                 value={this.state.date_lost}
                 onChange={this.handleChange}
               />
-            </Form.Group>
-
-            <Form.Group as={Col} controlId='formGridLastSeen'>
-              <Form.Label>Last known location</Form.Label>
-              <Form.Control placeholder='Last Seen' />
             </Form.Group>
           </Form.Row>
 

@@ -185,6 +185,8 @@ class PetMap extends Component{
 				console.error(error);
 			}
 		);
+
+		this.props.updateParentState(this.state);
 	};
 
 
@@ -194,6 +196,7 @@ class PetMap extends Component{
 		// console.log( 'place', place );
 		const address = place.formatted_address,
 			addressArray =  place.address_components,
+			street_number = this.getStreetNumber( addressArray ),
 			city = this.getCity( addressArray ),
 			street_name = this.getStreetName( addressArray ),
 			province = this.getProvince( addressArray ),
@@ -207,6 +210,7 @@ class PetMap extends Component{
 			city: ( city ) ? city : '',
 			province: ( province ) ? province : '',
 			postal_code: (postal_code) ? postal_code : '',
+			street_number: ( street_number ) ? street_number : '',
 			markerPosition: {
 				lat: latValue,
 				lng: lngValue
@@ -216,44 +220,15 @@ class PetMap extends Component{
 				lng: lngValue
 			},
 		});
-
-
 		this.props.updateParentState(this.state);
-
-
 	};
 
 
 	render(){
-
 		let map;
 		if( this.props.center.lat !== undefined ) {
 			map = <div>
-				<div>
-					<div className="form-group">
-						<label htmlFor="">Street Number</label>
-						<input type="text" name="street_number" className="form-control" onChange={ this.onChange } readOnly="readOnly" value={ this.state.street_number }/>
-					</div>
-					<div className="form-group">
-						<label htmlFor="">Street Name</label>
-						<input type="text" name="street_name" className="form-control" onChange={ this.onChange } readOnly="readOnly" value={ this.state.street_name }/>
-					</div>
-					<div className="form-group">
-						<label htmlFor="">City</label>
-						<input type="text" name="city" className="form-control" onChange={ this.onChange } readOnly="readOnly" value={ this.state.city }/>
-					</div>
-
-					<div className="form-group">
-						<label htmlFor="">Province</label>
-						<input type="text" name="province" className="form-control" onChange={ this.onChange } readOnly="readOnly" value={ this.state.province }/>
-					</div>
-					<div className="form-group">
-						<label htmlFor="">Postal Code</label>
-						<input type="text" name="postal_code" className="form-control" onChange={ this.onChange } readOnly="readOnly" value={ this.state.postal_code }/>
-					</div>
-				</div>
-
-				<AsyncMap
+				<AsyncMap 
           googleMapURL={`https://maps.googleapis.com/maps/api/js?key=${process.env.REACT_APP_GOOGLE_API_KEY}&libraries=places`}
 					loadingElement={
 						<div style={{ height: `100%` }} />
@@ -271,9 +246,36 @@ class PetMap extends Component{
 					address={this.state.address}
 					onMarkerDragEnd={this.onMarkerDragEnd}
 					onPlaceSelected={this.onPlaceSelected}
+					/>
+					<p></p>
+				<div>
+					<p></p>
+					<div className="form-group">
+						<label htmlFor="">Street Number</label>
+						<input type="text" name="street_number" className="form-control" onChange={ this.onChange } readOnly="readOnly" value={ this.state.street_number }/>
+					</div>
+					<div className="form-group">
+						<label htmlFor="">Street Name</label>
+						<input type="text" name="street_name" className="form-control" onChange={ this.onChange } readOnly="readOnly" value={ this.state.street_name }/>
+					</div>
+					<div>
+					<div className="form-group">
+						<label htmlFor="">City</label>
+						<input type="text" name="city" className="form-control" onChange={ this.onChange } readOnly="readOnly" value={ this.state.city }/>
+					</div>
 
+					<div className="form-group">
+						<label htmlFor="">Province</label>
+						<input type="text" name="province" className="form-control" onChange={ this.onChange } readOnly="readOnly" value={ this.state.province }/>
+					</div>
+					<div className="form-group">
+						<label htmlFor="">Postal Code</label>
+						<input type="text" name="postal_code" className="form-control" onChange={ this.onChange } readOnly="readOnly" value={ this.state.postal_code }/>
+					</div>
+					</div>
+				</div>
 
-				/>
+				
 			</div>
 		} else {
 			map = <div style={{height: this.props.height}} />
@@ -319,7 +321,7 @@ export default PetMap;
 								height: '40px',
 								paddingLeft: '16px',
 								marginTop: '2px',
-								marginBottom: '500px'
+								marginBottom: '600px'
 							}}
 							onPlaceSelected={ props.onPlaceSelected }
 							types={['address']}

@@ -25,7 +25,7 @@ class Api::PetsController < ApplicationController
         name: params['pet']['name'],
         species: params['pet']['species'],
         status: params['pet']['status'],
-        date_lost: params['pet']['date'],
+        date_lost: DateTime.strptime(params['pet']['date'], '%Y-%m-%d'),
         picture: params['pet']['picture'],
         address_id: @address.id,
         description_id: @description.id,
@@ -37,6 +37,8 @@ class Api::PetsController < ApplicationController
       else
         render :new
       end
+
+    end
 
     end
 
