@@ -62,7 +62,6 @@ class ReportAPet extends Component {
   };
 
   updateParentState = (data) => {
-    console.log("DATA", data);
     this.setState({
       latitude: data.markerPosition.lat,
       longitude: data.markerPosition.lng,
@@ -78,7 +77,7 @@ class ReportAPet extends Component {
   sendToDB = () => {
     console.log(this.state.date_lost);
     var date = new Date(this.state.date_lost).getTime();
-    console.log(typeof date);
+    console.log(date);
     axios
     .post('http://localhost:3001/api/pets', {
       description: {
@@ -101,7 +100,7 @@ class ReportAPet extends Component {
         name: this.state.name,
         species: this.state.species,
         status: this.state.status,
-        date_lost: this.state.date_lost,
+        date_lost: date,
         picture: this.state.picture,
         user_id: this.state.user_id,
       },

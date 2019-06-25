@@ -60,7 +60,8 @@ class PetMap extends Component{
 	};
 
 	  setMapRef = (map) => {
-    this.map = map
+	this.map = map
+	console.log("map", map)
   }
 
 	//  Component should only update ( meaning re-render ), when the user selects the address, or drags the pin
@@ -193,7 +194,7 @@ class PetMap extends Component{
 	//  When the user types an address in the search box
 
 	onPlaceSelected = ( place ) => {
-		// console.log( 'place', place );
+		console.log( 'place', place );
 		const address = place.formatted_address,
 			addressArray =  place.address_components,
 			street_number = this.getStreetNumber( addressArray ),
