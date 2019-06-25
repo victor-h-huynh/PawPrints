@@ -33,7 +33,7 @@ class PetMap extends Component{
 		Geocode.fromLatLng( this.state.mapPosition.lat , this.state.mapPosition.lng ).then(
 
 			response => {
-				console.log(response);
+				// console.log(response);
 				const address = response.results[0].formatted_address,
 					addressArray =  response.results[0].address_components,
 					street_number = this.getStreetNumber (addressArray),
@@ -191,7 +191,7 @@ class PetMap extends Component{
 	//  When the user types an address in the search box
 
 	onPlaceSelected = ( place ) => {
-		console.log( 'place', place );
+		// console.log( 'place', place );
 		const address = place.formatted_address,
 			addressArray =  place.address_components,
 			city = this.getCity( addressArray ),
@@ -215,7 +215,10 @@ class PetMap extends Component{
 				lat: latValue,
 				lng: lngValue
 			},
-		})
+		});
+
+
+		this.props.updateParentState(this.state);
 
 
 	};
@@ -291,7 +294,7 @@ export default PetMap;
 					   center={{ lat: props.markerLat, lng: props.markerLng }}
 
 					>
-					{console.log(props)}
+					
 						{/* InfoWindow on top of marker */}
 						<InfoWindow
 							onClose={props.onInfoWindowClose}

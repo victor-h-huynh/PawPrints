@@ -60,6 +60,20 @@ class ReportAPet extends Component {
     });
   };
 
+  updateParentState = (data) => {
+    console.log("DATA", data);
+    this.setState({
+      latitude: data.markerPosition.lat,
+      longitude: data.markerPosition.lng,
+      ...data
+    });
+  //   this.setState({
+  // const {street_number, street_name, city, province, postal_code} = this.data,
+  // latitude: this.data.markerPosition.lat
+  // longitude: this.data.markerPosition.lng
+  //   });
+  }
+
   handleSubmit = event => {
     event.preventDefault();
 
@@ -144,11 +158,29 @@ class ReportAPet extends Component {
           <Navigationbar/>
         <Form onSubmit={this.handleSubmit}>
           <Form.Row>
+          <Form.Group as={Col} controlId='formGridStatus'>
+              <Form.Label>Status</Form.Label>
+              <Form.Control
+                as='select'
+                name='status'
+                value={this.state.status}
+                onChange={this.handleChange}
+              >
+                <option>Status</option>
+                <option>Lost</option>
+                <option>Found</option>
+                <option>Reunited</option>
+              </Form.Control>
+            </Form.Group>
+            </Form.Row>
+
+            <Form.Row>
             <Form.Group as={Col} controlId='formGridName'>
               <Form.Label>Name</Form.Label>
               <Form.Control
                 type='name'
                 name='name'
+                // {if this.state.status ==}
                 placeholder='Enter name'
                 value={this.state.name}
                 onChange={this.handleChange}
@@ -186,20 +218,7 @@ class ReportAPet extends Component {
           </Form.Row>
 
           <Form.Row>
-            <Form.Group as={Col} controlId='formGridStatus'>
-              <Form.Label>Status</Form.Label>
-              <Form.Control
-                as='select'
-                name='status'
-                value={this.state.status}
-                onChange={this.handleChange}
-              >
-                <option>Status</option>
-                <option>Lost</option>
-                <option>Found</option>
-                <option>Reunited</option>
-              </Form.Control>
-            </Form.Group>
+
 
             <Form.Group as={Col} controlId='formGridStatus'>
               <Form.Label>Sex</Form.Label>
@@ -265,6 +284,7 @@ class ReportAPet extends Component {
 
           <Form style={{ margin: '25px', marginBottom: '50px' }}>
             <PetMap
+              updateParentState={this.updateParentState}
               google={this.props.google}
               center={{ lat: this.state.latitude, lng: this.state.longitude }}
               height='300px'
