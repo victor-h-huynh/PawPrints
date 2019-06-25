@@ -31,7 +31,7 @@ class PetMap extends Component{
 	 */
 	componentDidMount() {
 		Geocode.fromLatLng( this.state.mapPosition.lat , this.state.mapPosition.lng ).then(
-			
+
 			response => {
 				console.log(response);
 				const address = response.results[0].formatted_address,
@@ -58,6 +58,10 @@ class PetMap extends Component{
 			}
 		);
 	};
+
+	  setMapRef = (map) => {
+    this.map = map
+  }
 
 	//  Component should only update ( meaning re-render ), when the user selects the address, or drags the pin
 	shouldComponentUpdate( nextProps, nextState ){
@@ -99,7 +103,7 @@ class PetMap extends Component{
 	};
 
 	//  Get the area and set the area input value to the one selected
-	 
+
 	getStreetName = ( addressArray ) => {
 		let streetName = '';
 		for( let i = 0; i < addressArray.length; i++ ) {
@@ -111,7 +115,7 @@ class PetMap extends Component{
 	};
 
 	//   Get the address and set the address input value to the one selected
-	
+
 	getProvince = ( addressArray ) => {
 		let province = '';
 		for( let i = 0; i < addressArray.length; i++ ) {
@@ -212,50 +216,13 @@ class PetMap extends Component{
 				lng: lngValue
 			},
 		})
+
+
 	};
 
 
 	render(){
-		const AsyncMap = withScriptjs(
-			withGoogleMap(
-				props => (
-					<GoogleMap google={ this.props.google }
-					           defaultZoom={ this.props.zoom }
-					           defaultCenter={{ lat: this.state.mapPosition.lat, lng: this.state.mapPosition.lng }}
-					>
-						{/* InfoWindow on top of marker */}
-						<InfoWindow
-							onClose={this.onInfoWindowClose}
-							position={{ lat: ( this.state.markerPosition.lat + 0.0018 ), lng: this.state.markerPosition.lng }}
-						>
-							<div>
-								<span style={{ padding: 0, margin: 0 }}>{ this.state.address }</span>
-							</div>
-						</InfoWindow>
-						{/*Marker*/}
-						<Marker google={this.props.google}
-						        name={'Dolores park'}
-						        draggable={true}
-						        onDragEnd={ this.onMarkerDragEnd }
-						        position={{ lat: this.state.markerPosition.lat, lng: this.state.markerPosition.lng }}
-						/>
-						<Marker />
-						{/* For Auto complete Search Box */}
-						<Autocomplete
-							style={{
-								width: '100%',
-								height: '40px',
-								paddingLeft: '16px',
-								marginTop: '2px',
-								marginBottom: '500px'
-							}}
-							onPlaceSelected={ this.onPlaceSelected }
-							types={['(regions)']}
-						/>
-					</GoogleMap>
-				)
-			)
-		);
+
 		let map;
 		if( this.props.center.lat !== undefined ) {
 			map = <div>
@@ -284,7 +251,7 @@ class PetMap extends Component{
 				</div>
 
 				<AsyncMap
-                    googleMapURL={`https://maps.googleapis.com/maps/api/js?key=${process.env.REACT_APP_GOOGLE_API_KEY}&libraries=places`}
+          googleMapURL={`https://maps.googleapis.com/maps/api/js?key=${process.env.REACT_APP_GOOGLE_API_KEY}&libraries=places`}
 					loadingElement={
 						<div style={{ height: `100%` }} />
 					}
@@ -294,6 +261,15 @@ class PetMap extends Component{
 					mapElement={
 						<div style={{ height: `100%` }} />
 					}
+					zoom={this.props.zoom}
+					onClose={this.onInfoWindowClose}
+					markerLat={this.state.markerPosition.lat}
+					markerLng={this.state.markerPosition.lng}
+					address={this.state.address}
+					onMarkerDragEnd={this.onMarkerDragEnd}
+					onPlaceSelected={this.onPlaceSelected}
+
+
 				/>
 			</div>
 		} else {
@@ -303,3 +279,53 @@ class PetMap extends Component{
 	}
 }
 export default PetMap;
+
+
+
+
+		const AsyncMap = withScriptjs(
+			withGoogleMap(
+				props => (
+					<GoogleMap
+						defaultZoom={ props.zoom }
+					   center={{ lat: props.markerLat, lng: props.markerLng }}
+
+					>
+					{console.log(props)}
+						{/* InfoWindow on top of marker */}
+						<InfoWindow
+							onClose={props.onInfoWindowClose}
+							position={{ lat: ( props.markerLat + 0.0018 ), lng: props.markerLng }}
+						>
+							<div>
+								<span style={{ padding: 0, margin: 0 }}>{ props.address }</span>
+							</div>
+						</InfoWindow>
+						{/*Marker*/}
+						<Marker
+						        name={'Dolores park'}
+						        draggable={true}
+						        onDragEnd={ props.onMarkerDragEnd }
+						        position={{ lat: props.markerLat, lng: props.markerLng }}
+						/>
+						<Marker />
+						{/* For Auto complete Search Box */}
+						<Autocomplete
+							style={{
+								width: '100%',
+								height: '40px',
+								paddingLeft: '16px',
+								marginTop: '2px',
+								marginBottom: '500px'
+							}}
+							onPlaceSelected={ props.onPlaceSelected }
+							types={['address']}
+						/>
+					</GoogleMap>
+				)
+			)
+		);
+
+
+
+

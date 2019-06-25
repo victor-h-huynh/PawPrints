@@ -136,6 +136,7 @@ const MyMapComponent = withScriptjs(withGoogleMap((props) =>
     onIdle={props.onMapIdle}
   >
     {props.children}
+    {console.log(props.children)}
   </GoogleMap>
 ))
 
