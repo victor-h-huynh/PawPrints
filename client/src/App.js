@@ -55,6 +55,8 @@ class App extends Component {
     this.setState({pets: [...this.state.pets, newPet]})
   }
 
+  
+
   render() {
   
     if (this.state.loading) {
