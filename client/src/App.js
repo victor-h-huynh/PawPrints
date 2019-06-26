@@ -18,13 +18,20 @@ class App extends Component {
       users:[],
       pets:[],
       petsOnMap: [],
-      addresses:[],
+      addresses: [],
+      token: ''
     };
   }
 
   updatePetsOnMap = (petsOnMap) => {
     this.setState({
       petsOnMap: petsOnMap
+    })
+  }
+
+  updateToken = (token) => {
+    this.setState({
+      token: token
     })
   }
 
@@ -41,6 +48,7 @@ class App extends Component {
         pets: petsRes.data,
         users: usersRes.data,
         descriptions: descriptionsRes.data,
+        token: this.state.token
       })
     }))
     .then(res => {
@@ -55,24 +63,13 @@ class App extends Component {
     this.setState({pets: [...this.state.pets, newPet]})
   }
 
-  // checkAuth = () => {
 
-// }
-
-// PrivateRoute = ({ component: Component, ...rest }) => (
-//   <Route {...rest} render={props => (
-//     checkAuth() ? (
-//       <Component {...props}/>
-//     ) : (
-//       <Redirect to={{
-//         pathname: '/login'
-//       }}/>
-//     )
-//   )}/>
-// )
+  addAUser = (newUser) => {
+    this.setState({users: [...this.state.users, newUser]})
+  }
 
   render() {
-  
+
     if (this.state.loading) {
       return <h1>Loading...</h1>;
     } else {
@@ -80,8 +77,8 @@ class App extends Component {
           <Switch>
               <Route exact path="/" render={props => <Home {...props} updatePetsOnMap={this.updatePetsOnMap} pets={this.state.pets} users={this.state.users} addresses={this.state.addresses} petsOnMap={this.state.petsOnMap}/>}/>
               <Route path="/ReportAPet" render={props => <ReportAPet {...props} addAPet={this.addAPet}/>}/>
-              <Route path="/Login" component={Login}/>
-              <Route path="/Register" component={Register}/>
+              <Route path="/Login" render={props => <Login {...props} updateToken={this.updateToken} token={this.state.token}/>}/>
+              <Route path="/Register" render={props => <Register {...props} addAUser={this.addAUser}/>}/>
               <Route path="/Pets/:id" render={props => <PetProfile {...props} pets={this.state.pets} users={this.state.users} addresses={this.state.addresses}/>}/>
               <Route path="/Success" component={Success}/>
           </Switch>
