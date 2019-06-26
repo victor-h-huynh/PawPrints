@@ -5,6 +5,10 @@ import PetMap from './PetMap.js';
 import Navigationbar from './Navigationbar.js';
 // import DayPicker from 'react-day-picker'
 import { Redirect } from 'react-router-dom';
+import mergeImages from 'merge-images';
+import black_circle from './black_circle.png'
+import white_square from './white_square.png'
+import red_triangle from './red_triangle.png'
 
 
 class ReportAPet extends Component {
@@ -19,6 +23,7 @@ class ReportAPet extends Component {
       status: '',
       date_lost: '',
       picture: null,
+      pictureMerged: null,
       user_id: '',
 
       breed: '',
@@ -59,7 +64,20 @@ class ReportAPet extends Component {
     this.setState({
       [event.target.name]: event.target.value
     });
+
+    console.log(event.target.value)
+    console.log("BLACK CIRCLE", black_circle)
   };
+
+  dataURItoBlob = (dataURI) => {
+    var binary = atob(dataURI.split(',')[1]);
+    var array = [];
+    for(var i = 0; i < binary.length; i++) {
+        array.push(binary.charCodeAt(i));
+    }
+    return new Blob([new Uint8Array(array)], {type: 'image/jpeg'});
+}
+
 
   updateParentState = (data) => {
     this.setState({
@@ -100,6 +118,7 @@ class ReportAPet extends Component {
         status: this.state.status,
         date_lost: this.state.date_lost,
         picture: this.state.picture,
+        pictureMerged: this.state.pictureMerged,
         user_id: this.state.user_id,
         latitude: this.state.latitude,
         longitude: this.state.longitude,
@@ -119,40 +138,47 @@ class ReportAPet extends Component {
   }
 
   handleSubmit = event => {
-    event.preventDefault();
+      event.preventDefault();
 
-    const file = this.state.picture;
-    const storageRef = this.state.storage.ref();
-    const that = this;
+      const originalPicture = this.state.picture;
+      const storageRef = this.state.storage.ref();
+      const that = this;
+      mergeImages([black_circle, white_square, red_triangle])
+        .then(b64 => this.setState({
+          pictureMerged: this.dataURItoBlob(b64)
+        }, () => {
+          if (originalPicture) {
+            console.log("STATE", this.state.pictureMerged)
+            const uploadPicture = storageRef.child(this.state.picture.name).put(originalPicture);
+            uploadPicture.on(
+              'state_changed',
+              function(snapshot) {
+                var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+                console.log('Upload is ' + progress + '% done');
+              },
+              function(error) {
+                console.log(error);
+              },
+              function() {
+                uploadPicture.snapshot.ref.getDownloadURL().then(downloadURL => {
+                  console.log(downloadURL);
+                  that.setState({
+                      picture: downloadURL
+                    },
+                    () => {
 
-    if (file) {
-    const uploadPicture = storageRef.child(this.state.picture.name).put(file);
-    uploadPicture.on(
-      'state_changed',
-      function(snapshot) {
-        var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-        console.log('Upload is ' + progress + '% done');
-      },
-      function(error) {
-        console.log(error);
-      },
-      function() {
-        uploadPicture.snapshot.ref.getDownloadURL().then(downloadURL => {
-          console.log(downloadURL);
-          that.setState(
-            {
-              picture: downloadURL
-            },
-            () => {
+                      that.sendToDB();
+                    })
+                });
+              });
+          } else {
+            this.sendToDB();
+          }
 
-              that.sendToDB();
-                })
-            }
-          );
-        });
-    } else {
-      this.sendToDB();
-    }
+        }))
+
+
+
   };
 
   componentDidMount() {
