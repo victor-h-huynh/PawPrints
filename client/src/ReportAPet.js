@@ -109,6 +109,8 @@ class ReportAPet extends Component {
                     status: that.state.status,
                     date_lost: that.state.date,
                     picture: that.state.picture,
+                    latitude: 45.7,
+                    longitude: -73.1,
                     user_id: 1
                   }
                 })

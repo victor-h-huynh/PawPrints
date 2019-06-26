@@ -52,7 +52,7 @@ class Map extends Component {
     <Marker
       setMarkerRef={this.setMarkerRef}
       key={pet.id}
-      position = {{lat: Number(pet.address.latitude), lng: -(Number(pet.address.longitude))}}
+      position = {{lat: Number(pet.latitude), lng: -Number(pet.longitude)}}
       name = {pet.name}
       onClick={() => this.onMarkerClick(pet.id)}
       title = "test"
@@ -76,8 +76,8 @@ class Map extends Component {
             fillColor:'#84bcaf',
             strokeOpacity: 0,
             fillOpacity: 0.4,
-            center: {lat: Number(pet.address.latitude),
-                            lng: -Number(pet.address.longitude)}
+            center: {lat: Number(pet.latitude),
+                            lng: -Number(pet.longitude)}
           }
           }
            />}
@@ -105,10 +105,10 @@ return (
 
             const petOnMapArray = this.props.pets.filter(pet =>
 
-              Number(pet.address.latitude) > sw.lat() &&
-                Number(pet.address.latitude) < ne.lat() &&
-              -Number(pet.address.longitude) > sw.lng() &&
-              -Number(pet.address.longitude) < ne.lng()
+              (pet.latitude) > sw.lat() &&
+              (pet.latitude) < ne.lat() &&
+              -Number(pet.longitude) > sw.lng() &&
+              -Number(pet.longitude) < ne.lng()
             )
 
             this.props.updatePetsOnMap(petOnMapArray)

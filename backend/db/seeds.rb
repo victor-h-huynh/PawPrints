@@ -101,6 +101,8 @@ Pet.create!({
   status: "Lost",
   date_lost: Faker::Date.between(7.days.ago, Date.today),
   picture: pet_images[0],
+  latitude: rand(45.50..45.70),
+  longitude: rand(73.56..73.76),
   address_id: address_ids[0],
   user_id: users_ids[0],
   description_id: description_ids[0]

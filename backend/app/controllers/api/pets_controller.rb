@@ -11,7 +11,7 @@ class Api::PetsController < ApplicationController
         apartment: params['address']['apartment'],
         city: params['address']['city'],
         province: params['address']['province'],
-        postal_code: params['address']['postal_code'], 
+        postal_code: params['address']['postal_code'],
         latitude: params['address']['latitude'],
         longitude: params['address']['longitude']
       )
@@ -27,6 +27,8 @@ class Api::PetsController < ApplicationController
         status: params['pet']['status'],
         date_lost: params['pet']['date'],
         picture: params['pet']['picture'],
+        latitude: params['address']['latitude'],
+        longitude: params['address']['longitude'],
         address_id: @address.id,
         description_id: @description.id,
         user_id: params['pet']['user_id'],
