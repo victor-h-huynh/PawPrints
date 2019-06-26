@@ -153,6 +153,7 @@ return (
   containerElement={<div className='container-element' />}
   mapElement={<div className={'map'}/>}
   setMapRef={this.setMapRef}
+  userLocation={this.props.userLocation}
    onMapIdle={() => {
             this.setState({ne: this.map.getBounds().getNorthEast()});
             this.setState({sw: this.map.getBounds().getSouthWest()});
@@ -187,7 +188,7 @@ const MyMapComponent = withScriptjs(withGoogleMap((props) =>
   <GoogleMap
     ref={props.setMapRef}
     defaultZoom={11}
-    defaultCenter={{ lat: 45.50, lng: -73.56 }}
+    defaultCenter={{lat: props.userLocation.lat, lng: props.userLocation.lng}}
     onIdle={props.onMapIdle}
   >
     {props.children}

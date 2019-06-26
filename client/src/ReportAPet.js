@@ -3,7 +3,6 @@ import { Form, Button, Col } from 'react-bootstrap';
 import axios from 'axios';
 import PetMap from './PetMap.js';
 import Navigationbar from './Navigationbar.js';
-// import DayPicker from 'react-day-picker'
 import { Redirect } from 'react-router-dom';
 import mergeImages from 'merge-images';
 import black_circle from './black_circle.png'
@@ -37,8 +36,18 @@ class ReportAPet extends Component {
       city: '',
       province: '',
       postal_code: '',
-      latitude: 45.527535,
-      longitude: -73.59643,
+      latitude: '',
+      longitude: '',
+
+      mapPosition: {
+				lat: this.props.userLocation.lat,
+				lng: this.props.userLocation.lng
+			},
+			markerPosition: {
+				lat: this.props.userLocation.lat,
+				lng: this.props.userLocation.lng
+			}
+      
     };
   }
 
@@ -80,16 +89,15 @@ class ReportAPet extends Component {
 
 
   updateParentState = (data) => {
+    if (data.markerPosition){
     this.setState({
       latitude: data.markerPosition.lat,
       longitude: data.markerPosition.lng,
       ...data
     });
-  //   this.setState({
-  // const {street_number, street_name, city, province, postal_code} = this.data,
-  // latitude: this.data.markerPosition.lat
-  // longitude: this.data.markerPosition.lng
-  //   });
+  } else {
+    this.setState({...data})
+  }
   }
 
   sendToDB = () => {
@@ -242,7 +250,6 @@ class ReportAPet extends Component {
               <Form.Control
                 type='name'
                 name='name'
-                // {if this.state.status ==}
                 placeholder='Enter name'
                 value={this.state.name}
                 onChange={this.handleChange}
@@ -336,11 +343,13 @@ class ReportAPet extends Component {
           <Form style={{ margin: '25px', marginBottom: '50px' }}>
             <PetMap
               updateParentState={this.updateParentState}
+              parentState={this.state}
               google={this.props.google}
-              center={{ lat: this.state.latitude, lng: this.state.longitude }}
+              center={{ lat: this.props.userLocation.lat, lng: this.props.userLocation.lng }}
               height='300px'
               width='100%'
               zoom={15}
+              userLocation={this.props.userLocation}
             />
           </Form>
 
