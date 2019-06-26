@@ -1,10 +1,12 @@
+require 'rest-client'
+
 class Api::UsersController < ApplicationController
     def index
       users = User.all
       render :json => users, :include=> [:address]
     end
 
-        def create
+    def create
       @address = Address.create!(
         street_number: params['address']['street_number'],
         street_name: params['address']['street_name'],
@@ -28,10 +30,24 @@ class Api::UsersController < ApplicationController
       )
 
       if @user.save
+        Api::UsersController::send_simple_message
         render :json => @user, :include=> [:address]
       else
         render :new
       end
 
+    end
+
+    def self.send_simple_message
+      begin
+        RestClient.post "https://api:ddaa3462407f6461929a7f8d5127bea3-2b778fc3-ecada07f"\
+            "@api.mailgun.net/v3/sandbox45b11e959d894cf7ba2916ea1fb0af8f.mailgun.org/messages",
+            :from => "Excited User <mailgun@sandbox45b11e959d894cf7ba2916ea1fb0af8f.mailgun.org>",
+            :to => "victor_win@hotmail.com",
+            :subject => "Hello",
+            :text => "Testing some Mailgun awesomness!"
+      rescue RestClient::ExceptionWithResponse => e
+        puts e.response
+      end
     end
 end
