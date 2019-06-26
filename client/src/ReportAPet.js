@@ -4,6 +4,10 @@ import axios from 'axios';
 import PetMap from './PetMap.js';
 import Navigationbar from './Navigationbar.js';
 import { Redirect } from 'react-router-dom';
+import mergeImages from 'merge-images';
+import black_circle from './black_circle.png'
+import white_square from './white_square.png'
+import red_triangle from './red_triangle.png'
 
 
 class ReportAPet extends Component {
@@ -18,6 +22,7 @@ class ReportAPet extends Component {
       status: '',
       date_lost: '',
       picture: null,
+      picture_merged: null,
       user_id: '',
 
       breed: '',
@@ -42,7 +47,7 @@ class ReportAPet extends Component {
 				lat: this.props.userLocation.lat,
 				lng: this.props.userLocation.lng
 			}
-      
+
     };
   }
 
@@ -68,7 +73,20 @@ class ReportAPet extends Component {
     this.setState({
       [event.target.name]: event.target.value
     });
+
+    console.log(event.target.value)
+    console.log("BLACK CIRCLE", black_circle)
   };
+
+  dataURItoBlob = (dataURI) => {
+    var binary = atob(dataURI.split(',')[1]);
+    var array = [];
+    for(var i = 0; i < binary.length; i++) {
+        array.push(binary.charCodeAt(i));
+    }
+    return new Blob([new Uint8Array(array)], {type: 'image/jpeg'});
+}
+
 
   updateParentState = (data) => {
     if (data.markerPosition){
@@ -97,12 +115,10 @@ class ReportAPet extends Component {
       address: {
         street_number: this.state.street_number,
         street_name: this.state.street_name,
-        apartment: this.state.apartment,
         city: this.state.city,
         province: this.state.province,
         postal_code: this.state.postal_code,
-        latitude: this.state.latitude,
-        longitude: this.state.longitude,
+
       },
       pet: {
         name: this.state.name,
@@ -110,7 +126,10 @@ class ReportAPet extends Component {
         status: this.state.status,
         date_lost: date,
         picture: this.state.picture,
+        picture_merged: this.state.picture_merged,
         user_id: this.state.user_id,
+        latitude: this.state.latitude,
+        longitude: this.state.longitude,
       },
     })
     .then(response => {
@@ -129,37 +148,68 @@ class ReportAPet extends Component {
   handleSubmit = event => {
     event.preventDefault();
 
-    const file = this.state.picture;
+    const originalPicture = this.state.picture;
     const storageRef = this.state.storage.ref();
     const that = this;
-    
-    if (file) {
-    const uploadPicture = storageRef.child(this.state.picture.name).put(file);
-    uploadPicture.on(
-      'state_changed',
-      function(snapshot) {
-        var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-        console.log('Upload is ' + progress + '% done');
-      },
-      function(error) {
-        console.log(error);
-      },
-      function() {
-        uploadPicture.snapshot.ref.getDownloadURL().then(downloadURL => {
-          console.log(downloadURL);
-          that.setState(
-            {
-              picture: downloadURL
-            },
-            () => {
-              that.sendToDB();
-                }) 
-            }
-          );
-        });
-    } else {
-      this.sendToDB();
-    }
+    mergeImages([black_circle, white_square, red_triangle])
+      .then(b64 => this.setState({
+        picture_merged: this.dataURItoBlob(b64)
+      }, () => {
+        if (originalPicture) {
+          console.log("STATE", this.state.picture_merged)
+          const uploadPicture = storageRef.child(this.state.picture.name).put(originalPicture);
+          const uploadPictureMerged = storageRef.child(`Marker${this.state.picture.name}`).put(this.state.picture_merged);
+          const picturePromise = new Promise((resolve, reject) => {
+            uploadPicture.on(
+              'state_changed',
+              function(snapshot) {
+                var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+                console.log('Upload is ' + progress + '% done');
+              },
+              function(error) {
+                console.log(error);
+              },
+              function() {
+                uploadPicture.snapshot.ref.getDownloadURL().then(downloadURL => {
+                  console.log(downloadURL);
+                  that.setState({
+                      picture: downloadURL
+                    },
+                    () => {
+
+                      resolve();
+                    })
+                });
+              });
+          })
+          const pictureMergedPromise = new Promise((resolve, reject) => {
+            uploadPictureMerged.on(
+              'state_changed',
+              function(snapshot) {
+                var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+                console.log('Upload is ' + progress + '% done');
+              },
+              function(error) {
+                console.log(error);
+              },
+              function() {
+                uploadPictureMerged.snapshot.ref.getDownloadURL().then(downloadURL => {
+                  console.log(downloadURL);
+                  that.setState({
+                      picture_merged: downloadURL
+                    },
+                    () => {
+
+                      resolve();
+                    })
+                });
+              });
+          })
+          Promise.all([picturePromise, pictureMergedPromise]).then(() => this.sendToDB())
+        } else {
+          this.sendToDB();
+        }
+      }))
   };
 
   componentDidMount() {
@@ -177,7 +227,7 @@ class ReportAPet extends Component {
           <Navigationbar/>
         <Form onSubmit={this.handleSubmit}>
 
-          
+
           <Form.Group as={Col} controlId='formGridStatus'>
               <Form.Label>Status</Form.Label>
               <Form.Control
@@ -192,7 +242,7 @@ class ReportAPet extends Component {
                 <option>Reunited</option>
               </Form.Control>
             </Form.Group>
-           
+
 
             <Form.Row>
             <Form.Group as={Col} controlId='formGridName'>
@@ -217,10 +267,6 @@ class ReportAPet extends Component {
                 <option>Enter a Species</option>
                 <option>Cat</option>
                 <option>Dog</option>
-                <option>[̲̅$̲̅(̲̅2οο̲̅)̲̅$̲̅]</option>
-                <option>__̴ı̴̴̡̡̡ ̡͌l̡̡̡ ̡͌l̡*̡̡ ̴̡ı̴̴̡ ̡̡͡|̲̲̲͡͡͡ ̲▫̲͡ ̲̲̲͡͡π̲̲͡͡ ̲̲͡▫̲̲͡͡ ̲|̡̡̡ ̡ ̴̡ı̴̡̡ ̡͌l̡̡̡̡.___</option>
-                <option>(╭ರ_•́)</option>
-                <option>( ^​_^）o自自o（^_​^ )</option>
               </Form.Control>
             </Form.Group>
 
