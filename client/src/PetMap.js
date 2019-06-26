@@ -7,9 +7,6 @@ Geocode.enableDebug();
 
 class PetMap extends Component{
 
-	constructor( props ){
-		super( props );
-	}
 	/**
 	 * Get the current address from the default map position and set those values in the state
 	 */
