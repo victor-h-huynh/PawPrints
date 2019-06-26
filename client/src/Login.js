@@ -41,7 +41,7 @@ class Merged extends Component {
   // }
 
 
-   mergeImages([red_triangle, fish])
+   mergeImages([dog, red_triangle, fish])
   .then(b64 => this.setState({mergedImage: b64}));
 
 
