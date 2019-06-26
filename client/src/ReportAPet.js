@@ -158,7 +158,7 @@ class ReportAPet extends Component {
         if (originalPicture) {
           console.log("STATE", this.state.picture_merged)
           const uploadPicture = storageRef.child(this.state.picture.name).put(originalPicture);
-          const uploadPictureMerged = storageRef.child(`${this.state.picture.name}Marker`).put(this.state.picture_merged);
+          const uploadPictureMerged = storageRef.child(`Marker${this.state.picture.name}`).put(this.state.picture_merged);
           const picturePromise = new Promise((resolve, reject) => {
             uploadPicture.on(
               'state_changed',
