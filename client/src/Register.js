@@ -68,8 +68,7 @@ class Register extends Component {
           city: this.state.city,
           province: this.state.province,
           postal_code: this.state.postal_code,
-          latitude: 45.7,
-          longitude: -73.1
+
         },
         user: {
           name: this.state.name,

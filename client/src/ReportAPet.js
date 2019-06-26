@@ -3,8 +3,12 @@ import { Form, Button, Col } from 'react-bootstrap';
 import axios from 'axios';
 import PetMap from './PetMap.js';
 import Navigationbar from './Navigationbar.js';
-// import DayPicker from 'react-day-picker'
 import { Redirect } from 'react-router-dom';
+import mergeImages from 'merge-images';
+import black_circle from './black_circle.png'
+import white_square from './white_square.png'
+import red_triangle from './red_triangle.png'
+
 
 class ReportAPet extends Component {
   constructor(props) {
@@ -18,6 +22,7 @@ class ReportAPet extends Component {
       status: '',
       date_lost: '',
       picture: null,
+      picture_merged: null,
       user_id: '',
 
       breed: '',
@@ -31,8 +36,18 @@ class ReportAPet extends Component {
       city: '',
       province: '',
       postal_code: '',
-      latitude: 45.501,
-      longitude: -73.567
+      latitude: '',
+      longitude: '',
+
+      mapPosition: {
+				lat: this.props.userLocation.lat,
+				lng: this.props.userLocation.lng
+			},
+			markerPosition: {
+				lat: this.props.userLocation.lat,
+				lng: this.props.userLocation.lng
+			}
+
     };
   }
 
@@ -58,75 +73,143 @@ class ReportAPet extends Component {
     this.setState({
       [event.target.name]: event.target.value
     });
+
+    console.log(event.target.value)
+    console.log("BLACK CIRCLE", black_circle)
   };
+
+  dataURItoBlob = (dataURI) => {
+    var binary = atob(dataURI.split(',')[1]);
+    var array = [];
+    for(var i = 0; i < binary.length; i++) {
+        array.push(binary.charCodeAt(i));
+    }
+    return new Blob([new Uint8Array(array)], {type: 'image/jpeg'});
+}
+
+
+  updateParentState = (data) => {
+    if (data.markerPosition){
+    this.setState({
+      latitude: data.markerPosition.lat,
+      longitude: data.markerPosition.lng,
+      ...data
+    });
+  } else {
+    this.setState({...data})
+  }
+  }
+
+  sendToDB = () => {
+    console.log(this.state.date_lost);
+    var date = new Date(this.state.date_lost).getTime();
+    console.log(date);
+    axios
+    .post('http://localhost:3001/api/pets', {
+      description: {
+        breed: this.state.breed,
+        colour: this.state.colour,
+        sex: this.state.sex,
+        additional: this.state.additional
+      },
+      address: {
+        street_number: this.state.street_number,
+        street_name: this.state.street_name,
+        city: this.state.city,
+        province: this.state.province,
+        postal_code: this.state.postal_code,
+
+      },
+      pet: {
+        name: this.state.name,
+        species: this.state.species,
+        status: this.state.status,
+        date_lost: date,
+        picture: this.state.picture,
+        picture_merged: this.state.picture_merged,
+        user_id: this.state.user_id,
+        latitude: this.state.latitude,
+        longitude: this.state.longitude,
+      },
+    })
+    .then(response => {
+      console.log(response);
+      this.props.addAPet(response.data);
+      this.setState({
+        id: response.data.id,
+        redirectToProfile: true
+      });
+    })
+    .catch(err => {
+      console.log('report pet error: ', err);
+    });
+  }
 
   handleSubmit = event => {
     event.preventDefault();
 
-    const file = this.state.picture;
+    const originalPicture = this.state.picture;
     const storageRef = this.state.storage.ref();
     const that = this;
-
-    const uploadPicture = storageRef.child(this.state.picture.name).put(file);
-    uploadPicture.on(
-      'state_changed',
-      function(snapshot) {
-        var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-        console.log('Upload is ' + progress + '% done');
-      },
-      function(error) {
-        console.log(error);
-      },
-      function() {
-        uploadPicture.snapshot.ref.getDownloadURL().then(downloadURL => {
-          console.log(downloadURL);
-          that.setState(
-            {
-              picture: downloadURL
-            },
-            () => {
-              axios
-                .post('http://localhost:3001/api/pets', {
-                  description: {
-                    breed: that.state.breed,
-                    colour: that.state.colour,
-                    sex: that.state.sex,
-                    additional: that.state.additional
-                  },
-                  address: {
-                    street_number: that.state.street_number,
-                    street_name: that.state.street_name,
-                    apartment: that.state.apartment,
-                    city: that.state.city,
-                    province: that.state.province,
-                    postal_code: that.state.postal_code,
-                    latitude: 45.7,
-                    longitude: -73.1
-                  },
-                  pet: {
-                    name: that.state.name,
-                    species: that.state.species,
-                    status: that.state.status,
-                    date_lost: that.state.date,
-                    picture: that.state.picture,
-                    user_id: 1
-                  }
-                })
-                .then(response => {
-                  that.props.addAPet(response.data);
+    mergeImages([black_circle, white_square, red_triangle])
+      .then(b64 => this.setState({
+        picture_merged: this.dataURItoBlob(b64)
+      }, () => {
+        if (originalPicture) {
+          console.log("STATE", this.state.picture_merged)
+          const uploadPicture = storageRef.child(this.state.picture.name).put(originalPicture);
+          const uploadPictureMerged = storageRef.child(`Marker${this.state.picture.name}`).put(this.state.picture_merged);
+          const picturePromise = new Promise((resolve, reject) => {
+            uploadPicture.on(
+              'state_changed',
+              function(snapshot) {
+                var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+                console.log('Upload is ' + progress + '% done');
+              },
+              function(error) {
+                console.log(error);
+              },
+              function() {
+                uploadPicture.snapshot.ref.getDownloadURL().then(downloadURL => {
+                  console.log(downloadURL);
                   that.setState({
-                    id: response.data.id,
-                    redirectToProfile: true
-                  });
-                })
-                .catch(err => {
-                  console.log('report pet error: ', err);
+                      picture: downloadURL
+                    },
+                    () => {
+
+                      resolve();
+                    })
                 });
-            }
-          );
-        });
-      }
-    );
+              });
+          })
+          const pictureMergedPromise = new Promise((resolve, reject) => {
+            uploadPictureMerged.on(
+              'state_changed',
+              function(snapshot) {
+                var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+                console.log('Upload is ' + progress + '% done');
+              },
+              function(error) {
+                console.log(error);
+              },
+              function() {
+                uploadPictureMerged.snapshot.ref.getDownloadURL().then(downloadURL => {
+                  console.log(downloadURL);
+                  that.setState({
+                      picture_merged: downloadURL
+                    },
+                    () => {
+
+                      resolve();
+                    })
+                });
+              });
+          })
+          Promise.all([picturePromise, pictureMergedPromise]).then(() => this.sendToDB())
+        } else {
+          this.sendToDB();
+        }
+      }))
   };
 
   componentDidMount() {
@@ -143,7 +226,25 @@ class ReportAPet extends Component {
         <React.Fragment>
           
         <Form onSubmit={this.handleSubmit}>
-          <Form.Row>
+
+
+          <Form.Group as={Col} controlId='formGridStatus'>
+              <Form.Label>Status</Form.Label>
+              <Form.Control
+                as='select'
+                name='status'
+                value={this.state.status}
+                onChange={this.handleChange}
+              >
+                <option>Status</option>
+                <option>Lost</option>
+                <option>Found</option>
+                <option>Reunited</option>
+              </Form.Control>
+            </Form.Group>
+
+
+            <Form.Row>
             <Form.Group as={Col} controlId='formGridName'>
               <Form.Label>Name</Form.Label>
               <Form.Control
@@ -166,10 +267,6 @@ class ReportAPet extends Component {
                 <option>Enter a Species</option>
                 <option>Cat</option>
                 <option>Dog</option>
-                <option>[̲̅$̲̅(̲̅2οο̲̅)̲̅$̲̅]</option>
-                <option>__̴ı̴̴̡̡̡ ̡͌l̡̡̡ ̡͌l̡*̡̡ ̴̡ı̴̴̡ ̡̡͡|̲̲̲͡͡͡ ̲▫̲͡ ̲̲̲͡͡π̲̲͡͡ ̲̲͡▫̲̲͡͡ ̲|̡̡̡ ̡ ̴̡ı̴̡̡ ̡͌l̡̡̡̡.___</option>
-                <option>(╭ರ_•́)</option>
-                <option>( ^​_^）o自自o（^_​^ )</option>
               </Form.Control>
             </Form.Group>
 
@@ -186,21 +283,6 @@ class ReportAPet extends Component {
           </Form.Row>
 
           <Form.Row>
-            <Form.Group as={Col} controlId='formGridStatus'>
-              <Form.Label>Status</Form.Label>
-              <Form.Control
-                as='select'
-                name='status'
-                value={this.state.status}
-                onChange={this.handleChange}
-              >
-                <option>Status</option>
-                <option>Lost</option>
-                <option>Found</option>
-                <option>Reunited</option>
-              </Form.Control>
-            </Form.Group>
-
             <Form.Group as={Col} controlId='formGridStatus'>
               <Form.Label>Sex</Form.Label>
               <Form.Control
@@ -236,11 +318,6 @@ class ReportAPet extends Component {
                 onChange={this.handleChange}
               />
             </Form.Group>
-
-            <Form.Group as={Col} controlId='formGridLastSeen'>
-              <Form.Label>Last known location</Form.Label>
-              <Form.Control placeholder='Last Seen' />
-            </Form.Group>
           </Form.Row>
 
           <Form.Row>
@@ -265,11 +342,14 @@ class ReportAPet extends Component {
 
           <Form style={{ margin: '25px', marginBottom: '50px' }}>
             <PetMap
+              updateParentState={this.updateParentState}
+              parentState={this.state}
               google={this.props.google}
-              center={{ lat: this.state.latitude, lng: this.state.longitude }}
+              center={{ lat: this.props.userLocation.lat, lng: this.props.userLocation.lng }}
               height='300px'
               width='100%'
               zoom={15}
+              userLocation={this.props.userLocation}
             />
           </Form>
 

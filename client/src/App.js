@@ -21,7 +21,8 @@ class App extends Component {
       petsOnMap: [],
       addresses: [],
       token: localStorage.getItem('token'),
-      current_user: null
+      current_user: null,
+      userLocation: { lat: 45.50, lng: -73.59 },
     };
   }
 
@@ -44,6 +45,15 @@ class App extends Component {
   }
 
   componentDidMount() {
+    navigator.geolocation.getCurrentPosition(
+			position => {
+			  const { latitude, longitude } = position.coords;
+			  const newUserLocation = Object.assign({}, this.state.userLocation);
+			  newUserLocation.lat = latitude;
+			  newUserLocation.lng = longitude;
+			  this.setState(() => ({userLocation: newUserLocation}));
+			}, 
+		);
     axios.all([
       axios.get('/api/current_user').catch(() => ({data: null})),
       axios.get('/api/addresses.json'),
@@ -79,7 +89,7 @@ class App extends Component {
   }
 
   render() {
-
+    console.log("Update", this.state.userLocation)
     if (this.state.loading) {
       return <h1>Loading...</h1>;
     } else {
@@ -87,8 +97,8 @@ class App extends Component {
       <React.Fragment>
         <Navigationbar current_user={this.state.current_user} />
         <Switch>
-              <Route exact path="/" render={props => <Home {...props} updatePetsOnMap={this.updatePetsOnMap} pets={this.state.pets} users={this.state.users} addresses={this.state.addresses} petsOnMap={this.state.petsOnMap}/>}/>
-              <Route path="/ReportAPet" render={props => <ReportAPet {...props} addAPet={this.addAPet}/>}/>
+              <Route exact path="/" render={props => <Home {...props} updatePetsOnMap={this.updatePetsOnMap} pets={this.state.pets} users={this.state.users} addresses={this.state.addresses} petsOnMap={this.state.petsOnMap} userLocation={this.state.userLocation}/>}/>
+              <Route path="/ReportAPet" render={props => <ReportAPet {...props} addAPet={this.addAPet} userLocation={this.state.userLocation}/>}/>
               <Route path="/Login" render={props => <Login {...props} updateToken={this.updateToken} token={this.state.token}/>}/>
               <Route path="/Register" render={props => <Register {...props} addAUser={this.addAUser}/>}/>
               <Route path="/Pets/:id" render={props => <PetProfile {...props} pets={this.state.pets} users={this.state.users} addresses={this.state.addresses}/>}/>

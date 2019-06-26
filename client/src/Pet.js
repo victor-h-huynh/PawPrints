@@ -37,10 +37,10 @@ return (
               <div className="petMap">
                 <Map
                     google={this.props.google}
-                    zoom={10}
+                    zoom={15}
                     initialCenter={{
-                    lat: pet.address.latitude,
-                    lng: pet.address.longitude,
+                    lat: Number(pet.latitude),
+                    lng: Number(pet.longitude),
                     }}
                     style={mapStyles}>
                     < Marker/>
