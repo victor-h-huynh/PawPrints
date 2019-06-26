@@ -18,7 +18,9 @@ const Styles = styled.div`
  
 `;
 
-export const Navigationbar = ({token}) => {
+export const Navigationbar = ({current_user}) => {
+
+  const currentUser = current_user;
 
  return(
  <Styles>
@@ -36,13 +38,14 @@ export const Navigationbar = ({token}) => {
             <Nav.Link>Success Stories!</Nav.Link>
           </LinkContainer>
  
-        </Nav>
-        <Nav>
+        
           <LinkContainer to='/Login'>
-
-            <Nav.Link>Login</Nav.Link>
-            
-          </LinkContainer>
+          {currentUser ?
+          <p>Signed in as {currentUser.name}</p>
+          : 
+          <Nav.Link>Login</Nav.Link>
+        }
+            </LinkContainer>
           <LinkContainer to="/Register">
             <Nav.Link>Register</Nav.Link>
           </LinkContainer>

@@ -31,33 +31,39 @@ class App extends Component {
     })
   }
 
+  
+
   updateToken = (token) => {
-    this.setState({
-      token: token
+    axios.get('/api/current_user').then(current_user => {
+      this.setState({
+        token,
+        current_user: current_user.data
+      })
+
     })
   }
 
   componentDidMount() {
     axios.all([
-      axios.get('/api/current_user').catch(() => null),
+      axios.get('/api/current_user').catch(() => ({data: null})),
       axios.get('/api/addresses.json'),
       axios.get('/api/pets.json'),
       axios.get('/api/users.json'),
       axios.get('/api/descriptions.json'),
     ])
     .then(axios.spread((user, addressesRes, petsRes, usersRes, descriptionsRes) => {
-      console.log('user', user);
+
       this.setState({
         addresses: addressesRes.data,
         pets: petsRes.data,
         users: usersRes.data,
         descriptions: descriptionsRes.data,
-        current_user: user.data
+        current_user: user.data,
       })
     }))
     .then(res => {
       this.setState({
-        loading:false
+        loading:false,
       })
     })
     .catch(error => console.log(error));
@@ -79,8 +85,8 @@ class App extends Component {
     } else {
     return (
       <React.Fragment>
-      <Navigationbar current_user={this.state.current_user} />
-      <Switch>
+        <Navigationbar current_user={this.state.current_user} />
+        <Switch>
               <Route exact path="/" render={props => <Home {...props} updatePetsOnMap={this.updatePetsOnMap} pets={this.state.pets} users={this.state.users} addresses={this.state.addresses} petsOnMap={this.state.petsOnMap}/>}/>
               <Route path="/ReportAPet" render={props => <ReportAPet {...props} addAPet={this.addAPet}/>}/>
               <Route path="/Login" render={props => <Login {...props} updateToken={this.updateToken} token={this.state.token}/>}/>
@@ -88,7 +94,7 @@ class App extends Component {
               <Route path="/Pets/:id" render={props => <PetProfile {...props} pets={this.state.pets} users={this.state.users} addresses={this.state.addresses}/>}/>
               <Route path="/Success" component={Success}/>
           </Switch>
-          </React.Fragment>
+      </React.Fragment>
     );
     }
   }

@@ -47,7 +47,7 @@ class Login extends Component {
        else {
         return (
         <Form onSubmit={this.onHandleSubmit}>
-          <Navigationbar></Navigationbar>
+       
           <Form.Group controlId="formBasicEmail">
             <Form.Label>Email address</Form.Label>
             <Form.Control onChange={this.handleChange} name='email' type="email" placeholder="Enter email" />
