@@ -133,7 +133,7 @@ const MyMapComponent = withScriptjs(withGoogleMap((props) =>
   <GoogleMap
     ref={props.setMapRef}
     defaultZoom={11}
-    center={{lat: props.userLocation.lat, lng: props.userLocation.lng}}
+    defaultCenter={{lat: props.userLocation.lat, lng: props.userLocation.lng}}
     onIdle={props.onMapIdle}
   >
     {props.children}
