@@ -10,7 +10,7 @@ export default class Success extends Component {
   render() {
     return(
       <div>
-        <Navigationbar></Navigationbar>
+        
         <Image src="" className=""/>
         <Container>
           <Row className="show-grid text-center">

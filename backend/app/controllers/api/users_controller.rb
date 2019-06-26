@@ -1,10 +1,12 @@
 require 'rest-client'
 
 class Api::UsersController < ApplicationController
-    def index
-      users = User.all
-      render :json => users, :include=> [:address]
-    end
+  # before_action :authorize_request, except: :create
+
+  def index
+    users = User.all
+    render :json => users, :include=> [:address]
+  end
 
     def create
       @address = Address.create!(

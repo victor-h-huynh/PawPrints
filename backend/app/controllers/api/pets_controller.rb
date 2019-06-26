@@ -1,4 +1,6 @@
 class Api::PetsController < ApplicationController
+    # before_action :authorize_request, except: :create
+  
     def index
       pets = Pet.all
       render :json => pets, :include=> [:address, :user, :description]
