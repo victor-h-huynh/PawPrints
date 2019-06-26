@@ -38,16 +38,13 @@ class PetMap extends Component{
 			  newMarkerPosition.lat = latitude;
 			  newMarkerPosition.lng = longitude;
 			  this.setState(() => ({markerPosition: newMarkerPosition}));
-			  console.log("Am I after?");
 			},
 		);
-		console.log(this.state.markerPosition)
 
 
 		Geocode.fromLatLng( this.state.mapPosition.lat , this.state.mapPosition.lng ).then(
 
 			response => {
-				// console.log(response);
 				const address = response.results[0].formatted_address,
 					addressArray =  response.results[0].address_components,
 					street_number = this.getStreetNumber (addressArray),
@@ -56,7 +53,6 @@ class PetMap extends Component{
 					province = this.getProvince( addressArray ),
 					postal_code = this.getPostalCode(addressArray);
 
-				// console.log( 'city', city, area, state );
 
 				this.setState( {
 					address: ( address ) ? address : '',
@@ -80,7 +76,6 @@ class PetMap extends Component{
 
 	//  Component should only update ( meaning re-render ), when the user selects the address, or drags the pin
 	shouldComponentUpdate( nextProps, nextState ){
-		console.log("update?");
 		if (
 			this.state.markerPosition.lat !== this.props.center.lat ||
 			this.state.markerPosition.lat !== nextState.markerPosition.lat ||
@@ -241,7 +236,6 @@ class PetMap extends Component{
 
 
 	render(){
-		console.log("Render: ", this.state.markerPosition);
 		let map;
 		if( this.props.center.lat !== undefined ) {
 			map = <div>
