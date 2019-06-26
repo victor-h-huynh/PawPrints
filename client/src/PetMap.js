@@ -33,7 +33,7 @@ class PetMap extends Component{
 		Geocode.fromLatLng( this.state.mapPosition.lat , this.state.mapPosition.lng ).then(
 
 			response => {
-				console.log(response);
+				// console.log(response);
 				const address = response.results[0].formatted_address,
 					addressArray =  response.results[0].address_components,
 					street_number = this.getStreetNumber (addressArray),
@@ -60,7 +60,8 @@ class PetMap extends Component{
 	};
 
 	  setMapRef = (map) => {
-    this.map = map
+	this.map = map
+	console.log("map", map)
   }
 
 	//  Component should only update ( meaning re-render ), when the user selects the address, or drags the pin
@@ -185,15 +186,17 @@ class PetMap extends Component{
 				console.error(error);
 			}
 		);
+
+		this.props.updateParentState(this.state);
 	};
 
 
 	//  When the user types an address in the search box
 
 	onPlaceSelected = ( place ) => {
-		console.log( 'place', place );
 		const address = place.formatted_address,
 			addressArray =  place.address_components,
+			street_number = this.getStreetNumber( addressArray ),
 			city = this.getCity( addressArray ),
 			street_name = this.getStreetName( addressArray ),
 			province = this.getProvince( addressArray ),
@@ -207,6 +210,7 @@ class PetMap extends Component{
 			city: ( city ) ? city : '',
 			province: ( province ) ? province : '',
 			postal_code: (postal_code) ? postal_code : '',
+			street_number: ( street_number ) ? street_number : '',
 			markerPosition: {
 				lat: latValue,
 				lng: lngValue
@@ -215,42 +219,16 @@ class PetMap extends Component{
 				lat: latValue,
 				lng: lngValue
 			},
-		})
-
-
+		});
+		this.props.updateParentState(this.state);
 	};
 
 
 	render(){
-
 		let map;
 		if( this.props.center.lat !== undefined ) {
 			map = <div>
-				<div>
-					<div className="form-group">
-						<label htmlFor="">Street Number</label>
-						<input type="text" name="street_number" className="form-control" onChange={ this.onChange } readOnly="readOnly" value={ this.state.street_number }/>
-					</div>
-					<div className="form-group">
-						<label htmlFor="">Street Name</label>
-						<input type="text" name="street_name" className="form-control" onChange={ this.onChange } readOnly="readOnly" value={ this.state.street_name }/>
-					</div>
-					<div className="form-group">
-						<label htmlFor="">City</label>
-						<input type="text" name="city" className="form-control" onChange={ this.onChange } readOnly="readOnly" value={ this.state.city }/>
-					</div>
-
-					<div className="form-group">
-						<label htmlFor="">Province</label>
-						<input type="text" name="province" className="form-control" onChange={ this.onChange } readOnly="readOnly" value={ this.state.province }/>
-					</div>
-					<div className="form-group">
-						<label htmlFor="">Postal Code</label>
-						<input type="text" name="postal_code" className="form-control" onChange={ this.onChange } readOnly="readOnly" value={ this.state.postal_code }/>
-					</div>
-				</div>
-
-				<AsyncMap
+				<AsyncMap 
           googleMapURL={`https://maps.googleapis.com/maps/api/js?key=${process.env.REACT_APP_GOOGLE_API_KEY}&libraries=places`}
 					loadingElement={
 						<div style={{ height: `100%` }} />
@@ -268,9 +246,38 @@ class PetMap extends Component{
 					address={this.state.address}
 					onMarkerDragEnd={this.onMarkerDragEnd}
 					onPlaceSelected={this.onPlaceSelected}
+					/>
+					<p></p>
+					<br></br>
+					<br></br>
+				<div>
+					<p></p>
+					<div className="form-group">
+						<label htmlFor="">Street Number</label>
+						<input type="text" name="street_number" className="form-control" onChange={ this.onChange } readOnly="readOnly" value={ this.state.street_number }/>
+					</div>
+					<div className="form-group">
+						<label htmlFor="">Street Name</label>
+						<input type="text" name="street_name" className="form-control" onChange={ this.onChange } readOnly="readOnly" value={ this.state.street_name }/>
+					</div>
+					<div>
+					<div className="form-group">
+						<label htmlFor="">City</label>
+						<input type="text" name="city" className="form-control" onChange={ this.onChange } readOnly="readOnly" value={ this.state.city }/>
+					</div>
 
+					<div className="form-group">
+						<label htmlFor="">Province</label>
+						<input type="text" name="province" className="form-control" onChange={ this.onChange } readOnly="readOnly" value={ this.state.province }/>
+					</div>
+					<div className="form-group">
+						<label htmlFor="">Postal Code</label>
+						<input type="text" name="postal_code" className="form-control" onChange={ this.onChange } readOnly="readOnly" value={ this.state.postal_code }/>
+					</div>
+					</div>
+				</div>
 
-				/>
+				
 			</div>
 		} else {
 			map = <div style={{height: this.props.height}} />
@@ -289,18 +296,16 @@ export default PetMap;
 					<GoogleMap
 						defaultZoom={ props.zoom }
 					   center={{ lat: props.markerLat, lng: props.markerLng }}
-
 					>
-						{/* InfoWindow on top of marker */}
 						<InfoWindow
 							onClose={props.onInfoWindowClose}
-							position={{ lat: ( props.markerLat + 0.0018 ), lng: props.markerLng }}
+							position={{ lat: ( props.markerLat + 0.0010 ), lng: props.markerLng }}
 						>
 							<div>
 								<span style={{ padding: 0, margin: 0 }}>{ props.address }</span>
 							</div>
 						</InfoWindow>
-						{/*Marker*/}
+					
 						<Marker
 						        name={'Dolores park'}
 						        draggable={true}
@@ -308,14 +313,14 @@ export default PetMap;
 						        position={{ lat: props.markerLat, lng: props.markerLng }}
 						/>
 						<Marker />
-						{/* For Auto complete Search Box */}
+						
 						<Autocomplete
 							style={{
 								width: '100%',
 								height: '40px',
 								paddingLeft: '16px',
-								marginTop: '2px',
-								marginBottom: '500px'
+								marginTop: '20px',
+								marginBottom: '50px', 
 							}}
 							onPlaceSelected={ props.onPlaceSelected }
 							types={['address']}

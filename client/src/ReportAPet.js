@@ -6,6 +6,7 @@ import Navigationbar from './Navigationbar.js';
 // import DayPicker from 'react-day-picker'
 import { Redirect } from 'react-router-dom';
 
+
 class ReportAPet extends Component {
   constructor(props) {
     super(props);
@@ -31,8 +32,8 @@ class ReportAPet extends Component {
       city: '',
       province: '',
       postal_code: '',
-      latitude: 45.501,
-      longitude: -73.567
+      latitude: 45.527535,
+      longitude: -73.59643,
     };
   }
 
@@ -60,6 +61,63 @@ class ReportAPet extends Component {
     });
   };
 
+  updateParentState = (data) => {
+    this.setState({
+      latitude: data.markerPosition.lat,
+      longitude: data.markerPosition.lng,
+      ...data
+    });
+  //   this.setState({
+  // const {street_number, street_name, city, province, postal_code} = this.data,
+  // latitude: this.data.markerPosition.lat
+  // longitude: this.data.markerPosition.lng
+  //   });
+  }
+
+  sendToDB = () => {
+    console.log(this.state.date_lost);
+    var date = new Date(this.state.date_lost).getTime();
+    console.log(date);
+    axios
+    .post('http://localhost:3001/api/pets', {
+      description: {
+        breed: this.state.breed,
+        colour: this.state.colour,
+        sex: this.state.sex,
+        additional: this.state.additional
+      },
+      address: {
+        street_number: this.state.street_number,
+        street_name: this.state.street_name,
+        apartment: this.state.apartment,
+        city: this.state.city,
+        province: this.state.province,
+        postal_code: this.state.postal_code,
+        latitude: this.state.latitude,
+        longitude: this.state.longitude,
+      },
+      pet: {
+        name: this.state.name,
+        species: this.state.species,
+        status: this.state.status,
+        date_lost: date,
+        picture: this.state.picture,
+        user_id: this.state.user_id,
+      },
+    })
+    .then(response => {
+      console.log(response);
+      this.props.addAPet(response.data);
+      this.setState({
+        id: response.data.id,
+        redirectToProfile: true
+      });
+    })
+    .catch(err => {
+      console.log('report pet error: ', err);
+    });
+  }
+
   handleSubmit = event => {
     event.preventDefault();
 
@@ -67,6 +125,7 @@ class ReportAPet extends Component {
     const storageRef = this.state.storage.ref();
     const that = this;
 
+    if (file) {
     const uploadPicture = storageRef.child(this.state.picture.name).put(file);
     uploadPicture.on(
       'state_changed',
@@ -85,50 +144,15 @@ class ReportAPet extends Component {
               picture: downloadURL
             },
             () => {
-              axios
-                .post('http://localhost:3001/api/pets', {
-                  description: {
-                    breed: that.state.breed,
-                    colour: that.state.colour,
-                    sex: that.state.sex,
-                    additional: that.state.additional
-                  },
-                  address: {
-                    street_number: that.state.street_number,
-                    street_name: that.state.street_name,
-                    apartment: that.state.apartment,
-                    city: that.state.city,
-                    province: that.state.province,
-                    postal_code: that.state.postal_code,
-                    latitude: 45.7,
-                    longitude: -73.1
-                  },
-                  pet: {
-                    name: that.state.name,
-                    species: that.state.species,
-                    status: that.state.status,
-                    date_lost: that.state.date,
-                    picture: that.state.picture,
-                    latitude: 45.7,
-                    longitude: -73.1,
-                    user_id: 1
-                  }
+
+              that.sendToDB();
                 })
-                .then(response => {
-                  that.props.addAPet(response.data);
-                  that.setState({
-                    id: response.data.id,
-                    redirectToProfile: true
-                  });
-                })
-                .catch(err => {
-                  console.log('report pet error: ', err);
-                });
             }
           );
         });
-      }
-    );
+    } else {
+      this.sendToDB();
+    }
   };
 
   componentDidMount() {
@@ -145,12 +169,31 @@ class ReportAPet extends Component {
         <React.Fragment>
           <Navigationbar/>
         <Form onSubmit={this.handleSubmit}>
-          <Form.Row>
+
+
+          <Form.Group as={Col} controlId='formGridStatus'>
+              <Form.Label>Status</Form.Label>
+              <Form.Control
+                as='select'
+                name='status'
+                value={this.state.status}
+                onChange={this.handleChange}
+              >
+                <option>Status</option>
+                <option>Lost</option>
+                <option>Found</option>
+                <option>Reunited</option>
+              </Form.Control>
+            </Form.Group>
+
+
+            <Form.Row>
             <Form.Group as={Col} controlId='formGridName'>
               <Form.Label>Name</Form.Label>
               <Form.Control
                 type='name'
                 name='name'
+                // {if this.state.status ==}
                 placeholder='Enter name'
                 value={this.state.name}
                 onChange={this.handleChange}
@@ -189,21 +232,6 @@ class ReportAPet extends Component {
 
           <Form.Row>
             <Form.Group as={Col} controlId='formGridStatus'>
-              <Form.Label>Status</Form.Label>
-              <Form.Control
-                as='select'
-                name='status'
-                value={this.state.status}
-                onChange={this.handleChange}
-              >
-                <option>Status</option>
-                <option>Lost</option>
-                <option>Found</option>
-                <option>Reunited</option>
-              </Form.Control>
-            </Form.Group>
-
-            <Form.Group as={Col} controlId='formGridStatus'>
               <Form.Label>Sex</Form.Label>
               <Form.Control
                 as='select'
@@ -238,11 +266,6 @@ class ReportAPet extends Component {
                 onChange={this.handleChange}
               />
             </Form.Group>
-
-            <Form.Group as={Col} controlId='formGridLastSeen'>
-              <Form.Label>Last known location</Form.Label>
-              <Form.Control placeholder='Last Seen' />
-            </Form.Group>
           </Form.Row>
 
           <Form.Row>
@@ -267,6 +290,7 @@ class ReportAPet extends Component {
 
           <Form style={{ margin: '25px', marginBottom: '50px' }}>
             <PetMap
+              updateParentState={this.updateParentState}
               google={this.props.google}
               center={{ lat: this.state.latitude, lng: this.state.longitude }}
               height='300px'
