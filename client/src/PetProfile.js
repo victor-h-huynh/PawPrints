@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
 import Pet from './Pet';
+// import Comments from './comments'
 
 class PetProfile extends Component {
 
@@ -22,7 +23,9 @@ class PetProfile extends Component {
         return (
           <div>
           {petThere}
+          {/* <div id="comments"><Comments /></div> */}
           </div>
+          
       );
     }
 };
