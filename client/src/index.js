@@ -4,6 +4,9 @@ import './index.css';
 import App from './App';
 // import * as serviceWorker from './serviceWorker';
 import { BrowserRouter } from "react-router-dom";
+import axios from 'axios'
+
+axios.defaults.headers.common['Authorization'] = localStorage.getItem('token')
 
 ReactDOM.render((
     <BrowserRouter>

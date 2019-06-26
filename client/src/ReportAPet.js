@@ -227,7 +227,7 @@ class ReportAPet extends Component {
     } else {
       return (
         <React.Fragment>
-          <Navigationbar/>
+          
         <Form onSubmit={this.handleSubmit}>
 
 
