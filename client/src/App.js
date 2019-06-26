@@ -19,7 +19,7 @@ class App extends Component {
       pets:[],
       petsOnMap: [],
       addresses:[],
-      userLocation: { lat: 40.50, lng: -70.59 },
+      userLocation: { lat: 45.50, lng: -73.59 },
     };
   }
 
@@ -78,7 +78,7 @@ class App extends Component {
     return (
           <Switch>
               <Route exact path="/" render={props => <Home {...props} updatePetsOnMap={this.updatePetsOnMap} pets={this.state.pets} users={this.state.users} addresses={this.state.addresses} petsOnMap={this.state.petsOnMap} userLocation={this.state.userLocation}/>}/>
-              <Route path="/ReportAPet" render={props => <ReportAPet {...props} addAPet={this.addAPet}/>}/>
+              <Route path="/ReportAPet" render={props => <ReportAPet {...props} addAPet={this.addAPet} userLocation={this.state.userLocation}/>}/>
               <Route path="/Login" component={Login}/>
               <Route path="/Register" render={props => <Register {...props} addAUser={this.addAUser}/>}/>
               <Route path="/Pets/:id" render={props => <PetProfile {...props} pets={this.state.pets} users={this.state.users} addresses={this.state.addresses}/>}/>

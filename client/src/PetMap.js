@@ -31,15 +31,15 @@ class PetMap extends Component{
 	 * Get the current address from the default map position and set those values in the state
 	 */
 	componentDidMount() {
-		navigator.geolocation.getCurrentPosition(
-			position => {
-			  const { latitude, longitude } = position.coords;
-			  const newMarkerPosition = Object.assign({}, this.state.markerPosition);
-			  newMarkerPosition.lat = latitude;
-			  newMarkerPosition.lng = longitude;
-			  this.setState(() => ({markerPosition: newMarkerPosition}));
-			},
-		);
+		// navigator.geolocation.getCurrentPosition(
+		// 	position => {
+		// 	  const { latitude, longitude } = position.coords;
+		// 	  const newMarkerPosition = Object.assign({}, this.state.markerPosition);
+		// 	  newMarkerPosition.lat = latitude;
+		// 	  newMarkerPosition.lng = longitude;
+		// 	  this.setState(() => ({markerPosition: newMarkerPosition}));
+		// 	},
+		// );
 
 
 		Geocode.fromLatLng( this.state.mapPosition.lat , this.state.mapPosition.lng ).then(
@@ -52,7 +52,6 @@ class PetMap extends Component{
 					street_name = this.getStreetName( addressArray ),
 					province = this.getProvince( addressArray ),
 					postal_code = this.getPostalCode(addressArray);
-
 
 				this.setState( {
 					address: ( address ) ? address : '',
@@ -192,13 +191,12 @@ class PetMap extends Component{
 						lng: newLng
 					},
 				} )
+				this.props.updateParentState(this.state);
 			},
 			error => {
 				console.error(error);
-			}
+			},
 		);
-
-		this.props.updateParentState(this.state);
 	};
 
 
@@ -257,6 +255,7 @@ class PetMap extends Component{
 					address={this.state.address}
 					onMarkerDragEnd={this.onMarkerDragEnd}
 					onPlaceSelected={this.onPlaceSelected}
+					userLocation={this.props.userLocation}
 					/>
 					<p></p>
 					<br></br>
@@ -306,6 +305,7 @@ export default PetMap;
 				props => (
 					<GoogleMap
 						defaultZoom={ props.zoom }
+						defaultCenter={{ lat: props.userLocation.lat, lng: props.userLocation.lng }}
 					   center={{ lat: props.markerLat, lng: props.markerLng }}
 					>
 						<InfoWindow

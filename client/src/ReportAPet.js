@@ -32,8 +32,8 @@ class ReportAPet extends Component {
       city: '',
       province: '',
       postal_code: '',
-      latitude: 45.5,
-      longitude: -73.59,
+      latitude: '',
+      longitude: '',
     };
   }
 
@@ -67,11 +67,6 @@ class ReportAPet extends Component {
       longitude: data.markerPosition.lng,
       ...data
     });
-  //   this.setState({
-  // const {street_number, street_name, city, province, postal_code} = this.data,
-  // latitude: this.data.markerPosition.lat
-  // longitude: this.data.markerPosition.lng
-  //   });
   }
 
   sendToDB = () => {
@@ -291,10 +286,11 @@ class ReportAPet extends Component {
             <PetMap
               updateParentState={this.updateParentState}
               google={this.props.google}
-              center={{ lat: this.state.latitude, lng: this.state.longitude }}
+              center={{ lat: this.props.userLocation.lat, lng: this.props.userLocation.lng }}
               height='300px'
               width='100%'
               zoom={15}
+              userLocation={this.props.userLocation}
             />
           </Form>
 
