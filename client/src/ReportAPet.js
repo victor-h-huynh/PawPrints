@@ -47,7 +47,7 @@ class ReportAPet extends Component {
 				lat: this.props.userLocation.lat,
 				lng: this.props.userLocation.lng
 			}
-      
+
     };
   }
 
@@ -126,7 +126,7 @@ class ReportAPet extends Component {
         status: this.state.status,
         date_lost: this.state.date_lost,
         picture: this.state.picture,
-        picture_merged: this.state.picture_merged,
+        picture_merged: date,
         user_id: this.state.user_id,
         latitude: this.state.latitude,
         longitude: this.state.longitude,

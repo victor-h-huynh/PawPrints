@@ -6,7 +6,7 @@ class Api::PetsController < ApplicationController
 
     def create
       puts params
-      # rubyDate = Time.at(params['pet']['date_lost'] / 1000)
+      rubyDate = Time.at(params['pet']['date_lost'] / 1000)
       @address = Address.create!(
         street_number: params['address']['street_number'],
         street_name: params['address']['street_name'],
@@ -25,7 +25,7 @@ class Api::PetsController < ApplicationController
         name: params['pet']['name'],
         species: params['pet']['species'],
         status: params['pet']['status'],
-        date_lost: "2019-06-24T00:00:00.000Z",
+        date_lost: rubyDate,
         picture: params['pet']['picture'],
         picture_merged: params['pet']['picture_merged'],
         latitude: params['pet']['latitude'],
