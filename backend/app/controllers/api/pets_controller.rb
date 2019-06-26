@@ -27,7 +27,7 @@ class Api::PetsController < ApplicationController
         status: params['pet']['status'],
         date_lost: "2019-06-24T00:00:00.000Z",
         picture: params['pet']['picture'],
-        pictureMerged: params['pet']['pictureMerged'],
+        picture_merged: params['pet']['picture_merged'],
         latitude: params['pet']['latitude'],
         longitude: params['pet']['longitude'],
         address_id: @address.id,

@@ -23,7 +23,7 @@ class ReportAPet extends Component {
       status: '',
       date_lost: '',
       picture: null,
-      pictureMerged: null,
+      picture_merged: null,
       user_id: '',
 
       breed: '',
@@ -118,7 +118,7 @@ class ReportAPet extends Component {
         status: this.state.status,
         date_lost: this.state.date_lost,
         picture: this.state.picture,
-        pictureMerged: this.state.pictureMerged,
+        picture_merged: this.state.picture_merged,
         user_id: this.state.user_id,
         latitude: this.state.latitude,
         longitude: this.state.longitude,
@@ -138,18 +138,20 @@ class ReportAPet extends Component {
   }
 
   handleSubmit = event => {
-      event.preventDefault();
+    event.preventDefault();
 
-      const originalPicture = this.state.picture;
-      const storageRef = this.state.storage.ref();
-      const that = this;
-      mergeImages([black_circle, white_square, red_triangle])
-        .then(b64 => this.setState({
-          pictureMerged: this.dataURItoBlob(b64)
-        }, () => {
-          if (originalPicture) {
-            console.log("STATE", this.state.pictureMerged)
-            const uploadPicture = storageRef.child(this.state.picture.name).put(originalPicture);
+    const originalPicture = this.state.picture;
+    const storageRef = this.state.storage.ref();
+    const that = this;
+    mergeImages([black_circle, white_square, red_triangle])
+      .then(b64 => this.setState({
+        picture_merged: this.dataURItoBlob(b64)
+      }, () => {
+        if (originalPicture) {
+          console.log("STATE", this.state.picture_merged)
+          const uploadPicture = storageRef.child(this.state.picture.name).put(originalPicture);
+          const uploadPictureMerged = storageRef.child(`${this.state.picture.name}Marker`).put(this.state.picture_merged);
+          const picturePromise = new Promise((resolve, reject) => {
             uploadPicture.on(
               'state_changed',
               function(snapshot) {
@@ -167,18 +169,39 @@ class ReportAPet extends Component {
                     },
                     () => {
 
-                      that.sendToDB();
+                      resolve();
                     })
                 });
               });
-          } else {
-            this.sendToDB();
-          }
+          })
+          const pictureMergedPromise = new Promise((resolve, reject) => {
+            uploadPictureMerged.on(
+              'state_changed',
+              function(snapshot) {
+                var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+                console.log('Upload is ' + progress + '% done');
+              },
+              function(error) {
+                console.log(error);
+              },
+              function() {
+                uploadPictureMerged.snapshot.ref.getDownloadURL().then(downloadURL => {
+                  console.log(downloadURL);
+                  that.setState({
+                      picture_merged: downloadURL
+                    },
+                    () => {
 
-        }))
-
-
-
+                      resolve();
+                    })
+                });
+              });
+          })
+          Promise.all([picturePromise, pictureMergedPromise]).then(() => this.sendToDB())
+        } else {
+          this.sendToDB();
+        }
+      }))
   };
 
   componentDidMount() {
