@@ -23,7 +23,8 @@ class Login extends Component {
   axios
     .post('http://localhost:3001/api/authentication', {
       email: this.state.email,
-      password: this.state.password
+      password: this.state.password,
+      token: this.state.token
     })
     .then(response => {
       console.log(response.data.token)
@@ -39,8 +40,6 @@ class Login extends Component {
       if (this.props.token) {
         return <div>hi</div>
       } else {
-
-      
         return (
         <Form onSubmit={this.onHandleSubmit}>
           <Navigationbar></Navigationbar>
