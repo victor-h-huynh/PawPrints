@@ -9,40 +9,13 @@ class PetMap extends Component{
 
 	constructor( props ){
 		super( props );
-		this.state = {
-			address: '',
-			city: '',
-			street_number: '',
-			street_name: '',
-			province: '',
-			postal_code: '',
-			userLocation: '',
-			mapPosition: {
-				lat: this.props.center.lat,
-				lng: this.props.center.lng
-			},
-			markerPosition: {
-				lat: this.props.center.lat,
-				lng: this.props.center.lng
-			}
-		}
 	}
 	/**
 	 * Get the current address from the default map position and set those values in the state
 	 */
 	componentDidMount() {
-		// navigator.geolocation.getCurrentPosition(
-		// 	position => {
-		// 	  const { latitude, longitude } = position.coords;
-		// 	  const newMarkerPosition = Object.assign({}, this.state.markerPosition);
-		// 	  newMarkerPosition.lat = latitude;
-		// 	  newMarkerPosition.lng = longitude;
-		// 	  this.setState(() => ({markerPosition: newMarkerPosition}));
-		// 	},
-		// );
 
-
-		Geocode.fromLatLng( this.state.mapPosition.lat , this.state.mapPosition.lng ).then(
+		Geocode.fromLatLng( this.props.parentState.mapPosition.lat , this.props.parentState.mapPosition.lng ).then(
 
 			response => {
 				const address = response.results[0].formatted_address,
@@ -53,7 +26,7 @@ class PetMap extends Component{
 					province = this.getProvince( addressArray ),
 					postal_code = this.getPostalCode(addressArray);
 
-				this.setState( {
+				this.props.updateParentState( {
 					address: ( address ) ? address : '',
 					street_name: ( street_name ) ? street_name : '',
 					city: ( city ) ? city : '',
@@ -73,26 +46,7 @@ class PetMap extends Component{
 	console.log("map", map)
   }
 
-	//  Component should only update ( meaning re-render ), when the user selects the address, or drags the pin
-	shouldComponentUpdate( nextProps, nextState ){
-		if (
-			this.state.markerPosition.lat !== this.props.center.lat ||
-			this.state.markerPosition.lat !== nextState.markerPosition.lat ||
-			this.state.address !== nextState.address ||
-			this.state.city !== nextState.city ||
-			this.state.street_number !== nextState.street_number ||
-			this.state.street_name !== nextState.street_name ||
-			this.state.province !== nextState.province||
-			this.state.postal_code !== nextState.postal_code
-		) {
-			return true
-		} else if ( this.props.center.lat === nextProps.center.lat ){
-			return false
-		}
-	}
-
 	// Get the city and set the city input value to the one selected
-
 	getCity = ( addressArray ) => {
 		let city = '';
 		for( let i = 0; i < addressArray.length; i++ ) {
@@ -103,6 +57,7 @@ class PetMap extends Component{
 		}
 	};
 
+	// Get the building number and set the streetnumber input value to the one selected
 	getStreetNumber = (addressArray) => {
 		let streetNumber = '';
 		for( let i = 0; i < addressArray.length; i++ ) {
@@ -113,7 +68,7 @@ class PetMap extends Component{
 		}
 	};
 
-	//  Get the area and set the area input value to the one selected
+	//  Get the streetname and set the streetname input value to the one selected
 
 	getStreetName = ( addressArray ) => {
 		let streetName = '';
@@ -125,7 +80,7 @@ class PetMap extends Component{
 		}
 	};
 
-	//   Get the address and set the address input value to the one selected
+	//   Get the province and set the province input value to the one selected
 
 	getProvince = ( addressArray ) => {
 		let province = '';
@@ -152,7 +107,7 @@ class PetMap extends Component{
 	// And function for city,state and address input
 
 	onChange = ( event ) => {
-		this.setState({ [event.target.name]: event.target.value });
+		this.props.updateParentState({ [event.target.name]: event.target.value });
 	};
 
 	//   This Event triggers when the marker window is closed
@@ -175,7 +130,10 @@ class PetMap extends Component{
 					street_name = this.getStreetName( addressArray ),
 					province = this.getProvince( addressArray ),
 					postal_code = this.getPostalCode(addressArray);
-				this.setState( {
+				this.setState({
+
+				});
+				this.props.updateParentState( {
 					address: ( address ) ? address : '',
 					street_number: ( street_number ) ? street_number : '',
 					street_name: ( street_name ) ? street_name : '',
@@ -191,7 +149,6 @@ class PetMap extends Component{
 						lng: newLng
 					},
 				} )
-				this.props.updateParentState(this.state);
 			},
 			error => {
 				console.error(error);
@@ -212,8 +169,10 @@ class PetMap extends Component{
 			postal_code = this.getPostalCode(addressArray),
 			latValue = place.geometry.location.lat(),
 			lngValue = place.geometry.location.lng();
-		// Set these values in the state.
 		this.setState({
+
+		});
+		this.props.updateParentState({
 			address: ( address ) ? address : '',
 			street_name: ( street_name ) ? street_name : '',
 			city: ( city ) ? city : '',
@@ -229,7 +188,6 @@ class PetMap extends Component{
 				lng: lngValue
 			},
 		});
-		this.props.updateParentState(this.state);
 	};
 
 
@@ -250,9 +208,9 @@ class PetMap extends Component{
 					}
 					zoom={this.props.zoom}
 					onClose={this.onInfoWindowClose}
-					markerLat={this.state.markerPosition.lat}
-					markerLng={this.state.markerPosition.lng}
-					address={this.state.address}
+					markerLat={this.props.parentState.markerPosition.lat}
+					markerLng={this.props.parentState.markerPosition.lng}
+					address={this.props.parentState.address}
 					onMarkerDragEnd={this.onMarkerDragEnd}
 					onPlaceSelected={this.onPlaceSelected}
 					userLocation={this.props.userLocation}
@@ -264,25 +222,25 @@ class PetMap extends Component{
 					<p></p>
 					<div className="form-group">
 						<label htmlFor="">Street Number</label>
-						<input type="text" name="street_number" className="form-control" onChange={ this.onChange } readOnly="readOnly" value={ this.state.street_number }/>
+						<input type="text" name="street_number" className="form-control" onChange={ this.onChange } readOnly="readOnly" value={ this.props.parentState.street_number }/>
 					</div>
 					<div className="form-group">
 						<label htmlFor="">Street Name</label>
-						<input type="text" name="street_name" className="form-control" onChange={ this.onChange } readOnly="readOnly" value={ this.state.street_name }/>
+						<input type="text" name="street_name" className="form-control" onChange={ this.onChange } readOnly="readOnly" value={ this.props.parentState.street_name }/>
 					</div>
 					<div>
 					<div className="form-group">
 						<label htmlFor="">City</label>
-						<input type="text" name="city" className="form-control" onChange={ this.onChange } readOnly="readOnly" value={ this.state.city }/>
+						<input type="text" name="city" className="form-control" onChange={ this.onChange } readOnly="readOnly" value={ this.props.parentState.city }/>
 					</div>
 
 					<div className="form-group">
 						<label htmlFor="">Province</label>
-						<input type="text" name="province" className="form-control" onChange={ this.onChange } readOnly="readOnly" value={ this.state.province }/>
+						<input type="text" name="province" className="form-control" onChange={ this.onChange } readOnly="readOnly" value={ this.props.parentState.province }/>
 					</div>
 					<div className="form-group">
 						<label htmlFor="">Postal Code</label>
-						<input type="text" name="postal_code" className="form-control" onChange={ this.onChange } readOnly="readOnly" value={ this.state.postal_code }/>
+						<input type="text" name="postal_code" className="form-control" onChange={ this.onChange } readOnly="readOnly" value={ this.props.parentState.postal_code }/>
 					</div>
 					</div>
 				</div>
