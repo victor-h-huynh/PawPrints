@@ -8,6 +8,7 @@ import mergeImages from 'merge-images';
 import black_circle from './black_circle.png'
 import white_square from './white_square.png'
 import red_triangle from './red_triangle.png'
+import Resizer from 'react-image-file-resizer';
 
 
 class ReportAPet extends Component {
@@ -148,7 +149,9 @@ class ReportAPet extends Component {
   handleSubmit = event => {
     event.preventDefault();
 
+
     const originalPicture = this.state.picture;
+    const resizedPicture = this.state.picture
     const storageRef = this.state.storage.ref();
     const that = this;
     mergeImages([black_circle, white_square, red_triangle])
