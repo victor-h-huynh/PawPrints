@@ -89,20 +89,20 @@ class ReportAPet extends Component {
       address: {
         street_number: this.state.street_number,
         street_name: this.state.street_name,
-        apartment: this.state.apartment,
         city: this.state.city,
         province: this.state.province,
         postal_code: this.state.postal_code,
-        latitude: this.state.latitude,
-        longitude: this.state.longitude,
+
       },
       pet: {
         name: this.state.name,
         species: this.state.species,
         status: this.state.status,
-        date_lost: date,
+        date_lost: this.state.date_lost,
         picture: this.state.picture,
         user_id: this.state.user_id,
+        latitude: this.state.latitude,
+        longitude: this.state.longitude,
       },
     })
     .then(response => {
@@ -211,10 +211,6 @@ class ReportAPet extends Component {
                 <option>Enter a Species</option>
                 <option>Cat</option>
                 <option>Dog</option>
-                <option>[̲̅$̲̅(̲̅2οο̲̅)̲̅$̲̅]</option>
-                <option>__̴ı̴̴̡̡̡ ̡͌l̡̡̡ ̡͌l̡*̡̡ ̴̡ı̴̴̡ ̡̡͡|̲̲̲͡͡͡ ̲▫̲͡ ̲̲̲͡͡π̲̲͡͡ ̲̲͡▫̲̲͡͡ ̲|̡̡̡ ̡ ̴̡ı̴̡̡ ̡͌l̡̡̡̡.___</option>
-                <option>(╭ರ_•́)</option>
-                <option>( ^​_^）o自自o（^_​^ )</option>
               </Form.Control>
             </Form.Group>
 

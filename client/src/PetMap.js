@@ -181,13 +181,14 @@ class PetMap extends Component{
 						lng: newLng
 					},
 				} )
+				this.props.updateParentState(this.state);
 			},
 			error => {
 				console.error(error);
 			}
 		);
 
-		this.props.updateParentState(this.state);
+
 	};
 
 
@@ -228,7 +229,7 @@ class PetMap extends Component{
 		let map;
 		if( this.props.center.lat !== undefined ) {
 			map = <div>
-				<AsyncMap 
+				<AsyncMap
           googleMapURL={`https://maps.googleapis.com/maps/api/js?key=${process.env.REACT_APP_GOOGLE_API_KEY}&libraries=places`}
 					loadingElement={
 						<div style={{ height: `100%` }} />
@@ -277,7 +278,7 @@ class PetMap extends Component{
 					</div>
 				</div>
 
-				
+
 			</div>
 		} else {
 			map = <div style={{height: this.props.height}} />
@@ -305,7 +306,7 @@ export default PetMap;
 								<span style={{ padding: 0, margin: 0 }}>{ props.address }</span>
 							</div>
 						</InfoWindow>
-					
+
 						<Marker
 						        name={'Dolores park'}
 						        draggable={true}
@@ -313,14 +314,14 @@ export default PetMap;
 						        position={{ lat: props.markerLat, lng: props.markerLng }}
 						/>
 						<Marker />
-						
+
 						<Autocomplete
 							style={{
 								width: '100%',
 								height: '40px',
 								paddingLeft: '16px',
 								marginTop: '20px',
-								marginBottom: '50px', 
+								marginBottom: '50px',
 							}}
 							onPlaceSelected={ props.onPlaceSelected }
 							types={['address']}
