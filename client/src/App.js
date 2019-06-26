@@ -8,6 +8,7 @@ import Success from './Success.js'
 import { Switch, Route } from 'react-router-dom';
 import ReportAPet from './ReportAPet.js';
 import PetProfile from './PetProfile.js';
+import Navigationbar from './Navigationbar.js'
 
 
 class App extends Component {
@@ -19,7 +20,7 @@ class App extends Component {
       pets:[],
       petsOnMap: [],
       addresses: [],
-      token: ''
+      token: localStorage.getItem('token')
     };
   }
 
@@ -74,7 +75,9 @@ class App extends Component {
       return <h1>Loading...</h1>;
     } else {
     return (
-          <Switch>
+      <React.Fragment>
+      <Navigationbar token={this.state.token} />
+      <Switch>
               <Route exact path="/" render={props => <Home {...props} updatePetsOnMap={this.updatePetsOnMap} pets={this.state.pets} users={this.state.users} addresses={this.state.addresses} petsOnMap={this.state.petsOnMap}/>}/>
               <Route path="/ReportAPet" render={props => <ReportAPet {...props} addAPet={this.addAPet}/>}/>
               <Route path="/Login" render={props => <Login {...props} updateToken={this.updateToken} token={this.state.token}/>}/>
@@ -82,6 +85,7 @@ class App extends Component {
               <Route path="/Pets/:id" render={props => <PetProfile {...props} pets={this.state.pets} users={this.state.users} addresses={this.state.addresses}/>}/>
               <Route path="/Success" component={Success}/>
           </Switch>
+          </React.Fragment>
     );
     }
   }

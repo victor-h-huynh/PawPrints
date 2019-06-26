@@ -13,7 +13,7 @@ class Home extends Component {
     render() {
         return (
             <div className="Home">
-              <Navigationbar></Navigationbar>
+              
               <Jumbotron></Jumbotron>
               <h4>Welcome to Paw Prints</h4>
                 <Map updatePetsOnMap={this.props.updatePetsOnMap} pets={this.props.pets} users={this.props.users} addresses={this.props.addresses}/>

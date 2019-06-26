@@ -4,12 +4,13 @@ import { AwesomeButton } from "react-awesome-button";
 import "react-awesome-button/dist/styles.css"
 import Navigationbar from './Navigationbar.js';
 import axios from 'axios'
+import { Redirect } from 'react-router-dom';
 
 
 class Login extends Component {
     state = {
         email: '',
-        password: ''
+        password: '',
     }
     
     handleChange = (event) => {
@@ -17,29 +18,33 @@ class Login extends Component {
         [event.target.name]: event.target.value
       });
     };
+    
     onHandleSubmit = (event) => {
-      event.preventDefault();
+    event.preventDefault();
 
-  axios
-    .post('http://localhost:3001/api/authentication', {
-      email: this.state.email,
-      password: this.state.password,
-      token: this.state.token
-    })
-    .then(response => {
-      console.log(response.data.token)
-      this.props.updateToken(response.data.token)
-    })
-    .catch(err => {
-      console.log(' register user error: ', err);
-    });
+
+    axios
+      .post('http://localhost:3001/api/authentication', {
+        email: this.state.email,
+        password: this.state.password
+      })
+      .then(response => {
+        console.log('')
+        localStorage.setItem('token', response.data.token);
+        axios.defaults.headers.common['Authorization'] = response.data.token;
+        this.props.updateToken(response.data.token)
+      })
+      .catch(err => {
+        console.log(' register user error: ', err);
+      });
 
 }
 
     render(){
       if (this.props.token) {
-        return <div>hi</div>
-      } else {
+          return <Redirect to={'/'} />;
+        } 
+       else {
         return (
         <Form onSubmit={this.onHandleSubmit}>
           <Navigationbar></Navigationbar>
@@ -62,6 +67,7 @@ class Login extends Component {
           </Form>
       )
     }
+  
     }
 }
 

@@ -19,8 +19,11 @@ const Styles = styled.div`
   
 `;
 
-export const Navigationbar = () => (
-  <Styles>
+export const Navigationbar = ({token}) => {
+ 
+  console.log('TOKEN: ', token)
+ return(
+ <Styles>
     <Navbar collapseOnSelect expand="lg">
       <LinkContainer to="/">
             <Navbar.Brand>Paw Print</Navbar.Brand>
@@ -38,7 +41,8 @@ export const Navigationbar = () => (
         </Nav>
         <Nav>
           <LinkContainer to="/Login">
-            <Nav.Link>Login</Nav.Link>
+            {token ? <Nav.Link>Login</Nav.Link> : <Nav.Link>Logout</Nav.Link> }
+            
           </LinkContainer>
           <LinkContainer to="/Register">
             <Nav.Link>Register</Nav.Link>
@@ -47,7 +51,8 @@ export const Navigationbar = () => (
       </Navbar.Collapse>
     </Navbar>
   </Styles>
-)
+  )
+ }
 
 export default Navigationbar;
 

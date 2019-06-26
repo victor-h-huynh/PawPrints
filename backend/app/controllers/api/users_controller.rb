@@ -1,22 +1,10 @@
 class Api::UsersController < ApplicationController
+  # before_action :authorize_request, except: :create
 
-    # GET /users/{username}
-  # def show
-  #   render json: @user, status: :ok
-  # end
   def index
     users = User.all
     render :json => users, :include=> [:address]
   end
-
-  # POST /users
-  # def create
-  #   @user = User.new(user_params)
-  #   if @user.save
-  #     render json: @user, status: :created
-  #   else
-  #     render json: { errors: @user.errors.full_messages },
-  #            status: :unprocessable_entity
 
         def create
       @address = Address.create!(
@@ -49,22 +37,4 @@ class Api::UsersController < ApplicationController
 
     end
 
-
-  # def destroy
-  #   @user.destroy
-  # end
-
-  # private
-
-  # def find_user
-  #   @user = User.find_by_username!(params[:_username])
-  #   rescue ActiveRecord::RecordNotFound
-  #     render json: { errors: 'User not found' }, status: :not_found
-  # end
-
-  # def user_params
-  #   params.permit(
-  #     :email, :password
-  #   )
-  # end
 end

@@ -16,7 +16,7 @@ render() {
   };
 return (
 <div className="petProfilePage">
-            <Navigationbar></Navigationbar>
+            
             <Card className="pet">
             <Card.Header>{pet.name}</Card.Header>
             <Card.Img className="petPic" variant="top" src={pet.picture} />

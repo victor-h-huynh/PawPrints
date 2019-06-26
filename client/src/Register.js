@@ -102,7 +102,7 @@ class Register extends Component {
 
                 return (
         <React.Fragment>
-          <Navigationbar/>
+         
         <Form onSubmit={this.handleSubmit}>
           <Form.Row>
             <Form.Group as={Col} controlId='formGridName'>
