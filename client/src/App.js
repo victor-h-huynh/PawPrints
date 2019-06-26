@@ -20,7 +20,8 @@ class App extends Component {
       pets:[],
       petsOnMap: [],
       addresses: [],
-      token: localStorage.getItem('token')
+      token: localStorage.getItem('token'),
+      current_user: null
     };
   }
 
@@ -38,23 +39,25 @@ class App extends Component {
 
   componentDidMount() {
     axios.all([
+      axios.get('/api/current_user').catch(() => null),
       axios.get('/api/addresses.json'),
       axios.get('/api/pets.json'),
       axios.get('/api/users.json'),
       axios.get('/api/descriptions.json'),
     ])
-    .then(axios.spread((addressesRes, petsRes, usersRes, descriptionsRes) => {
+    .then(axios.spread((user, addressesRes, petsRes, usersRes, descriptionsRes) => {
+      console.log('user', user);
       this.setState({
         addresses: addressesRes.data,
         pets: petsRes.data,
         users: usersRes.data,
         descriptions: descriptionsRes.data,
-        token: this.state.token
+        current_user: user.data
       })
     }))
     .then(res => {
       this.setState({
-        loading:false,
+        loading:false
       })
     })
     .catch(error => console.log(error));
@@ -76,7 +79,7 @@ class App extends Component {
     } else {
     return (
       <React.Fragment>
-      <Navigationbar token={this.state.token} />
+      <Navigationbar current_user={this.state.current_user} />
       <Switch>
               <Route exact path="/" render={props => <Home {...props} updatePetsOnMap={this.updatePetsOnMap} pets={this.state.pets} users={this.state.users} addresses={this.state.addresses} petsOnMap={this.state.petsOnMap}/>}/>
               <Route path="/ReportAPet" render={props => <ReportAPet {...props} addAPet={this.addAPet}/>}/>

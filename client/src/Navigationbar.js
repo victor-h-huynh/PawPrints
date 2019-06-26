@@ -15,13 +15,11 @@ const Styles = styled.div`
       color: white;
     }
   }
-
-  
+ 
 `;
 
 export const Navigationbar = ({token}) => {
- 
-  console.log('TOKEN: ', token)
+
  return(
  <Styles>
     <Navbar collapseOnSelect expand="lg">
@@ -40,8 +38,9 @@ export const Navigationbar = ({token}) => {
  
         </Nav>
         <Nav>
-          <LinkContainer to="/Login">
-            {token ? <Nav.Link>Login</Nav.Link> : <Nav.Link>Logout</Nav.Link> }
+          <LinkContainer to='/Login'>
+
+            <Nav.Link>Login</Nav.Link>
             
           </LinkContainer>
           <LinkContainer to="/Register">
