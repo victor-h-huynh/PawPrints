@@ -16,6 +16,7 @@ class PetMap extends Component{
 			street_name: '',
 			province: '',
 			postal_code: '',
+			userLocation: '',
 			mapPosition: {
 				lat: this.props.center.lat,
 				lng: this.props.center.lng
@@ -30,6 +31,19 @@ class PetMap extends Component{
 	 * Get the current address from the default map position and set those values in the state
 	 */
 	componentDidMount() {
+		navigator.geolocation.getCurrentPosition(
+			position => {
+			  const { latitude, longitude } = position.coords;
+			  const newMarkerPosition = Object.assign({}, this.state.markerPosition);
+			  newMarkerPosition.lat = latitude;
+			  newMarkerPosition.lng = longitude;
+			  this.setState(() => ({markerPosition: newMarkerPosition}));
+			  console.log("Am I after?");
+			},
+		);
+		console.log(this.state.markerPosition)
+
+
 		Geocode.fromLatLng( this.state.mapPosition.lat , this.state.mapPosition.lng ).then(
 
 			response => {
@@ -66,8 +80,10 @@ class PetMap extends Component{
 
 	//  Component should only update ( meaning re-render ), when the user selects the address, or drags the pin
 	shouldComponentUpdate( nextProps, nextState ){
+		console.log("update?");
 		if (
 			this.state.markerPosition.lat !== this.props.center.lat ||
+			this.state.markerPosition.lat !== nextState.markerPosition.lat ||
 			this.state.address !== nextState.address ||
 			this.state.city !== nextState.city ||
 			this.state.street_number !== nextState.street_number ||
@@ -225,6 +241,7 @@ class PetMap extends Component{
 
 
 	render(){
+		console.log("Render: ", this.state.markerPosition);
 		let map;
 		if( this.props.center.lat !== undefined ) {
 			map = <div>

@@ -32,8 +32,8 @@ class ReportAPet extends Component {
       city: '',
       province: '',
       postal_code: '',
-      latitude: 45.527535,
-      longitude: -73.59643,
+      latitude: 45.5,
+      longitude: -73.59,
     };
   }
 
