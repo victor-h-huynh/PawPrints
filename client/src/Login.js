@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import { Form, Col } from 'react-bootstrap';
+import { Form } from 'react-bootstrap';
 import { AwesomeButton } from "react-awesome-button";
 import "react-awesome-button/dist/styles.css"
-import Navigationbar from './Navigationbar.js';
 import axios from 'axios'
 import { Redirect } from 'react-router-dom';
+import setupNotifications from './setupNotifications.js';
 
 
 
@@ -33,7 +33,8 @@ class Login extends Component {
         console.log('')
         localStorage.setItem('token', response.data.token);
         axios.defaults.headers.common['Authorization'] = response.data.token;
-        this.props.updateToken(response.data.token)
+        this.props.updateToken(response.data.token);
+        setupNotifications();
       })
       .catch(err => {
         console.log(' register user error: ', err);

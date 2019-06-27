@@ -64,6 +64,9 @@ ActiveRecord::Schema.define(version: 2019_06_27_162400) do
     t.boolean "alerts"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "endpoint"
+    t.string "p256dh"
+    t.string "auth"
     t.index ["address_id"], name: "index_users_on_address_id"
   end
 
