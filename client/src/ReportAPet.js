@@ -5,7 +5,6 @@ import PetMap from './PetMap.js';
 import Navigationbar from './Navigationbar.js';
 import { Redirect } from 'react-router-dom';
 import mergeImages from 'merge-images';
-import Resizer from 'react-image-file-resizer';
 import marker from './marker.png'
 import paw from './paw.png'
 import fish from './fish.png'
