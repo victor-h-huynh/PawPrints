@@ -46,7 +46,7 @@ return (
                     < Marker
                     options={{ icon:
                 { url: pet.picture_merged,
-                  scaledSize: { width: 36, height: 36 },
+                  scaledSize: { width: 48, height: 48 },
                   } }}/>
                   </Map>
                 </div>

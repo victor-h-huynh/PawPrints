@@ -3,60 +3,10 @@ import { Form } from 'react-bootstrap';
 import { AwesomeButton } from "react-awesome-button";
 import "react-awesome-button/dist/styles.css"
 import Navigationbar from './Navigationbar.js';
-import mergeImages from 'merge-images';
-import dog from './dog.png'
-import Resizer from 'react-image-file-resizer';
-import fish from './fish.png'
-import marker from './marker.png'
-import paw from './paw.png'
 import axios from 'axios'
 import { Redirect } from 'react-router-dom';
 
 
-
-
-class Merged extends Component {
-  state = {
-    mergedImage: null
-  }
-
-  render() {
-
-  //   const resize = (picture) => {Resizer.imageFileResizer(
-  //   picture,
-  //   64,
-  //   64,
-  //   'PNG',
-  //   100,
-  //   0,
-  //   uri => {
-  //     console.log(uri)
-  //      // this.setState({mergedImage: uri})
-  //           },
-  //   'base64'
-  //   );
-  // }
-
-  // { src: fish, x: 885, y: 460 },
-  //                { src: marker, x: 0, y: 0 },
-  //                { scr: paw, x: 0, y: 0 }
-
-
-   mergeImages([
-  { src: fish, x: 885, y: 460 },
-  { src: marker, x: 0, y: 0 },
-  { src: paw, x: 0, y: 0 }
-])
-  .then(b64 => this.setState({mergedImage: b64}));
-
-
-
-    return (
-      <img src={this.state.mergedImage}/>
-
-      )
-  }
-}
 
 class Login extends Component {
     state = {
@@ -122,7 +72,7 @@ class Login extends Component {
           </Form.Group>
           <AwesomeButton type="secondary">Login</AwesomeButton>
           </Form>
-          <Merged/>
+
           </React.Fragment>
 
       )
