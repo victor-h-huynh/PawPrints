@@ -38,8 +38,8 @@ class Map extends Component {
       (pet.status === this.state.status || this.state.status === "All") &&
       Number(pet.latitude) > this.state.sw.lat() &&
       Number(pet.latitude) < this.state.ne.lat() &&
-      -Number(pet.longitude) > this.state.sw.lng() &&
-      -Number(pet.longitude) < this.state.ne.lng()
+      Number(pet.longitude) > this.state.sw.lng() &&
+      Number(pet.longitude) < this.state.ne.lng()
     )
     this.props.updatePetsOnMap(petOnMapArray)
     });
@@ -74,12 +74,12 @@ class Map extends Component {
     <Marker
       setMarkerRef={this.setMarkerRef}
       key={pet.id}
-      position = {{lat: Number(pet.latitude), lng: -Number(pet.longitude)}}
+      position = {{lat: Number(pet.latitude), lng: Number(pet.longitude)}}
       name = {pet.name}
       onClick={() => this.onMarkerClick(pet.id)}
       options={{ icon:
-                { url: pet.picture,
-                  scaledSize: { width: 28, height: 28 },
+                { url: pet.picture_merged,
+                  scaledSize: { width: 36, height: 36 },
                   } }}
 
        >
@@ -98,7 +98,7 @@ class Map extends Component {
             strokeOpacity: 0,
             fillOpacity: 0.4,
             center: {lat: Number(pet.latitude),
-                            lng: -Number(pet.longitude)}
+                            lng: Number(pet.longitude)}
           }
           }
            />}
@@ -162,8 +162,8 @@ return (
               (pet.status === this.state.status || this.state.status === "All") &&
               Number(pet.latitude) > this.state.sw.lat() &&
               Number(pet.latitude) < this.state.ne.lat() &&
-              -Number(pet.longitude) > this.state.sw.lng() &&
-              -Number(pet.longitude) < this.state.ne.lng()
+              Number(pet.longitude) > this.state.sw.lng() &&
+              Number(pet.longitude) < this.state.ne.lng()
             )
 
             this.props.updatePetsOnMap(petOnMapArray)

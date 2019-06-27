@@ -52,7 +52,7 @@ class App extends Component {
 			  newUserLocation.lat = latitude;
 			  newUserLocation.lng = longitude;
 			  this.setState(() => ({userLocation: newUserLocation}));
-			}, 
+			},
 		);
     axios.all([
       axios.get('/api/current_user').catch(() => ({data: null})),
