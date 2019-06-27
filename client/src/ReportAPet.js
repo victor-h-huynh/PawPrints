@@ -20,7 +20,7 @@ class ReportAPet extends Component {
       date_lost: '',
       picture: null,
       picture_merged: null,
-      user_id: '',
+      user_id: this.props.current_user.id,
 
       breed: '',
       colour: '',
