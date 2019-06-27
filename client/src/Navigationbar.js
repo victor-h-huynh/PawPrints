@@ -15,12 +15,15 @@ const Styles = styled.div`
       color: white;
     }
   }
-
-  
+ 
 `;
 
-export const Navigationbar = () => (
-  <Styles>
+export const Navigationbar = ({current_user}) => {
+
+  const currentUser = current_user;
+
+ return(
+ <Styles>
     <Navbar collapseOnSelect expand="lg">
       <LinkContainer to="/">
             <Navbar.Brand>Paw Print</Navbar.Brand>
@@ -35,11 +38,14 @@ export const Navigationbar = () => (
             <Nav.Link>Success Stories!</Nav.Link>
           </LinkContainer>
  
-        </Nav>
-        <Nav>
-          <LinkContainer to="/Login">
-            <Nav.Link>Login</Nav.Link>
-          </LinkContainer>
+        
+          <LinkContainer to='/Login'>
+          {currentUser ?
+          <p>Signed in as {currentUser.name}</p>
+          : 
+          <Nav.Link>Login</Nav.Link>
+        }
+            </LinkContainer>
           <LinkContainer to="/Register">
             <Nav.Link>Register</Nav.Link>
           </LinkContainer>
@@ -47,7 +53,8 @@ export const Navigationbar = () => (
       </Navbar.Collapse>
     </Navbar>
   </Styles>
-)
+  )
+ }
 
 export default Navigationbar;
 

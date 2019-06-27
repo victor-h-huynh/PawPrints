@@ -24,6 +24,15 @@ body {
 
   div.Marker img {
     background-color: red;
+
+  }
+
+  div.container {
+
+  }
+
+  h4 {
+    margin: 25px;
   }
 
 // Scroll component view
@@ -33,11 +42,6 @@ body {
     margin-left: 25px;
 
     // CARD VIEW
-    h1,
-    p {
-      margin: 0;
-      padding: 0;
-    }
 
     .button3 {
       border-radius: 8px;
@@ -74,22 +78,13 @@ body {
       position: relative;
     }
 
-    .card .btn btn-primary {
-      margin: auto;
-    }
-
     .card > .entry {
       height: auto;
       position: relative;
-      top: 0;
-      right: 0;
       background: white;
     }
 
-    .card > .entry > .container {
-      position: relative;
-      width: auto;
-    }
+
 
     .card > .entry,
     .card > .entry > .container > .text {
@@ -134,6 +129,7 @@ body {
       height: 100%;
       border-top-left-radius: 5px;
       border-bottom-left-radius: 5px;
+      
     }
 
     .card > .image > img {
@@ -145,10 +141,6 @@ body {
       max-width: 300px;
     }
   }
-}
-
-.clearfix {
-  clear: both;
 }
 
 //PET PROFILE
