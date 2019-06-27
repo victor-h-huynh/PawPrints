@@ -11,15 +11,6 @@ class Api::UsersController < ApplicationController
   end
 
     def create
-      # @address = Address.create!(
-      #   street_number: params['address']['street_number'],
-      #   street_name: params['address']['street_name'],
-      #   apartment: params['address']['apartment'],
-      #   city: params['address']['city'],
-      #   province: params['address']['province'],
-      #   postal_code: params['address']['postal_code'],
-      # )
-
       @user = User.create!(
         name: params['user']['name'],
         email: params['user']['email'],
@@ -28,8 +19,6 @@ class Api::UsersController < ApplicationController
         phone_number: params['user']['phone_number'],
         alerts: params['user']['alerts'],
         points: 0,
-        # address_id: @address.id,
-
       )
 
       if @user.save
