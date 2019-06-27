@@ -7,19 +7,10 @@ class Api::UsersController < ApplicationController
 
   def index
     users = User.all
-    render :json => users, 
+    render :json => users
   end
 
     def create
-      # @address = Address.create!(
-      #   street_number: params['address']['street_number'],
-      #   street_name: params['address']['street_name'],
-      #   apartment: params['address']['apartment'],
-      #   city: params['address']['city'],
-      #   province: params['address']['province'],
-      #   postal_code: params['address']['postal_code'],
-      # )
-
       @user = User.create!(
         name: params['user']['name'],
         email: params['user']['email'],
@@ -27,7 +18,7 @@ class Api::UsersController < ApplicationController
         password_confirmation: params['user']['password_confirmation'],
         phone_number: params['user']['phone_number'],
         alerts: params['user']['alerts'],
-        # address_id: @address.id,
+        points: 0,
       )
 
       if @user.save
@@ -66,7 +57,7 @@ class Api::UsersController < ApplicationController
 
 
     def send_notification
-  
+
       Webpush.payload_send(
         message: params[:message],
         endpoint: params[:subscription][:endpoint],

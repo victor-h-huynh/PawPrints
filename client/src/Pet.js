@@ -14,6 +14,9 @@ class Pet extends Component {
     reunited: ""
   }
 
+
+
+
 petFound = event => {
 event.preventDefault()
 const date = new Date()
@@ -44,9 +47,6 @@ render() {
     height: '200px',
   };
 return (
-
-
-
 
 <div className="petProfilePage">
 
