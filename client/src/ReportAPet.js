@@ -3,8 +3,9 @@ import { Form, Button, Col } from 'react-bootstrap';
 import axios from 'axios';
 import PetMap from './PetMap.js';
 import { Redirect } from 'react-router-dom';
-import marker from './marker.png'
-import paw from './paw.png'
+import marker from './marker.png';
+import paw from './paw.png';
+
 
 class ReportAPet extends Component {
   constructor(props) {
@@ -140,6 +141,16 @@ class ReportAPet extends Component {
     .catch(err => {
       console.log('report pet error: ', err);
     });
+
+    navigator.serviceWorker.ready
+    .then((serviceWorkerRegistration) => {
+      serviceWorkerRegistration.pushManager.getSubscription()
+      .then((subscription) => {
+        console.log("subscription", subscription)
+        axios.post('/api/notification', {subscription: subscription.toJSON(), message: `A ${this.state.species} was ${this.state.status} in your area.`});
+      });
+    });
+    console.log("notification sent");
   }
 
 
