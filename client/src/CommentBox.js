@@ -21,7 +21,7 @@ class CommentBox extends Component {
     __loadComments(){
         this.setState({comments: []});
         
-        axios.get("http://localhost:3001/api/comments.json")
+        axios.get(`http://localhost:3001/api/pets/${this.props.pet_id}/comments`)
         .then(response => {
           console.log(response);
           this.setState({
@@ -32,20 +32,21 @@ class CommentBox extends Component {
     }
     
     _handleCommentSubmit(comment) {
-        this.props.database.child('comments').push({
+        this.props.comments.push({
             comments: comment
         });
-        comment.key = Math.random();
+        // comment.key = Math.random();
         this.setState({comments: this.state.comments.concat(comment)});
     }
     
     render() {
         return (
+            
             <div className='commentBox'>
                 <CommentForm onCommentSubmit={this._handleCommentSubmit.bind(this)}></CommentForm>
-                <CommentList data= {this.state.data}></CommentList>
+                <CommentList comments= {this.state.comments}></CommentList>
             </div>
-        );
+        )
     }
 }
 
