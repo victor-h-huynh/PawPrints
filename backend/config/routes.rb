@@ -4,5 +4,7 @@ Rails.application.routes.draw do
     resources :pets
     resources :addresses
     resources :descriptions
+    post "/subscribe" => "users#subscribe"
   end
+ 
 end

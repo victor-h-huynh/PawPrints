@@ -30,15 +30,6 @@ class App extends Component {
   }
 
   componentDidMount() {
-    navigator.geolocation.getCurrentPosition(
-			position => {
-			  const { latitude, longitude } = position.coords;
-			  const newUserLocation = Object.assign({}, this.state.userLocation);
-			  newUserLocation.lat = latitude;
-			  newUserLocation.lng = longitude;
-			  this.setState(() => ({userLocation: newUserLocation}));
-			}, 
-		);
     axios.all([
       axios.get('/api/addresses.json'),
       axios.get('/api/pets.json'),
@@ -71,7 +62,7 @@ class App extends Component {
   }
 
   render() {
-    console.log("Update", this.state.userLocation)
+
     if (this.state.loading) {
       return <h1>Loading...</h1>;
     } else {
