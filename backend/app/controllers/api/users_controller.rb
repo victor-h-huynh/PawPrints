@@ -1,7 +1,7 @@
 require 'rest-client'
 
 class Api::UsersController < ApplicationController
-  # before_action :authorize_request, except: :create
+  before_action :authorize_request, except: :create
 
   def index
     users = User.all
@@ -16,8 +16,6 @@ class Api::UsersController < ApplicationController
         city: params['address']['city'],
         province: params['address']['province'],
         postal_code: params['address']['postal_code'],
-        latitude: params['address']['latitude'],
-        longitude: params['address']['longitude']
       )
 
       @user = User.create!(
@@ -28,7 +26,6 @@ class Api::UsersController < ApplicationController
         phone_number: params['user']['phone_number'],
         alerts: params['user']['alerts'],
         address_id: @address.id,
-
       )
 
       if @user.save
@@ -40,33 +37,54 @@ class Api::UsersController < ApplicationController
 
     end
 
-    def self.send_simple_message
-      begin
-        RestClient.post "https://api:ddaa3462407f6461929a7f8d5127bea3-2b778fc3-ecada07f"\
-            "@api.mailgun.net/v3/sandbox45b11e959d894cf7ba2916ea1fb0af8f.mailgun.org/messages",
-            :from => "Excited User <mailgun@sandbox45b11e959d894cf7ba2916ea1fb0af8f.mailgun.org>",
-            :to => "victor_win@hotmail.com",
-            :subject => "Hello",
-            :text => "Testing some Mailgun awesomness!"
-      rescue RestClient::ExceptionWithResponse => e
-        puts e.response
-      end
-    end
+    # def self.send_simple_message
+    #   begin
+    #     RestClient.post "https://api:ddaa3462407f6461929a7f8d5127bea3-2b778fc3-ecada07f"\
+    #         "@api.mailgun.net/v3/sandbox45b11e959d894cf7ba2916ea1fb0af8f.mailgun.org/messages",
+    #         :from => "Excited User <mailgun@sandbox45b11e959d894cf7ba2916ea1fb0af8f.mailgun.org>",
+    #         :to => "victor_win@hotmail.com",
+    #         :subject => "Hello",
+    #         :text => "Testing some Mailgun awesomness!"
+    #   rescue RestClient::ExceptionWithResponse => e
+    #     puts e.response
+    #   end
+    # end
 
     def subscribe
+      puts @current_user
       @current_user.update!(
         endpoint: params[:subscription][:endpoint],
         p256dh: params[:subscription][:keys][:p256dh],
         auth: params[:subscription][:keys][:auth],
       )
+      
+      send_notification(@current_user)
     end
 
-    def send_notification
+    # def send_notification
+    #   Webpush.payload_send(
+    #     message: "Hello There"
+    #     # message: params[:message],
+    #     endpoint: @current_user.endpoint,
+    #     p256dh: @current_user.p256dh,
+    #     auth: @current_user.auth,
+    #     ttl: 24 * 60 * 60,
+    #     vapid: {
+    #       subject: 'mailto:sender@example.com',
+    #       public_key: ENV['VAPID_PUBLIC_KEY'],
+    #       private_key: ENV['VAPID_PRIVATE_KEY'],
+    #     }
+    #   )
+    # end
+
+
+    def send_notification(user)
       Webpush.payload_send(
-        message: params[:message],
-        endpoint: params[:subscription][:endpoint],
-        p256dh: params[:subscription][:keys][:p256dh],
-        auth: params[:subscription][:keys][:auth],
+        message: "Hello There",
+        # message: params[:message],
+        endpoint: user.endpoint,
+        p256dh: user.p256dh,
+        auth: user.auth,
         ttl: 24 * 60 * 60,
         vapid: {
           subject: 'mailto:sender@example.com',
