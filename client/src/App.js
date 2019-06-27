@@ -32,7 +32,7 @@ class App extends Component {
     })
   }
 
-  
+
 
   updateToken = (token) => {
     axios.get('/api/current_user').then(current_user => {
@@ -78,6 +78,8 @@ class App extends Component {
     })
     .catch(error => console.log(error));
   }
+
+
 
   addAPet = (newPet) => {
     this.setState({pets: [...this.state.pets, newPet]})

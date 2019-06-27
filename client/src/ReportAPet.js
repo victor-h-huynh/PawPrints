@@ -4,11 +4,8 @@ import axios from 'axios';
 import PetMap from './PetMap.js';
 import Navigationbar from './Navigationbar.js';
 import { Redirect } from 'react-router-dom';
-import mergeImages from 'merge-images';
 import marker from './marker.png'
 import paw from './paw.png'
-import fish from './fish.png'
-import dog from './dog.png'
 
 class ReportAPet extends Component {
   constructor(props) {
@@ -162,6 +159,7 @@ resize = picture => {
         ctx.drawImage(img, 32, 16, 64, 64)
         ctx.drawImage(this.imgMarker, 0, 0, 128, 128)
         ctx.drawImage(this.imgPaw, 50, 84, 28, 28)
+
         canvas.toBlob((blob) => this.setState({picture_merged: blob}))
       }
     }
@@ -306,7 +304,7 @@ resize = picture => {
           </Form.Row>
 
           <Form.Row>
-            <Form.Group as={Col} controlId='formGridStatus'>
+            <Form.Group as={Col} controlId='formGridSex'>
               <Form.Label>Sex</Form.Label>
               <Form.Control
                 as='select'
@@ -320,15 +318,19 @@ resize = picture => {
               </Form.Control>
             </Form.Group>
 
-            <Form.Group as={Col} controlId='formGridColoir'>
+            <Form.Group as={Col} controlId='formGridColour'>
               <Form.Label>Colour</Form.Label>
               <Form.Control
-                type='name'
+                as='select'
                 name='colour'
-                placeholder='Colour'
                 value={this.state.colour}
                 onChange={this.handleChange}
-              />
+              > <option>Colour</option>
+                <option>Black</option>
+                <option>White</option>
+                <option>Grey</option>
+                <option>Red</option>
+                </Form.Control>
             </Form.Group>
 
             <Form.Group as={Col} controlId='formGridDateLost'>
