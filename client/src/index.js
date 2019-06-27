@@ -4,11 +4,17 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import { BrowserRouter } from "react-router-dom";
-import axios from 'axios'
+import axios from 'axios';
+import urlsafeBase64 from 'urlsafe-base64';
+import setupNotifications from './setupNotifications';
+
 
 axios.defaults.headers.common['Authorization'] = localStorage.getItem('token')
 
-import urlsafeBase64 from 'urlsafe-base64';
+if(localStorage.getItem('token')) {
+  setupNotifications();
+}
+
 const decodedVapidPublicKey = urlsafeBase64.decode(process.env.REACT_APP_VAPID_PUBLIC_KEY);
 const convertedVapidKey = new Uint8Array(decodedVapidPublicKey);
 
@@ -31,15 +37,7 @@ navigator.serviceWorker.ready
   });
 }).then(function(subscription) {
   console.log('subscription', subscription)
-  fetch('/api/subscribe', {
-    method: 'post',
-    headers: {
-      'Content-type': 'application/json'
-    },
-    body: JSON.stringify({
-      subscription: subscription
-    }),
-  });
+  axios.post('/api/subscribe', {subscription});
 
   // document.getElementById('doIt').onclick = function() {
   //   const delay = document.getElementById('notification-delay').value;

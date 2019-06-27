@@ -8,7 +8,8 @@ import Success from './Success.js'
 import { Switch, Route } from 'react-router-dom';
 import ReportAPet from './ReportAPet.js';
 import PetProfile from './PetProfile.js';
-import Navigationbar from './Navigationbar.js'
+import Navigationbar from './Navigationbar.js';
+import setupNotifications from './setupNotifications';
 
 
 class App extends Component {

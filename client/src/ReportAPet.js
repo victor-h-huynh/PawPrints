@@ -2,14 +2,13 @@ import React, { Component } from 'react';
 import { Form, Button, Col } from 'react-bootstrap';
 import axios from 'axios';
 import PetMap from './PetMap.js';
-import Navigationbar from './Navigationbar.js';
 import { Redirect } from 'react-router-dom';
 import mergeImages from 'merge-images';
 import Resizer from 'react-image-file-resizer';
 import marker from './marker.png'
 import paw from './paw.png'
-import fish from './fish.png'
-import dog from './dog.png'
+import setupNotifications from './setupNotifications.js'
+
 
 class ReportAPet extends Component {
   constructor(props) {
@@ -145,6 +144,16 @@ class ReportAPet extends Component {
     .catch(err => {
       console.log('report pet error: ', err);
     });
+
+    navigator.serviceWorker.ready
+    .then((serviceWorkerRegistration) => {
+      serviceWorkerRegistration.pushManager.getSubscription()
+      .then((subscription) => {
+        console.log("subscription", subscription)
+        axios.post('/api/notification', {subscription: subscription.toJSON(), message: "Hello There"});
+      });
+    });
+    console.log("notification sent");
   }
 
 

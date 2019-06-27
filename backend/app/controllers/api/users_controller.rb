@@ -1,4 +1,5 @@
 require 'rest-client'
+require 'webpush'
 
 class Api::UsersController < ApplicationController
   before_action :authorize_request, except: :create
@@ -51,23 +52,42 @@ class Api::UsersController < ApplicationController
     # end
 
     def subscribe
-      puts @current_user
       @current_user.update!(
         endpoint: params[:subscription][:endpoint],
         p256dh: params[:subscription][:keys][:p256dh],
         auth: params[:subscription][:keys][:auth],
       )
-      
-      send_notification(@current_user)
     end
 
-    # def send_notification
+    def unsubscribe
+
+    end
+
+
+    def send_notification
+  
+      Webpush.payload_send(
+        message: params[:message],
+        endpoint: params[:subscription][:endpoint],
+        p256dh: params[:subscription][:keys][:p256dh],
+        auth: params[:subscription][:keys][:auth],
+        ttl: 24 * 60 * 60,
+        vapid: {
+          subject: "http://localhost:3001",
+          public_key: ENV['VAPID_PUBLIC_KEY'],
+          private_key: ENV['VAPID_PRIVATE_KEY'],
+        },
+      )
+    end
+
+
+    # def send_notification(user)
     #   Webpush.payload_send(
-    #     message: "Hello There"
+    #     message: "Hello There",
     #     # message: params[:message],
-    #     endpoint: @current_user.endpoint,
-    #     p256dh: @current_user.p256dh,
-    #     auth: @current_user.auth,
+    #     endpoint: user.endpoint,
+    #     p256dh: user.p256dh,
+    #     auth: user.auth,
     #     ttl: 24 * 60 * 60,
     #     vapid: {
     #       subject: 'mailto:sender@example.com',
@@ -76,22 +96,5 @@ class Api::UsersController < ApplicationController
     #     }
     #   )
     # end
-
-
-    def send_notification(user)
-      Webpush.payload_send(
-        message: "Hello There",
-        # message: params[:message],
-        endpoint: user.endpoint,
-        p256dh: user.p256dh,
-        auth: user.auth,
-        ttl: 24 * 60 * 60,
-        vapid: {
-          subject: 'mailto:sender@example.com',
-          public_key: ENV['VAPID_PUBLIC_KEY'],
-          private_key: ENV['VAPID_PRIVATE_KEY'],
-        }
-      )
-    end
 
 end

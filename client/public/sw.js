@@ -1,11 +1,10 @@
 self.addEventListener('push', function(event) {
-    console.log(event.data.text());
+    console.log("event in SW", event.data.text());
       event.waitUntil(
     
         self.registration.showNotification('Paw Print', {
           lang: 'en',
           body: 'Hello there',
-          icon: 'caesar.jpg',
         })
       );
     });
