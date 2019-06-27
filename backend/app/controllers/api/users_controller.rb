@@ -7,7 +7,7 @@ class Api::UsersController < ApplicationController
 
   def index
     users = User.all
-    render :json => users, :include=> [:address]
+    render :json => users
   end
 
     def create
@@ -28,13 +28,12 @@ class Api::UsersController < ApplicationController
         phone_number: params['user']['phone_number'],
         alerts: params['user']['alerts'],
         points: 0,
-        address_id: @address.id,
 
       )
 
       if @user.save
         # Api::UsersController::send_simple_message
-        render :json => @user, :include=> [:address]
+        render :json => @user
       else
         render :new
       end

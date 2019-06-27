@@ -4,12 +4,7 @@ import { AwesomeButton } from "react-awesome-button";
 import "react-awesome-button/dist/styles.css";
 import axios from "axios";
 import { Redirect } from "react-router-dom";
-import React, { Component } from 'react';
-import { Form } from 'react-bootstrap';
-import { AwesomeButton } from 'react-awesome-button';
 import 'react-awesome-button/dist/styles.css';
-import axios from 'axios';
-import { Redirect } from 'react-router-dom';
 
 
 class Register extends Component {
