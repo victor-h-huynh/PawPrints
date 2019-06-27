@@ -16,7 +16,7 @@ render() {
   };
 return (
 <div className="petProfilePage">
-            
+
             <Card className="pet">
             <Card.Header>{pet.name}</Card.Header>
             <Card.Img className="petPic" variant="top" src={pet.picture} />
@@ -43,7 +43,11 @@ return (
                     lng: Number(pet.longitude),
                     }}
                     style={mapStyles}>
-                    < Marker/>
+                    < Marker
+                    options={{ icon:
+                { url: pet.picture_merged,
+                  scaledSize: { width: 36, height: 36 },
+                  } }}/>
                   </Map>
                 </div>
               <hr></hr>
