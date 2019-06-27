@@ -27,7 +27,9 @@ class Api::UsersController < ApplicationController
         password_confirmation: params['user']['password_confirmation'],
         phone_number: params['user']['phone_number'],
         alerts: params['user']['alerts'],
-        # address_id: @address.id,
+        points: 0,
+        address_id: @address.id,
+
       )
 
       if @user.save
@@ -66,7 +68,7 @@ class Api::UsersController < ApplicationController
 
 
     def send_notification
-  
+
       Webpush.payload_send(
         message: params[:message],
         endpoint: params[:subscription][:endpoint],
