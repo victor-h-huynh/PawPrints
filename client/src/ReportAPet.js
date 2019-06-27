@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Form, Button, Col } from 'react-bootstrap';
 import axios from 'axios';
 import PetMap from './PetMap.js';
-import Navigationbar from './Navigationbar.js';
 import { Redirect } from 'react-router-dom';
 import marker from './marker.png'
 import paw from './paw.png'
@@ -135,7 +134,7 @@ class ReportAPet extends Component {
       this.props.addAPet(response.data);
       this.setState({
         id: response.data.id,
-        redirectToProfile: true
+        redirectToProfile: true,
       });
     })
     .catch(err => {
@@ -166,6 +165,7 @@ resize = picture => {
     reader.readAsDataURL(picture);
 
   }
+
 
   handleSubmit = event => {
     event.preventDefault();
@@ -230,8 +230,10 @@ resize = picture => {
   };
 
   componentDidMount() {
+    console.log(this.props)
     this.setState({
-      storage: window.firebase.storage()
+      storage: window.firebase.storage(),
+      user_id: this.props.current_user.id
     });
     this.imgMarker = new Image()
     this.imgMarker.src = marker

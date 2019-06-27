@@ -27,6 +27,7 @@ class Api::UsersController < ApplicationController
         password_confirmation: params['user']['password_confirmation'],
         phone_number: params['user']['phone_number'],
         alerts: params['user']['alerts'],
+        points: 0,
         address_id: @address.id,
 
       )

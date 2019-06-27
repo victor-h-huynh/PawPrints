@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
-import { Form, Col } from 'react-bootstrap';
+import { Form  } from 'react-bootstrap';
 import { AwesomeButton } from "react-awesome-button";
 import "react-awesome-button/dist/styles.css"
-import Navigationbar from './Navigationbar.js';
 import axios from 'axios'
 import { Redirect } from 'react-router-dom';
 

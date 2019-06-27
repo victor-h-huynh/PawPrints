@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 import TimeAgo from 'react-timeago';
-import Navigationbar from './Navigationbar.js';
 import { Map, Marker, GoogleApiWrapper } from 'google-maps-react';
 import axios from 'axios'
 import { Form } from 'react-bootstrap';
@@ -14,6 +13,9 @@ class Pet extends Component {
     status: this.props.pet.status,
     reunited: ""
   }
+
+
+
 
 petFound = event => {
 event.preventDefault()
@@ -45,9 +47,6 @@ render() {
     height: '200px',
   };
 return (
-
-
-
 
 <div className="petProfilePage">
 

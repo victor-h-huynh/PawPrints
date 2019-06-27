@@ -1,8 +1,7 @@
 import React, { Component } from "react";
-import { Form, Col } from "react-bootstrap";
+import { Form } from "react-bootstrap";
 import { AwesomeButton } from "react-awesome-button";
 import "react-awesome-button/dist/styles.css";
-import Navigationbar from "./Navigationbar.js";
 import axios from "axios";
 import { Redirect } from "react-router-dom";
 
@@ -88,7 +87,7 @@ class Register extends Component {
             <Form.Row>
               <Form.Group controlId="formGridName">
                 <Form.Label>Name</Form.Label>
-                <Form.Control 
+                <Form.Control
                   className="register-control"
                   type="name"
                   name="name"
