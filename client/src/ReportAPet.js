@@ -5,11 +5,11 @@ import PetMap from './PetMap.js';
 import Navigationbar from './Navigationbar.js';
 import { Redirect } from 'react-router-dom';
 import mergeImages from 'merge-images';
-import black_circle from './black_circle.png'
-import white_square from './white_square.png'
-import red_triangle from './red_triangle.png'
 import Resizer from 'react-image-file-resizer';
-
+import marker from './marker.png'
+import paw from './paw.png'
+import fish from './fish.png'
+import dog from './dog.png'
 
 class ReportAPet extends Component {
   constructor(props) {
@@ -64,6 +64,7 @@ class ReportAPet extends Component {
     this.setState({
       picture: event.target.files[0]
     });
+    this.resize(event.target.files[0])
   };
 
   // fileUploadHandler = () => {
@@ -76,7 +77,7 @@ class ReportAPet extends Component {
     });
 
     console.log(event.target.value)
-    console.log("BLACK CIRCLE", black_circle)
+    console.log("STATE", this.state.picture_merged)
   };
 
   dataURItoBlob = (dataURI) => {
@@ -85,7 +86,7 @@ class ReportAPet extends Component {
     for(var i = 0; i < binary.length; i++) {
         array.push(binary.charCodeAt(i));
     }
-    return new Blob([new Uint8Array(array)], {type: 'image/jpeg'});
+    return new Blob([new Uint8Array(array)], {type: 'image/png'});
 }
 
 
@@ -146,20 +147,36 @@ class ReportAPet extends Component {
     });
   }
 
+
+resize = picture => {
+
+    const reader = new FileReader();
+    reader.onload = e => {
+      const canvas = document.createElement('canvas')
+      canvas.height = 128
+      canvas.width = 128
+      const ctx = canvas.getContext('2d')
+      const img = document.createElement('img')
+      img.src = e.target.result
+      img.onload = () => {
+
+        ctx.drawImage(img, 32, 16, 64, 64)
+        ctx.drawImage(this.imgMarker, 0, 0, 128, 128)
+        ctx.drawImage(this.imgPaw, 50, 84, 28, 28)
+        canvas.toBlob((blob) => this.setState({picture_merged: blob}))
+      }
+    }
+    reader.readAsDataURL(picture);
+
+  }
+
   handleSubmit = event => {
     event.preventDefault();
-
-
     const originalPicture = this.state.picture;
-    const resizedPicture = this.state.picture
     const storageRef = this.state.storage.ref();
     const that = this;
-    mergeImages([black_circle, white_square, red_triangle])
-      .then(b64 => this.setState({
-        picture_merged: this.dataURItoBlob(b64)
-      }, () => {
+
         if (originalPicture) {
-          console.log("STATE", this.state.picture_merged)
           const uploadPicture = storageRef.child(this.state.picture.name).put(originalPicture);
           const uploadPictureMerged = storageRef.child(`Marker${this.state.picture.name}`).put(this.state.picture_merged);
           const picturePromise = new Promise((resolve, reject) => {
@@ -212,13 +229,17 @@ class ReportAPet extends Component {
         } else {
           this.sendToDB();
         }
-      }))
+
   };
 
   componentDidMount() {
     this.setState({
       storage: window.firebase.storage()
     });
+    this.imgMarker = new Image()
+    this.imgMarker.src = marker
+    this.imgPaw = new Image()
+    this.imgPaw.src = paw
   }
 
   render() {
@@ -227,7 +248,7 @@ class ReportAPet extends Component {
     } else {
       return (
         <React.Fragment>
-          
+
         <Form onSubmit={this.handleSubmit}>
 
 

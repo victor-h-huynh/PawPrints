@@ -3,15 +3,12 @@ import { Form } from 'react-bootstrap';
 import { AwesomeButton } from "react-awesome-button";
 import "react-awesome-button/dist/styles.css"
 import Navigationbar from './Navigationbar.js';
-
 import mergeImages from 'merge-images';
-import black_circle from './black_circle.png'
-import white_square from './white_square.png'
-import red_triangle from './red_triangle.png'
 import dog from './dog.png'
 import Resizer from 'react-image-file-resizer';
 import fish from './fish.png'
-
+import marker from './marker.png'
+import paw from './paw.png'
 import axios from 'axios'
 import { Redirect } from 'react-router-dom';
 
@@ -40,8 +37,16 @@ class Merged extends Component {
   //   );
   // }
 
+  // { src: fish, x: 885, y: 460 },
+  //                { src: marker, x: 0, y: 0 },
+  //                { scr: paw, x: 0, y: 0 }
 
-   mergeImages([dog, red_triangle, fish])
+
+   mergeImages([
+  { src: fish, x: 885, y: 460 },
+  { src: marker, x: 0, y: 0 },
+  { src: paw, x: 0, y: 0 }
+])
   .then(b64 => this.setState({mergedImage: b64}));
 
 
