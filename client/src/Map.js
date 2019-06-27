@@ -20,6 +20,9 @@ class Map extends Component {
     status: "All",
     ne: '',
     sw: '',
+    colour: 'All',
+    species: 'All',
+
   }
 
   setMapRef = (map) => {
@@ -36,6 +39,8 @@ class Map extends Component {
     }, () => {
     const petOnMapArray = this.props.pets.filter(pet =>
       (pet.status === this.state.status || this.state.status === "All") &&
+      (pet.description.colour === this.state.colour || this.state.colour === "All") &&
+      (pet.species === this.state.species || this.state.species === "All") &&
       Number(pet.latitude) > this.state.sw.lat() &&
       Number(pet.latitude) < this.state.ne.lat() &&
       Number(pet.longitude) > this.state.sw.lng() &&
@@ -79,7 +84,7 @@ class Map extends Component {
       onClick={() => this.onMarkerClick(pet.id)}
       options={{ icon:
                 { url: pet.picture_merged,
-                  scaledSize: { width: 36, height: 36 },
+                  scaledSize: { width: 48, height: 48 },
                   } }}
 
        >
@@ -116,18 +121,19 @@ componentDidMount() {
 return (
 <React.Fragment>
 <Form.Row>
-<Form.Group as={Col} controlId='formGridName'>
-              <Form.Label>Name</Form.Label>
+<Form.Group as={Col} controlId='formGridColour'>
+              <Form.Label>Colour</Form.Label>
               <Form.Control
                 as='select'
-                name='name'
-                value={this.state.name}
+                name='colour'
+                value={this.state.colour}
                 onChange={this.handleChange}
               >
-                <option>Name</option>
-                <option>Chance</option>
-                <option>Bella</option>
-                <option>Sheev</option>
+                <option>All</option>
+                <option>Black</option>
+                <option>White</option>
+                <option>Grey</option>
+                <option>Red</option>
               </Form.Control>
             </Form.Group>
 
@@ -145,6 +151,23 @@ return (
                 <option>Reunited</option>
               </Form.Control>
             </Form.Group>
+
+<Form.Group as={Col} controlId='formGridFamily'>
+              <Form.Label>Family</Form.Label>
+              <Form.Control
+                as='select'
+                name='species'
+                value={this.state.species}
+                onChange={this.handleChange}
+              >
+                <option>All</option>
+                <option>Cat</option>
+                <option>Dog</option>
+              </Form.Control>
+            </Form.Group>
+
+
+
             </Form.Row>
 
 <MyMapComponent
@@ -160,6 +183,8 @@ return (
 
             const petOnMapArray = this.props.pets.filter(pet =>
               (pet.status === this.state.status || this.state.status === "All") &&
+              (pet.description.colour === this.state.colour || this.state.colour === "All") &&
+              (pet.species === this.state.species || this.state.species === "All") &&
               Number(pet.latitude) > this.state.sw.lat() &&
               Number(pet.latitude) < this.state.ne.lat() &&
               Number(pet.longitude) > this.state.sw.lng() &&

@@ -1,5 +1,6 @@
 class Api::AuthenticationController < ApplicationController
-    before_action :authorize_request, except: :create
+    # before_action :authorize_request, except: :create
+    before_action :authorize_request, :except=>[:new, :create, :show]
 
     def new
     end 

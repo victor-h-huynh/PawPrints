@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_06_27_003655) do
+ActiveRecord::Schema.define(version: 2019_06_27_162400) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -49,6 +49,7 @@ ActiveRecord::Schema.define(version: 2019_06_27_003655) do
     t.decimal "latitude"
     t.decimal "longitude"
     t.string "picture_merged"
+    t.datetime "date_reunited"
     t.index ["address_id"], name: "index_pets_on_address_id"
     t.index ["description_id"], name: "index_pets_on_description_id"
     t.index ["user_id"], name: "index_pets_on_user_id"

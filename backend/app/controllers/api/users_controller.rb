@@ -2,7 +2,8 @@ require 'rest-client'
 require 'webpush'
 
 class Api::UsersController < ApplicationController
-  before_action :authorize_request, except: :create
+  # before_action :authorize_request, except: :create
+  before_action :authorize_request, :except=>[:new, :create, :show, :index]
 
   def index
     users = User.all
@@ -10,14 +11,14 @@ class Api::UsersController < ApplicationController
   end
 
     def create
-      @address = Address.create!(
-        street_number: params['address']['street_number'],
-        street_name: params['address']['street_name'],
-        apartment: params['address']['apartment'],
-        city: params['address']['city'],
-        province: params['address']['province'],
-        postal_code: params['address']['postal_code'],
-      )
+      # @address = Address.create!(
+      #   street_number: params['address']['street_number'],
+      #   street_name: params['address']['street_name'],
+      #   apartment: params['address']['apartment'],
+      #   city: params['address']['city'],
+      #   province: params['address']['province'],
+      #   postal_code: params['address']['postal_code'],
+      # )
 
       @user = User.create!(
         name: params['user']['name'],
@@ -26,11 +27,11 @@ class Api::UsersController < ApplicationController
         password_confirmation: params['user']['password_confirmation'],
         phone_number: params['user']['phone_number'],
         alerts: params['user']['alerts'],
-        address_id: @address.id,
+        # address_id: @address.id,
       )
 
       if @user.save
-        Api::UsersController::send_simple_message
+        # Api::UsersController::send_simple_message
         render :json => @user, :include=> [:address]
       else
         render :new
