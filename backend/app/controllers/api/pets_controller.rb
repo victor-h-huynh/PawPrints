@@ -1,13 +1,24 @@
 class Api::PetsController < ApplicationController
     # before_action :authorize_request, except: :create
-  
+
     def index
       pets = Pet.all
       render :json => pets, :include=> [:address, :user, :description]
     end
 
+    def update
+      pet = Pet.find_by id: params['id']
+      pet.update(status: 'Reunited')
+      pet.update(date_reunited: params['reunited'])
+      if pet.save
+        render :json => pet, :include=> [:address, :user, :description]
+      else
+        render :new
+      end
+
+    end
+
     def create
-      puts params
       rubyDate = Time.at(params['pet']['date_lost'] / 1000)
       @address = Address.create!(
         street_number: params['address']['street_number'],

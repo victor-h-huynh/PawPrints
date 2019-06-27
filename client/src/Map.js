@@ -20,6 +20,9 @@ class Map extends Component {
     status: "All",
     ne: '',
     sw: '',
+    colour: 'All',
+    species: 'All',
+
   }
 
   setMapRef = (map) => {
@@ -123,10 +126,10 @@ return (
               <Form.Control
                 as='select'
                 name='colour'
-                value={this.state.name}
+                value={this.state.colour}
                 onChange={this.handleChange}
               >
-                <option>Colour</option>
+                <option>All</option>
                 <option>Black</option>
                 <option>White</option>
                 <option>Grey</option>
@@ -158,8 +161,8 @@ return (
                 onChange={this.handleChange}
               >
                 <option>All</option>
-                <option>Canine</option>
-                <option>Feline</option>
+                <option>Cat</option>
+                <option>Dog</option>
               </Form.Control>
             </Form.Group>
 
@@ -180,7 +183,7 @@ return (
 
             const petOnMapArray = this.props.pets.filter(pet =>
               (pet.status === this.state.status || this.state.status === "All") &&
-              (pet.description.colour === this.state.colour || this.state.colour === "Colour") &&
+              (pet.description.colour === this.state.colour || this.state.colour === "All") &&
               (pet.species === this.state.species || this.state.species === "All") &&
               Number(pet.latitude) > this.state.sw.lat() &&
               Number(pet.latitude) < this.state.ne.lat() &&
