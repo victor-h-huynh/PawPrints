@@ -81,20 +81,4 @@ class Api::UsersController < ApplicationController
     end
 
 
-    # def send_notification(user)
-    #   Webpush.payload_send(
-    #     message: "Hello There",
-    #     # message: params[:message],
-    #     endpoint: user.endpoint,
-    #     p256dh: user.p256dh,
-    #     auth: user.auth,
-    #     ttl: 24 * 60 * 60,
-    #     vapid: {
-    #       subject: 'mailto:sender@example.com',
-    #       public_key: ENV['VAPID_PUBLIC_KEY'],
-    #       private_key: ENV['VAPID_PRIVATE_KEY'],
-    #     }
-    #   )
-    # end
-
 end

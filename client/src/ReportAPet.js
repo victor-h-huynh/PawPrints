@@ -150,7 +150,7 @@ class ReportAPet extends Component {
       serviceWorkerRegistration.pushManager.getSubscription()
       .then((subscription) => {
         console.log("subscription", subscription)
-        axios.post('/api/notification', {subscription: subscription.toJSON(), message: "Hello There"});
+        axios.post('/api/notification', {subscription: subscription.toJSON(), message: `A ${this.state.species} was ${this.state.status} in your area.`});
       });
     });
     console.log("notification sent");

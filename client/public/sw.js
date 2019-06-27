@@ -4,7 +4,7 @@ self.addEventListener('push', function(event) {
     
         self.registration.showNotification('Paw Print', {
           lang: 'en',
-          body: 'Hello there',
+          body: event.data.text().toLowerCase(),
         })
       );
     });
