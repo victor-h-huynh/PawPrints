@@ -23,7 +23,7 @@ class PetProfile extends Component {
         return (
           <div>
           {petThere}
-          {/* <div id="comments"><Comments /></div> */}
+          <div id="comments"><Comments /></div>
           </div>
           
       );
