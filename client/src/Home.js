@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Map from './Map.js';
 import Pets from './Pets.js';
-import Navigationbar from './Navigationbar.js';
+// import Navigationbar from './Navigationbar.js';
 import { Jumbotron } from './Jumbotron'
 
 // AwesomeSocialButtons

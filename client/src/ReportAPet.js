@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Form, Button, Col } from 'react-bootstrap';
 import axios from 'axios';
 import PetMap from './PetMap.js';
-import Navigationbar from './Navigationbar.js';
+// import Navigationbar from './Navigationbar.js';
 import { Redirect } from 'react-router-dom';
 import mergeImages from 'merge-images';
 import black_circle from './black_circle.png'

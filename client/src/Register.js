@@ -9,7 +9,7 @@ import {
   AwesomeButton
 } from "react-awesome-button";
 import "react-awesome-button/dist/styles.css"
-import Navigationbar from './Navigationbar.js';
+// import Navigationbar from './Navigationbar.js';
 import axios from 'axios';
 import { Redirect } from 'react-router-dom';
 

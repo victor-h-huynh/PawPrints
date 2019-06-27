@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
 import Pet from './Pet';
-// import Comments from './comments'
+import CommentBox from './CommentBox'
 
 class PetProfile extends Component {
 
@@ -23,7 +23,7 @@ class PetProfile extends Component {
         return (
           <div>
           {petThere}
-          <div id="comments"><Comments /></div>
+          <div id="comments"><CommentBox /></div>
           </div>
           
       );

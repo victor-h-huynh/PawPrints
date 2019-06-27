@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 import TimeAgo from 'react-timeago';
-import Navigationbar from './Navigationbar.js';
+// import Navigationbar from './Navigationbar.js';
 import { Map, Marker, GoogleApiWrapper } from 'google-maps-react';
 
 class Pet extends Component {
