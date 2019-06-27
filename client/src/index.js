@@ -5,7 +5,6 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 import { BrowserRouter } from "react-router-dom";
 import axios from 'axios';
-import urlsafeBase64 from 'urlsafe-base64';
 import setupNotifications from './setupNotifications';
 
 

@@ -16,7 +16,7 @@ gem 'puma', '~> 3.11'
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
 gem 'faker'
-gem 'jwt', '~> 1.5', '>= 1.5.4'
+gem 'jwt', '2.2.1'
 # gem 'knock'
 gem 'rest-client'
 gem 'webpush'

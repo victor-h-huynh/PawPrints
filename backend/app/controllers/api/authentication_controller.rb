@@ -1,11 +1,11 @@
 class Api::AuthenticationController < ApplicationController
-    # before_action :authorize_request, except: :create
-    before_action :authorize_request, :except=>[:new, :create, :show]
+    before_action :authorize_request, except: :create
 
     def new
     end 
 
     def show
+      puts @current_user.to_json
       if @current_user
         render json: @current_user.as_json(:except => [:password_digest]) 
       else
