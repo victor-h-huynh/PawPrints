@@ -59,20 +59,14 @@ class Api::UsersController < ApplicationController
 
     end
 
-    def get_subscriptions
-      subscribers = User.where(alerts: true)
-      puts subscribers.to_json()
-      render :json => subscribers
-    end
-
 
     def send_notification
       subscribers = User.where(alerts: true).where.not(endpoint: nil)
-      puts subscribers.to_json()
       subscribers.each do |subscriber|
       Webpush.payload_send(
         message: params[:message],
         image: params[:image],
+        URL: params[:URL],
         endpoint: subscriber.endpoint,
         p256dh: subscriber.p256dh,
         auth: subscriber.auth,
@@ -82,9 +76,9 @@ class Api::UsersController < ApplicationController
           public_key: ENV['VAPID_PUBLIC_KEY'],
           private_key: ENV['VAPID_PRIVATE_KEY'],
         },
-        ssl_timeout: 5, 
-        open_timeout: 5, 
-        read_timeout: 5 
+        ssl_timeout: 25, 
+        open_timeout: 25, 
+        read_timeout: 25 
       )
       end
     end

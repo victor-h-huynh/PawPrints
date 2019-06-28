@@ -10,7 +10,6 @@ import paw from './paw.png';
 class ReportAPet extends Component {
   constructor(props) {
     super(props);
-    console.log(props);
     this.state = {
       redirectToProfile: false,
 
@@ -57,7 +56,6 @@ class ReportAPet extends Component {
   };
 
   fileSelectedHandler = event => {
-    console.log(event.target.files[0]);
     this.setState({
       picture: event.target.files[0]
     });
@@ -72,9 +70,6 @@ class ReportAPet extends Component {
     this.setState({
       [event.target.name]: event.target.value
     });
-
-    console.log(event.target.value)
-    console.log("STATE", this.state.picture_merged)
   };
 
   dataURItoBlob = (dataURI) => {
@@ -100,9 +95,7 @@ class ReportAPet extends Component {
   }
 
   sendToDB = () => {
-    console.log(this.state.date_lost);
     var date = new Date(this.state.date_lost).getTime();
-    console.log(date);
     axios
     .post('http://localhost:3001/api/pets', {
       description: {
@@ -117,7 +110,6 @@ class ReportAPet extends Component {
         city: this.state.city,
         province: this.state.province,
         postal_code: this.state.postal_code,
-
       },
       pet: {
         name: this.state.name,
@@ -132,7 +124,6 @@ class ReportAPet extends Component {
       },
     })
     .then(response => {
-      console.log(response);
       this.props.addAPet(response.data);
       this.setState({
         id: response.data.id,
@@ -140,10 +131,11 @@ class ReportAPet extends Component {
       });
       //Push Notification
       if(response){
-      axios.post('/api/notification', 
-      {message: `A ${this.state.species} was ${this.state.status} in your area.`,
-      image: (this.state.picture? this.state.picture: null)});
-      }
+        axios.post('/api/notification', 
+          {message: `A ${this.state.species} was ${this.state.status} in your area.`,
+          image: (this.state.picture? this.state.picture: null),
+          URL: `http:localhost/pets${response.data.id}`});
+        }
       })
     .catch(err => {
       console.log('report pet error: ', err);
