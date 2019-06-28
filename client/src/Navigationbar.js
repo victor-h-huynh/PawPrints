@@ -24,7 +24,7 @@ export const Navigationbar = ({ current_user }) => {
 
   return (
     <Styles>
-      <Navbar fixed="top" collapseOnSelect expand="lg">
+      <Navbar fixed="" collapseOnSelect expand="lg">
         <LinkContainer to="/">
           <Navbar.Brand>Paw Print</Navbar.Brand>
         </LinkContainer>
