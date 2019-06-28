@@ -55,6 +55,14 @@ petFound = event => {
   event.preventDefault()
   const previousPending = this.props.pet.pending
   const newPending = [...previousPending, this.props.current_user.id]
+  const petOwner = this.props.user
+  if(petOwner.alerts == true){
+    axios.post('/api/notification', 
+      {message: `A ${this.state.species} was ${this.state.status} in your area.`,
+      image: (this.state.picture? this.state.picture: null),
+      URL: `http:localhost/pets${response.data.id}`});
+    }
+  })
 
   axios
     .put(`http://localhost:3001/api/pets/${this.props.pet.id}`,
