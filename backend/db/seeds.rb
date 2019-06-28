@@ -108,7 +108,7 @@ User.create!({
     address_id: address_ids[0],
     user_id: users_ids[0],
     description_id: description_ids[0],
-    comment_id: comment_ids[0]
+    # comment_id: comment_ids[0]
 
   })
 

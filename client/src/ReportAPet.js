@@ -260,14 +260,15 @@ resize = picture => {
       return <Redirect to={`/pets/${this.state.id}`} />;
     } else {
       return (
-        <React.Fragment>
+        <div className="report-a-pet">
 
         <Form onSubmit={this.handleSubmit}>
 
-
+        <Form.Row>
           <Form.Group as={Col} controlId='formGridStatus'>
               <Form.Label>Status</Form.Label>
-              <Form.Control
+              <Form.Control 
+                className="report-a-pet-control"
                 as='select'
                 name='status'
                 value={this.state.status}
@@ -281,10 +282,11 @@ resize = picture => {
             </Form.Group>
 
 
-            <Form.Row>
+            
             <Form.Group as={Col} controlId='formGridName'>
               <Form.Label>Name</Form.Label>
               <Form.Control
+                className="report-a-pet-control"
                 type='name'
                 name='name'
                 placeholder='Enter name'
@@ -296,6 +298,7 @@ resize = picture => {
             <Form.Group as={Col} controlId='formGridSpecies'>
               <Form.Label>Species</Form.Label>
               <Form.Control
+                className="report-a-pet-control"
                 as='select'
                 name='species'
                 value={this.state.species}
@@ -310,6 +313,7 @@ resize = picture => {
             <Form.Group as={Col} controlId='formGridBreed'>
               <Form.Label>Breed</Form.Label>
               <Form.Control
+                className="report-a-pet-control"
                 type='breed'
                 name='breed'
                 placeholder='Enter Breed'
@@ -323,6 +327,7 @@ resize = picture => {
             <Form.Group as={Col} controlId='formGridSex'>
               <Form.Label>Sex</Form.Label>
               <Form.Control
+                className="report-a-pet-control"
                 as='select'
                 name='sex'
                 value={this.state.sex}
@@ -337,6 +342,7 @@ resize = picture => {
             <Form.Group as={Col} controlId='formGridColour'>
               <Form.Label>Colour</Form.Label>
               <Form.Control
+                className="report-a-pet-control"
                 as='select'
                 name='colour'
                 value={this.state.colour}
@@ -352,6 +358,7 @@ resize = picture => {
             <Form.Group as={Col} controlId='formGridDateLost'>
               <Form.Label>Date Lost</Form.Label>
               <Form.Control
+                className="report-a-pet-control"
                 type='name'
                 name='date_lost'
                 placeholder='Date Lost'
@@ -365,6 +372,7 @@ resize = picture => {
             <Form.Group as={Col} controlId='formGridAdditionalComments'>
               <Form.Label>Additional Comments</Form.Label>
               <Form.Control
+                className="report-a-pet-comment"
                 placeholder=''
                 name='additional'
                 value={this.state.additional}
@@ -394,11 +402,11 @@ resize = picture => {
             />
           </Form>
 
-          <Button variant='primary' type='submit'>
+          <Button className="report-a-pet-btn" variant='primary' type='submit'>
             Submit
           </Button>
         </Form>
-        </React.Fragment>
+        </div>
       );
     }
   }
