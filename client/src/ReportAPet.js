@@ -10,6 +10,7 @@ import paw from './paw.png';
 class ReportAPet extends Component {
   constructor(props) {
     super(props);
+    console.log(props);
     this.state = {
       redirectToProfile: false,
 
@@ -20,7 +21,7 @@ class ReportAPet extends Component {
       date_lost: '',
       picture: null,
       picture_merged: null,
-      user_id: '',
+      user_id: this.props.current_user.id,
 
       breed: '',
       colour: '',
@@ -33,8 +34,8 @@ class ReportAPet extends Component {
       city: '',
       province: '',
       postal_code: '',
-      latitude: '',
-      longitude: '',
+      latitude: this.props.userLocation.lat,
+      longitude: this.props.userLocation.lng,
 
       mapPosition: {
 				lat: this.props.userLocation.lat,
@@ -147,7 +148,9 @@ class ReportAPet extends Component {
       serviceWorkerRegistration.pushManager.getSubscription()
       .then((subscription) => {
         console.log("subscription", subscription)
+        if (subscription) {
         axios.post('/api/notification', {subscription: subscription.toJSON(), message: `A ${this.state.species} was ${this.state.status} in your area.`});
+        }
       });
     });
     console.log("notification sent");
