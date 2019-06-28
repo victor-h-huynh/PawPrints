@@ -11,13 +11,24 @@ class Pet extends Component {
   state = {
     redirectToCongratulations: false,
     status: this.props.pet.status,
-    reunited: ""
+    reunited: "",
+    button: false
   }
 
-
-
-
 petFound = event => {
+  event.preventDefault()
+  this.setState({
+    button: true
+  })
+ //Send an alert
+//Disable the button for that particular user
+// Change the button for the creator of the post
+//Accept found pet
+//send points
+}
+
+
+petReunited = event => {
 event.preventDefault()
 const date = new Date()
 axios
@@ -40,6 +51,42 @@ axios
 
 }
 
+someoneFoundMyPet = () => {
+
+}
+
+
+renderButtons = () => {
+  if (this.props.current_user.id === this.props.pet.user_id){
+    return (<Form onSubmit={this.petReunited}>
+            <Button variant='primary' type='submit'>
+            I found my pet!
+            </Button>
+            </Form>
+      )
+  } else if (!this.state.button){
+    return(
+            <Form onSubmit={this.petFound}>
+            <Button variant='primary' type='submit'>
+            I think I found your pet!
+            </Button>
+            </Form>
+            )
+  }
+
+  if (this.props.current_user.id === this.props.pet.user_id && this.state.button === true){
+    return (<Form onSubmit={this.someoneFoundMyPet}>
+            <Button variant='primary' type='submit'>
+            This guy found my pet!
+            </Button>
+            </Form>
+      )
+  }
+
+
+
+}
+
 render() {
   const pet = this.props.pet;
   const mapStyles = {
@@ -50,11 +97,8 @@ return (
 
 <div className="petProfilePage">
 
-<Form onSubmit={this.petFound}>
-<Button variant='primary' type='submit'>
-            I found my pet!
-          </Button>
-          </Form>
+
+{this.renderButtons()}
 
             <Card className="pet">
             <Card.Header>{pet.name}</Card.Header>
