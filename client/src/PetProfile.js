@@ -18,7 +18,7 @@ class PetProfile extends Component {
 
     render() {
         const pet = this.getPet();
-        const petThere = pet ? <Pet current_user={this.props.current_user} pet={pet}/> : <div>Loading...</div>
+        const petThere = pet ? <Pet current_user={this.props.current_user} pet={pet} users={this.props.users}/> : <div>Loading...</div>
         return (
           <div>
           {petThere}
