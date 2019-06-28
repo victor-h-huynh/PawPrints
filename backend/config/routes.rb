@@ -12,6 +12,7 @@ Rails.application.routes.draw do
     resources :descriptions
     post "/subscribe" => "users#subscribe"
     post "/notification" => "users#send_notification"
+    get '/subscriptions' => "users#get_subscriptions"
     
     # get "manifest.json" => "metadata#manifest", as: :manifest
   end
