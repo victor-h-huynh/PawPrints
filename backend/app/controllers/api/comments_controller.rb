@@ -15,7 +15,7 @@ class Api::CommentsController < ApplicationController
             user_id: user.id
         )
         if @comment.save
-            render :json => @comment
+            render :json => @comment.to_json(include: :user)
         else 
             render :new
         end
