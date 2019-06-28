@@ -76,7 +76,7 @@ User.create!({
   address_id: address_ids[0],
   phone_number: Faker::PhoneNumber.phone_number,
   alerts: alerts.sample,
-  points: rand(0..5000)
+  points: rand(0..5000)})
 
   address_ids.rotate!
 
