@@ -27,9 +27,11 @@ class CommentForm extends Component {
         e.preventDefault();
         const author = this.props.current_user.name.trim();
         const txt = this.state.txt.trim();
-        console.log(author, txt)
         
         this.props.onCommentSubmit({author: author, txt: txt, user_id: this.props.current_user.id});
+        this.setState({
+            txt: ''
+        })
     }
     
     render() {

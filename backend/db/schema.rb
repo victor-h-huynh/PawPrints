@@ -61,9 +61,11 @@ ActiveRecord::Schema.define(version: 2019_06_28_133636) do
     t.decimal "latitude"
     t.decimal "longitude"
     t.string "picture_merged"
+    t.bigint "comment_id"
     t.datetime "date_reunited"
     t.integer "pending", default: [], array: true
     t.index ["address_id"], name: "index_pets_on_address_id"
+    t.index ["comment_id"], name: "index_pets_on_comment_id"
     t.index ["description_id"], name: "index_pets_on_description_id"
     t.index ["user_id"], name: "index_pets_on_user_id"
   end
@@ -77,16 +79,17 @@ ActiveRecord::Schema.define(version: 2019_06_28_133636) do
     t.boolean "alerts"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "points"
     t.string "endpoint"
     t.string "p256dh"
     t.string "auth"
+    t.integer "points"
     t.index ["address_id"], name: "index_users_on_address_id"
   end
 
   add_foreign_key "comments", "pets"
   add_foreign_key "comments", "users"
   add_foreign_key "pets", "addresses"
+  add_foreign_key "pets", "comments"
   add_foreign_key "pets", "descriptions"
   add_foreign_key "pets", "users"
   add_foreign_key "users", "addresses"
