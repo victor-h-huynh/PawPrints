@@ -138,26 +138,18 @@ class ReportAPet extends Component {
         id: response.data.id,
         redirectToProfile: true,
       });
-    })
+      //Push Notification
+      if(response){
+      axios.post('/api/notification', 
+      {message: `A ${this.state.species} was ${this.state.status} in your area.`,
+      image: (this.state.picture? this.state.picture: null)});
+      }
+      })
     .catch(err => {
       console.log('report pet error: ', err);
     });
-//Push Notification
-    navigator.serviceWorker.ready
-    .then((serviceWorkerRegistration) => {
-      serviceWorkerRegistration.pushManager.getSubscription()
-      .then((subscription) => {
-        console.log("subscription", subscription)
-        if (subscription) {
-        axios.post('/api/notification', 
-        {subscription: subscription.toJSON(), 
-        message: `A ${this.state.species} was ${this.state.status} in your area.`,
-        image: (this.state.picture? this.state.picture: null)});
-        }
-      });
-    });
-    console.log("notification sent");
-  }
+
+}
 
 
 resize = picture => {

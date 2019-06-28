@@ -59,21 +59,34 @@ class Api::UsersController < ApplicationController
 
     end
 
+    def get_subscriptions
+      subscribers = User.where(alerts: true)
+      puts subscribers.to_json()
+      render :json => subscribers
+    end
+
 
     def send_notification
-
+      subscribers = User.where(alerts: true).where.not(endpoint: nil)
+      puts subscribers.to_json()
+      subscribers.each do |subscriber|
       Webpush.payload_send(
         message: params[:message],
-        endpoint: params[:subscription][:endpoint],
-        p256dh: params[:subscription][:keys][:p256dh],
-        auth: params[:subscription][:keys][:auth],
-        ttl: 24 * 60 * 60,
+        image: params[:image],
+        endpoint: subscriber.endpoint,
+        p256dh: subscriber.p256dh,
+        auth: subscriber.auth,
+        ttl: 24 * 60 * 60 * 7,
         vapid: {
           subject: "http://localhost:3001",
           public_key: ENV['VAPID_PUBLIC_KEY'],
           private_key: ENV['VAPID_PRIVATE_KEY'],
         },
+        ssl_timeout: 5, 
+        open_timeout: 5, 
+        read_timeout: 5 
       )
+      end
     end
 
 
