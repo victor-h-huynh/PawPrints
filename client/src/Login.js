@@ -7,7 +7,6 @@ import { Redirect } from 'react-router-dom';
 import setupNotifications from './setupNotifications.js';
 
 
-
 class Login extends Component {
     state = {
         email: '',
@@ -68,8 +67,11 @@ class Login extends Component {
                 <Form.Check type="checkbox" label="Remember Me" />
               </Form.Group>
               <AwesomeButton type="secondary">Login</AwesomeButton>
+              
             </Form>
+            
           </div>
+
 
       )
     }
