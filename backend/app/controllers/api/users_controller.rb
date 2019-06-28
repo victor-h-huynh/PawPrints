@@ -11,15 +11,6 @@ class Api::UsersController < ApplicationController
   end
 
     def create
-      # @address = Address.create!(
-      #   street_number: params['address']['street_number'],
-      #   street_name: params['address']['street_name'],
-      #   apartment: params['address']['apartment'],
-      #   city: params['address']['city'],
-      #   province: params['address']['province'],
-      #   postal_code: params['address']['postal_code'],
-      # )
-
       @user = User.create!(
         name: params['user']['name'],
         email: params['user']['email'],
@@ -28,12 +19,15 @@ class Api::UsersController < ApplicationController
         phone_number: params['user']['phone_number'],
         alerts: params['user']['alerts'],
         points: 0,
-
       )
-
       if @user.save
         # Api::UsersController::send_simple_message
-        render :json => @user
+        session[:user_id] = @user.id
+        token = JsonWebToken.encode(user_id: @user.id)
+        time = Time.now + 24.hours.to_i
+        
+        render json: { token: token, exp: time.strftime("%m-%d-%Y %H:%M"),
+                       email: @user.email }, status: :ok
       else
         render :new
       end

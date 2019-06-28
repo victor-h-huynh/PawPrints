@@ -1,17 +1,18 @@
-import React, { Component } from "react";
-import { Form } from "react-bootstrap";
 import { AwesomeButton } from "react-awesome-button";
 import "react-awesome-button/dist/styles.css";
 import axios from "axios";
 import { Redirect } from "react-router-dom";
+import React, { Component } from 'react';
+import { Form } from 'react-bootstrap';
 import 'react-awesome-button/dist/styles.css';
+import setupNotifications from './setupNotifications.js';
 
 
 class Register extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      redirectToReportAPet: false,
+      redirectToLogin: false,
 
       id: "",
       name: "",
@@ -70,9 +71,13 @@ class Register extends Component {
       })
       .then(response => {
         this.props.addAUser(response.data);
+        localStorage.setItem('token', response.data.token);
+        axios.defaults.headers.common['Authorization'] = response.data.token;
+        this.props.updateToken(response.data.token);
+        setupNotifications();
         this.setState({
           id: response.data.id,
-          redirectToReportAPet: true
+          redirectToLogin: true
         });
       })
       .catch(err => {
@@ -80,8 +85,8 @@ class Register extends Component {
       });
   };
   render() {
-    if (this.state.redirectToReportAPet === true) {
-      return <Redirect to={`/ReportAPet`} />;
+    if (this.state.redirectToLogin === true) {
+      return <Redirect to={`/Login`} />;
     } else {
       return (
         <div className="register-form">
