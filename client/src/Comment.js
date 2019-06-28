@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
-import { marked } from 'marked';
 
 class Comment extends Component {
-    //Workaround from React protection from XRR attack. 
     
     render() {
         return (

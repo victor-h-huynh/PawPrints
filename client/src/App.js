@@ -101,7 +101,7 @@ class App extends Component {
               <Route path="/ReportAPet" render={props => <ReportAPet {...props} addAPet={this.addAPet} userLocation={this.state.userLocation}/>}/>
               <Route path="/Login" render={props => <Login {...props} updateToken={this.updateToken} token={this.state.token}/>}/>
               <Route path="/Register" render={props => <Register {...props} addAUser={this.addAUser}/>}/>
-              <Route path="/Pets/:id" render={props => <PetProfile {...props} pets={this.state.pets} users={this.state.users} addresses={this.state.addresses}/>}/>
+              <Route path="/Pets/:id" render={props => <PetProfile {...props} pets={this.state.pets} users={this.state.users} addresses={this.state.addresses} current_user={this.state.current_user}/>}/>
               <Route path="/Success" component={Success}/>
           </Switch>
       </React.Fragment>

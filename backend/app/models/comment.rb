@@ -1,6 +1,6 @@
 class Comment < ApplicationRecord
 
-    belongs_to :user
-    belongs_to :pet
+    belongs_to :user, optional: true
+    belongs_to :pet, optional: true
     
 end

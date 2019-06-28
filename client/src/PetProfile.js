@@ -23,7 +23,7 @@ class PetProfile extends Component {
         return (
           <div>
           {petThere}
-          <div id="comments"><CommentBox pet_id={pet.id} /></div>
+          <div id="comments"><CommentBox pet_id={pet.id} current_user={this.props.current_user}/></div>
           </div>
           
       );

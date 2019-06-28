@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
 import Comment from './Comment';
 
-
 class CommentList extends Component {
     render() {
-        const CommentNodes = this.props.comments.map((comment)=>{
+        const CommentNodes = this.props.comments.map((comment, index)=>{
             return (
-                <Comment comment={comment.comment}>
+                <Comment comment={comment.comment} key={index}>
                 </Comment>
             );
         });

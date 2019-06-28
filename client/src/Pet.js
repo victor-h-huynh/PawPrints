@@ -24,15 +24,15 @@ return (
               <Card.Title>{pet.name}, a {pet.status} {pet.species} in {pet.address.city}, {pet.address.postal_code}</Card.Title>
               <Card.Title className="StatusIcon">{pet.status}</Card.Title>
               <Card.Text>
-                <p>Breed: {pet.description.breed}</p>
-                <p>Colour: {pet.description.colour}</p>
-                <p>Sex: {pet.description.sex}</p>
-                <p>{pet.status} <TimeAgo date={pet.date_lost}/></p>
-                <p>Additional description: {pet.description.additional}</p>
+                <span>Breed: {pet.description.breed}</span>
+                <span>Colour: {pet.description.colour}</span>
+                <span>Sex: {pet.description.sex}</span>
+                <span>{pet.status} <TimeAgo date={pet.date_lost}/></span>
+                <span>Additional description: {pet.description.additional}</span>
               </Card.Text>
               <hr></hr>
               <Card.Text>
-                  <p>{pet.name} was {pet.status.toLowerCase()} near {pet.address.street_name}, {pet.address.city}:</p>
+                  <span>{pet.name} was {pet.status.toLowerCase()} near {pet.address.street_name}, {pet.address.city}:</span>
               </Card.Text>
               <div className="petMap">
                 <Map

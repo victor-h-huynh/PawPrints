@@ -23,23 +23,18 @@ class CommentForm extends Component {
     }
     
     handleFormSubmit(e) {
+        console.log(this.props)
         e.preventDefault();
-        const author = this.state.author.trim();
+        const author = this.props.current_user.name.trim();
         const txt = this.state.txt.trim();
-        if(!txt || !author) return;
+        console.log(author, txt)
         
-        this.props.onCommentSubmit({author: author, txt: txt});
-        this.setState({author: "", txt: ""});
+        this.props.onCommentSubmit({author: author, txt: txt, user_id: this.props.current_user.id});
     }
     
     render() {
         return (
             <form className='commentForm' onSubmit={this.handleFormSubmit}>
-                <div className="group">
-                    <input type='text' className='input' value={this.state.author} onChange={this.handleAuthorChange}/>
-                    <span className="bar"></span>
-                    <label className={this.state.author.length > 0? "active": null}>Name</label>
-                </div>
                     
                 <div className="group">
                     <input type='text' className='input' value={this.state.txt} onChange={this.handleTextChange}/>
