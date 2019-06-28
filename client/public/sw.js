@@ -1,25 +1,54 @@
-self.addEventListener('push', function(event) {
-    console.log("event in SW", event.data.text());
-      event.waitUntil(
+// self.addEventListener('push', function(event) {
+//     console.log("event in SW", event.data);
+//       event.waitUntil(
     
-        self.registration.showNotification('Paw Print', {
-          lang: 'en',
-          body: event.data.text().toLowerCase(),
-        })
-      );
-    });
+//         self.registration.showNotification('News from Paw Print:', {
+//           lang: 'en',
+//           body: event.data.text().toLowerCase(),
+//           image: event.data.image,
+//           icon: 'favicon.ico',
+//           actions: [
+//             {
+//               action: 'view pet',
+//               title: 'click here to view the profile',
+//             }
+//           ]
+//         })
+//       );
+//     });
 
 
-    // self.addEventListener("push", (event) => {
-    //     let title = "PawPrint";
-    //     let body = "We have received a push message";
-    //     let tag = "push-simple-demo-notification-tag";
-    //     let icon = '/assets/my-logo-120x120.png';
+    self.addEventListener("push", (event) => {
+      console.log("event in SW", event.data);
+        const title = "New from PawPrint";
+        const body = event.data.text().toLowerCase();
+        const icon = 'favicon.ico';
+        const image = './src/assets/catImageCropped.jpg'
+        const data = {
+          URL: '/pets/10',
+        }
+        const actions = [{
+            action: 'view pet',
+            title: 'click here to view the profile',
+          }]
       
-    //     event.waitUntil(
-    //       self.registration.showNotification(title, { body, icon, tag })
-    //     )
-    //   });
+        event.waitUntil(
+          self.registration.showNotification(title, { body, icon, actions, image, data})
+        )
+      });
+
+      self.addEventListener('notificationclick', function(event) {
+        console.log("event notification", event.notification);
+        console.log("event notification data", event.notification.data);
+        const URL = event.notification.data[URL];
+        console.log(URL);
+        const clickedNotification = event.notification;
+        clickedNotification.close();
+      
+        // Do something as the result of the notification click
+        const promiseChain = clients.openWindow(URL);
+        event.waitUntil(promiseChain);
+      });
 
 
 

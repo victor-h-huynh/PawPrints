@@ -28,6 +28,16 @@ ActiveRecord::Schema.define(version: 2019_06_28_133636) do
     t.decimal "longitude"
   end
 
+  create_table "comments", force: :cascade do |t|
+    t.string "comment"
+    t.bigint "user_id"
+    t.bigint "pet_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["pet_id"], name: "index_comments_on_pet_id"
+    t.index ["user_id"], name: "index_comments_on_user_id"
+  end
+
   create_table "descriptions", force: :cascade do |t|
     t.string "breed"
     t.string "colour"
@@ -74,6 +84,8 @@ ActiveRecord::Schema.define(version: 2019_06_28_133636) do
     t.index ["address_id"], name: "index_users_on_address_id"
   end
 
+  add_foreign_key "comments", "pets"
+  add_foreign_key "comments", "users"
   add_foreign_key "pets", "addresses"
   add_foreign_key "pets", "descriptions"
   add_foreign_key "pets", "users"

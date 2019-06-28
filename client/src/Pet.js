@@ -196,7 +196,7 @@ return (
               </Card.Text>
               <hr></hr>
               <Card.Text>
-                  <p>{pet.name} was {pet.status.toLowerCase()} near {pet.address.street_name}, {pet.address.city}:</p>
+                  <span>{pet.name} was {pet.status.toLowerCase()} near {pet.address.street_name}, {pet.address.city}:</span>
               </Card.Text>
               <div className="petMap">
                 <Map
