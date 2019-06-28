@@ -10,6 +10,7 @@ import paw from './paw.png';
 class ReportAPet extends Component {
   constructor(props) {
     super(props);
+    console.log(props);
     this.state = {
       redirectToProfile: false,
 
