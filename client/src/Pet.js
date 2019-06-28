@@ -9,10 +9,22 @@ import { Form } from 'react-bootstrap';
 class Pet extends Component {
 
   state = {
+    current_user: '',
+    pending: '',
     redirectToCongratulations: false,
-    status: this.props.pet.status,
+    status: '',
     reunited: "",
     button: false
+  }
+
+componentDidMount() {
+
+    this.setState({
+      current_user: this.props.current_user,
+      pending: this.props.pet.pending,
+      status: this.props.pet.status,
+      reunited: this.props.pet.date_reunited,
+    })
   }
 
 petReunited = event => {
@@ -53,6 +65,9 @@ petFound = event => {
     })
     .then(response => {
       console.log(response);
+      this.setState({
+        pending: response.data.pending
+      })
     })
     .catch(err => {
       console.log('report pet error: ', err);
@@ -63,50 +78,90 @@ petFound = event => {
 
 
 notMyPet = (event, id) => {
-  console.log(id)
   event.preventDefault()
 //Send notification?
-  const previousPending = this.props.pet.pending
-  previousPending.findIndex(element => element === 1)
-  const newPending = [...previousPending, this.props.current_user.id]
+  const previousPending = this.state.pending
+  const userIndex = previousPending.findIndex(element => element === id)
+  previousPending.splice(userIndex, 1)
 
-  // axios
-  //   .put(`http://localhost:3001/api/pets/${this.props.pet.id}`,
-  //   {
-  //     update: 3,
-  //     pending: newPending,
 
-  //   })
-  //   .then(response => {
-  //     console.log(response);
-  //   })
-  //   .catch(err => {
-  //     console.log('report pet error: ', err);
-  //   });
+  axios
+    .put(`http://localhost:3001/api/pets/${this.props.pet.id}`,
+    {
+      update: 3,
+      id: this.props.pet.id,
+      pending: previousPending,
+    })
+    .then(response => {
+      console.log(response);
+      this.setState({
+        pending: response.data.pending
+      })
+    })
+    .catch(err => {
+      console.log('report pet error: ', err);
+    });
 
 }
 
-someoneFoundMyPet = () => {
-//   spotted :
-// {
-//   uid1 : {
-//     userId:XX,
-//     uid: uid1,
-//     status: pending | confirm | wrong
-//   }
-// }
+someoneFoundMyPet = (event, id) => {
+  event.preventDefault()
+  const previousPending = this.state.pending
+  previousPending.length = 0
+  const previousPoints = this.props.current_user.points
+  const newPoints = previousPoints + 1500
+  const date = new Date()
 
+  axios
+    .put(`http://localhost:3001/api/pets/${this.props.pet.id}`,
+    {
+      update: 4,
+      id: this.props.pet.id,
+      pending: previousPending,
+      reunited: date
+    })
+    .then(response => {
+      console.log(response);
+      this.setState({
+        redirectToCongratulations: true,
+        status: response.data.status,
+        reunited: date,
+        pending: response.data.pending
+      });
+    })
+    .catch(err => {
+      console.log('report pet error: ', err);
+    });
+
+  axios
+    .put(`http://localhost:3001/api/users/${id}`,
+    {
+      update: 1,
+      id: id,
+      points: newPoints,
+    })
+    .then(response => {
+      console.log(response);
+
+    })
+    .catch(err => {
+      console.log('report pet error: ', err);
+    });
 
 }
 
 
 renderButtons = () => {
 
-  if (this.props.current_user.id === this.props.pet.user_id){
+  if (this.state.status === "Reunited") {
+    return;
+  }
+
+  if (this.state.current_user.id === this.props.pet.user_id){
+    if(this.state.pending) {
     const userNamesArray = []
-        const buttons = this.props.pet.pending.map((id, index) => {
+        const buttons = this.state.pending.map((id, index) => {
         for (let user of this.props.users) {
-          console.log(user)
            if (user.id === id) {
             userNamesArray.push(user.name)
            }
@@ -117,12 +172,12 @@ renderButtons = () => {
             <div>
             {userNamesArray[index]} thinks he may have found your pet </div>
             <React.Fragment>
-            <Form onSubmit={() => this.someoneFoundMyPet(id)}>
+            <Form onSubmit={(event) => this.someoneFoundMyPet(event, id)}>
             <Button variant='success' type='submit'>
              This guy found my pet!
             </Button>
             </Form>
-            <Form onSubmit={() => this.notMyPet(id)}>
+            <Form onSubmit={(event) => this.notMyPet(event, id)}>
             <Button variant='warning' type='submit'>
             Not my pet
             </Button>
@@ -133,15 +188,16 @@ renderButtons = () => {
       )
     })
     return (<div>
-<Form onSubmit={this.petReunited}>
+            {!this.state.reunited && <Form onSubmit={this.petReunited}>
             <Button variant='primary' type='submit'>
             I found my pet!
             </Button>
-            </Form>
+            </Form>}
 
     {buttons} </div>)
+  }
 
-  } else if (this.props.pet.pending.includes(this.props.current_user.id) ){
+  } else if (this.state.pending.includes(this.state.current_user.id) ){
     return(
             <Form onSubmit={this.petFound}>
             <Button variant='primary' type='submit' disabled>
@@ -149,7 +205,7 @@ renderButtons = () => {
             </Button>
             </Form>
             )
-  } else if (!this.props.pet.pending.includes(this.props.current_user.id) ){
+  } else if (!this.state.pending.includes(this.state.current_user.id) ){
     return(
             <Form onSubmit={this.petFound}>
             <Button variant='primary' type='submit' >
@@ -184,10 +240,10 @@ return (
                 <p>Breed: {pet.description.breed}</p>
                 <p>Colour: {pet.description.colour}</p>
                 <p>Sex: {pet.description.sex}</p>
-                {!this.state.reunited &&
+                {!pet.date_reunited &&
                 <p>{this.state.status} <TimeAgo date={pet.date_lost}/></p>}
-                {this.state.reunited &&
-                  <p>{this.state.status} <TimeAgo date={this.state.reunited}/></p>}
+                {pet.date_reunited &&
+                  <p>{this.state.status} <TimeAgo date={pet.date_reunited}/></p>}
 
                 <p>Additional description: {pet.description.additional}</p>
                 <hr/>
@@ -226,3 +282,19 @@ return (
  export default GoogleApiWrapper({
   apiKey: process.env.REACT_APP_GOOGLE_API_KEY
 })(Pet);
+
+
+
+
+
+
+
+
+//   spotted :
+// {
+//   uid1 : {
+//     userId:XX,
+//     uid: uid1,
+//     status: pending | confirm | wrong
+//   }
+// }

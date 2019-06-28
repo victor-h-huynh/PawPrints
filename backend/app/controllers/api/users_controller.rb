@@ -10,6 +10,22 @@ class Api::UsersController < ApplicationController
     render :json => users
   end
 
+      def update
+        user = User.find_by id: params['id']
+        if params['update'] == 1
+          user.update(points: params['points'])
+        # elsif params['update'] == 2
+        #   pet.update(pending: params['pending'])
+        end
+
+        if user.save
+          render :json => user
+        else
+          render :new
+      end
+
+    end
+
     def create
       @user = User.create!(
         name: params['user']['name'],
@@ -25,7 +41,7 @@ class Api::UsersController < ApplicationController
         session[:user_id] = @user.id
         token = JsonWebToken.encode(user_id: @user.id)
         time = Time.now + 24.hours.to_i
-        
+
         render json: { token: token, exp: time.strftime("%m-%d-%Y %H:%M"),
                        email: @user.email }, status: :ok
       else
@@ -61,19 +77,26 @@ class Api::UsersController < ApplicationController
 
 
     def send_notification
-
+      subscribers = User.where(alerts: true).where.not(endpoint: nil)
+      subscribers.each do |subscriber|
       Webpush.payload_send(
         message: params[:message],
-        endpoint: params[:subscription][:endpoint],
-        p256dh: params[:subscription][:keys][:p256dh],
-        auth: params[:subscription][:keys][:auth],
-        ttl: 24 * 60 * 60,
+        image: params[:image],
+        URL: params[:URL],
+        endpoint: subscriber.endpoint,
+        p256dh: subscriber.p256dh,
+        auth: subscriber.auth,
+        ttl: 24 * 60 * 60 * 7,
         vapid: {
           subject: "http://localhost:3001",
           public_key: ENV['VAPID_PUBLIC_KEY'],
           private_key: ENV['VAPID_PRIVATE_KEY'],
         },
+        ssl_timeout: 25, 
+        open_timeout: 25, 
+        read_timeout: 25 
       )
+      end
     end
 
 
