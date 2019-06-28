@@ -11,18 +11,17 @@ class Pet extends Component {
   state = {
     redirectToCongratulations: false,
     status: this.props.pet.status,
-    reunited: ""
+    reunited: "",
+    button: false
   }
 
-
-
-
-petFound = event => {
+petReunited = event => {
 event.preventDefault()
 const date = new Date()
 axios
     .put(`http://localhost:3001/api/pets/${this.props.pet.id}`,
     {
+      update: 1,
       id: this.props.pet.id,
       reunited: date
     })
@@ -40,6 +39,128 @@ axios
 
 }
 
+petFound = event => {
+  event.preventDefault()
+  const previousPending = this.props.pet.pending
+  const newPending = [...previousPending, this.props.current_user.id]
+
+  axios
+    .put(`http://localhost:3001/api/pets/${this.props.pet.id}`,
+    {
+      update: 2,
+      id: this.props.pet.id,
+      pending: newPending,
+    })
+    .then(response => {
+      console.log(response);
+    })
+    .catch(err => {
+      console.log('report pet error: ', err);
+    });
+
+}
+
+
+
+notMyPet = (event, id) => {
+  console.log(id)
+  event.preventDefault()
+//Send notification?
+  const previousPending = this.props.pet.pending
+  previousPending.findIndex(element => element === 1)
+  const newPending = [...previousPending, this.props.current_user.id]
+
+  // axios
+  //   .put(`http://localhost:3001/api/pets/${this.props.pet.id}`,
+  //   {
+  //     update: 3,
+  //     pending: newPending,
+
+  //   })
+  //   .then(response => {
+  //     console.log(response);
+  //   })
+  //   .catch(err => {
+  //     console.log('report pet error: ', err);
+  //   });
+
+}
+
+someoneFoundMyPet = () => {
+//   spotted :
+// {
+//   uid1 : {
+//     userId:XX,
+//     uid: uid1,
+//     status: pending | confirm | wrong
+//   }
+// }
+
+
+}
+
+
+renderButtons = () => {
+
+  if (this.props.current_user.id === this.props.pet.user_id){
+    const userNamesArray = []
+        const buttons = this.props.pet.pending.map((id, index) => {
+        for (let user of this.props.users) {
+          console.log(user)
+           if (user.id === id) {
+            userNamesArray.push(user.name)
+           }
+        }
+
+    return (
+            <React.Fragment>
+            <div>
+            {userNamesArray[index]} thinks he may have found your pet </div>
+            <React.Fragment>
+            <Form onSubmit={() => this.someoneFoundMyPet(id)}>
+            <Button variant='success' type='submit'>
+             This guy found my pet!
+            </Button>
+            </Form>
+            <Form onSubmit={() => this.notMyPet(id)}>
+            <Button variant='warning' type='submit'>
+            Not my pet
+            </Button>
+            </Form>
+            </React.Fragment>
+            </React.Fragment>
+
+      )
+    })
+    return (<div>
+<Form onSubmit={this.petReunited}>
+            <Button variant='primary' type='submit'>
+            I found my pet!
+            </Button>
+            </Form>
+
+    {buttons} </div>)
+
+  } else if (this.props.pet.pending.includes(this.props.current_user.id) ){
+    return(
+            <Form onSubmit={this.petFound}>
+            <Button variant='primary' type='submit' disabled>
+            I think I found your pet!
+            </Button>
+            </Form>
+            )
+  } else if (!this.props.pet.pending.includes(this.props.current_user.id) ){
+    return(
+            <Form onSubmit={this.petFound}>
+            <Button variant='primary' type='submit' >
+            I think I found your pet!
+            </Button>
+            </Form>
+            )
+  }
+
+}
+
 render() {
   const pet = this.props.pet;
   const mapStyles = {
@@ -50,11 +171,8 @@ return (
 
 <div className="petProfilePage">
 
-<Form onSubmit={this.petFound}>
-<Button variant='primary' type='submit'>
-            I found my pet!
-          </Button>
-          </Form>
+
+{this.renderButtons()}
 
             <Card className="pet">
             <Card.Header>{pet.name}</Card.Header>

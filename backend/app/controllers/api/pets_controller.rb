@@ -8,8 +8,16 @@ class Api::PetsController < ApplicationController
 
     def update
       pet = Pet.find_by id: params['id']
+      if params['update'] == 1
       pet.update(status: 'Reunited')
       pet.update(date_reunited: params['reunited'])
+      elsif params['update'] == 2
+      pet.update(pending: params['pending'])
+      elsif params['update'] == 3
+      pet.update(pending: params['pending'])
+
+
+      end
       if pet.save
         render :json => pet, :include=> [:address, :user, :description]
       else
