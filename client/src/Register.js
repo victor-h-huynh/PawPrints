@@ -74,7 +74,7 @@ class Register extends Component {
         localStorage.setItem('token', response.data.token);
         axios.defaults.headers.common['Authorization'] = response.data.token;
         this.props.updateToken(response.data.token);
-        setupNotifications();
+        if (this.state.alerts == true) {setupNotifications()};
         this.setState({
           id: response.data.id,
           redirectToLogin: true

@@ -66,7 +66,6 @@ ActiveRecord::Base.connection.disable_referential_integrity do
   User.destroy_all
 
   address_ids = Address.all.pluck(:id)
-  alerts = [true, false]
 
   (1..10).each do
 User.create!({
@@ -75,7 +74,7 @@ User.create!({
   password_digest: Faker::Games::Dota.hero,
   address_id: address_ids[0],
   phone_number: Faker::PhoneNumber.phone_number,
-  alerts: alerts.sample,
+  alerts: false,
   points: rand(0..5000)})
 
   address_ids.rotate!
