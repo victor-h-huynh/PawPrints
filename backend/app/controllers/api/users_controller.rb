@@ -20,10 +20,14 @@ class Api::UsersController < ApplicationController
         alerts: params['user']['alerts'],
         points: 0,
       )
-
       if @user.save
         # Api::UsersController::send_simple_message
-        render :json => @user
+        session[:user_id] = @user.id
+        token = JsonWebToken.encode(user_id: @user.id)
+        time = Time.now + 24.hours.to_i
+        
+        render json: { token: token, exp: time.strftime("%m-%d-%Y %H:%M"),
+                       email: @user.email }, status: :ok
       else
         render :new
       end

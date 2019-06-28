@@ -33,8 +33,8 @@ class ReportAPet extends Component {
       city: '',
       province: '',
       postal_code: '',
-      latitude: '',
-      longitude: '',
+      latitude: this.props.userLocation.lat,
+      longitude: this.props.userLocation.lng,
 
       mapPosition: {
 				lat: this.props.userLocation.lat,
@@ -147,7 +147,9 @@ class ReportAPet extends Component {
       serviceWorkerRegistration.pushManager.getSubscription()
       .then((subscription) => {
         console.log("subscription", subscription)
+        if (subscription) {
         axios.post('/api/notification', {subscription: subscription.toJSON(), message: `A ${this.state.species} was ${this.state.status} in your area.`});
+        }
       });
     });
     console.log("notification sent");
