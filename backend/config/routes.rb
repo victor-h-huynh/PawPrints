@@ -4,8 +4,10 @@ Rails.application.routes.draw do
 
     post '/authentication', to: 'authentication#create'
     get '/current_user', to: 'authentication#show'
-    # resources :authentication
-    resources :pets
+    
+    resources :pets do 
+      resources :comments
+    end
     resources :addresses
     resources :descriptions
     post "/subscribe" => "users#subscribe"

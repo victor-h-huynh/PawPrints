@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_06_27_182454) do
+ActiveRecord::Schema.define(version: 2019_06_27_194927) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,6 +26,16 @@ ActiveRecord::Schema.define(version: 2019_06_27_182454) do
     t.datetime "updated_at", null: false
     t.decimal "latitude"
     t.decimal "longitude"
+  end
+
+  create_table "comments", force: :cascade do |t|
+    t.string "comment"
+    t.bigint "user_id"
+    t.bigint "pet_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["pet_id"], name: "index_comments_on_pet_id"
+    t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
   create_table "descriptions", force: :cascade do |t|
@@ -51,8 +61,10 @@ ActiveRecord::Schema.define(version: 2019_06_27_182454) do
     t.decimal "latitude"
     t.decimal "longitude"
     t.string "picture_merged"
+    t.bigint "comment_id"
     t.datetime "date_reunited"
     t.index ["address_id"], name: "index_pets_on_address_id"
+    t.index ["comment_id"], name: "index_pets_on_comment_id"
     t.index ["description_id"], name: "index_pets_on_description_id"
     t.index ["user_id"], name: "index_pets_on_user_id"
   end
@@ -73,7 +85,10 @@ ActiveRecord::Schema.define(version: 2019_06_27_182454) do
     t.index ["address_id"], name: "index_users_on_address_id"
   end
 
+  add_foreign_key "comments", "pets"
+  add_foreign_key "comments", "users"
   add_foreign_key "pets", "addresses"
+  add_foreign_key "pets", "comments"
   add_foreign_key "pets", "descriptions"
   add_foreign_key "pets", "users"
   add_foreign_key "users", "addresses"
