@@ -66,11 +66,19 @@ ActiveRecord::Schema.define(version: 2019_06_27_182454) do
     t.boolean "alerts"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "points"
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.string "provider"
+    t.string "uid"
     t.string "endpoint"
     t.string "p256dh"
     t.string "auth"
+    t.integer "points"
     t.index ["address_id"], name: "index_users_on_address_id"
+    t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
   add_foreign_key "pets", "addresses"
