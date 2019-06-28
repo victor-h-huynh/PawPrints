@@ -1,5 +1,3 @@
-
-
 import { AwesomeButton } from "react-awesome-button";
 import "react-awesome-button/dist/styles.css";
 import axios from "axios";
@@ -166,7 +164,7 @@ class Register extends Component {
                   onChange={this.handleChecked}
                 />
               </Form.Group>
-              <AwesomeButton type="secondary">Register</AwesomeButton>
+              <AwesomeButton ripple={true} size="medium" type="secondary">Register</AwesomeButton>
             </Form>
           </Form>
         </div>
