@@ -10,6 +10,22 @@ class Api::UsersController < ApplicationController
     render :json => users
   end
 
+      def update
+        user = User.find_by id: params['id']
+        if params['update'] == 1
+          user.update(points: params['points'])
+        # elsif params['update'] == 2
+        #   pet.update(pending: params['pending'])
+        end
+
+        if user.save
+          render :json => user
+        else
+          render :new
+      end
+
+    end
+
     def create
       @user = User.create!(
         name: params['user']['name'],
@@ -25,7 +41,7 @@ class Api::UsersController < ApplicationController
         session[:user_id] = @user.id
         token = JsonWebToken.encode(user_id: @user.id)
         time = Time.now + 24.hours.to_i
-        
+
         render json: { token: token, exp: time.strftime("%m-%d-%Y %H:%M"),
                        email: @user.email }, status: :ok
       else
