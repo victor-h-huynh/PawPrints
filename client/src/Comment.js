@@ -8,6 +8,7 @@ class Comment extends Component {
                 <h3 className='commentAuthor'>
                     {this.props.comment}
                 </h3>
+                <button type="button">🗑</button>
             </div>
         );
     }

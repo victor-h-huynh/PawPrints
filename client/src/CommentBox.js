@@ -31,6 +31,10 @@ class CommentBox extends Component {
         .catch(error => console.log(error));
     }
 
+    // _deleteComments() {
+
+    // }
+
     _handleCommentSubmit(data) {
         axios.post(`http://localhost:3001/api/pets/${this.props.pet_id}/comments`, 
         data, {headers: {
