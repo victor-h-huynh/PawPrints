@@ -125,7 +125,7 @@ User.create!({
 
   pets_ids = Pet.all.pluck(:id)
 
-  (1..10).each do
+  (1..2).each do
   Comment.create!({
     user_id: users_ids.sample,
     comment: 'Hello there',

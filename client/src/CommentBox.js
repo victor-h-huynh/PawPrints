@@ -9,6 +9,7 @@ class CommentBox extends Component {
         
         this.state = {
             comments: []
+    
         };
 
         this.__loadComments = this.__loadComments.bind(this);
@@ -24,6 +25,7 @@ class CommentBox extends Component {
         
         axios.get(`http://localhost:3001/api/pets/${this.props.pet_id}/comments`)
         .then(response => {
+            console.log(response)
           this.setState({
             comments: response.data
           });
@@ -35,12 +37,13 @@ class CommentBox extends Component {
         axios.post(`http://localhost:3001/api/pets/${this.props.pet_id}/comments`, 
         data, {headers: {
             "Content-Type": "application/json"}}).then( (response) => {
-                let newCommentState = this.state.comments
-                newCommentState.push(response.data);
-                console.log({response, newCommentState});
+                console.log('response:', response)
+                let newCommentState = this.state.comments;
+                newCommentState.unshift(response.data);
                 this.setState({
-                    comments: newCommentState
+                    comments: newCommentState 
                 });
+                
             }).catch(function (error) {
                 console.log(error);
             });
@@ -51,7 +54,7 @@ class CommentBox extends Component {
             
             <div className='commentBox'>
                 <CommentForm onCommentSubmit={this._handleCommentSubmit} current_user={this.props.current_user} ></CommentForm>
-                <CommentList comments={this.state.comments}></CommentList>
+                <CommentList comments={this.state.comments} users={this.props.users}></CommentList>
             </div>
         )
     }
