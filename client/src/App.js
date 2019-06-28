@@ -4,11 +4,12 @@ import './App.scss';
 import Home from './Home.js';
 import Login from './Login.js';
 import Register from './Register.js';
-import Success from './Success.js'
+import Success from './Success.js';
+import UserProfile from './UserProfile';
 import { Switch, Route } from 'react-router-dom';
 import ReportAPet from './ReportAPet.js';
 import PetProfile from './PetProfile.js';
-import Navigationbar from './Navigationbar.js'
+import Navigationbar from './Navigationbar.js';
 
 
 class App extends Component {
@@ -32,7 +33,7 @@ class App extends Component {
     })
   }
 
-  
+
 
   updateToken = (token) => {
     axios.get('/api/current_user').then(current_user => {
@@ -52,7 +53,7 @@ class App extends Component {
 			  newUserLocation.lat = latitude;
 			  newUserLocation.lng = longitude;
 			  this.setState(() => ({userLocation: newUserLocation}));
-			}, 
+			},
 		);
     axios.all([
       axios.get('/api/current_user').catch(() => ({data: null})),
@@ -79,6 +80,8 @@ class App extends Component {
     .catch(error => console.log(error));
   }
 
+
+
   addAPet = (newPet) => {
     this.setState({pets: [...this.state.pets, newPet]})
   }
@@ -89,7 +92,7 @@ class App extends Component {
   }
 
   render() {
-    console.log("Update", this.state.userLocation)
+
     if (this.state.loading) {
       return <h1>Loading...</h1>;
     } else {
@@ -98,10 +101,11 @@ class App extends Component {
         <Navigationbar current_user={this.state.current_user} />
         <Switch>
               <Route exact path="/" render={props => <Home {...props} updatePetsOnMap={this.updatePetsOnMap} pets={this.state.pets} users={this.state.users} addresses={this.state.addresses} petsOnMap={this.state.petsOnMap} userLocation={this.state.userLocation}/>}/>
-              <Route path="/ReportAPet" render={props => <ReportAPet {...props} addAPet={this.addAPet} userLocation={this.state.userLocation}/>}/>
+              <Route path="/ReportAPet" render={props => <ReportAPet {...props} addAPet={this.addAPet} userLocation={this.state.userLocation} current_user={this.state.current_user}/>}/>
               <Route path="/Login" render={props => <Login {...props} updateToken={this.updateToken} token={this.state.token}/>}/>
-              <Route path="/Register" render={props => <Register {...props} addAUser={this.addAUser}/>}/>
+              <Route path="/Register" render={props => <Register {...props} addAUser={this.addAUser} updateToken={this.updateToken} token={this.state.token}/>}/>
               <Route path="/Pets/:id" render={props => <PetProfile {...props} pets={this.state.pets} users={this.state.users} addresses={this.state.addresses} current_user={this.state.current_user}/>}/>
+              <Route path="/Users/:id" render={props => <UserProfile {...props} pets={this.state.pets} users={this.state.users} current_user={this.state.current_user} addresses={this.state.addresses}/>}/>
               <Route path="/Success" component={Success}/>
           </Switch>
       </React.Fragment>

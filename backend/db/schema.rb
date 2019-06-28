@@ -62,6 +62,7 @@ ActiveRecord::Schema.define(version: 2019_06_27_194927) do
     t.decimal "longitude"
     t.string "picture_merged"
     t.bigint "comment_id"
+    t.datetime "date_reunited"
     t.index ["address_id"], name: "index_pets_on_address_id"
     t.index ["comment_id"], name: "index_pets_on_comment_id"
     t.index ["description_id"], name: "index_pets_on_description_id"
@@ -77,6 +78,10 @@ ActiveRecord::Schema.define(version: 2019_06_27_194927) do
     t.boolean "alerts"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "endpoint"
+    t.string "p256dh"
+    t.string "auth"
+    t.integer "points"
     t.index ["address_id"], name: "index_users_on_address_id"
   end
 

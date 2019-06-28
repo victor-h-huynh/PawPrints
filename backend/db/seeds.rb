@@ -69,16 +69,14 @@ ActiveRecord::Base.connection.disable_referential_integrity do
   alerts = [true, false]
 
   (1..10).each do
-
-  User.create!({
-    name: Faker::Name.name,
-    email: Faker::Internet.email,
-    password_digest: Faker::Games::Dota.hero,
-    address_id: address_ids[0],
-    phone_number: Faker::PhoneNumber.phone_number,
-    alerts: alerts.sample,
-
-  })
+User.create!({
+  name: Faker::Name.name,
+  email: Faker::Internet.email,
+  password_digest: Faker::Games::Dota.hero,
+  address_id: address_ids[0],
+  phone_number: Faker::PhoneNumber.phone_number,
+  alerts: alerts.sample,
+  points: rand(0..5000)
 
   address_ids.rotate!
 

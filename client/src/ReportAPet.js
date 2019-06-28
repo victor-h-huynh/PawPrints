@@ -2,17 +2,15 @@ import React, { Component } from 'react';
 import { Form, Button, Col } from 'react-bootstrap';
 import axios from 'axios';
 import PetMap from './PetMap.js';
-// import Navigationbar from './Navigationbar.js';
 import { Redirect } from 'react-router-dom';
-import mergeImages from 'merge-images';
-import black_circle from './black_circle.png'
-import white_square from './white_square.png'
-import red_triangle from './red_triangle.png'
+import marker from './marker.png';
+import paw from './paw.png';
 
 
 class ReportAPet extends Component {
   constructor(props) {
     super(props);
+    console.log(props);
     this.state = {
       redirectToProfile: false,
 
@@ -23,7 +21,7 @@ class ReportAPet extends Component {
       date_lost: '',
       picture: null,
       picture_merged: null,
-      user_id: '',
+      user_id: this.props.current_user.id,
 
       breed: '',
       colour: '',
@@ -36,8 +34,8 @@ class ReportAPet extends Component {
       city: '',
       province: '',
       postal_code: '',
-      latitude: '',
-      longitude: '',
+      latitude: this.props.userLocation.lat,
+      longitude: this.props.userLocation.lng,
 
       mapPosition: {
 				lat: this.props.userLocation.lat,
@@ -63,6 +61,7 @@ class ReportAPet extends Component {
     this.setState({
       picture: event.target.files[0]
     });
+    this.resize(event.target.files[0])
   };
 
   // fileUploadHandler = () => {
@@ -75,7 +74,7 @@ class ReportAPet extends Component {
     });
 
     console.log(event.target.value)
-    console.log("BLACK CIRCLE", black_circle)
+    console.log("STATE", this.state.picture_merged)
   };
 
   dataURItoBlob = (dataURI) => {
@@ -84,7 +83,7 @@ class ReportAPet extends Component {
     for(var i = 0; i < binary.length; i++) {
         array.push(binary.charCodeAt(i));
     }
-    return new Blob([new Uint8Array(array)], {type: 'image/jpeg'});
+    return new Blob([new Uint8Array(array)], {type: 'image/png'});
 }
 
 
@@ -137,26 +136,58 @@ class ReportAPet extends Component {
       this.props.addAPet(response.data);
       this.setState({
         id: response.data.id,
-        redirectToProfile: true
+        redirectToProfile: true,
       });
     })
     .catch(err => {
       console.log('report pet error: ', err);
     });
+
+    navigator.serviceWorker.ready
+    .then((serviceWorkerRegistration) => {
+      serviceWorkerRegistration.pushManager.getSubscription()
+      .then((subscription) => {
+        console.log("subscription", subscription)
+        if (subscription) {
+        axios.post('/api/notification', {subscription: subscription.toJSON(), message: `A ${this.state.species} was ${this.state.status} in your area.`});
+        }
+      });
+    });
+    console.log("notification sent");
   }
+
+
+resize = picture => {
+
+    const reader = new FileReader();
+    reader.onload = e => {
+      const canvas = document.createElement('canvas')
+      canvas.height = 128
+      canvas.width = 128
+      const ctx = canvas.getContext('2d')
+      const img = document.createElement('img')
+      img.src = e.target.result
+      img.onload = () => {
+
+        ctx.drawImage(img, 32, 16, 64, 64)
+        ctx.drawImage(this.imgMarker, 0, 0, 128, 128)
+        ctx.drawImage(this.imgPaw, 50, 84, 28, 28)
+
+        canvas.toBlob((blob) => this.setState({picture_merged: blob}))
+      }
+    }
+    reader.readAsDataURL(picture);
+
+  }
+
 
   handleSubmit = event => {
     event.preventDefault();
-
     const originalPicture = this.state.picture;
     const storageRef = this.state.storage.ref();
     const that = this;
-    mergeImages([black_circle, white_square, red_triangle])
-      .then(b64 => this.setState({
-        picture_merged: this.dataURItoBlob(b64)
-      }, () => {
+
         if (originalPicture) {
-          console.log("STATE", this.state.picture_merged)
           const uploadPicture = storageRef.child(this.state.picture.name).put(originalPicture);
           const uploadPictureMerged = storageRef.child(`Marker${this.state.picture.name}`).put(this.state.picture_merged);
           const picturePromise = new Promise((resolve, reject) => {
@@ -209,13 +240,19 @@ class ReportAPet extends Component {
         } else {
           this.sendToDB();
         }
-      }))
+
   };
 
   componentDidMount() {
+    console.log(this.props)
     this.setState({
-      storage: window.firebase.storage()
+      storage: window.firebase.storage(),
+      user_id: this.props.current_user.id
     });
+    this.imgMarker = new Image()
+    this.imgMarker.src = marker
+    this.imgPaw = new Image()
+    this.imgPaw.src = paw
   }
 
   render() {
@@ -224,7 +261,7 @@ class ReportAPet extends Component {
     } else {
       return (
         <React.Fragment>
-          
+
         <Form onSubmit={this.handleSubmit}>
 
 
@@ -283,7 +320,7 @@ class ReportAPet extends Component {
           </Form.Row>
 
           <Form.Row>
-            <Form.Group as={Col} controlId='formGridStatus'>
+            <Form.Group as={Col} controlId='formGridSex'>
               <Form.Label>Sex</Form.Label>
               <Form.Control
                 as='select'
@@ -297,15 +334,19 @@ class ReportAPet extends Component {
               </Form.Control>
             </Form.Group>
 
-            <Form.Group as={Col} controlId='formGridColoir'>
+            <Form.Group as={Col} controlId='formGridColour'>
               <Form.Label>Colour</Form.Label>
               <Form.Control
-                type='name'
+                as='select'
                 name='colour'
-                placeholder='Colour'
                 value={this.state.colour}
                 onChange={this.handleChange}
-              />
+              > <option>Colour</option>
+                <option>Black</option>
+                <option>White</option>
+                <option>Grey</option>
+                <option>Red</option>
+                </Form.Control>
             </Form.Group>
 
             <Form.Group as={Col} controlId='formGridDateLost'>

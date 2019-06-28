@@ -2,9 +2,10 @@ import React, { Component } from 'react';
 import { Form } from 'react-bootstrap';
 import { AwesomeButton } from "react-awesome-button";
 import "react-awesome-button/dist/styles.css"
-// import Navigationbar from './Navigationbar.js';
 import axios from 'axios'
 import { Redirect } from 'react-router-dom';
+import setupNotifications from './setupNotifications.js';
+
 
 
 class Login extends Component {
@@ -12,13 +13,13 @@ class Login extends Component {
         email: '',
         password: '',
     }
-    
+
     handleChange = (event) => {
       this.setState({
         [event.target.name]: event.target.value
       });
     };
-    
+
     onHandleSubmit = (event) => {
     event.preventDefault();
 
@@ -32,7 +33,8 @@ class Login extends Component {
         console.log('')
         localStorage.setItem('token', response.data.token);
         axios.defaults.headers.common['Authorization'] = response.data.token;
-        this.props.updateToken(response.data.token)
+        this.props.updateToken(response.data.token);
+        setupNotifications();
       })
       .catch(err => {
         console.log(' register user error: ', err);
@@ -43,32 +45,40 @@ class Login extends Component {
     render(){
       if (this.props.token) {
           return <Redirect to={'/'} />;
-        } 
+        }
        else {
         return (
-        <Form onSubmit={this.onHandleSubmit}>
-       
-          <Form.Group controlId="formBasicEmail">
-            <Form.Label>Email address</Form.Label>
-            <Form.Control onChange={this.handleChange} name='email' type="email" placeholder="Enter email" />
-            <Form.Text className="text-muted">
-              We'll never share your email with anyone else.
-            </Form.Text>
-          </Form.Group>
 
-          <Form.Group controlId="formBasicPassword">
-            <Form.Label>Password</Form.Label>
-            <Form.Control onChange={this.handleChange} name='password' type="password" placeholder="Password" />
-          </Form.Group>
-          <Form.Group controlId="formBasicChecbox">
-            <Form.Check type="checkbox" label="Remember Me" />
-          </Form.Group>
-          <AwesomeButton type="secondary">Login</AwesomeButton>
-          </Form>
+          <div className="login-form">
+            <Form onSubmit={this.onHandleSubmit}>
+
+              <Form.Group controlId="formBasicEmail">
+                <Form.Label>Email address</Form.Label>
+                <Form.Control className="login-control" onChange={this.handleChange} name='email' type="email" placeholder="Enter email" />
+                <Form.Text className="text-muted">
+                  We'll never share your email with anyone else.
+                </Form.Text>
+              </Form.Group>
+
+              <Form.Group controlId="formBasicPassword">
+                <Form.Label>Password</Form.Label>
+                <Form.Control className="login-control" onChange={this.handleChange} name='password' type="password" placeholder="Password" />
+              </Form.Group>
+              <Form.Group controlId="formBasicChecbox">
+                <Form.Check type="checkbox" label="Remember Me" />
+              </Form.Group>
+              <AwesomeButton type="secondary">Login</AwesomeButton>
+            </Form>
+          </div>
+
       )
     }
-  
+
     }
 }
+
+
+
+
 
 export default Login;
