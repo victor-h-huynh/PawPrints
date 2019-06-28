@@ -20,7 +20,7 @@ class Pet extends Component {
 componentDidMount() {
 
     this.setState({
-      current_user: this.props.current_user.id,
+      current_user: this.props.current_user,
       pending: this.props.pet.pending,
       status: this.props.pet.status,
       reunited: this.props.pet.date_reunited,
@@ -157,7 +157,7 @@ renderButtons = () => {
     return;
   }
 
-  if (this.state.current_user === this.props.pet.user_id){
+  if (this.state.current_user.id === this.props.pet.user_id){
     if(this.state.pending) {
     const userNamesArray = []
         const buttons = this.state.pending.map((id, index) => {
@@ -197,7 +197,7 @@ renderButtons = () => {
     {buttons} </div>)
   }
 
-  } else if (this.state.pending.includes(this.state.current_user) ){
+  } else if (this.state.pending.includes(this.state.current_user.id) ){
     return(
             <Form onSubmit={this.petFound}>
             <Button variant='primary' type='submit' disabled>
@@ -205,7 +205,7 @@ renderButtons = () => {
             </Button>
             </Form>
             )
-  } else if (!this.state.pending.includes(this.state.current_user) ){
+  } else if (!this.state.pending.includes(this.state.current_user.id) ){
     return(
             <Form onSubmit={this.petFound}>
             <Button variant='primary' type='submit' >
