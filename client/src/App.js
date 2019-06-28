@@ -33,6 +33,10 @@ class App extends Component {
       petsOnMap: petsOnMap
     })
   }
+  
+  clearCurrentUser = () => {
+    this.setState({current_user: null, token: null})
+  }
 
 
 
@@ -99,7 +103,7 @@ class App extends Component {
     } else {
     return (
       <React.Fragment>
-        <Navigationbar current_user={this.state.current_user} />
+        <Navigationbar current_user={this.state.current_user} clearCurrentUser={this.clearCurrentUser}/>
         <Switch>
               <Route exact path="/" render={props => <Home {...props} updatePetsOnMap={this.updatePetsOnMap} pets={this.state.pets} users={this.state.users} addresses={this.state.addresses} petsOnMap={this.state.petsOnMap} userLocation={this.state.userLocation}/>}/>
               <PrivateRoute path="/ReportAPet" render={props => <ReportAPet {...props} addAPet={this.addAPet} userLocation={this.state.userLocation} current_user={this.state.current_user}/>}/>
