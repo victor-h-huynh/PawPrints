@@ -81,7 +81,7 @@ class Register extends Component {
         });
       })
       .catch(err => {
-        console.log(" register user error: ", err);
+        console.log(" register user error: ", err.response.data);
       });
   };
   render() {

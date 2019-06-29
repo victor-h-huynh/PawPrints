@@ -55,12 +55,12 @@ petFound = event => {
   event.preventDefault()
   const previousPending = this.props.pet.pending
   const newPending = [...previousPending, this.props.current_user.id]
-  
+
   //send notification
   const petOwner = this.props.pet.user
   console.log(petOwner);
   if(petOwner.alerts === true) {
-    axios.post('/api/user_notification', 
+    axios.post('/api/user_notification',
       { id: petOwner.id,
         message: `Another user thinks they have found your pet!`,
       URL: `http:localhost/users${petOwner.id}`});
@@ -97,7 +97,7 @@ notMyPet = (event, id) => {
   //Send notification
   const helpfulUser = this.props.users.filter(el => el.id === id)
   if(helpfulUser[0].alerts === true) {
-    axios.post('/api/user_notification', 
+    axios.post('/api/user_notification',
       { id: id,
         message: `Sorry, the pet you found is not ${this.props.pet.name}`,
       URL: `http:localhost/users${id}`});
@@ -133,7 +133,7 @@ someoneFoundMyPet = (event, id) => {
   //send notification
   const helpfulUser = this.props.users.filter(el => el.id === id)
   if(helpfulUser[0].alerts === true) {
-    axios.post('/api/user_notification', 
+    axios.post('/api/user_notification',
       { id: id,
         message: `The pet you found is ${this.props.pet.name}! Congratulations!`,
       URL: `http:localhost/users${id}`});
@@ -297,7 +297,6 @@ return (
                   </Map>
                 </div>
               <hr></hr>
-              <Button variant="success">Edit</Button>
             </Card.Body>
           </Card>
           </div>

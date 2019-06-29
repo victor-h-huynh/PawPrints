@@ -82,7 +82,7 @@ ActiveRecord::Base.connection.disable_referential_integrity do
   # })
   # end
 
-  
+
 
   puts "Re-creating Descriptions ..."
 
@@ -307,26 +307,26 @@ ActiveRecord::Base.connection.disable_referential_integrity do
   Comment.create!({
     user_id: users_ids.sample,
     comment: 'Hello there',
-    pet_id: pets_ids.sample 
+    pet_id: pets_ids.sample
   })
 
   Comment.create!({
     user_id: users_ids.sample,
     comment: 'Howdy partner',
-    pet_id: pets_ids.sample 
+    pet_id: pets_ids.sample
   })
 
   Comment.create!({
     user_id: users_ids.sample,
     comment: 'Bonjour',
-    pet_id: pets_ids.sample 
+    pet_id: pets_ids.sample
   })
 
   # (1..10).each do
   # Comment.create!({
   #   user_id: users_ids.sample,
   #   comment: 'Hello there',
-  #   pet_id: pets_ids.sample 
+  #   pet_id: pets_ids.sample
   # })
   # end
 

@@ -20,7 +20,7 @@ class ReportAPet extends Component {
       date_lost: '',
       picture: null,
       picture_merged: null,
-      user_id: this.props.current_user.id,
+      user_id: '',
 
       breed: '',
       colour: '',
@@ -62,10 +62,6 @@ class ReportAPet extends Component {
     this.resize(event.target.files[0])
   };
 
-  // fileUploadHandler = () => {
-  //   axios.post('https://us-central1-final-project-1561040119727.cloudfunctions.net/uploadFile')
-  // }
-
   handleChange = event => {
     this.setState({
       [event.target.name]: event.target.value
@@ -94,7 +90,7 @@ class ReportAPet extends Component {
   }
   }
 
-  sendToDB = () => {
+  sendToDB = (picture) => {
     var date = new Date(this.state.date_lost).getTime();
     axios
     .post('http://localhost:3001/api/pets', {
@@ -137,8 +133,8 @@ class ReportAPet extends Component {
           URL: `http:localhost/pets${response.data.id}`});
         }
       })
-    .catch(err => {
-      console.log('report pet error: ', err);
+    .catch(error => {
+      console.log('report pet error: ', error.response);
     });
 
 }
@@ -171,10 +167,24 @@ resize = picture => {
   handleSubmit = event => {
     event.preventDefault();
     const originalPicture = this.state.picture;
+
+    if (!originalPicture && this.state.species === "Dog") {
+      this.setState({
+        picture: "https://firebasestorage.googleapis.com/v0/b/final-project-1561040119727.appspot.com/o/dog.jpg?alt=media&token=3bf752ef-a6b5-44b7-bb73-6e067f5e0bca",
+        picture_merged: "https://firebasestorage.googleapis.com/v0/b/final-project-1561040119727.appspot.com/o/dog.jpg?alt=media&token=3bf752ef-a6b5-44b7-bb73-6e067f5e0bca"
+      }, () => this.sendToDB())
+    }
+    else if (!originalPicture && this.state.species === "Cat") {
+       this.setState({
+        picture: "https://firebasestorage.googleapis.com/v0/b/final-project-1561040119727.appspot.com/o/cat.png?alt=media&token=defd9f60-3f31-4864-a7d1-6d488972705d",
+        picture_merged: "https://firebasestorage.googleapis.com/v0/b/final-project-1561040119727.appspot.com/o/cat.png?alt=media&token=defd9f60-3f31-4864-a7d1-6d488972705d"
+      }, () => this.sendToDB())
+    }
+    else {
+    const originalPicture = this.state.picture;
     const storageRef = this.state.storage.ref();
     const that = this;
 
-        if (originalPicture) {
           const uploadPicture = storageRef.child(this.state.picture.name).put(originalPicture);
           const uploadPictureMerged = storageRef.child(`Marker${this.state.picture.name}`).put(this.state.picture_merged);
           const picturePromise = new Promise((resolve, reject) => {
@@ -224,17 +234,15 @@ resize = picture => {
               });
           })
           Promise.all([picturePromise, pictureMergedPromise]).then(() => this.sendToDB())
-        } else {
-          this.sendToDB();
-        }
 
+}
   };
 
   componentDidMount() {
     console.log(this.props)
     this.setState({
       storage: window.firebase.storage(),
-      user_id: this.props.current_user.id
+      user_id: this.props.current_user.id,
     });
     this.imgMarker = new Image()
     this.imgMarker.src = marker
