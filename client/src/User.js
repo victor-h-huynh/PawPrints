@@ -151,13 +151,13 @@ class User extends Component {
                   onChange={this.handleChange}
                 />
               </Form.Group>
-              <div>Email: {this.state.email}</div>
               <div>Alerts : {user.alerts}<Switch onChange={this.handleSwitchChange} checked={this.state.checked}/> </div>
               <Button onClick={this.handleSubmit} variant="success"> Update Profile </Button>
               </Form>
             </Card.Body>
           </Card>
           </div>}
+
 
           {this.props.current_user.id !== this.state.id &&
             <div className="userProfile">
@@ -169,10 +169,13 @@ class User extends Component {
                 <div>Phone Number: {this.state.phone_number}</div>
               </Card.Text>
             </Card.Body>
-          </Card>}
-          </div>
-        </React.Fragment>
+          </Card>
+          </div>}
 
+
+
+
+</React.Fragment>
 
     )
   }
@@ -181,5 +184,6 @@ class User extends Component {
 export default User;
 
 
+// {levels  && <img scr="https://gamepedia.cursecdn.com/dota2_gamepedia/thumb/8/85/SeasonalRank1-1.png/140px-SeasonalRank1-1.png?version=ce7c6eea36971495cdad1f06e7ef3709" />}
 
 
