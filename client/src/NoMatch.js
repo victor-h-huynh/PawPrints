@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
 
 
 function NoMatch({ location }) {
     return (
-      <div>
+      <div className="NoMatch">
         <h3>
-          No match for <code>{location.pathname}</code>. Please return to the <Link to="/">Homepage</Link>
+          Sorry, this page doesn't exist. Please return to the <Link to="/">Homepage</Link>
         </h3>
       </div>
     );
   }
 
-   export default NoMatch;
+export default NoMatch;
