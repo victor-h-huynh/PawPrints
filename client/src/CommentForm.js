@@ -18,12 +18,10 @@ class CommentForm extends Component {
     }
 
     handleTextChange(e) {
-        console.log(e.target.value);
         this.setState({txt: e.target.value});
     }
 
     handleFormSubmit(e) {
-        console.log(this.props)
         e.preventDefault();
         const author = this.props.current_user.name.trim();
         const txt = this.state.txt.trim();

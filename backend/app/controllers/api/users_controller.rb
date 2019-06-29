@@ -74,7 +74,11 @@ class Api::UsersController < ApplicationController
     end
 
     def unsubscribe
-
+      @current_user.update!(
+        endpoint: nil,
+        p256dh: nil,
+        auth: nil,
+      )
     end
 
 

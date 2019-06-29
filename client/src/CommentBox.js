@@ -8,16 +8,19 @@ class CommentBox extends Component {
         super(props);
         
         this.state = {
-            comments: []
-    
+            comments: [],
+            data: [],
         };
 
         this.__loadComments = this.__loadComments.bind(this);
         this._handleCommentSubmit = this._handleCommentSubmit.bind(this);
+        this.handleDelete = this.handleDelete.bind(this);
     }
     
     componentDidMount() {
+
         this.__loadComments();
+        
     }
     
     __loadComments(){
@@ -26,11 +29,27 @@ class CommentBox extends Component {
         axios.get(`http://localhost:3001/api/pets/${this.props.pet_id}/comments`)
         .then(response => {
             console.log(response)
+            const thisPet = response.data.filter(pet => pet.pet_id === this.props.pet_id)
+            console.log(thisPet)
           this.setState({
-            comments: response.data
+            comments: thisPet
           });
         })
         .catch(error => console.log(error));
+    }
+
+    handleDelete(index) {
+        let comments = this.state.comments;
+        const theComment = this.state.comments[index].id;
+        comments.splice(index, 1);
+        this.setState({
+            comments: comments
+          });
+
+          axios.delete(`http://localhost:3001/api/pets/${this.props.pet_id}/comments/${theComment}`).then(response => {
+              console.log(response)
+          }
+          )
     }
 
     _handleCommentSubmit(data) {
@@ -54,11 +73,11 @@ class CommentBox extends Component {
             
             <div className='commentBox'>
                 <CommentForm onCommentSubmit={this._handleCommentSubmit} current_user={this.props.current_user} ></CommentForm>
-                <CommentList comments={this.state.comments} users={this.props.users}></CommentList>
+                <CommentList comments={this.state.comments} users={this.props.users} data={this.state.data} handleDelete={this.handleDelete}></CommentList>
             </div>
         )
     }
-}
+};
 
 
 export default CommentBox;

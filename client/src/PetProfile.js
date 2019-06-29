@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
 import Pet from './Pet';
 import CommentBox from './CommentBox'
+import NoMatch from './NoMatch';
 
 class PetProfile extends Component {
 
@@ -19,12 +20,17 @@ class PetProfile extends Component {
 
     render() {
         const pet = this.getPet();
-        const petThere = pet ? <Pet current_user={this.props.current_user} pet={pet} users={this.props.users}/> : <div>Loading...</div>
         return (
-          <div>
-          {petThere}
-          <div id="comments"><CommentBox pet_id={pet.id} current_user={this.props.current_user} users={this.props.users}/></div>
-          </div>
+          <React.Fragment>
+          {pet ? (
+            <React.Fragment>
+            <Pet current_user={this.props.current_user} pet={pet} users={this.props.users} removeAPet={this.props.removeAPet}/><div id="comments">
+            <CommentBox pet_id={pet.id} current_user={this.props.current_user} users={this.props.users}/></div>
+            </React.Fragment>
+          ) : (
+            <NoMatch/>
+          )}
+          </React.Fragment>
           
       );
     }

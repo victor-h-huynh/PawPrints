@@ -77,6 +77,11 @@ body {
     outline: none;
 }
 
+.delete-button {
+  font-size: 10px;
+  float: right;
+}
+
 label {
     color: #ccc;
     font-size: 15px;
@@ -131,6 +136,7 @@ input[type='submit']:hover {
     margin-bottom: 10px;
     background-color: #E91E63;
     font-size: 25px;
+    // display: flex;
 }
 
 .comment:hover {
@@ -141,7 +147,7 @@ input[type='submit']:hover {
 .commentAuthor {
   font-size: 10px;  
   color: #fff;
-    
+    // display: flex;
   }
   
   .commentBody {

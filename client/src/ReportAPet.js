@@ -273,7 +273,7 @@ resize = picture => {
                 <option>Status</option>
                 <option>Lost</option>
                 <option>Found</option>
-                <option>Reunited</option>
+                <option>Spotted</option>
               </Form.Control>
             </Form.Group>
 
@@ -343,11 +343,14 @@ resize = picture => {
                 name='colour'
                 value={this.state.colour}
                 onChange={this.handleChange}
-              > <option>Colour</option>
-                <option>Black</option>
-                <option>White</option>
-                <option>Grey</option>
-                <option>Red</option>
+              > <option>All</option>
+              <option>Black</option>
+              <option>White</option>
+              <option>Grey</option>
+              <option>Orange</option>
+              <option>Brown</option>
+              <option>Beige/Fawn</option>
+              <option>Multicoloured</option>
                 </Form.Control>
             </Form.Group>
 
