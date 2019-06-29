@@ -254,7 +254,7 @@ return (
 <div className="petProfilePage">
 
 
-{this.renderButtons()}
+{this.state.current_user && this.renderButtons()}
 
             <Card className="pet">
             <Card.Header>{pet.name}</Card.Header>

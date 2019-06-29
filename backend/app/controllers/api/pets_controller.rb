@@ -15,7 +15,7 @@ class Api::PetsController < ApplicationController
       pet.update(pending: params['pending'])
       elsif params['update'] == 3
       pet.update(pending: params['pending'])
-    elsif params['update'] == 4
+      elsif params['update'] == 4
       pet.update(pending: params['pending'])
 
 

@@ -74,7 +74,7 @@ class Register extends Component {
         localStorage.setItem('token', response.data.token);
         axios.defaults.headers.common['Authorization'] = response.data.token;
         this.props.updateToken(response.data.token);
-        if (this.state.alerts == true) {setupNotifications()};
+        if (this.state.alerts === true) {setupNotifications()};
         this.setState({
           id: response.data.id,
           redirectToLogin: true
@@ -93,7 +93,7 @@ class Register extends Component {
           <Form onSubmit={this.handleSubmit}>
             <Form.Row>
               <Form.Group controlId="formGridName">
-                <Form.Label>Name</Form.Label>
+                <Form.Label></Form.Label>
                 <Form.Control
                   className="register-control"
                   type="name"
@@ -105,7 +105,7 @@ class Register extends Component {
               </Form.Group>
 
               <Form.Group controlId="formGridEmail">
-                <Form.Label>Email</Form.Label>
+                <Form.Label></Form.Label>
                 <Form.Control
                   className="register-control"
                   name="email"
@@ -118,7 +118,7 @@ class Register extends Component {
 
             <Form.Row>
               <Form.Group controlId="formGridPassword">
-                <Form.Label>Password</Form.Label>
+                <Form.Label></Form.Label>
                 <Form.Control
                   className="register-control"
                   type="password"
@@ -130,7 +130,7 @@ class Register extends Component {
               </Form.Group>
 
               <Form.Group controlId="formGridPasswordConfirmation">
-                <Form.Label>Password Confirmation</Form.Label>
+                <Form.Label></Form.Label>
                 <Form.Control
                   className="register-control"
                   type="password"
@@ -144,7 +144,7 @@ class Register extends Component {
 
             <Form.Row>
               <Form.Group controlId="formGridPostalPhoneNumber">
-                <Form.Label>Phone Number</Form.Label>
+                <Form.Label></Form.Label>
 
                 <Form.Control
                   className="register-control"

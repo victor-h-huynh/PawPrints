@@ -10,7 +10,7 @@ import { Switch, Route } from 'react-router-dom';
 import ReportAPet from './ReportAPet.js';
 import PetProfile from './PetProfile.js';
 import Navigationbar from './Navigationbar.js';
-import { PrivateRoute } from './PrivateRoute'
+import { PrivateRoute }  from './PrivateRoute';
 
 
 class App extends Component {
@@ -33,7 +33,7 @@ class App extends Component {
       petsOnMap: petsOnMap
     })
   }
-  
+
   clearCurrentUser = () => {
     this.setState({current_user: null, token: null})
   }
@@ -85,7 +85,12 @@ class App extends Component {
     .catch(error => console.log(error));
   }
 
-
+updateNavState = name => {
+  this.setState({
+    current_user: {...this.state.current_user,
+      name: name}
+  })
+}
 
   addAPet = (newPet) => {
     this.setState({pets: [...this.state.pets, newPet]})
@@ -106,11 +111,13 @@ class App extends Component {
         <Navigationbar current_user={this.state.current_user} clearCurrentUser={this.clearCurrentUser}/>
         <Switch>
               <Route exact path="/" render={props => <Home {...props} updatePetsOnMap={this.updatePetsOnMap} pets={this.state.pets} users={this.state.users} addresses={this.state.addresses} petsOnMap={this.state.petsOnMap} userLocation={this.state.userLocation}/>}/>
-              <Route path="/ReportAPet" render={props => <ReportAPet {...props} addAPet={this.addAPet} userLocation={this.state.userLocation} current_user={this.state.current_user}/>}/>
+
+              <PrivateRoute path="/ReportAPet" component={ReportAPet} addAPet={this.addAPet} userLocation={this.state.userLocation} current_user={this.state.current_user} />
+
               <Route path="/Login" render={props => <Login {...props} updateToken={this.updateToken} token={this.state.token}/>}/>
               <Route path="/Register" render={props => <Register {...props} addAUser={this.addAUser} updateToken={this.updateToken} token={this.state.token}/>}/>
               <Route path="/Pets/:id" render={props => <PetProfile {...props} pets={this.state.pets} users={this.state.users} addresses={this.state.addresses} current_user={this.state.current_user}/>}/>
-              <Route path="/Users/:id" render={props => <UserProfile {...props} pets={this.state.pets} users={this.state.users} current_user={this.state.current_user} addresses={this.state.addresses}/>}/>
+              <Route path="/Users/:id" render={props => <UserProfile {...props} pets={this.state.pets} users={this.state.users} current_user={this.state.current_user} updateNavState={this.updateNavState} addresses={this.state.addresses}/>}/>
               <Route path="/Success" component={Success}/>
           </Switch>
       </React.Fragment>
@@ -121,3 +128,5 @@ class App extends Component {
 
 
 export default App;
+
+
