@@ -20,7 +20,7 @@
 
     self.addEventListener("push", (event) => {
       console.log("event in SW", event.data);
-        const title = "New from PawPrint";
+        const title = "News from PawPrint";
         const body = event.data.text().toLowerCase();
         const icon = 'favicon.ico';
         const image = './src/assets/catImageCropped.jpg'
