@@ -14,8 +14,10 @@ class Api::UsersController < ApplicationController
         user = User.find_by id: params['id']
         if params['update'] == 1
           user.update(points: params['points'])
-        # elsif params['update'] == 2
-        #   pet.update(pending: params['pending'])
+        elsif params['update'] == 2
+          user.update(name: params['name'])
+          user.update(phone_number: params['phone_number'])
+          user.update(alerts: params['alerts'])
         end
 
         if user.save
@@ -92,9 +94,9 @@ class Api::UsersController < ApplicationController
           public_key: ENV['VAPID_PUBLIC_KEY'],
           private_key: ENV['VAPID_PRIVATE_KEY'],
         },
-        ssl_timeout: 25, 
-        open_timeout: 25, 
-        read_timeout: 25 
+        ssl_timeout: 25,
+        open_timeout: 25,
+        read_timeout: 25
       )
       end
     end

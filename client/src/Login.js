@@ -52,7 +52,7 @@ class Login extends Component {
             <Form onSubmit={this.onHandleSubmit}>
 
               <Form.Group controlId="formBasicEmail">
-                <Form.Label>Email address</Form.Label>
+                <Form.Label></Form.Label>
                 <Form.Control className="login-control" onChange={this.handleChange} name='email' type="email" placeholder="Enter email" />
                 <Form.Text className="text-muted">
                   We'll never share your email with anyone else.
@@ -60,16 +60,14 @@ class Login extends Component {
               </Form.Group>
 
               <Form.Group controlId="formBasicPassword">
-                <Form.Label>Password</Form.Label>
+                <Form.Label></Form.Label>
                 <Form.Control className="login-control" onChange={this.handleChange} name='password' type="password" placeholder="Password" />
               </Form.Group>
-              <Form.Group controlId="formBasicChecbox">
-                <Form.Check type="checkbox" label="Remember Me" />
-              </Form.Group>
+
               <AwesomeButton type="secondary">Login</AwesomeButton>
-              
+
             </Form>
-            
+
           </div>
 
 

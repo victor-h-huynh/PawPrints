@@ -219,25 +219,25 @@ class PetMap extends Component{
 				<div>
 					<p></p>
 					<div className="form-group">
-						<label htmlFor="">Street Number</label>
+						<label htmlFor=""></label>
 						<input type="text" name="street_number" className="form-control" onChange={ this.onChange } readOnly="readOnly" value={ this.props.parentState.street_number }/>
 					</div>
 					<div className="form-group">
-						<label htmlFor="">Street Name</label>
+						<label htmlFor=""></label>
 						<input type="text" name="street_name" className="form-control" onChange={ this.onChange } readOnly="readOnly" value={ this.props.parentState.street_name }/>
 					</div>
 					<div>
 					<div className="form-group">
-						<label htmlFor="">City</label>
+						<label htmlFor=""></label>
 						<input type="text" name="city" className="form-control" onChange={ this.onChange } readOnly="readOnly" value={ this.props.parentState.city }/>
 					</div>
 
 					<div className="form-group">
-						<label htmlFor="">Province</label>
+						<label htmlFor=""></label>
 						<input type="text" name="province" className="form-control" onChange={ this.onChange } readOnly="readOnly" value={ this.props.parentState.province }/>
 					</div>
 					<div className="form-group">
-						<label htmlFor="">Postal Code</label>
+						<label htmlFor=""></label>
 						<input type="text" name="postal_code" className="form-control" onChange={ this.onChange } readOnly="readOnly" value={ this.props.parentState.postal_code }/>
 					</div>
 					</div>

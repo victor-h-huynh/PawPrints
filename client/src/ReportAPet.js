@@ -131,7 +131,7 @@ class ReportAPet extends Component {
       });
       //Push Notification
       if(response){
-        axios.post('/api/notification', 
+        axios.post('/api/notification',
           {message: `A ${this.state.species} was ${this.state.status} in your area.`,
           image: (this.state.picture? this.state.picture: null),
           URL: `http:localhost/pets${response.data.id}`});
@@ -253,8 +253,8 @@ resize = picture => {
 
         <Form.Row>
           <Form.Group as={Col} controlId='formGridStatus'>
-              <Form.Label>Status</Form.Label>
-              <Form.Control 
+              <Form.Label></Form.Label>
+              <Form.Control
                 className="report-a-pet-control"
                 as='select'
                 name='status'
@@ -269,9 +269,9 @@ resize = picture => {
             </Form.Group>
 
 
-            
+
             <Form.Group as={Col} controlId='formGridName'>
-              <Form.Label>Name</Form.Label>
+              <Form.Label></Form.Label>
               <Form.Control
                 className="report-a-pet-control"
                 type='name'
@@ -283,7 +283,7 @@ resize = picture => {
             </Form.Group>
 
             <Form.Group as={Col} controlId='formGridSpecies'>
-              <Form.Label>Species</Form.Label>
+              <Form.Label></Form.Label>
               <Form.Control
                 className="report-a-pet-control"
                 as='select'
@@ -298,7 +298,7 @@ resize = picture => {
             </Form.Group>
 
             <Form.Group as={Col} controlId='formGridBreed'>
-              <Form.Label>Breed</Form.Label>
+              <Form.Label></Form.Label>
               <Form.Control
                 className="report-a-pet-control"
                 type='breed'
@@ -312,7 +312,7 @@ resize = picture => {
 
           <Form.Row>
             <Form.Group as={Col} controlId='formGridSex'>
-              <Form.Label>Sex</Form.Label>
+              <Form.Label></Form.Label>
               <Form.Control
                 className="report-a-pet-control"
                 as='select'
@@ -327,7 +327,7 @@ resize = picture => {
             </Form.Group>
 
             <Form.Group as={Col} controlId='formGridColour'>
-              <Form.Label>Colour</Form.Label>
+              <Form.Label></Form.Label>
               <Form.Control
                 className="report-a-pet-control"
                 as='select'
@@ -343,7 +343,7 @@ resize = picture => {
             </Form.Group>
 
             <Form.Group as={Col} controlId='formGridDateLost'>
-              <Form.Label>Date Lost</Form.Label>
+              <Form.Label></Form.Label>
               <Form.Control
                 className="report-a-pet-control"
                 type='name'
@@ -357,10 +357,10 @@ resize = picture => {
 
           <Form.Row>
             <Form.Group as={Col} controlId='formGridAdditionalComments'>
-              <Form.Label>Additional Comments</Form.Label>
+              <Form.Label></Form.Label>
               <Form.Control
                 className="report-a-pet-comment"
-                placeholder=''
+                placeholder='Additional Comments'
                 name='additional'
                 value={this.state.additional}
                 onChange={this.handleChange}
