@@ -53,7 +53,7 @@ class Login extends Component {
 
               <Form.Group controlId="formBasicEmail">
                 <Form.Label></Form.Label>
-                <Form.Control className="login-control" onChange={this.handleChange} name='email' type="email" placeholder="Enter email" />
+                <Form.Control required className="login-control" onChange={this.handleChange} name='email' type="email" placeholder="Enter email" />
                 <Form.Text className="text-muted">
                   We'll never share your email with anyone else.
                 </Form.Text>
@@ -61,7 +61,7 @@ class Login extends Component {
 
               <Form.Group controlId="formBasicPassword">
                 <Form.Label></Form.Label>
-                <Form.Control className="login-control" onChange={this.handleChange} name='password' type="password" placeholder="Password" />
+                <Form.Control required className="login-control" onChange={this.handleChange} name='password' type="password" placeholder="Password" />
               </Form.Group>
 
               <AwesomeButton type="secondary">Login</AwesomeButton>
