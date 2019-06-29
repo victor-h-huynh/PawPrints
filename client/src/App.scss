@@ -1,13 +1,27 @@
 
-@import 'comments';
-@import 'scrollcomponents';
-@import 'petprofile';
-@import 'home';
-@import 'reportapet';
-@import 'success';
-@import 'register';
-@import 'login';
+@import '/SCSS/comments';
+@import '/SCSS/scrollcomponents';
+@import '/SCSS/petprofile';
+@import '/SCSS/home';
+@import '/SCSS/reportapet';
+@import '/SCSS/success';
+@import '/SCSS/register';
+@import '/SCSS/login';
 
+$background: #f3f3f3;
+$teal: #08708A;
+$cerulean: #56b1bF;
+$hunter: #032b2f;
+$ink: #193446;
+$azul: #A0c1b8;
+$bolivia: #709fb0;
+$acaranda: #726A95;
+$malber: #351f39;
+$darkslategray: #365660;
+$indianred: #C46168;
+
+@import url(https://fonts.googleapis.com/css?family=Roboto);
+$roboto: 'roboto', sans-serif;
 
 
 @media only screen and (max-width: 600px) {
@@ -27,8 +41,15 @@
 
 
 body {
-  font-family: "Nunito", sans-serif;
-  background-color: #B2EBF2;
+  font-family: $roboto;
+  background-color: $background;
+  color: #193446;
+
+  .btn-primary {
+    background-color: $teal;
+    border-color: $teal;
+  }
+  
   .map {
     height: 70vh;
     width: 50vw;
