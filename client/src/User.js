@@ -36,7 +36,6 @@ class User extends Component {
 
   handleSubmit = event => {
     event.preventDefault();
-      console.log("click works")
     axios
         .put(`http://localhost:3001/api/users/${this.props.user.id}`,
         {
