@@ -133,7 +133,11 @@ return (
                 <option>Black</option>
                 <option>White</option>
                 <option>Grey</option>
-                <option>Red</option>
+                <option>Orange</option>
+                <option>Brown</option>
+                <option>Beige/Fawn</option>
+                <option>Multicoloured</option>
+
               </Form.Control>
             </Form.Group>
 
@@ -148,7 +152,7 @@ return (
                 <option>All</option>
                 <option>Lost</option>
                 <option>Found</option>
-                <option>Reunited</option>
+                <option>Spotted</option>
               </Form.Control>
             </Form.Group>
 

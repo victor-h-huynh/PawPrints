@@ -7,6 +7,9 @@ import axios from 'axios'
 import { Form } from 'react-bootstrap';
 
 class Pet extends Component {
+  constructor(props) {
+    super(props);
+  }
 
   state = {
     current_user: '',
@@ -28,6 +31,7 @@ componentDidMount() {
   }
 
 petReunited = event => {
+  console.log(this.props);
 event.preventDefault()
 const date = new Date()
 axios
@@ -48,7 +52,7 @@ axios
     .catch(err => {
       console.log('report pet error: ', err);
     });
-
+this.props.removeAPet(this.props.pet)
 }
 
 petFound = event => {
