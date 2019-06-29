@@ -107,7 +107,7 @@ updateNavState = name => {
         <Navigationbar current_user={this.state.current_user} />
         <Switch>
               <Route exact path="/" render={props => <Home {...props} updatePetsOnMap={this.updatePetsOnMap} pets={this.state.pets} users={this.state.users} addresses={this.state.addresses} petsOnMap={this.state.petsOnMap} userLocation={this.state.userLocation}/>}/>
-              <Route path="/ReportAPet" render={props => <ReportAPet {...props} addAPet={this.addAPet} userLocation={this.state.userLocation} current_user={this.state.current_user}/>}/>
+              <PrivateRoute path="/ReportAPet" component={ReportAPet} addAPet={this.addAPet} userLocation={this.state.userLocation} current_user={this.state.current_user} />
               <Route path="/Login" render={props => <Login {...props} updateToken={this.updateToken} token={this.state.token}/>}/>
               <Route path="/Register" render={props => <Register {...props} addAUser={this.addAUser} updateToken={this.updateToken} token={this.state.token}/>}/>
               <Route path="/Pets/:id" render={props => <PetProfile {...props} pets={this.state.pets} users={this.state.users} addresses={this.state.addresses} current_user={this.state.current_user}/>}/>
@@ -122,3 +122,5 @@ updateNavState = name => {
 
 
 export default App;
+
+
