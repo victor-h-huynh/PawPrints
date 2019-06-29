@@ -5,7 +5,7 @@ class CommentList extends Component {
     render() {
         const CommentNodes = this.props.comments.map((comment, index)=>{
             return (
-                <Comment comment={comment.comment} key={index}>
+                <Comment comment={comment.comment} key={index} user={comment.user} users={this.props.users}>
                 </Comment>
             );
         });

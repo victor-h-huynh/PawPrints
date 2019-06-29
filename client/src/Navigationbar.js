@@ -2,6 +2,7 @@ import React from "react";
 import { Nav, Navbar } from "react-bootstrap";
 import styled from "styled-components";
 import { LinkContainer } from "react-router-bootstrap";
+import { Redirect } from "react-router-dom";
 
 const Styles = styled.div`
   .navbar {
@@ -19,12 +20,18 @@ const Styles = styled.div`
   }
 `;
 
-export const Navigationbar = ({ current_user }) => {
+const Navigationbar = ({ current_user, clearCurrentUser, updateToken}) => {
   const currentUser = current_user;
+
+  const logoutUser = () => {
+    console.log('click');
+    localStorage.clear();
+    clearCurrentUser();
+  }
 
   return (
     <Styles>
-      <Navbar fixed="top" collapseOnSelect expand="lg">
+      <Navbar fixed="" collapseOnSelect expand="lg">
         <LinkContainer to="/">
           <Navbar.Brand>Paw Print</Navbar.Brand>
         </LinkContainer>
@@ -38,16 +45,26 @@ export const Navigationbar = ({ current_user }) => {
               <Nav.Link>Success Stories!</Nav.Link>
             </LinkContainer>
 
-            <LinkContainer to="/Login">
+           
               {currentUser ? (
+                <React.Fragment>
                 <p>Signed in as {currentUser.name}</p>
+                <LinkContainer to={`/Users/${currentUser.id}`}>
+                <Nav.Link>View my profile</Nav.Link>
+                </LinkContainer>
+                <Nav.Link onClick={logoutUser}>Logout</Nav.Link>
+                </React.Fragment>
               ) : (
+                <React.Fragment>
+                <LinkContainer to="/Login">
                 <Nav.Link>Login</Nav.Link>
-              )}
-            </LinkContainer>
+                </LinkContainer>
             <LinkContainer to="/Register">
               <Nav.Link>Register</Nav.Link>
             </LinkContainer>
+            </React.Fragment>
+              )}
+            
           </Nav>
         </Navbar.Collapse>
       </Navbar>
