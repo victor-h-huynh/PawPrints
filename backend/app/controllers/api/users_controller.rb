@@ -29,7 +29,7 @@ class Api::UsersController < ApplicationController
     end
 
     def create
-      @user = User.create!(
+      @user = User.new(
         name: params['user']['name'],
         email: params['user']['email'],
         password: params['user']['password'],
@@ -47,7 +47,7 @@ class Api::UsersController < ApplicationController
         render json: { token: token, exp: time.strftime("%m-%d-%Y %H:%M"),
                        email: @user.email }, status: :ok
       else
-        render :new
+        render status: :not_found, :json => @user.errors.full_messages
       end
 
     end
@@ -106,7 +106,7 @@ class Api::UsersController < ApplicationController
       subscriber = User.find_by(id: id)
       puts subscriber.to_json()
       if subscriber.alerts == true
-      
+
         Webpush.payload_send(
         message: params[:message],
         URL: params[:URL],
@@ -119,11 +119,11 @@ class Api::UsersController < ApplicationController
           public_key: ENV['VAPID_PUBLIC_KEY'],
           private_key: ENV['VAPID_PRIVATE_KEY'],
         },
-        ssl_timeout: 25, 
-        open_timeout: 25, 
-        read_timeout: 25 
+        ssl_timeout: 25,
+        open_timeout: 25,
+        read_timeout: 25
       )
-    
+
       end
     end
 

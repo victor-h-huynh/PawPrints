@@ -29,14 +29,13 @@ class Login extends Component {
         password: this.state.password
       })
       .then(response => {
-        console.log('')
         localStorage.setItem('token', response.data.token);
         axios.defaults.headers.common['Authorization'] = response.data.token;
         this.props.updateToken(response.data.token);
         setupNotifications();
       })
       .catch(err => {
-        console.log(' register user error: ', err);
+        console.log(" register user error: ", err.response);
       });
 
 }

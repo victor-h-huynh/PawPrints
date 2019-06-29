@@ -82,7 +82,7 @@ ActiveRecord::Base.connection.disable_referential_integrity do
   # })
   # end
 
-  
+
 
   puts "Re-creating Descriptions ..."
 
@@ -168,7 +168,7 @@ ActiveRecord::Base.connection.disable_referential_integrity do
 
   address_ids = Address.all.pluck(:id)
 
-<<<<<<< HEAD
+
   User.create!({
     name: "robin",
     email: "robin@gmail.com",
@@ -218,17 +218,17 @@ ActiveRecord::Base.connection.disable_referential_integrity do
   #   phone_number: Faker::PhoneNumber.phone_number,
   #   alerts: alerts.sample,
   #   points: rand(0..5000)})
-=======
-  (1..10).each do
-User.create!({
-  name: Faker::Name.name,
-  email: Faker::Internet.email,
-  password_digest: Faker::Games::Dota.hero,
-  address_id: address_ids[0],
-  phone_number: Faker::PhoneNumber.phone_number,
-  alerts: false,
-  points: rand(0..5000)})
->>>>>>> master
+
+#   (1..10).each do
+# User.create!({
+#   name: Faker::Name.name,
+#   email: Faker::Internet.email,
+#   password_digest: Faker::Games::Dota.hero,
+#   address_id: address_ids[0],
+#   phone_number: Faker::PhoneNumber.phone_number,
+#   alerts: false,
+#   points: rand(0..5000)})
+
 
   # address_ids.rotate!
 
@@ -319,26 +319,26 @@ User.create!({
   Comment.create!({
     user_id: users_ids.sample,
     comment: 'Hello there',
-    pet_id: pets_ids.sample 
+    pet_id: pets_ids.sample
   })
 
   Comment.create!({
     user_id: users_ids.sample,
     comment: 'Howdy partner',
-    pet_id: pets_ids.sample 
+    pet_id: pets_ids.sample
   })
 
   Comment.create!({
     user_id: users_ids.sample,
     comment: 'Bonjour',
-    pet_id: pets_ids.sample 
+    pet_id: pets_ids.sample
   })
 
   # (1..10).each do
   # Comment.create!({
   #   user_id: users_ids.sample,
   #   comment: 'Hello there',
-  #   pet_id: pets_ids.sample 
+  #   pet_id: pets_ids.sample
   # })
   # end
 
