@@ -20,7 +20,7 @@ class ReportAPet extends Component {
       date_lost: '',
       picture: null,
       picture_merged: null,
-      user_id: '',
+      current_user: '',
 
       breed: '',
       colour: '',
@@ -114,7 +114,7 @@ class ReportAPet extends Component {
         date_lost: date,
         picture: this.state.picture,
         picture_merged: this.state.picture_merged,
-        user_id: this.state.user_id,
+        user_id: this.state.current_user.id,
         latitude: this.state.latitude,
         longitude: this.state.longitude,
       },
@@ -134,7 +134,7 @@ class ReportAPet extends Component {
         }
       })
     .catch(error => {
-      console.log('report pet error: ', error.response);
+      console.log('report pet error: ', error.response.data);
     });
 
 }
@@ -180,8 +180,7 @@ resize = picture => {
         picture_merged: "https://firebasestorage.googleapis.com/v0/b/final-project-1561040119727.appspot.com/o/cat.png?alt=media&token=defd9f60-3f31-4864-a7d1-6d488972705d"
       }, () => this.sendToDB())
     }
-    else {
-    const originalPicture = this.state.picture;
+    else if (originalPicture && this.state.species) {
     const storageRef = this.state.storage.ref();
     const that = this;
 
@@ -235,6 +234,8 @@ resize = picture => {
           })
           Promise.all([picturePromise, pictureMergedPromise]).then(() => this.sendToDB())
 
+} else {
+  this.sendToDB()
 }
   };
 
@@ -242,7 +243,7 @@ resize = picture => {
     console.log(this.props)
     this.setState({
       storage: window.firebase.storage(),
-      user_id: this.props.current_user.id,
+      current_user: this.props.current_user,
     });
     this.imgMarker = new Image()
     this.imgMarker.src = marker

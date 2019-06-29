@@ -12,7 +12,7 @@ class UserProfile extends Component {
 
     render() {
         const user = this.getUser();
-        const userThere = user ? <User user={user} updateNavState={this.props.updateNavState} /> : <div>Loading...</div>
+        const userThere = user ? <User user={user} current_user={this.props.current_user} updateNavState={this.props.updateNavState} /> : <div>Loading...</div>
 
         return (
           <div>

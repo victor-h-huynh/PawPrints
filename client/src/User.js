@@ -56,7 +56,7 @@ class User extends Component {
           this.props.updateNavState(response.data.name)
         })
         .catch(err => {
-          console.log('report pet error: ', err);
+          console.log('report user error: ', err.response.data);
         });
   };
 
@@ -123,6 +123,8 @@ class User extends Component {
         <ProgressBar variant="success" animated now={progress/10} />
       </React.Fragment>
 
+
+      {this.props.current_user.id === this.state.id &&
       <div className="userProfilePage">
 
             <Card className="user">
@@ -134,7 +136,6 @@ class User extends Component {
                   className="register-control"
                   type="name"
                   name="name"
-                  placeholder={this.props.user.name}
                   value={this.state.name}
                   onChange={this.handleChange}
                 />
@@ -150,15 +151,28 @@ class User extends Component {
                   onChange={this.handleChange}
                 />
               </Form.Group>
+              <div>Email: {this.state.email}</div>
               <div>Alerts : {user.alerts}<Switch onChange={this.handleSwitchChange} checked={this.state.checked}/> </div>
               <Button onClick={this.handleSubmit} variant="success"> Update Profile </Button>
               </Form>
             </Card.Body>
           </Card>
+          </div>}
+
+          {this.props.current_user.id !== this.state.id &&
+            <div className="userProfile">
+            <Card className="user">
+            <Card.Body>
+              <Card.Text>
+              <div>Name: {this.state.name}</div>
+              <div>Email: {this.state.email}</div>
+                <div>Phone Number: {this.state.phone_number}</div>
+              </Card.Text>
+            </Card.Body>
+          </Card>}
           </div>
+        </React.Fragment>
 
-
-</React.Fragment>
 
     )
   }
@@ -167,6 +181,5 @@ class User extends Component {
 export default User;
 
 
-// {levels  && <img scr="https://gamepedia.cursecdn.com/dota2_gamepedia/thumb/8/85/SeasonalRank1-1.png/140px-SeasonalRank1-1.png?version=ce7c6eea36971495cdad1f06e7ef3709" />}
 
 

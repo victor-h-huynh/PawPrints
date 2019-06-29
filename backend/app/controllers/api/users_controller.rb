@@ -23,10 +23,10 @@ class Api::UsersController < ApplicationController
         if user.save
           render :json => user
         else
-          render :new
-      end
+          render status: :not_found, :json => user.errors.full_messages
+        end
 
-    end
+      end
 
     def create
       @user = User.new(
