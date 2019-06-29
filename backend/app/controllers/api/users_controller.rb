@@ -101,5 +101,31 @@ class Api::UsersController < ApplicationController
       end
     end
 
+    def send_usernotification
+      id = params[:id]
+      subscriber = User.find_by(id: id)
+      puts subscriber.to_json()
+      if subscriber.alerts == true
+      
+        Webpush.payload_send(
+        message: params[:message],
+        URL: params[:URL],
+        endpoint: subscriber.endpoint,
+        p256dh: subscriber.p256dh,
+        auth: subscriber.auth,
+        ttl: 24 * 60 * 60 * 7,
+        vapid: {
+          subject: "http://localhost:3001",
+          public_key: ENV['VAPID_PUBLIC_KEY'],
+          private_key: ENV['VAPID_PRIVATE_KEY'],
+        },
+        ssl_timeout: 25, 
+        open_timeout: 25, 
+        read_timeout: 25 
+      )
+    
+      end
+    end
+
 
 end

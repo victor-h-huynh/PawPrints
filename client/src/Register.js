@@ -155,7 +155,7 @@ class Register extends Component {
                 />
               </Form.Group>
             </Form.Row>
-            <Form>
+            <Form.Row>
               <Form.Group controlId="formGridAlerts">
                 <Form.Check
                   type="checkbox"
@@ -165,7 +165,7 @@ class Register extends Component {
                 />
               </Form.Group>
               <AwesomeButton ripple={true} size="medium" type="secondary">Register</AwesomeButton>
-            </Form>
+            </Form.Row>
           </Form>
         </div>
       );
