@@ -1,10 +1,18 @@
 import React, { Component } from 'react';
-import { Form } from 'react-bootstrap';
-import { AwesomeButton } from "react-awesome-button";
+import { Form } from 'react-bootstrap'; 
 import "react-awesome-button/dist/styles.css"
 import axios from 'axios'
 import { Redirect } from 'react-router-dom';
 import setupNotifications from './setupNotifications.js';
+import Image from 'react-bootstrap/Image'
+import loginCat from './assets/loginCat.jpg';
+
+// Material UI
+
+import { TextField, Grid, Button } from '@material-ui/core/';
+import AccountCircle from '@material-ui/icons/AccountCircle';
+import Lock from '@material-ui/icons/Lock';
+
 
 
 class Login extends Component {
@@ -21,6 +29,7 @@ class Login extends Component {
 
     onHandleSubmit = (event) => {
     event.preventDefault();
+    console.log("This worked")
 
 
     axios
@@ -47,28 +56,56 @@ class Login extends Component {
         }
        else {
         return (
+        <React.Fragment>
+          <section className="container-fluid">
+            <div className="row align-items-center">
+              <div className="col-lg-6">
+                <div id="headingGroup" class="text-white text-center d-none d-lg-block">
+                  <h1 className="">PAW PRINT</h1>
+                </div>
+              </div>
+            </div>
+            <div className="col-lg-6">
+              <Image src="login-cat.jpg" fluid />
+            </div>
+          </section>
+        
 
+          
           <div className="login-form">
             <Form onSubmit={this.onHandleSubmit}>
 
-              <Form.Group controlId="formBasicEmail">
-                <Form.Label></Form.Label>
-                <Form.Control className="login-control" onChange={this.handleChange} name='email' type="email" placeholder="Enter email" />
-                <Form.Text className="text-muted">
-                  We'll never share your email with anyone else.
-                </Form.Text>
-              </Form.Group>
+              <div className="email">
+                <Grid container spacing={1} alignItems="flex-end">
+                  <Grid item>
+                    <AccountCircle />
+                  </Grid>
+                  <Grid item>
+                    <TextField id="standard-email-input" className="email-control" type="email" margin="normal" onChange={this.handleChange} name='email' label="Enter Email" required/>
+                  </Grid>
+                </Grid>
+              </div>
 
-              <Form.Group controlId="formBasicPassword">
-                <Form.Label></Form.Label>
-                <Form.Control className="login-control" onChange={this.handleChange} name='password' type="password" placeholder="Password" />
-              </Form.Group>
+              <div className="password-form">
+                <Grid container spacing={1} alignItems="flex-end">
+                  <Grid item>
+                    <Lock />
+                  </Grid>
+                  <Grid item>
+                    <TextField id="standard-password-input" label="Password" className="login-control" type="password" autoComplete="current-password" margin="normal" onChange={this.handleChange} name="password" required />
+                  </Grid>
+                </Grid>
+              </div>
 
-              <AwesomeButton type="secondary">Login</AwesomeButton>
+              <Button type="submit" variant="contained" color="primary" className="login-button">
+                Sign-in
+              </Button>
 
             </Form>
-
+            
           </div>
+          </React.Fragment>
+        
 
 
       )
@@ -76,9 +113,6 @@ class Login extends Component {
 
     }
 }
-
-
-
 
 
 export default Login;
