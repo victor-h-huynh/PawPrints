@@ -9,8 +9,7 @@ class CommentBox extends Component {
         
         this.state = {
             comments: [],
-            data: props.data
-    
+            data: [],
         };
 
         this.__loadComments = this.__loadComments.bind(this);
@@ -19,7 +18,9 @@ class CommentBox extends Component {
     }
     
     componentDidMount() {
+
         this.__loadComments();
+        
     }
     
     __loadComments(){
@@ -28,22 +29,35 @@ class CommentBox extends Component {
         axios.get(`http://localhost:3001/api/pets/${this.props.pet_id}/comments`)
         .then(response => {
             console.log(response)
+            const thisPet = response.data.filter(pet => pet.pet_id === this.props.pet_id)
+            console.log(thisPet)
           this.setState({
-            comments: response.data
+            comments: thisPet
           });
         })
         .catch(error => console.log(error));
     }
 
-    handleDelete = (index) => {
-    
-        let comments = this.state.data;
-        // console.log(comments.id)
+    handleDelete(index) {
+        let comments = this.state.comments;
+        console.log(comments)
+        console.log(index)
         comments.splice(index, 1);
-        
-        this.setState({
-          data: comments
+    axios
+        .put(`http://localhost:3001/api/pets/${this.props.pet_id}/comments`,
+        {
+         
+
         })
+        .then(response => {
+            this.setState({
+                comments: comments
+              });
+          
+        })
+        .catch(err => {
+          console.log('report pet error: ', err);
+        });
     }
 
     _handleCommentSubmit(data) {
