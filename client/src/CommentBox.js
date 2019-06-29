@@ -8,12 +8,14 @@ class CommentBox extends Component {
         super(props);
         
         this.state = {
-            comments: []
+            comments: [],
+            data: props.data
     
         };
 
         this.__loadComments = this.__loadComments.bind(this);
         this._handleCommentSubmit = this._handleCommentSubmit.bind(this);
+        this.handleDelete = this.handleDelete.bind(this);
     }
     
     componentDidMount() {
@@ -31,6 +33,17 @@ class CommentBox extends Component {
           });
         })
         .catch(error => console.log(error));
+    }
+
+    handleDelete = (index) => {
+    
+        let comments = this.state.data;
+        // console.log(comments.id)
+        comments.splice(index, 1);
+        
+        this.setState({
+          data: comments
+        })
     }
 
     _handleCommentSubmit(data) {
@@ -54,11 +67,11 @@ class CommentBox extends Component {
             
             <div className='commentBox'>
                 <CommentForm onCommentSubmit={this._handleCommentSubmit} current_user={this.props.current_user} ></CommentForm>
-                <CommentList comments={this.state.comments} users={this.props.users}></CommentList>
+                <CommentList comments={this.state.comments} users={this.props.users} data={this.state.data} handleDelete={this.handleDelete}></CommentList>
             </div>
         )
     }
-}
+};
 
 
 export default CommentBox;
