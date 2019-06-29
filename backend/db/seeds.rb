@@ -168,7 +168,6 @@ ActiveRecord::Base.connection.disable_referential_integrity do
 
   address_ids = Address.all.pluck(:id)
 
-<<<<<<< HEAD
   User.create!({
     name: "robin",
     email: "robin@gmail.com",
@@ -218,17 +217,6 @@ ActiveRecord::Base.connection.disable_referential_integrity do
   #   phone_number: Faker::PhoneNumber.phone_number,
   #   alerts: alerts.sample,
   #   points: rand(0..5000)})
-=======
-  (1..10).each do
-User.create!({
-  name: Faker::Name.name,
-  email: Faker::Internet.email,
-  password_digest: Faker::Games::Dota.hero,
-  address_id: address_ids[0],
-  phone_number: Faker::PhoneNumber.phone_number,
-  alerts: false,
-  points: rand(0..5000)})
->>>>>>> master
 
   # address_ids.rotate!
 
