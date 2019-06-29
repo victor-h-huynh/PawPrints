@@ -95,6 +95,7 @@ class Register extends Component {
               <Form.Group controlId="formGridName">
                 <Form.Label></Form.Label>
                 <Form.Control
+                  required
                   className="register-control"
                   type="name"
                   name="name"
@@ -107,6 +108,7 @@ class Register extends Component {
               <Form.Group controlId="formGridEmail">
                 <Form.Label></Form.Label>
                 <Form.Control
+                  required
                   className="register-control"
                   name="email"
                   value={this.state.email}
@@ -120,6 +122,7 @@ class Register extends Component {
               <Form.Group controlId="formGridPassword">
                 <Form.Label></Form.Label>
                 <Form.Control
+                  required  
                   className="register-control"
                   type="password"
                   name="password"
@@ -132,6 +135,7 @@ class Register extends Component {
               <Form.Group controlId="formGridPasswordConfirmation">
                 <Form.Label></Form.Label>
                 <Form.Control
+                  required
                   className="register-control"
                   type="password"
                   name="password_confirmation"
@@ -147,6 +151,7 @@ class Register extends Component {
                 <Form.Label></Form.Label>
 
                 <Form.Control
+                  required
                   className="register-control"
                   name="phone_number"
                   placeholder="Enter Phone Number"
@@ -159,10 +164,11 @@ class Register extends Component {
               <Form.Group controlId="formGridAlerts">
                 <Form.Check
                   type="checkbox"
-                  label="Alerts"
+                  label="Alerts (receive a push notification when a pet is lost or found in your area)"
                   name="alerts"
                   onChange={this.handleChecked}
                 />
+                <p>To receive notifications, click allow when you receive the popup</p>
               </Form.Group>
               <AwesomeButton ripple={true} size="medium" type="secondary">Register</AwesomeButton>
             </Form.Row>

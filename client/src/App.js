@@ -11,6 +11,8 @@ import ReportAPet from './ReportAPet.js';
 import PetProfile from './PetProfile.js';
 import Navigationbar from './Navigationbar.js';
 import { PrivateRoute }  from './PrivateRoute';
+import NoMatch from './NoMatch';
+
 
 
 class App extends Component {
@@ -96,10 +98,18 @@ updateNavState = name => {
     this.setState({pets: [...this.state.pets, newPet]})
   }
 
+  removeAPet = (reunitedPet) => {
+    const newPets = this.state.pets.filter(pet => pet.id !== reunitedPet.id);
+    console.log(newPets);
+    this.setState({petsOnMap: newPets})
+  }
+
 
   addAUser = (newUser) => {
     this.setState({users: [...this.state.users, newUser]})
   }
+
+
 
   render() {
 
@@ -116,9 +126,10 @@ updateNavState = name => {
 
               <Route path="/Login" render={props => <Login {...props} updateToken={this.updateToken} token={this.state.token}/>}/>
               <Route path="/Register" render={props => <Register {...props} addAUser={this.addAUser} updateToken={this.updateToken} token={this.state.token}/>}/>
-              <Route path="/Pets/:id" render={props => <PetProfile {...props} pets={this.state.pets} users={this.state.users} addresses={this.state.addresses} current_user={this.state.current_user}/>}/>
+              <Route path="/Pets/:id" render={props => <PetProfile {...props} pets={this.state.pets} users={this.state.users} addresses={this.state.addresses} current_user={this.state.current_user} removeAPet={this.removeAPet}/>}/>
               <Route path="/Users/:id" render={props => <UserProfile {...props} pets={this.state.pets} users={this.state.users} current_user={this.state.current_user} updateNavState={this.updateNavState} addresses={this.state.addresses}/>}/>
               <Route path="/Success" component={Success}/>
+              <Route component={NoMatch}/>
           </Switch>
       </React.Fragment>
     );

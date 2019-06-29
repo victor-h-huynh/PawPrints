@@ -1,8 +1,9 @@
-import React, { Component } from 'react'
-import './App.scss'
-import { ProgressBar, Card, Button, Form } from 'react-bootstrap'
+import React, { Component } from 'react';
+import './App.scss';
+import { ProgressBar, Card, Button, Form } from 'react-bootstrap';
 import Switch from "react-switch";
-import axios from "axios"
+import axios from "axios";
+import setupNotifications from './setupNotifications.js';
 
 class User extends Component {
   state = {
@@ -20,13 +21,21 @@ class User extends Component {
       name: this.props.user.name,
       email: this.props.user.email,
       phone_number: this.props.user.phone_number,
+      alerts: this.props.user.alerts,
     })
   }
 
   handleSwitchChange = (checked) => {
     this.setState({ checked });
-    this.setState({ alerts: checked })
-  }
+    this.setState({ alerts: checked },
+      ()=> {
+        if (this.state.alerts === true) {
+          setupNotifications();
+      } else {
+        axios.post('http://localhost:3001/api/unsubscribe');
+      }
+      })
+    }
 
   handleChange = event => {
     this.setState({

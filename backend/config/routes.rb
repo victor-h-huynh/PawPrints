@@ -11,6 +11,7 @@ Rails.application.routes.draw do
     resources :addresses
     resources :descriptions
     post "/subscribe" => "users#subscribe"
+    post "/unsubcribe" => "users#unsubscribe"
     post "/notification" => "users#send_notification"
     post "/user_notification" =>"users#send_usernotification"
     get '/subscriptions' => "users#get_subscriptions"
