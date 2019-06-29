@@ -65,7 +65,7 @@ class User extends Component {
           this.props.updateNavState(response.data.name)
         })
         .catch(err => {
-          console.log('report pet error: ', err);
+          console.log('report user error: ', err.response.data);
         });
   };
 
@@ -132,6 +132,8 @@ class User extends Component {
         <ProgressBar variant="success" animated now={progress/10} />
       </React.Fragment>
 
+
+      {this.props.current_user.id === this.state.id &&
       <div className="userProfilePage">
 
             <Card className="user">
@@ -143,7 +145,6 @@ class User extends Component {
                   className="register-control"
                   type="name"
                   name="name"
-                  placeholder={this.props.user.name}
                   value={this.state.name}
                   onChange={this.handleChange}
                 />
@@ -164,7 +165,23 @@ class User extends Component {
               </Form>
             </Card.Body>
           </Card>
-          </div>
+          </div>}
+
+
+          {this.props.current_user.id !== this.state.id &&
+            <div className="userProfile">
+            <Card className="user">
+            <Card.Body>
+              <Card.Text>
+              <div>Name: {this.state.name}</div>
+              <div>Email: {this.state.email}</div>
+                <div>Phone Number: {this.state.phone_number}</div>
+              </Card.Text>
+            </Card.Body>
+          </Card>
+          </div>}
+
+
 
 
 </React.Fragment>
