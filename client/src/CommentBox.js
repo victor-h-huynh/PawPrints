@@ -46,14 +46,14 @@ class CommentBox extends Component {
     axios
         .put(`http://localhost:3001/api/pets/${this.props.pet_id}/comments`,
         {
-         
+            comments: this.state.comments,
+            data: this.state.data,
 
         })
         .then(response => {
             this.setState({
-                comments: comments
+                comments: response.data.comments
               });
-          
         })
         .catch(err => {
           console.log('report pet error: ', err);
