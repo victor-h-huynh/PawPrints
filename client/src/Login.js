@@ -29,14 +29,13 @@ class Login extends Component {
         password: this.state.password
       })
       .then(response => {
-        console.log('')
         localStorage.setItem('token', response.data.token);
         axios.defaults.headers.common['Authorization'] = response.data.token;
         this.props.updateToken(response.data.token);
         setupNotifications();
       })
       .catch(err => {
-        console.log(' register user error: ', err);
+        console.log(" register user error: ", err.response);
       });
 
 }
@@ -53,7 +52,7 @@ class Login extends Component {
 
               <Form.Group controlId="formBasicEmail">
                 <Form.Label></Form.Label>
-                <Form.Control className="login-control" onChange={this.handleChange} name='email' type="email" placeholder="Enter email" />
+                <Form.Control required className="login-control" onChange={this.handleChange} name='email' type="email" placeholder="Enter email" />
                 <Form.Text className="text-muted">
                   We'll never share your email with anyone else.
                 </Form.Text>
@@ -61,7 +60,7 @@ class Login extends Component {
 
               <Form.Group controlId="formBasicPassword">
                 <Form.Label></Form.Label>
-                <Form.Control className="login-control" onChange={this.handleChange} name='password' type="password" placeholder="Password" />
+                <Form.Control required className="login-control" onChange={this.handleChange} name='password' type="password" placeholder="Password" />
               </Form.Group>
 
               <AwesomeButton type="secondary">Login</AwesomeButton>

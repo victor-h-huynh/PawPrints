@@ -23,7 +23,7 @@ class Api::PetsController < ApplicationController
       if pet.save
         render :json => pet, :include=> [:address, :user, :description]
       else
-        render :new
+        render :json => pet.errors
       end
 
     end
@@ -61,7 +61,7 @@ class Api::PetsController < ApplicationController
       if @pet.save
         render :json => @pet, :include=> [:address, :user, :description]
       else
-        render :new
+        render :json => @pet.errors.full_messages
       end
 
     end
