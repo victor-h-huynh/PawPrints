@@ -38,7 +38,7 @@ axios
       reunited: date
     })
     .then(response => {
-      console.log(response);
+
       this.setState({
         redirectToCongratulations: true,
         status: response.data.status,
@@ -55,14 +55,16 @@ petFound = event => {
   event.preventDefault()
   const previousPending = this.props.pet.pending
   const newPending = [...previousPending, this.props.current_user.id]
-  const petOwner = this.props.user
-  if(petOwner.alerts == true){
-    axios.post('/api/notification', 
-      {message: `A ${this.state.species} was ${this.state.status} in your area.`,
-      image: (this.state.picture? this.state.picture: null),
-      URL: `http:localhost/pets${response.data.id}`});
+  
+  //send notification
+  const petOwner = this.props.pet.user
+  console.log(petOwner);
+  if(petOwner.alerts === true) {
+    axios.post('/api/user_notification', 
+      { id: petOwner.id,
+        message: `Another user thinks they have found your pet!`,
+      URL: `http:localhost/users${petOwner.id}`});
     }
-  })
 
   axios
     .put(`http://localhost:3001/api/pets/${this.props.pet.id}`,
@@ -87,10 +89,19 @@ petFound = event => {
 
 notMyPet = (event, id) => {
   event.preventDefault()
-//Send notification?
+
   const previousPending = this.state.pending
   const userIndex = previousPending.findIndex(element => element === id)
   previousPending.splice(userIndex, 1)
+
+  //Send notification
+  const helpfulUser = this.props.users.filter(el => el.id === id)
+  if(helpfulUser[0].alerts === true) {
+    axios.post('/api/user_notification', 
+      { id: id,
+        message: `Sorry, the pet you found is not ${this.props.pet.name}`,
+      URL: `http:localhost/users${id}`});
+    }
 
 
   axios
@@ -101,7 +112,6 @@ notMyPet = (event, id) => {
       pending: previousPending,
     })
     .then(response => {
-      console.log(response);
       this.setState({
         pending: response.data.pending
       })
@@ -120,6 +130,15 @@ someoneFoundMyPet = (event, id) => {
   const newPoints = previousPoints + 1500
   const date = new Date()
 
+  //send notification
+  const helpfulUser = this.props.users.filter(el => el.id === id)
+  if(helpfulUser[0].alerts === true) {
+    axios.post('/api/user_notification', 
+      { id: id,
+        message: `The pet you found is ${this.props.pet.name}! Congratulations!`,
+      URL: `http:localhost/users${id}`});
+    }
+
   axios
     .put(`http://localhost:3001/api/pets/${this.props.pet.id}`,
     {
@@ -129,7 +148,6 @@ someoneFoundMyPet = (event, id) => {
       reunited: date
     })
     .then(response => {
-      console.log(response);
       this.setState({
         redirectToCongratulations: true,
         status: response.data.status,
