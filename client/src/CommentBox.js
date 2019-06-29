@@ -43,21 +43,24 @@ class CommentBox extends Component {
         console.log(comments)
         console.log(index)
         comments.splice(index, 1);
-    axios
-        .put(`http://localhost:3001/api/pets/${this.props.pet_id}/comments`,
-        {
-            comments: this.state.comments,
-            data: this.state.data,
+        this.setState({
+            comments: comments
+          });
+    // axios
+    //     .put(`http://localhost:3001/api/pets/${this.props.pet_id}/comments`,
+    //     {
+    //         comments: this.state.comments,
+    //         data: this.state.data,
 
-        })
-        .then(response => {
-            this.setState({
-                comments: response.data.comments
-              });
-        })
-        .catch(err => {
-          console.log('report pet error: ', err);
-        });
+    //     })
+    //     .then(response => {
+    //         this.setState({
+    //             comments: response.data.comments
+    //           });
+    //     })
+    //     .catch(err => {
+    //       console.log('report pet error: ', err);
+    //     });
     }
 
     _handleCommentSubmit(data) {
