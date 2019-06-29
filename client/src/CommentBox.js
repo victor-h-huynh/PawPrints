@@ -40,27 +40,16 @@ class CommentBox extends Component {
 
     handleDelete(index) {
         let comments = this.state.comments;
-        console.log(comments)
-        console.log(index)
+        const theComment = this.state.comments[index].id;
         comments.splice(index, 1);
         this.setState({
             comments: comments
           });
-    // axios
-    //     .put(`http://localhost:3001/api/pets/${this.props.pet_id}/comments`,
-    //     {
-    //         comments: this.state.comments,
-    //         data: this.state.data,
 
-    //     })
-    //     .then(response => {
-    //         this.setState({
-    //             comments: response.data.comments
-    //           });
-    //     })
-    //     .catch(err => {
-    //       console.log('report pet error: ', err);
-    //     });
+          axios.delete(`http://localhost:3001/api/pets/${this.props.pet_id}/comments/${theComment}`).then(response => {
+              console.log(response)
+          }
+          )
     }
 
     _handleCommentSubmit(data) {
