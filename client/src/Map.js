@@ -22,6 +22,7 @@ class Map extends Component {
     sw: '',
     colour: 'All',
     species: 'All',
+    time: 'All time',
 
   }
 
@@ -38,6 +39,8 @@ class Map extends Component {
       [event.target.name]: event.target.value
     }, () => {
     const petOnMapArray = this.props.pets.filter(pet =>
+      // console.log(new Date(pet.date_lost).getTime(), this.state.time)
+      (new Date(pet.date_lost).getTime() > this.state.time || this.state.time === "All time") &&
       (pet.status === this.state.status || this.state.status === "All") &&
       (pet.description.colour === this.state.colour || this.state.colour === "All") &&
       (pet.species === this.state.species || this.state.species === "All") &&
@@ -114,15 +117,24 @@ class Map extends Component {
 
 componentDidMount() {
 
+
+
 }
 
   render() {
+
+  const time = Date.now()
+  const yesterday = time - 86400000
+  const threedays = time - (86400000*3)
+  const fivedays = time - (86400000*5)
+  const week = time - (86400000*7)
+
 
 return (
 <React.Fragment>
 <Form.Row>
 <Form.Group as={Col} controlId='formGridColour'>
-              <Form.Label>Colour</Form.Label>
+              <Form.Label></Form.Label>
               <Form.Control
                 as='select'
                 name='colour'
@@ -133,12 +145,16 @@ return (
                 <option>Black</option>
                 <option>White</option>
                 <option>Grey</option>
-                <option>Red</option>
+                <option>Orange</option>
+                <option>Brown</option>
+                <option>Beige/Fawn</option>
+                <option>Multicoloured</option>
+
               </Form.Control>
             </Form.Group>
 
             <Form.Group as={Col} controlId='formGridStatus'>
-              <Form.Label>Status</Form.Label>
+              <Form.Label></Form.Label>
               <Form.Control
                 as='select'
                 name='status'
@@ -148,12 +164,12 @@ return (
                 <option>All</option>
                 <option>Lost</option>
                 <option>Found</option>
-                <option>Reunited</option>
+                <option>Spotted</option>
               </Form.Control>
             </Form.Group>
 
 <Form.Group as={Col} controlId='formGridFamily'>
-              <Form.Label>Family</Form.Label>
+              <Form.Label></Form.Label>
               <Form.Control
                 as='select'
                 name='species'
@@ -163,6 +179,22 @@ return (
                 <option>All</option>
                 <option>Cat</option>
                 <option>Dog</option>
+              </Form.Control>
+            </Form.Group>
+
+            <Form.Group as={Col} controlId='formGridTime'>
+              <Form.Label></Form.Label>
+              <Form.Control
+                as='select'
+                name='time'
+                value={this.state.time}
+                onChange={this.handleChange}
+              >
+                <option>All time</option>
+                <option>{week}</option>
+                <option>{fivedays}</option>
+                <option>{threedays}</option>
+                <option>{yesterday}</option>
               </Form.Control>
             </Form.Group>
 
@@ -182,6 +214,7 @@ return (
             this.setState({sw: this.map.getBounds().getSouthWest()});
 
             const petOnMapArray = this.props.pets.filter(pet =>
+            (new Date(pet.date_lost).getTime() > this.state.time || this.state.time === "All time") &&
               (pet.status === this.state.status || this.state.status === "All") &&
               (pet.description.colour === this.state.colour || this.state.colour === "All") &&
               (pet.species === this.state.species || this.state.species === "All") &&

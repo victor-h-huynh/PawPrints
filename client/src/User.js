@@ -1,8 +1,12 @@
-import React, { Component } from 'react'
-import './App.scss'
-import { ProgressBar, Card, Button, Form } from 'react-bootstrap'
+import React, { Component } from 'react';
+import './App.scss';
+import { ProgressBar, Card, Button, Form } from 'react-bootstrap';
 import Switch from "react-switch";
-import axios from "axios"
+import axios from "axios";
+import setupNotifications from './setupNotifications.js';
+import TimeAgo from 'react-timeago';
+import { Link } from 'react-router-dom'
+import { Badge } from 'react-bootstrap';
 
 class User extends Component {
   state = {
@@ -11,22 +15,42 @@ class User extends Component {
     name: "",
     phone_number: "",
     alerts: false,
+    current_user_id: 0,
+    userPet: []
   }
 
   componentDidMount() {
+    let current_user_id
+     if (!this.props.current_user) {
+      current_user_id = 0
+     }
+     else {
+      current_user_id = this.props.current_user.id
+     }
+     const userPet = this.props.pets.filter(pet => pet.user_id === this.props.user.id)
     this.setState({
       checked: this.props.user.alerts,
       id: this.props.user.id,
       name: this.props.user.name,
       email: this.props.user.email,
       phone_number: this.props.user.phone_number,
+      alerts: this.props.user.alerts,
+      current_user_id: current_user_id,
+      userPet: userPet
     })
   }
 
   handleSwitchChange = (checked) => {
     this.setState({ checked });
-    this.setState({ alerts: checked })
-  }
+    this.setState({ alerts: checked },
+      ()=> {
+        if (this.state.alerts === true) {
+          setupNotifications();
+      } else {
+        axios.post('http://localhost:3001/api/unsubscribe');
+      }
+      })
+    }
 
   handleChange = event => {
     this.setState({
@@ -36,7 +60,6 @@ class User extends Component {
 
   handleSubmit = event => {
     event.preventDefault();
-      console.log("click works")
     axios
         .put(`http://localhost:3001/api/users/${this.props.user.id}`,
         {
@@ -57,7 +80,7 @@ class User extends Component {
           this.props.updateNavState(response.data.name)
         })
         .catch(err => {
-          console.log('report pet error: ', err);
+          console.log('report user error: ', err.response.data);
         });
   };
 
@@ -124,10 +147,13 @@ class User extends Component {
         <ProgressBar variant="success" animated now={progress/10} />
       </React.Fragment>
 
+
+      {this.props.current_user && this.state.current_user_id === this.state.id &&
       <div className="userProfilePage">
 
             <Card className="user">
             <Card.Body>
+            <Card.Text> Email: {this.state.email}</Card.Text>
             <Form>
               <Form.Group controlId="formGridName">
                 <Form.Label/>
@@ -135,7 +161,6 @@ class User extends Component {
                   className="register-control"
                   type="name"
                   name="name"
-                  placeholder={this.props.user.name}
                   value={this.state.name}
                   onChange={this.handleChange}
                 />
@@ -156,7 +181,47 @@ class User extends Component {
               </Form>
             </Card.Body>
           </Card>
+          </div>}
+
+
+          {this.state.current_user_id !== this.state.id &&
+            <div className="userProfile">
+            <Card className="user">
+            <Card.Body>
+              <Card.Text>
+              <div>Name: {this.state.name}</div>
+              <div>Email: {this.state.email}</div>
+                <div>Phone Number: {this.state.phone_number}</div>
+              </Card.Text>
+            </Card.Body>
+          </Card>
+          </div>}
+
+
+
+          <div className="Pets">
+            {this.state.userPet.map(pet =>
+          <section key={pet.id}>
+
+          <article className="card">
+  <div className="image">
+  <img key={pet.id} src={pet.picture} alt=""/>
+  </div>
+  <div className="entry">
+    <div className="container">
+      <div className="text">
+        <h1 className="card-title">{pet.name}</h1>
+        <span className="meta"> <TimeAgo date={pet.date_lost}/></span><Badge pill variant="danger" className="button button3">{pet.status}</Badge>
+        <p>{pet.species}, {pet.description.breed} </p> <Link to={`/pets/${pet.id}`} className="btn btn-primary">more details</Link>
+      </div>
+    </div>
+  </div>
+</article>
+</section>
+          )}
           </div>
+
+
 
 
 </React.Fragment>

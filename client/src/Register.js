@@ -3,7 +3,7 @@ import "react-awesome-button/dist/styles.css";
 import axios from "axios";
 import { Redirect } from "react-router-dom";
 import React, { Component } from 'react';
-import { Form } from 'react-bootstrap';
+import { Form, Alert } from 'react-bootstrap';
 import 'react-awesome-button/dist/styles.css';
 import setupNotifications from './setupNotifications.js';
 
@@ -32,6 +32,9 @@ class Register extends Component {
       longitude: -73.567
     };
   }
+
+
+
 
   handleChange = event => {
     this.setState({
@@ -81,20 +84,28 @@ class Register extends Component {
         });
       })
       .catch(err => {
-        console.log(" register user error: ", err);
+        console.log(" register user error: ", err.response.data);
+        this.showAlerts(err)
       });
   };
+
+  showAlerts = errors => { return ( <Alert variant="dark"> Hello </Alert> ) }
+
+
   render() {
     if (this.state.redirectToLogin === true) {
       return <Redirect to={`/Login`} />;
     } else {
       return (
+        <React.Fragment>
+        {this.showAlerts()}
         <div className="register-form">
           <Form onSubmit={this.handleSubmit}>
             <Form.Row>
               <Form.Group controlId="formGridName">
                 <Form.Label></Form.Label>
                 <Form.Control
+                  required
                   className="register-control"
                   type="name"
                   name="name"
@@ -107,6 +118,7 @@ class Register extends Component {
               <Form.Group controlId="formGridEmail">
                 <Form.Label></Form.Label>
                 <Form.Control
+                  required
                   className="register-control"
                   name="email"
                   value={this.state.email}
@@ -120,6 +132,7 @@ class Register extends Component {
               <Form.Group controlId="formGridPassword">
                 <Form.Label></Form.Label>
                 <Form.Control
+                  required
                   className="register-control"
                   type="password"
                   name="password"
@@ -132,6 +145,7 @@ class Register extends Component {
               <Form.Group controlId="formGridPasswordConfirmation">
                 <Form.Label></Form.Label>
                 <Form.Control
+                  required
                   className="register-control"
                   type="password"
                   name="password_confirmation"
@@ -147,6 +161,7 @@ class Register extends Component {
                 <Form.Label></Form.Label>
 
                 <Form.Control
+                  required
                   className="register-control"
                   name="phone_number"
                   placeholder="Enter Phone Number"
@@ -159,15 +174,17 @@ class Register extends Component {
               <Form.Group controlId="formGridAlerts">
                 <Form.Check
                   type="checkbox"
-                  label="Alerts"
+                  label="Alerts (receive a push notification when a pet is lost or found in your area)"
                   name="alerts"
                   onChange={this.handleChecked}
                 />
+                <p>To receive notifications, click allow when you receive the popup</p>
               </Form.Group>
               <AwesomeButton ripple={true} size="medium" type="secondary">Register</AwesomeButton>
             </Form.Row>
           </Form>
         </div>
+        </React.Fragment>
       );
     }
   }
