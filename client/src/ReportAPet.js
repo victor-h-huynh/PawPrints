@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Form, Col, Alert } from 'react-bootstrap';
+import { Form } from 'react-bootstrap';
 import axios from 'axios';
 import PetMap from './PetMap.js';
 import { Redirect } from 'react-router-dom';
@@ -8,21 +8,16 @@ import paw from './paw.png';
 
 
 import Input from '@material-ui/core/Input';
-import OutlinedInput from '@material-ui/core/OutlinedInput';
-import FilledInput from '@material-ui/core/FilledInput';
 import InputLabel from '@material-ui/core/InputLabel';
-import MenuItem from '@material-ui/core/MenuItem';
-import FormHelperText from '@material-ui/core/FormHelperText';
 import FormControl from '@material-ui/core/FormControl';
-import Select from '@material-ui/core/Select';
 import { TextField, Grid, Button } from '@material-ui/core/';
 import NativeSelect from '@material-ui/core/NativeSelect';
-import {
-  MuiPickersUtilsProvider,
-  KeyboardTimePicker,
-  KeyboardDatePicker,
-} from '@material-ui/pickers';
-import DateFnsUtils from '@date-io/date-fns';
+// import {
+//   MuiPickersUtilsProvider,
+//   KeyboardTimePicker,
+//   KeyboardDatePicker,
+// } from '@material-ui/pickers';
+// import DateFnsUtils from '@date-io/date-fns';
 
 
 class ReportAPet extends Component {
@@ -281,7 +276,9 @@ resize = picture => {
         <React.Fragment>
         <div className="report-a-pet">
           <h2 className="login-title">Report a lost, found or spotted pet</h2>
-          <Form onSubmit={this.handleSubmit} autoComplete="off">
+          
+          
+          <Form className="petform" onSubmit={this.handleSubmit} autoComplete="off">
 
             <FormControl required className="status">
               <InputLabel name="status" margin="normal" htmlFor="status-native-helper">Status</InputLabel>
@@ -320,7 +317,7 @@ resize = picture => {
 
             <div className="breed">
                 <Grid item>
-                  <TextField name="breed" margin="normal" onChange={this.handleChange} label="Breed" required/>
+                  <TextField name="breed" margin="normal" onChange={this.handleChange} label="Breed"/>
                 </Grid>
             </div>
 
@@ -363,18 +360,22 @@ resize = picture => {
                 </Grid>
             </div>
 
-            <MuiPickersUtilsProvider utils={DateFnsUtils}>
-      <Grid container className={classes.grid} justify="space-around">
-        <KeyboardDatePicker
-          margin="normal"
-          id="mui-pickers-date"
-          label="Date picker"
-          value={selectedDate}
-          onChange={handleDateChange}
-          KeyboardButtonProps={{
-            'aria-label': 'change date',
-          }}
-        />
+                {/* BUILT IN CALENDAR THAT MIGHT NEED MORE PACKAGES             */}
+              {/* <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                <Grid container className="date_lost" justify="space-around">
+                <KeyboardDatePicker
+                  margin="normal"
+                  id="mui-pickers-date"
+                  label="Date Lost/Found"
+                  value={this.state.date_lost}
+                  onChange={this.handleChange}
+                  KeyboardButtonProps={{
+                    'aria-label': 'change date',
+                  }}
+                />
+               </Grid>
+               </MuiPickersUtilsProvider> */}
+           
 
              <TextField
                 id="outlined-multiline-static"

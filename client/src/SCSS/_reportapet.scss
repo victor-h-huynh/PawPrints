@@ -1,5 +1,6 @@
  // REPORT A PET
  .report-a-pet {
+
     width: 100%;
     max-width: 1000px;
     min-width: auto;
@@ -8,6 +9,18 @@
     height: 100%;
     text-align: center;
     box-shadow: 0px 9px 0px 0px rgba(255, 255, 255, 0), 0px -9px 0px 0px rgba(255, 255, 255, 0), 10px 0px 30px 0px rgba(0, 0, 0, 0.15), -10px 0px 30px 0px rgba(0, 0, 0, 0.15);
+  }
+  // .petform {
+  //   display:flex;
+  //   flex: wrap;
+  //   justify-content: space-evenly;
+  // }
+  .species {
+    width: 8rem;
+  }
+
+  .date_lost {
+    width: 15rem;
   }
   
   .report-a-pet-control {
