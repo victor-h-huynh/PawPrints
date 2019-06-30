@@ -5,6 +5,8 @@ import TimeAgo from 'react-timeago';
 import { Map, Marker, GoogleApiWrapper } from 'google-maps-react';
 import axios from 'axios'
 import { Form } from 'react-bootstrap';
+import ReactToPrint from 'react-to-print';
+import PetTemplate from './PetTemplate.js'
 
 class Pet extends Component {
   constructor(props) {
@@ -17,7 +19,8 @@ class Pet extends Component {
     redirectToCongratulations: false,
     status: '',
     reunited: "",
-    button: false
+    button: false,
+    print: false
   }
 
 componentDidMount() {
@@ -33,13 +36,16 @@ componentDidMount() {
 petReunited = event => {
   console.log(this.props);
 event.preventDefault()
+const previousPending = this.props.pending
+previousPending.length = 0
 const date = new Date()
 axios
     .put(`http://localhost:3001/api/pets/${this.props.pet.id}`,
     {
       update: 1,
       id: this.props.pet.id,
-      reunited: date
+      reunited: date,
+      pending: previousPending,
     })
     .then(response => {
 
@@ -54,6 +60,7 @@ axios
     });
 this.props.removeAPet(this.props.pet)
 }
+
 
 petFound = event => {
   event.preventDefault()
@@ -180,6 +187,59 @@ someoneFoundMyPet = (event, id) => {
 
 }
 
+thisIsMyPet = event => {
+  event.preventDefault()
+  console.log("Hello there")
+  const previousPending = this.state.pending
+  previousPending.length = 0
+  const givePointsTo = this.props.users.filter(el => el.id === this.props.pet.user_id)
+  const previousPoints = givePointsTo[0].points
+  const newPoints = previousPoints + 1500
+  const date = new Date()
+
+  if(givePointsTo[0].alerts === true) {
+    axios.post('/api/user_notification',
+      { id: this.props.pet.user_id,
+        message: `The pet you found is ${this.props.pet.name}! Congratulations!`,
+      URL: `http:localhost/users${this.props.pet.user_id}`});
+    }
+
+  axios
+    .put(`http://localhost:3001/api/pets/${this.props.pet.id}`,
+    {
+      update: 5,
+      id: this.props.pet.id,
+      pending: previousPending,
+      reunited: date
+    })
+    .then(response => {
+      this.setState({
+        redirectToCongratulations: true,
+        status: response.data.status,
+        reunited: date,
+        pending: response.data.pending
+      });
+    })
+    .catch(err => {
+      console.log('report pet error: ', err);
+    });
+
+  axios
+    .put(`http://localhost:3001/api/users/${this.props.pet.user_id}`,
+    {
+      update: 1,
+      id: this.props.pet.user_id,
+      points: newPoints,
+    })
+    .then(response => {
+      console.log(response);
+
+    })
+    .catch(err => {
+      console.log('report pet error: ', err);
+    });
+
+}
 
 renderButtons = () => {
 
@@ -227,6 +287,15 @@ renderButtons = () => {
     {buttons} </div>)
   }
 
+  } else if (this.state.current_user.id !== this.props.pet.user_id){
+    return(
+            <Form onSubmit={this.thisIsMyPet}>
+            <Button variant='primary' type='submit'>
+            This is my pet!
+            </Button>
+            </Form>
+            )
+
   } else if (this.state.pending.includes(this.state.current_user.id) ){
     return(
             <Form onSubmit={this.petFound}>
@@ -261,10 +330,16 @@ render() {
   } else if (pet.status === "Spotted") {
     status = "info"
   }
-return (
 
+
+return (
 <div className="petProfilePage">
 
+<ReactToPrint
+          trigger={() => <a href="#">Print this out!</a>}
+          content={() => this.componentRef}
+        />
+ <PetTemplate print={this.props.print} current_user={this.props.current_user} pet={pet} users={this.props.users} removeAPet={this.props.removeAPet} ref={el => (this.componentRef = el)}/>
 
 {this.state.current_user && this.renderButtons()}
 
@@ -314,6 +389,7 @@ return (
             </Card.Body>
           </Card>
           </div>
+
     )
    }
 }

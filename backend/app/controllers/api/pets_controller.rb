@@ -11,12 +11,17 @@ class Api::PetsController < ApplicationController
       if params['update'] == 1
       pet.update(status: 'Reunited')
       pet.update(date_reunited: params['reunited'])
+      pet.update(pending: params['pending'])
       elsif params['update'] == 2
       pet.update(pending: params['pending'])
       elsif params['update'] == 3
       pet.update(pending: params['pending'])
       elsif params['update'] == 4
       pet.update(pending: params['pending'])
+    elsif params['update'] == 5
+      pet.update(pending: params['pending'])
+      pet.update(status: 'Reunited')
+      pet.update(date_reunited: params['reunited'])
 
 
       end
