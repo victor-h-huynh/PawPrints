@@ -278,7 +278,8 @@ resize = picture => {
           <h2 className="login-title">Report a lost, found or spotted pet</h2>
           
           
-          <Form className="petform" onSubmit={this.handleSubmit} autoComplete="off">
+          <Form onSubmit={this.handleSubmit} autoComplete="off">
+            <div className="flextheform">
 
             <FormControl required className="status">
               <InputLabel name="status" margin="normal" htmlFor="status-native-helper">Status</InputLabel>
@@ -358,6 +359,7 @@ resize = picture => {
                 <Grid item>
                   <TextField name="date_lost" margin="normal" onChange={this.handleChange} label="Date Lost/Spotted/Found" required/>
                 </Grid>
+            </div>
             </div>
 
                 {/* BUILT IN CALENDAR THAT MIGHT NEED MORE PACKAGES             */}
