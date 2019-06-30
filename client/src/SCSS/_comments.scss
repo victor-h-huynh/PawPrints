@@ -79,18 +79,8 @@ body {
      font-size: 12px;
      color: $global_button;
  }
- 
- .bar {
-     position: relative;
-     display: block;
-     width: auto;
- }
- 
- /* active state */
- input:focus ~ .bar:before,
- input:focus ~ .bar:after {
-     width: 50%;
- }
+
+
  
  input[type='submit'] {
      border: 1px solid $global_button;
@@ -180,36 +170,7 @@ input:focus ~ label,
     color: $medblue;
 }
 
-.bar {
-    position: relative;
-    display: block;
-    width: 200px;
-}
 
-.bar:before,
-.bar:after {
-    content: '';
-    height: 2px;
-    width: 0;
-    bottom: 1px;
-    position: absolute;
-    background: $global_button;
-    transition: 0.2s ease all;
-}
-
-.bar:before {
-    left: 50%;
-}
-
-.bar:after {
-    right: 50%;
-}
-
-/* active state */
-input:focus ~ .bar:before,
-input:focus ~ .bar:after {
-    width: 50%;
-}
 
 input[type='submit'] {
     border: 1px solid $medblue;
@@ -235,15 +196,6 @@ input[type='submit']:hover {
     margin-bottom: 10px;
     background-color: $medblue;
 }
-
-// .comment:hover {
-//     color: rgba(0, 39, 59, .35);
-//     background-color: $indianred;
-// }
-
-// .commentAuthor {
-//     color: #fff;
-// }
 
 .commentBody {
     color: #fff;
