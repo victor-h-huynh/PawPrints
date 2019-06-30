@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Form, Button, Col } from 'react-bootstrap';
+import { Form, Button, Col, Alert } from 'react-bootstrap';
 import axios from 'axios';
 import PetMap from './PetMap.js';
 import { Redirect } from 'react-router-dom';
@@ -21,7 +21,7 @@ class ReportAPet extends Component {
       picture: null,
       picture_merged: null,
       current_user: '',
-
+      errors: [],
       breed: '',
       colour: '',
       sex: '',
@@ -133,8 +133,11 @@ class ReportAPet extends Component {
           URL: `http:localhost/pets${response.data.id}`});
         }
       })
-    .catch(error => {
-      console.log('report pet error: ', error.response.data);
+    .catch(err => {
+      console.log('report pet error: ', err.response.data);
+      this.setState({
+          errors: err.response.data
+        })
     });
 
 }
@@ -252,13 +255,18 @@ resize = picture => {
   }
 
   render() {
+      const { errors } = this.state;
     if (this.state.redirectToProfile === true) {
       return <Redirect to={`/pets/${this.state.id}`} />;
     } else {
       return (
         <div className="report-a-pet">
+        {errors.map(error => (
+          <Alert variant="danger" key={error}>Error: {error}</Alert>
+        ))}
 
         <Form onSubmit={this.handleSubmit}>
+
 
         <Form.Row>
           <Form.Group as={Col} controlId='formGridStatus'>

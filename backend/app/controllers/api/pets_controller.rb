@@ -23,7 +23,7 @@ class Api::PetsController < ApplicationController
       if pet.save
         render :json => pet, :include=> [:address, :user, :description]
       else
-        render :json => pet.errors.full_messages
+        render status: :not_found, :json => pet.errors.full_messages
       end
 
     end
@@ -66,8 +66,6 @@ class Api::PetsController < ApplicationController
         render :json => @pet, :include=> [:address, :user, :description]
       else
         render status: :not_found, :json => @pet.errors.full_messages
-        render status: :not_found, :json => @address.errors.full_messages
-        render status: :not_found, :json => @description.errors.full_messages
       end
 
     end
