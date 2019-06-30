@@ -372,6 +372,7 @@ resize = picture => {
             </Form.Group>
           </Form.Row>
 
+
           <Form.Row>
             <Form.Group as={Col} controlId='formGridAdditionalComments'>
               <Form.Label></Form.Label>
@@ -392,8 +393,9 @@ resize = picture => {
               onChange={this.fileSelectedHandler}
             />
           </Form.Row>
-
+          
           <Form style={{ margin: '25px', marginBottom: '50px' }}>
+
             <PetMap
               updateParentState={this.updateParentState}
               parentState={this.state}
@@ -404,12 +406,14 @@ resize = picture => {
               zoom={15}
               userLocation={this.props.userLocation}
             />
-          </Form>
-
-          <Button className="report-a-pet-btn" variant='primary' type='submit'>
+                    <Button className="report-a-pet-btn" variant='primary' type='submit'>
             Submit
           </Button>
+          </Form>
+          
+
         </Form>
+
         </div>
       );
     }
