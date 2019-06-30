@@ -1,0 +1,262 @@
+$background: #f3f3f3;
+$teal: #08708A;
+$cerulean: #56b1bF;
+$hunter: #032b2f;
+$ink: #193446;
+$azul: #A0c1b8;
+$bolivia: #709fb0;
+$acaranda: #726A95;
+$malber: #351f39;
+$darkslategray: #365660;
+$indianred: #C46168;
+
+
+body {
+
+ // COMMENT BOX
+ @import url(https://fonts.googleapis.com/css?family=Roboto);
+ * {
+     cursor: default;
+     font-family: 'Roboto', sans-serif;
+     box-sizing: auto;
+ }
+ 
+ .commentBox {
+     box-shadow: 0px 9px 0px 0px rgba(255, 255, 255, 0), 0px -9px 0px 0px rgba(255, 255, 255, 0), 10px 0px 30px 0px rgba(0, 0, 0, 0.15), -10px 0px 30px 0px rgba(0, 0, 0, 0.15);
+     width: 80vw;
+     min-width: 600px;
+     min-height: 150px;
+     position: relative;
+     margin: 15px auto;
+     padding: 20px;
+     font-family: "Helvetica Neue", arial, sans-serif;
+     font-size: 15px;
+     border-radius: 5px;
+ }
+ 
+ .commentForm {
+     margin-bottom: 55px;
+ }
+ 
+ .group {
+     position: relative;
+     margin-top: 25px;
+ }
+ 
+ .input {
+     padding: 10px 10px 10px 5px;
+     display: block;
+     border: none;
+     border-bottom: 1px solid #ccc;
+     width: 460px;
+ 
+     color: $hunter;
+     font-family: "Helvetica Neue", arial, sans-serif;
+     font-size: 15px;
+     cursor: pointer;
+     outline: none;
+ }
+ 
+ .delete-button {
+   font-size: 0.8em;
+   color: $background;
+   float: right;
+   border: 1px solid $background;
+   text-transform: uppercase;
+   background-color: $indianred;
+ }
+ 
+ label {
+     color: #ccc;
+     font-size: 15px;
+     position: absolute;
+     pointer-events: none;
+     left: 5px;
+     top: 10px;
+     transition: 0.2s ease all;
+ }
+ 
+ /* active state */
+ input:focus ~ label,
+ .active {
+     top: -18px;
+     font-size: 12px;
+     color: $indianred;
+ }
+ 
+ .bar {
+     position: relative;
+     display: block;
+     width: auto;
+ }
+ 
+ /* active state */
+ input:focus ~ .bar:before,
+ input:focus ~ .bar:after {
+     width: 50%;
+ }
+ 
+ input[type='submit'] {
+     border: 1px solid $indianred;
+     color: $indianred;
+     text-transform: uppercase;
+     font-weight: bold;
+     padding: 8px 10px;
+     background-color: transparent;
+     outline: 0;
+     float: right;
+     margin-top: 15px;
+     cursor: pointer;
+ }
+ 
+ input[type='submit']:hover {
+     color: #fff;
+     background-color: $indianred;
+ }
+ 
+ .comment {
+     padding: 15px;
+     min-height: 48px;
+     margin-bottom: 10px;
+     background-color: $indianred;
+     font-size: 25px;
+     // display: flex;
+ }
+ 
+ .comment:hover {
+     color: rgba(0, 39, 59, .35);
+     background-color: #eee;
+ }
+ 
+ .commentAuthor {
+   font-size: 0.8em;  
+   color: $background;
+     // display: flex;
+   }
+   
+   .commentBody {
+     
+     color: #fff;
+ }
+
+
+}
+
+
+
+
+
+
+
+
+
+//Comment form
+.commentForm {
+    margin-bottom: 55px;
+}
+
+.group {
+    position: relative;
+    margin-top: 25px;
+}
+
+.input {
+    padding: 10px 10px 10px 5px;
+    display: block;
+    border: none;
+    border-bottom: 1px solid #ccc;
+    width: 485px;
+    color: $hunter;
+    font-family: "Helvetica Neue", arial, sans-serif;
+    font-size: 15px;
+    cursor: pointer;
+    outline: none;
+}
+
+label {
+    color: #ccc;
+    font-size: 15px;
+    position: absolute;
+    pointer-events: none;
+    left: 5px;
+    top: 10px;
+    transition: 0.2s ease all;
+}
+
+/* active state */
+input:focus ~ label,
+.active {
+    top: -10px;
+    font-size: 12px;
+    color: $indianred;
+}
+
+.bar {
+    position: relative;
+    display: block;
+    width: 500px;
+}
+
+.bar:before,
+.bar:after {
+    content: '';
+    height: 2px;
+    width: 0;
+    bottom: 1px;
+    position: absolute;
+    background: $indianred;
+    transition: 0.2s ease all;
+}
+
+.bar:before {
+    left: 50%;
+}
+
+.bar:after {
+    right: 50%;
+}
+
+/* active state */
+input:focus ~ .bar:before,
+input:focus ~ .bar:after {
+    width: 50%;
+}
+
+input[type='submit'] {
+    border: 1px solid $indianred;
+    color: $indianred;
+    text-transform: uppercase;
+    font-weight: bold;
+    padding: 8px 10px;
+    background-color: transparent;
+    outline: 0;
+    float: right;
+    margin-top: 15px;
+    cursor: pointer;
+}
+
+input[type='submit']:hover {
+    color: #fff;
+    background-color: $indianred;
+}
+
+.comment {
+    padding: 15px;
+    min-height: 48px;
+    margin-bottom: 10px;
+    background-color: $indianred;
+}
+
+.comment:hover {
+    color: rgba(0, 39, 59, .35);
+    background-color: $indianred;
+}
+
+// .commentAuthor {
+//     color: #fff;
+// }
+
+.commentBody {
+    color: #fff;
+}
+
