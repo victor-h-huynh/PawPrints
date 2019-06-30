@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
 import './App.scss';
-import { ProgressBar, Card, Button, Form } from 'react-bootstrap';
+import { ProgressBar, Card, Button, Form, Alert, Badge } from 'react-bootstrap';
 import Switch from "react-switch";
 import axios from "axios";
 import setupNotifications from './setupNotifications.js';
 import TimeAgo from 'react-timeago';
 import { Link } from 'react-router-dom'
-import { Badge } from 'react-bootstrap';
 
 class User extends Component {
   state = {
@@ -16,7 +15,8 @@ class User extends Component {
     phone_number: "",
     alerts: false,
     current_user_id: 0,
-    userPet: []
+    userPet: [],
+    errors: [],
   }
 
   componentDidMount() {
@@ -94,11 +94,15 @@ class User extends Component {
         })
         .catch(err => {
           console.log('report user error: ', err.response.data);
+          this.setState({
+          errors: err.response.data
+        })
         });
   };
 
 
   render() {
+    const { errors } = this.state;
     const user = this.props.user;
     let badge1;
     let badge2;
@@ -148,6 +152,9 @@ class User extends Component {
 
     return(
 <React.Fragment>
+{errors.map(error => (
+          <Alert variant="danger" key={error}>Error: {error}</Alert>
+        ))}
       <React.Fragment>
         <div> 0 ------- Level {levels}! You need {missingPoints} points to reach level {levels + 1} ------- 1000
          {badge1}
