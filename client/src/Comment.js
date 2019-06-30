@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 class Comment extends Component {
-    
+
     constructor(props) {
         super(props);
         this.handleDelete = this.handleDelete.bind(this);
@@ -15,11 +15,11 @@ class Comment extends Component {
                    <h3 className='commentAuthor'>
                     {this.props.user.name}
                 </h3>
-                   
+
                     {this.props.comment}
-                    
-                
-                <button type="button" className="delete-button" onClick={this.handleDelete}>Delete</button>
+
+                {this.props.current_user && this.props.user.id === this.props.current_user.id &&
+                <button type="button" className="delete-button" onClick={this.handleDelete}>Delete</button>}
             </div>
         );
     }
