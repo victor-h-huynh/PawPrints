@@ -23,10 +23,10 @@ class Api::UsersController < ApplicationController
         if user.save
           render :json => user
         else
-          render :new
-      end
+          render status: :not_found, :json => user.errors.full_messages
+        end
 
-    end
+      end
 
     def create
       @user = User.new(
@@ -70,10 +70,12 @@ class Api::UsersController < ApplicationController
         endpoint: params[:subscription][:endpoint],
         p256dh: params[:subscription][:keys][:p256dh],
         auth: params[:subscription][:keys][:auth],
+        alerts: true,
       )
     end
 
     def unsubscribe
+      @current_user = User.find(params[:id])
       @current_user.update!(
         endpoint: nil,
         p256dh: nil,

@@ -4,9 +4,10 @@ import Comment from './Comment';
 class CommentList extends Component {
     render() {
         let handleDelete = this.props.handleDelete;
-        const CommentNodes = this.props.comments.map((comment, index)=>{
+        const reverse = this.props.comments.reverse()
+        const CommentNodes = reverse.map((comment, index)=>{
             return (
-                <Comment comment={comment.comment} key={index} user={comment.user} users={this.props.users} keyValue={index} handleDelete={handleDelete}>
+                <Comment comment={comment.comment} key={index} current_user={this.props.current_user} user={comment.user} users={this.props.users} keyValue={index} handleDelete={handleDelete}>
                 </Comment>
             );
         });

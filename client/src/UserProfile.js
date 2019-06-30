@@ -17,7 +17,7 @@ class UserProfile extends Component {
         return (
         <React.Fragment>
           {user ? (
-              <User user={user} updateNavState={this.props.updateNavState} />
+              <User user={user} updateNavState={this.props.updateNavState} pets={this.props.pets} current_user={this.props.current_user} />
           ) : (
             <NoMatch/>
           )}

@@ -253,6 +253,14 @@ render() {
     width: '75vw',
     height: '200px',
   };
+  let status;
+  if (pet.status === "Found") {
+    status = "success"
+  } else if (pet.status === "Lost") {
+    status = "danger"
+  } else if (pet.status === "Spotted") {
+    status = "info"
+  }
 return (
 
 <div className="petProfilePage">
@@ -264,8 +272,10 @@ return (
             <Card.Header>{pet.name}</Card.Header>
             <Card.Img className="petPic" variant="top" src={pet.picture} />
             <Card.Body>
-              <Card.Title>{pet.name}, a {pet.status} {pet.species} in {pet.address.city}, {pet.address.postal_code}</Card.Title>
-              <Card.Title className="StatusIcon">{this.state.status}</Card.Title>
+              <div className="petinfo">
+                <Card.Title>{pet.name}, a {pet.status} {pet.species} in {pet.address.city}, {pet.address.postal_code}</Card.Title>
+                <span class={`badge badge-pill badge-${status}`}>{pet.status}</span>
+              </div>
               <Card.Text>
                 <p>Breed: {pet.description.breed}</p>
                 <p>Colour: {pet.description.colour}</p>

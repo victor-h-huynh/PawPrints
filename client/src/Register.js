@@ -3,7 +3,7 @@ import "react-awesome-button/dist/styles.css";
 import axios from "axios";
 import { Redirect } from "react-router-dom";
 import React, { Component } from 'react';
-import { Form } from 'react-bootstrap';
+import { Form, Alert } from 'react-bootstrap';
 import 'react-awesome-button/dist/styles.css';
 import setupNotifications from './setupNotifications.js';
 
@@ -32,6 +32,9 @@ class Register extends Component {
       longitude: -73.567
     };
   }
+
+
+
 
   handleChange = event => {
     this.setState({
@@ -82,13 +85,20 @@ class Register extends Component {
       })
       .catch(err => {
         console.log(" register user error: ", err.response.data);
+        this.showAlerts(err)
       });
   };
+
+  showAlerts = errors => { return ( <Alert variant="dark"> Hello </Alert> ) }
+
+
   render() {
     if (this.state.redirectToLogin === true) {
       return <Redirect to={`/Login`} />;
     } else {
       return (
+        <React.Fragment>
+        {this.showAlerts()}
         <div className="register-form">
           <Form onSubmit={this.handleSubmit}>
             <Form.Row>
@@ -122,7 +132,7 @@ class Register extends Component {
               <Form.Group controlId="formGridPassword">
                 <Form.Label></Form.Label>
                 <Form.Control
-                  required  
+                  required
                   className="register-control"
                   type="password"
                   name="password"
@@ -174,6 +184,7 @@ class Register extends Component {
             </Form.Row>
           </Form>
         </div>
+        </React.Fragment>
       );
     }
   }
