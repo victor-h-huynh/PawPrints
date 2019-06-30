@@ -36,13 +36,16 @@ componentDidMount() {
 petReunited = event => {
   console.log(this.props);
 event.preventDefault()
+const previousPending = this.props.pending
+previousPending.length = 0
 const date = new Date()
 axios
     .put(`http://localhost:3001/api/pets/${this.props.pet.id}`,
     {
       update: 1,
       id: this.props.pet.id,
-      reunited: date
+      reunited: date,
+      pending: previousPending,
     })
     .then(response => {
 
@@ -57,6 +60,7 @@ axios
     });
 this.props.removeAPet(this.props.pet)
 }
+
 
 petFound = event => {
   event.preventDefault()
@@ -183,6 +187,59 @@ someoneFoundMyPet = (event, id) => {
 
 }
 
+thisIsMyPet = event => {
+  event.preventDefault()
+  console.log("Hello there")
+  const previousPending = this.state.pending
+  previousPending.length = 0
+  const givePointsTo = this.props.users.filter(el => el.id === this.props.pet.user_id)
+  const previousPoints = givePointsTo[0].points
+  const newPoints = previousPoints + 1500
+  const date = new Date()
+
+  if(givePointsTo[0].alerts === true) {
+    axios.post('/api/user_notification',
+      { id: this.props.pet.user_id,
+        message: `The pet you found is ${this.props.pet.name}! Congratulations!`,
+      URL: `http:localhost/users${this.props.pet.user_id}`});
+    }
+
+  axios
+    .put(`http://localhost:3001/api/pets/${this.props.pet.id}`,
+    {
+      update: 5,
+      id: this.props.pet.id,
+      pending: previousPending,
+      reunited: date
+    })
+    .then(response => {
+      this.setState({
+        redirectToCongratulations: true,
+        status: response.data.status,
+        reunited: date,
+        pending: response.data.pending
+      });
+    })
+    .catch(err => {
+      console.log('report pet error: ', err);
+    });
+
+  axios
+    .put(`http://localhost:3001/api/users/${this.props.pet.user_id}`,
+    {
+      update: 1,
+      id: this.props.pet.user_id,
+      points: newPoints,
+    })
+    .then(response => {
+      console.log(response);
+
+    })
+    .catch(err => {
+      console.log('report pet error: ', err);
+    });
+
+}
 
 renderButtons = () => {
 
@@ -229,6 +286,15 @@ renderButtons = () => {
 
     {buttons} </div>)
   }
+
+  } else if (this.state.current_user.id !== this.props.pet.user_id){
+    return(
+            <Form onSubmit={this.thisIsMyPet}>
+            <Button variant='primary' type='submit'>
+            This is my pet!
+            </Button>
+            </Form>
+            )
 
   } else if (this.state.pending.includes(this.state.current_user.id) ){
     return(
