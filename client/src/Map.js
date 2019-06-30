@@ -92,7 +92,8 @@ class Map extends Component {
 
        >
         {this.state.markerId === pet.id && <InfoWindow >
-        <h4>{pet.name}</h4>
+
+        <img key={pet.id} src={pet.picture}/>
         </InfoWindow>}
 
 

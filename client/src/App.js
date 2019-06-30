@@ -80,9 +80,9 @@ class App extends Component {
       })
     }))
     .then(res => {
-      this.setState({
+      setTimeout(() => { this.setState({
         loading:false,
-      })
+      })}, 300)
     })
     .catch(error => console.log(error));
   }
@@ -114,7 +114,74 @@ updateNavState = name => {
   render() {
 
     if (this.state.loading) {
-      return <h1>Loading...</h1>;
+      return (
+    <React.Fragment>
+<div class="paw-print-1">
+    <div class="pad large"></div>
+    <div class="pad small-1"></div>
+    <div class="pad small-2"></div>
+    <div class="pad small-3"></div>
+    <div class="pad small-4"></div>
+</div>
+
+<div class="paw-print-2">
+    <div class="pad large"></div>
+    <div class="pad small-1"></div>
+    <div class="pad small-2"></div>
+    <div class="pad small-3"></div>
+    <div class="pad small-4"></div>
+</div>
+
+<div class="paw-print-3">
+    <div class="pad large"></div>
+    <div class="pad small-1"></div>
+    <div class="pad small-2"></div>
+    <div class="pad small-3"></div>
+    <div class="pad small-4"></div>
+</div>
+
+<div class="paw-print-4">
+    <div class="pad large"></div>
+    <div class="pad small-1"></div>
+    <div class="pad small-2"></div>
+    <div class="pad small-3"></div>
+    <div class="pad small-4"></div>
+</div>
+
+<div class="paw-print-5">
+    <div class="pad large"></div>
+    <div class="pad small-1"></div>
+    <div class="pad small-2"></div>
+    <div class="pad small-3"></div>
+    <div class="pad small-4"></div>
+</div>
+
+<div class="paw-print-6">
+    <div class="pad large"></div>
+    <div class="pad small-1"></div>
+    <div class="pad small-2"></div>
+    <div class="pad small-3"></div>
+    <div class="pad small-4"></div>
+</div>
+
+<div class="paw-print-7">
+    <div class="pad large"></div>
+    <div class="pad small-1"></div>
+    <div class="pad small-2"></div>
+    <div class="pad small-3"></div>
+    <div class="pad small-4"></div>
+</div>
+
+<div class="paw-print-8">
+    <div class="pad large"></div>
+    <div class="pad small-1"></div>
+    <div class="pad small-2"></div>
+    <div class="pad small-3"></div>
+    <div class="pad small-4"></div>
+</div>
+
+    </React.Fragment>
+    )
     } else {
     return (
       <React.Fragment>

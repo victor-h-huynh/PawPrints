@@ -5,6 +5,8 @@ import TimeAgo from 'react-timeago';
 import { Map, Marker, GoogleApiWrapper } from 'google-maps-react';
 import axios from 'axios'
 import { Form } from 'react-bootstrap';
+import ReactToPrint from 'react-to-print';
+import PetTemplate from './PetTemplate.js'
 
 class Pet extends Component {
   constructor(props) {
@@ -17,7 +19,8 @@ class Pet extends Component {
     redirectToCongratulations: false,
     status: '',
     reunited: "",
-    button: false
+    button: false,
+    print: false
   }
 
 componentDidMount() {
@@ -261,10 +264,16 @@ render() {
   } else if (pet.status === "Spotted") {
     status = "info"
   }
-return (
 
+
+return (
 <div className="petProfilePage">
 
+<ReactToPrint
+          trigger={() => <a href="#">Print this out!</a>}
+          content={() => this.componentRef}
+        />
+ <PetTemplate print={this.props.print} current_user={this.props.current_user} pet={pet} users={this.props.users} removeAPet={this.props.removeAPet} ref={el => (this.componentRef = el)}/>
 
 {this.state.current_user && this.renderButtons()}
 
@@ -314,6 +323,7 @@ return (
             </Card.Body>
           </Card>
           </div>
+
     )
    }
 }
