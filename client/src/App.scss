@@ -15,16 +15,18 @@ $background: #{linear-gradient(to left, rgb(255, 239, 186), rgb(255, 255, 255))}
 $teal: #08708A;
 $cerulean: #56b1bF;
 $hunter: #032b2f;
-$ink: #193446;
 $azul: #A0c1b8;
 $bolivia: #709fb0;
 $acaranda: #726A95;
 $malber: #351f39;
 $darkslategray: #365660;
 $indianred: #C46168;
-$global_button: #3f51b5;
 
-$background: #fbe8a6;
+
+
+$ink: #193446;
+$global_button: #3f51b5;
+$background: #{linear-gradient(to left, rgb(255, 239, 186), rgb(255, 255, 255))};
 $orange: #F4976C;
 $darkblue: #303c6c;
 $medblue: #B4dfe5;
