@@ -47,8 +47,21 @@ class User extends Component {
         if (this.state.alerts === true) {
           setupNotifications();
       } else {
-        axios.post('http://localhost:3001/api/unsubscribe');
-      }
+        axios.post('http://localhost:3001/api/unsubscribe', {id: this.props.user.id});
+        navigator.serviceWorker.ready
+          .then((serviceWorkerRegistration) => {
+            serviceWorkerRegistration.pushManager.getSubscription()
+              .then((subscription) => {
+                subscription.unsubscribe()
+                  .then(function() {
+                    console.log("Successfully unsubscribed!.");
+                  })
+                  .catch((e) => {
+                    console.log('Error thrown while unsubscribing from push messaging', e);
+                  });
+              });
+          });
+        }
       })
     }
 
