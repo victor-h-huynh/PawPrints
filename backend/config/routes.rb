@@ -8,8 +8,10 @@ Rails.application.routes.draw do
     resources :pets do 
       resources :comments
     end
+
     resources :addresses
     resources :descriptions
+
     post "/subscribe" => "users#subscribe"
     post "/unsubcribe" => "users#unsubscribe"
     post "/notification" => "users#send_notification"
