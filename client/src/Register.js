@@ -1,11 +1,23 @@
-import { AwesomeButton } from "react-awesome-button";
 import "react-awesome-button/dist/styles.css";
 import axios from "axios";
 import { Redirect } from "react-router-dom";
 import React, { Component } from 'react';
-import { Form } from 'react-bootstrap';
+import { Form, Alert, Container } from 'react-bootstrap';
 import 'react-awesome-button/dist/styles.css';
 import setupNotifications from './setupNotifications.js';
+import Image from 'react-bootstrap/Image'
+import registerCat from './assets/registerCat.jpg'
+
+// Material UI
+
+import { TextField, Grid, Button } from '@material-ui/core/';
+import PermIdentity from '@material-ui/icons/PermIdentityTwoTone';
+import Email from '@material-ui/icons/EmailTwoTone';
+import Lock from '@material-ui/icons/LockTwoTone';
+import LockOpen from '@material-ui/icons/LockOpenTwoTone';
+import PhoneIphone from '@material-ui/icons/PhoneIphoneTwoTone';
+import Loyalty from '@material-ui/icons/LoyaltyTwoTone';
+import Create from '@material-ui/icons/CreateTwoTone';
 
 
 class Register extends Component {
@@ -32,6 +44,9 @@ class Register extends Component {
       longitude: -73.567
     };
   }
+
+
+
 
   handleChange = event => {
     this.setState({
@@ -81,93 +96,109 @@ class Register extends Component {
         });
       })
       .catch(err => {
-        console.log(" register user error: ", err);
+        console.log(" register user error: ", err.response.data);
+        // this.showAlerts(err)
       });
   };
+
+  // showAlerts = errors => { return ( <Alert variant="dark"> Hello </Alert> ) }
+
+
   render() {
     if (this.state.redirectToLogin === true) {
       return <Redirect to={`/Login`} />;
     } else {
       return (
-        <div className="register-form">
-          <Form onSubmit={this.handleSubmit}>
-            <Form.Row>
-              <Form.Group controlId="formGridName">
-                <Form.Label></Form.Label>
-                <Form.Control
-                  className="register-control"
-                  type="name"
-                  name="name"
-                  placeholder="Enter name"
-                  value={this.state.name}
-                  onChange={this.handleChange}
-                />
-              </Form.Group>
+        <React.Fragment>
+        {/* {this.showAlerts()} */}
 
-              <Form.Group controlId="formGridEmail">
-                <Form.Label></Form.Label>
-                <Form.Control
-                  className="register-control"
-                  name="email"
-                  value={this.state.email}
-                  placeholder="Enter email"
-                  onChange={this.handleChange}
-                />
-              </Form.Group>
-            </Form.Row>
-
-            <Form.Row>
-              <Form.Group controlId="formGridPassword">
-                <Form.Label></Form.Label>
-                <Form.Control
-                  className="register-control"
-                  type="password"
-                  name="password"
-                  placeholder="Enter Password"
-                  value={this.state.password}
-                  onChange={this.handleChange}
-                />
-              </Form.Group>
-
-              <Form.Group controlId="formGridPasswordConfirmation">
-                <Form.Label></Form.Label>
-                <Form.Control
-                  className="register-control"
-                  type="password"
-                  name="password_confirmation"
-                  placeholder="Confirm Password"
-                  value={this.state.password_confirmation}
-                  onChange={this.handleChange}
-                />
-              </Form.Group>
-            </Form.Row>
-
-            <Form.Row>
-              <Form.Group controlId="formGridPostalPhoneNumber">
-                <Form.Label></Form.Label>
-
-                <Form.Control
-                  className="register-control"
-                  name="phone_number"
-                  placeholder="Enter Phone Number"
-                  value={this.state.phone_number}
-                  onChange={this.handleChange}
-                />
-              </Form.Group>
-            </Form.Row>
-            <Form.Row>
-              <Form.Group controlId="formGridAlerts">
-                <Form.Check
-                  type="checkbox"
-                  label="Alerts"
-                  name="alerts"
-                  onChange={this.handleChecked}
-                />
-              </Form.Group>
-              <AwesomeButton ripple={true} size="medium" type="secondary">Register</AwesomeButton>
-            </Form.Row>
-          </Form>
+      <div fluid className="registerContainer">
+        <div className="registerOverlay">
+            <Image className="registerCat"src={registerCat} fluided/>
         </div>
+      </div>
+
+              <div className="registerForm">
+                  <h2 className="registerTitle">Register</h2>
+                  <Loyalty className="registerLoyaltyIcon"/>
+                <Form onSubmit={this.handleSubmit}>
+
+                  <div className="registersName">
+                    <Grid container spacing={1} alignItems="flex-end">
+                      <Grid item>
+                        <PermIdentity className="registerNameIcon"/>
+                      </Grid>
+                      <Grid item>
+                        <TextField id="standard-name-input" className="registerNameText" type="name" margin="normal" value={this.state.name} onChange={this.handleChange} name='name' label="Name" required/>
+                      </Grid>
+                    </Grid>
+                  </div>
+
+                  <div className="registerEmail">
+                    <Grid container spacing={1} alignItems="flex-end">
+                      <Grid item>
+                        <Email className="registerEmailIcon"/>
+                      </Grid>
+                      <Grid item>
+                        <TextField id="standard-email-input" className="registerEmailText" type="email" margin="normal" value={this.state.email} onChange={this.handleChange} name="email" label="Email" required />
+                      </Grid>
+                    </Grid>
+                  </div>
+
+                  <div className="registerPassword">
+                    <Grid container spacing={1} alignItems="flex-end">
+                      <Grid item>
+                        <Lock className="registerPasswordIcon"/>
+                      </Grid>
+                      <Grid item>
+                        <TextField id="standard-password-input" className="registerPasswordText" type="password" margin="normal" value={this.state.password} onChange={this.handleChange} name="password" label="Password" required />
+                      </Grid>
+                    </Grid>
+                  </div>
+
+                  <div className="registerPasswordConfirmation">
+                    <Grid container spacing={1} alignItems="flex-end">
+                      <Grid item>
+                        <LockOpen className="registerPasswordIcon"/>
+                      </Grid>
+                      <Grid item>
+                        <TextField id="standard-password-confirmation-input" className="registerPasswordConfirmationText" type="password" margin="normal" value={this.state.password_confirmation} onChange={this.handleChange} name="password_confirmation" label="Confirm Password" required />
+                      </Grid>
+                    </Grid>
+                  </div>
+
+                  <div className="registerPhoneNumber">
+                    <Grid container spacing={1} alignItems="flex-end">
+                      <Grid item>
+                        <PhoneIphone className="registerPhoneIphoneIcon"/>
+                      </Grid>
+                      <Grid item>
+                        <TextField id="standard-phone-number-input" className="registerPhoneNumberText" type="phone" margin="normal" value={this.state.phone_number} onChange={this.handleChange} name="phone_number" label="Phone Number" required />
+                      </Grid>
+                    </Grid>
+                  </div>
+
+              
+                  <Form.Group controlId="formGridAlerts">
+                    <Form.Check
+                      className="registerAlerts"
+                      type="checkbox"
+                      label="Alerts (receive a push notification when a pet is lost or found in your area)"
+                      name="alerts"
+                      onChange={this.handleChecked}
+                    />
+                    <p className="registerAlertsText">To receive notifications, click allow when you receive the popup</p>
+                  </Form.Group>
+            
+
+                <Button type="submit" variant="contained" color="primary" className="registerBtn">
+                  <Create className="registerCreateIcon"/>
+                  Register
+                </Button>
+
+              </Form>
+            </div>
+        </React.Fragment>
       );
     }
   }

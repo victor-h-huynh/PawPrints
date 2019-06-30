@@ -23,14 +23,18 @@ class Api::PetsController < ApplicationController
       if pet.save
         render :json => pet, :include=> [:address, :user, :description]
       else
-        render :new
+        render :json => pet.errors.full_messages
       end
 
     end
 
     def create
-      rubyDate = Time.at(params['pet']['date_lost'] / 1000)
-      @address = Address.create!(
+      if params['pet']['date_lost']
+        rubyDate = Time.at(params['pet']['date_lost'] / 1000)
+      else
+        rubyDate = ''
+      end
+      @address = Address.new(
         street_number: params['address']['street_number'],
         street_name: params['address']['street_name'],
         apartment: params['address']['apartment'],
@@ -38,13 +42,13 @@ class Api::PetsController < ApplicationController
         province: params['address']['province'],
         postal_code: params['address']['postal_code'],
       )
-      @description = Description.create!(
+      @description = Description.new(
         breed: params['description']['breed'],
         colour: params['description']['colour'],
         sex: params['description']['sex]'],
         additional: params['description']['additional'],
       )
-      @pet = Pet.create!(
+      @pet = Pet.new(
         name: params['pet']['name'],
         species: params['pet']['species'],
         status: params['pet']['status'],
@@ -61,7 +65,9 @@ class Api::PetsController < ApplicationController
       if @pet.save
         render :json => @pet, :include=> [:address, :user, :description]
       else
-        render :new
+        render status: :not_found, :json => @pet.errors.full_messages
+        render status: :not_found, :json => @address.errors.full_messages
+        render status: :not_found, :json => @description.errors.full_messages
       end
 
     end

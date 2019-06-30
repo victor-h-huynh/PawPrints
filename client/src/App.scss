@@ -1,3 +1,29 @@
+
+@import '/SCSS/comments';
+@import '/SCSS/scrollcomponents';
+@import '/SCSS/petprofile';
+@import '/SCSS/home';
+@import '/SCSS/reportapet';
+@import '/SCSS/success';
+@import '/SCSS/register';
+@import '/SCSS/login';
+
+$background: #f3f3f3;
+$teal: #08708A;
+$cerulean: #56b1bF;
+$hunter: #032b2f;
+$ink: #193446;
+$azul: #A0c1b8;
+$bolivia: #709fb0;
+$acaranda: #726A95;
+$malber: #351f39;
+$darkslategray: #365660;
+$indianred: #C46168;
+
+@import url(https://fonts.googleapis.com/css?family=Roboto);
+$roboto: 'roboto', sans-serif;
+
+
 @media only screen and (max-width: 600px) {
   body {
     background: blue;
@@ -13,8 +39,17 @@
   }
 }
 
+
 body {
-  font-family: "Nunito", sans-serif;
+  font-family: $roboto;
+  background-color: $background;
+  color: #193446;
+
+  .btn-primary {
+    background-color: $teal;
+    border-color: $teal;
+  }
+  
   .map {
     height: 70vh;
     width: 50vw;
@@ -32,266 +67,8 @@ body {
     margin: 25px;
   }
 
-  // COMMENT BOX
-  @import url(https://fonts.googleapis.com/css?family=Roboto);
-* {
-    cursor: default;
-    font-family: 'Roboto', sans-serif;
-    box-sizing: auto;
 }
 
-.commentBox {
-    box-shadow: 0px 9px 0px 0px rgba(255, 255, 255, 0), 0px -9px 0px 0px rgba(255, 255, 255, 0), 10px 0px 30px 0px rgba(0, 0, 0, 0.15), -10px 0px 30px 0px rgba(0, 0, 0, 0.15);
-    width: 80vw;
-    min-width: 600px;
-    min-height: 150px;
-    position: relative;
-    margin: 15px auto;
-    padding: 20px;
-    font-family: "Helvetica Neue", arial, sans-serif;
-    font-size: 15px;
-    border-radius: 5px;
-}
-
-.commentForm {
-    margin-bottom: 55px;
-}
-
-.group {
-    position: relative;
-    margin-top: 25px;
-}
-
-.input {
-    padding: 10px 10px 10px 5px;
-    display: block;
-    border: none;
-    border-bottom: 1px solid #ccc;
-    width: 460px;
-
-    color: #ccc;
-    font-family: "Helvetica Neue", arial, sans-serif;
-    font-size: 15px;
-    cursor: pointer;
-    outline: none;
-}
-
-label {
-    color: #ccc;
-    font-size: 15px;
-    position: absolute;
-    pointer-events: none;
-    left: 5px;
-    top: 10px;
-    transition: 0.2s ease all;
-}
-
-/* active state */
-input:focus ~ label,
-.active {
-    top: -18px;
-    font-size: 12px;
-    color: #E91E63;
-}
-
-.bar {
-    position: relative;
-    display: block;
-    width: auto;
-}
-
-/* active state */
-input:focus ~ .bar:before,
-input:focus ~ .bar:after {
-    width: 50%;
-}
-
-input[type='submit'] {
-    border: 1px solid #E91E63;
-    color: #E91E63;
-    text-transform: uppercase;
-    font-weight: bold;
-    padding: 8px 10px;
-    background-color: transparent;
-    outline: 0;
-    float: right;
-    margin-top: 15px;
-    cursor: pointer;
-}
-
-input[type='submit']:hover {
-    color: #fff;
-    background-color: #E91E63;
-}
-
-.comment {
-    padding: 15px;
-    min-height: 48px;
-    margin-bottom: 10px;
-    background-color: #E91E63;
-    font-size: 25px;
-}
-
-.comment:hover {
-    color: rgba(0, 39, 59, .35);
-    background-color: #eee;
-}
-
-.commentAuthor {
-  font-size: 10px;  
-  color: #fff;
-    
-  }
-  
-  .commentBody {
-    
-    color: #fff;
-}
-
-// Scroll component view
-  div.Pets {
-    position: relative;
-    float: left;
-    margin-left: 25px;
-
-    // CARD VIEW
-
-    .button3 {
-      border-radius: 8px;
-
-    }
-
-    .button {
-      background-color: #4caf50; /* Green */
-
-      color: white;
-      padding: 8px;
-      font-size: 15px;
-      margin: 4px 2px;
-      margin-left: 50px;
-    }
-
-    h1 {
-      color: #639e8d;
-    }
-
-    p {
-      font-size: 14px;
-      color: #626262;
-    }
-
-    .card {
-      display: grid;
-      grid-template-columns: 150px 350px;
-      height: auto;
-      margin: 5% auto;
-      background: white;
-      border-radius: 5px;
-      box-shadow: 0px 7px 9px grey;
-      position: relative;
-    }
-
-    .card > .entry {
-      height: auto;
-      position: relative;
-      background: white;
-    }
-
-
-
-    .card > .entry,
-    .card > .entry > .container > .text {
-      right: 0;
-      top: 0;
-      position: relative;
-      border-top-right-radius: 5px;
-      border-bottom-right-radius: 5px;
-    }
-
-    .card > .entry > .container > .text {
-      left: 0;
-    }
-
-    .card > .entry h1,
-    .card > .entry p {
-      text-shadow: 0 0 0 #333;
-      transition-delay: 0.4s;
-    }
-
-    .card > .entry .meta {
-      font-size: 12px;
-      color: #c9c9c9;
-      padding-left: 10px;
-      text-align: right;
-    }
-
-    h1 {
-      display: inline-block;
-      margin-bottom: 5px;
-    }
-
-    .card > .entry > .container > .text h1,
-    .card > .entry > .container > .text p {
-      padding: 5px 15px;
-    }
-
-    .card > .image {
-
-      position: relative;
-      background: white;
-      height: 100%;
-      border-top-left-radius: 5px;
-      border-bottom-left-radius: 5px;
-      
-    }
-
-    .card > .image > img {
-      height: 100%;
-      width: 100%;
-      border-top-left-radius: 5px;
-      border-bottom-left-radius: 5px;
-      max-height: 300px;
-      max-width: 300px;
-    }
-  }
-}
-
-// PET PROFILE
-div.pet.card {
-  width: 80vw;
-  margin: auto;
-  margin-top: 10vh;
-
-  div.card-header {
-    background-color: lightblue;
-    font-size: 2em;
-  }
-  p.card-text {
-    line-height: 0.5em;
-  }
-  .petPic {
-    height: 200px;
-    width: 200px;
-  }
-  div.StatusIcon.card-title.h5 {
-    float: right;
-  }
-  div.petMap {
-    height: 200px;
-  }
-}
-
-// HOME SECTION 
-.home {
-  width: 100%;
-  max-width: 100rem;
-  min-width: auto;
-  padding: 15px;
-  margin: 5rem auto auto auto;
-  height: 100%;
-  border: solid 3px royalblue;
-  text-align: center;
-}
 
   // found in PetMap.js
 .form-control {
@@ -303,50 +80,8 @@ div.pet.card {
   border: solid 1px black;
 }
 
- // REPORT A PET
- .report-a-pet {
-  width: 100%;
-  max-width: 1000px;
-  min-width: auto;
-  padding: 15px;
-  margin: 5rem;
-  height: 100%;
-  border: solid 3px royalblue;
-  text-align: center;
-}
 
-.report-a-pet-control {
-  width: 10rem; 
-  text-align-last: center;
-  border: solid 1px black;
-}
 
-.report-a-pet-comment {
-  width: 50rem;
-  height: 10rem;
-  border: solid 1px black;
-}
-
-.report-a-pet-btn {
-  border-radius: 5rem;
-}
-
-// SUCCESS SECTION
-
-.success-petOwner1 {
-  float: left;
-  width: 25rem;
-  margin: 20rem;
-}
-
-.person-wrapper {
-  margin-bottom: 10rem;
-}
-
-.profile-pic {
-  width: 50%;
-  border-radius: 5rem;
-  border: solid 3px black;
 
   h3 {
     margin-bottom: 1rem;
@@ -364,201 +99,6 @@ div.pet.card {
 }
 
 
-//Comment form
-.commentForm {
-    margin-bottom: 55px;
-}
 
-.group {
-    position: relative;
-    margin-top: 25px;
-}
-
-.input {
-    padding: 10px 10px 10px 5px;
-    display: block;
-    border: none;
-    border-bottom: 1px solid #ccc;
-    width: 485px;
-    color: #ccc;
-    font-family: "Helvetica Neue", arial, sans-serif;
-    font-size: 15px;
-    cursor: pointer;
-    outline: none;
-}
-
-label {
-    color: #ccc;
-    font-size: 15px;
-    position: absolute;
-    pointer-events: none;
-    left: 5px;
-    top: 10px;
-    transition: 0.2s ease all;
-}
-
-/* active state */
-input:focus ~ label,
-.active {
-    top: -10px;
-    font-size: 12px;
-    color: #E91E63;
-}
-
-.bar {
-    position: relative;
-    display: block;
-    width: 500px;
-}
-
-.bar:before,
-.bar:after {
-    content: '';
-    height: 2px;
-    width: 0;
-    bottom: 1px;
-    position: absolute;
-    background: #E91E63;
-    transition: 0.2s ease all;
-}
-
-.bar:before {
-    left: 50%;
-}
-
-.bar:after {
-    right: 50%;
-}
-
-/* active state */
-input:focus ~ .bar:before,
-input:focus ~ .bar:after {
-    width: 50%;
-}
-
-input[type='submit'] {
-    border: 1px solid #E91E63;
-    color: #E91E63;
-    text-transform: uppercase;
-    font-weight: bold;
-    padding: 8px 10px;
-    background-color: transparent;
-    outline: 0;
-    float: right;
-    margin-top: 15px;
-    cursor: pointer;
-}
-
-input[type='submit']:hover {
-    color: #fff;
-    background-color: #E91E63;
-}
-
-.comment {
-    padding: 15px;
-    min-height: 48px;
-    margin-bottom: 10px;
-    background-color: #E91E63;
-}
-
-.comment:hover {
-    color: rgba(0, 39, 59, .35);
-    background-color: #C2185B;
-}
-
-.commentAuthor {
-    color: #fff;
-}
-
-.commentBody {
-    color: #fff;
-}
-}
-
-// LOGIN SECTION
-  .login-form {
-    width: 100%;
-    max-width: 40rem;
-    min-width: auto;
-    padding: 1rem 0 10rem 0;
-    margin-top: 3rem;
-    height: 100%;
-    text-align: center;
-  }
-
-  .loginContainer {
-    background: no-repeat fixed bottom;
-    background-size: cover;
-    color: #ccc;
-    position: relative;
-  }
-
-  .loginOverlay {
-    position: absolute;
-    top: 0;
-    left: 39.05rem;
-    bottom: 0;
-    right: 0;
-  }
-
-  .password-form {
-    margin-bottom: 2rem;
-  }
-
-  .loginCat {
-    width: 60rem;
-    height: 43.5rem;
-  }
-
-  .MuiSvgIcon-root.loginFaceIcon {
-    width: 8rem;
-    height: 8rem;
-  }
-
-  .MuiSvgIcon-root.loginEmail {
-    width: 3rem;
-    height: 3rem;
-  }
-
-  .MuiSvgIcon-root.loginLockIcon {
-    width: 3rem;
-    height: 3rem;
-  }
-  .email-text {
-    width: 35rem;
-  }
-
-  .password-text {
-    width: 35rem;
-  }
-
-  // .heartCheckBox {
-  //   border: solid 2px black;
-  // }
-
-  .vpnKeyIcon {
-    margin-right: 0.5rem;
-  }
-
-  .login-button {
-    width: 35rem;
-  }
-
-// REGISTER SECTION
-  .register-form {
-    width: 100%;
-    max-width: 300px;
-    min-width: auto;
-    padding: 15px;
-    margin: 5rem auto auto auto;
-    border: solid 3px royalblue;
-    display: flex;
-  }
-
-  .register-control {
-    text-align: center;
-    border-radius: 5rem;
-    width: 120%;
-  }
 
  

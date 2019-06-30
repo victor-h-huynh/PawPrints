@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import User from './User';
+import NoMatch from './NoMatch';
 
 class UserProfile extends Component {
 
@@ -12,12 +13,15 @@ class UserProfile extends Component {
 
     render() {
         const user = this.getUser();
-        const userThere = user ? <User user={user} updateNavState={this.props.updateNavState} /> : <div>Loading...</div>
 
         return (
-          <div>
-          {userThere}
-          </div>
+        <React.Fragment>
+          {user ? (
+              <User user={user} updateNavState={this.props.updateNavState} pets={this.props.pets} current_user={this.props.current_user} />
+          ) : (
+            <NoMatch/>
+          )}
+        </React.Fragment>
       );
     }
 };
