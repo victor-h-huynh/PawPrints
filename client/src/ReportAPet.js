@@ -261,9 +261,6 @@ resize = picture => {
     } else {
       return (
         <div className="report-a-pet">
-        {errors.map(error => (
-          <Alert variant="danger" key={error}>Error: {error}</Alert>
-        ))}
 
         <Form onSubmit={this.handleSubmit}>
 

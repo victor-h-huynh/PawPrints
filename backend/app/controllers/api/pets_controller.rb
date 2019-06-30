@@ -34,7 +34,7 @@ class Api::PetsController < ApplicationController
       else
         rubyDate = ''
       end
-      @address = Address.new(
+      @address = Address.create!(
         street_number: params['address']['street_number'],
         street_name: params['address']['street_name'],
         apartment: params['address']['apartment'],
@@ -42,7 +42,7 @@ class Api::PetsController < ApplicationController
         province: params['address']['province'],
         postal_code: params['address']['postal_code'],
       )
-      @description = Description.new(
+      @description = Description.create!(
         breed: params['description']['breed'],
         colour: params['description']['colour'],
         sex: params['description']['sex]'],
@@ -62,10 +62,14 @@ class Api::PetsController < ApplicationController
         user_id: params['pet']['user_id'],
       )
 
+
       if @pet.save
         render :json => @pet, :include=> [:address, :user, :description]
       else
         render status: :not_found, :json => @pet.errors.full_messages
+        # render status: :not_found, :json => @address.errors.full_messages
+        # render status: :not_found, :json => @pet.errors.full_messages
+
       end
 
     end
