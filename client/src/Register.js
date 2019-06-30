@@ -21,7 +21,7 @@ class Register extends Component {
       password_confirmation: "",
       phone_number: "",
       alerts: false,
-
+      errors: [],
       street_number: "",
       street_name: "",
       apartment: "",
@@ -85,23 +85,26 @@ class Register extends Component {
       })
       .catch(err => {
         console.log(" register user error: ", err.response.data);
-        this.showAlerts(err)
+        this.setState({
+          errors: err.response.data
+        })
       });
   };
 
-  showAlerts = errors => { return ( <Alert variant="dark"> Hello </Alert> ) }
-
-
   render() {
+    const { errors } = this.state;
     if (this.state.redirectToLogin === true) {
       return <Redirect to={`/Login`} />;
     } else {
       return (
         <React.Fragment>
-        {this.showAlerts()}
+        {errors.map(error => (
+          <Alert variant="danger" key={error}>Error: {error}</Alert>
+        ))}
+
         <div className="register-form">
           <Form onSubmit={this.handleSubmit}>
-            <Form.Row>
+                      <Form.Row>
               <Form.Group controlId="formGridName">
                 <Form.Label></Form.Label>
                 <Form.Control
