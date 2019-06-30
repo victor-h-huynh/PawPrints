@@ -8,7 +8,7 @@
 @import '/SCSS/register';
 @import '/SCSS/login';
 
-$background: #f3f3f3;
+$background: #{linear-gradient(to left, rgb(255, 239, 186), rgb(255, 255, 255))};
 $teal: #08708A;
 $cerulean: #56b1bF;
 $hunter: #032b2f;
@@ -19,6 +19,7 @@ $acaranda: #726A95;
 $malber: #351f39;
 $darkslategray: #365660;
 $indianred: #C46168;
+$global_button: #3f51b5;
 
 @import url(https://fonts.googleapis.com/css?family=Roboto);
 $roboto: 'roboto', sans-serif;
@@ -42,15 +43,27 @@ $roboto: 'roboto', sans-serif;
 
 body {
   font-family: $roboto;
-  background-color: $background;
+  background: linear-gradient(to left, rgb(255, 239, 186), rgb(255, 255, 255));
   color: #193446;
 
   .btn-primary {
-    background-color: $teal;
-    border-color: $teal;
+    border: 1px solid $global_button;
+    color: $global_button;
+    text-transform: uppercase;
+    font-weight: bold;
+    padding: 8px 10px;
+    background-color: transparent;
+    outline: 0;
+    float: right;
+    margin-top: 15px;
+    cursor: pointer;
+    border-radius: 5px;
+    // transition: all .2s ease-in-out;
+    
     &:hover {
-      background-color: $teal;
-      border-color: $teal;
+      background-color: $global_button;
+      border-color: $global_button;
+      // transform: scale(1.06);
     }
   }
 
@@ -84,7 +97,6 @@ body {
   width: 20rem;
   margin: auto;
   text-align-last:center;
-  border-radius: 5rem;
   border: solid 1px black;
 }
 
