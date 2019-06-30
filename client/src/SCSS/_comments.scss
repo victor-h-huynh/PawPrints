@@ -9,6 +9,8 @@ $acaranda: #726A95;
 $malber: #351f39;
 $darkslategray: #365660;
 $indianred: #C46168;
+$global_button: #3f51b5;
+
 
 
 body {
@@ -27,7 +29,7 @@ body {
      min-width: 600px;
      min-height: 150px;
      position: relative;
-     margin: 15px auto;
+     margin: 20px auto;
      padding: 20px;
      font-family: "Helvetica Neue", arial, sans-serif;
      font-size: 15px;
@@ -81,7 +83,7 @@ body {
  .active {
      top: -18px;
      font-size: 12px;
-     color: $indianred;
+     color: $global_button;
  }
  
  .bar {
@@ -97,21 +99,22 @@ body {
  }
  
  input[type='submit'] {
-     border: 1px solid $indianred;
-     color: $indianred;
+     border: 1px solid $global_button;
+     color: $global_button;
      text-transform: uppercase;
-     font-weight: bold;
+    //  font-weight: bold;
      padding: 8px 10px;
      background-color: transparent;
      outline: 0;
      float: right;
      margin-top: 15px;
      cursor: pointer;
+     border-radius: 5px;
  }
  
  input[type='submit']:hover {
      color: #fff;
-     background-color: $indianred;
+     background-color: $global_button;
  }
  
  .comment {
@@ -123,10 +126,10 @@ body {
      // display: flex;
  }
  
- .comment:hover {
-     color: rgba(0, 39, 59, .35);
-     background-color: #eee;
- }
+//  .comment:hover {
+//      color: rgba(0, 39, 59, .35);
+//      background-color: #eee;
+//  }
  
  .commentAuthor {
    font-size: 0.8em;  
@@ -141,14 +144,6 @@ body {
 
 
 }
-
-
-
-
-
-
-
-
 
 //Comment form
 .commentForm {
@@ -194,7 +189,7 @@ input:focus ~ label,
 .bar {
     position: relative;
     display: block;
-    width: 500px;
+    width: 200px;
 }
 
 .bar:before,
@@ -204,7 +199,7 @@ input:focus ~ label,
     width: 0;
     bottom: 1px;
     position: absolute;
-    background: $indianred;
+    background: $global_button;
     transition: 0.2s ease all;
 }
 
@@ -247,10 +242,10 @@ input[type='submit']:hover {
     background-color: $indianred;
 }
 
-.comment:hover {
-    color: rgba(0, 39, 59, .35);
-    background-color: $indianred;
-}
+// .comment:hover {
+//     color: rgba(0, 39, 59, .35);
+//     background-color: $indianred;
+// }
 
 // .commentAuthor {
 //     color: #fff;

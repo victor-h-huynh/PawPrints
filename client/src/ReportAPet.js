@@ -400,8 +400,7 @@ resize = picture => {
                 onChange={this.fileSelectedHandler}
               />
             </div>
-
-           
+            
               <PetMap
                 updateParentState={this.updateParentState}
                 parentState={this.state}
