@@ -5,6 +5,7 @@ import TimeAgo from 'react-timeago';
 import { Map, Marker, GoogleApiWrapper } from 'google-maps-react';
 import axios from 'axios'
 import { Form } from 'react-bootstrap';
+import { Badge } from 'react-bootstrap';
 
 class Pet extends Component {
   constructor(props) {
@@ -264,8 +265,10 @@ return (
             <Card.Header>{pet.name}</Card.Header>
             <Card.Img className="petPic" variant="top" src={pet.picture} />
             <Card.Body>
-              <Card.Title>{pet.name}, a {pet.status} {pet.species} in {pet.address.city}, {pet.address.postal_code}</Card.Title>
-              <Card.Title className="StatusIcon">{this.state.status}</Card.Title>
+              <div className="petinfo">
+                <Card.Title>{pet.name}, a {pet.status} {pet.species} in {pet.address.city}, {pet.address.postal_code}</Card.Title>
+                <Badge pill variant="danger" className="button button3">{pet.status}</Badge>
+              </div>
               <Card.Text>
                 <p>Breed: {pet.description.breed}</p>
                 <p>Colour: {pet.description.colour}</p>

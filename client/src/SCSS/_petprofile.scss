@@ -1,0 +1,40 @@
+// PET PROFILE
+
+
+$background: #f3f3f3;
+$teal: #08708A;
+$cerulean: #56b1bF;
+$hunter: #032b2f;
+$ink: #193446;
+$azul: #A0c1b8;
+$bolivia: #709fb0;
+$acaranda: #726A95;
+$malber: #351f39;
+$darkslategray: #365660;
+$indianred: #C46168;
+
+
+div.pet.card {
+    width: 80vw;
+    margin: auto;
+    margin-top: 10vh;
+  
+    div.card-header {
+      background-color: $cerulean;
+      font-size: 2em;
+    }
+    p.card-text {
+      line-height: 0.5em;
+    }
+    .petPic {
+      height: 200px;
+      width: 200px;
+    }
+    div.petinfo {
+      display: flex;
+      justify-content: space-between;
+    }
+    div.petMap {
+      height: 200px;
+    }
+  }

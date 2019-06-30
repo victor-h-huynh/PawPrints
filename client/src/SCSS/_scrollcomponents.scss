@@ -1,0 +1,111 @@
+$background: #f3f3f3;
+$teal: #08708A;
+$cerulean: #56b1bF;
+$hunter: #032b2f;
+$ink: #193446;
+$azul: #A0c1b8;
+$bolivia: #709fb0;
+$acaranda: #726A95;
+$malber: #351f39;
+$darkslategray: #365660;
+$indianred: #C46168;
+
+
+// Scroll component view
+div.Pets {
+    position: relative;
+    float: left;
+    margin-left: 25px;
+
+    // CARD VIEW
+
+    .button3 {
+      border-radius: 8px;
+
+    }
+
+    .button {
+      background-color: #C46168;
+
+      color: white;
+      padding: 8px;
+      font-size: 15px;
+      margin: 4px 2px;
+      margin-left: 50px;
+    }
+
+    .card {
+      display: grid;
+      grid-template-columns: 150px 350px;
+      height: auto;
+      margin: 5% auto;
+      background: white;
+      border-radius: 5px;
+      box-shadow: 0px 7px 9px grey;
+      position: relative;
+    }
+
+    .card > .entry {
+      height: auto;
+      position: relative;
+      background: white;
+    }
+
+
+
+    .card > .entry,
+    .card > .entry > .container > .text {
+      right: 0;
+      top: 0;
+      position: relative;
+      border-top-right-radius: 5px;
+      border-bottom-right-radius: 5px;
+    }
+
+    .card > .entry > .container > .text {
+      left: 0;
+    }
+
+    .card > .entry h1,
+    .card > .entry p {
+      text-shadow: 0 0 0 #333;
+      transition-delay: 0.4s;
+    }
+
+    .card > .entry .meta {
+      font-size: 12px;
+      color: $bolivia;
+      padding-left: 10px;
+      text-align: right;
+    }
+
+    h1 {
+      display: inline-block;
+      margin-bottom: 5px;
+    }
+
+    .card > .entry > .container > .text h1,
+    .card > .entry > .container > .text p {
+      padding: 5px 15px;
+    }
+
+    .card > .image {
+
+      position: relative;
+      background: white;
+      height: 100%;
+      border-top-left-radius: 5px;
+      border-bottom-left-radius: 5px;
+      
+    }
+
+    .card > .image > img {
+      height: 100%;
+      width: 100%;
+      border-top-left-radius: 5px;
+      border-bottom-left-radius: 5px;
+      max-height: 300px;
+      max-width: 300px;
+    }
+  }
+
