@@ -70,10 +70,12 @@ class Api::UsersController < ApplicationController
         endpoint: params[:subscription][:endpoint],
         p256dh: params[:subscription][:keys][:p256dh],
         auth: params[:subscription][:keys][:auth],
+        alerts: true,
       )
     end
 
     def unsubscribe
+      @current_user = User.find(params[:id])
       @current_user.update!(
         endpoint: nil,
         p256dh: nil,

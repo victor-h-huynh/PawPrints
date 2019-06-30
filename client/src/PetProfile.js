@@ -3,6 +3,8 @@ import { Redirect } from 'react-router-dom';
 import Pet from './Pet';
 import CommentBox from './CommentBox'
 import NoMatch from './NoMatch';
+import ReactToPrint from 'react-to-print';
+
 
 class PetProfile extends Component {
 
@@ -24,14 +26,18 @@ class PetProfile extends Component {
           <React.Fragment>
           {pet ? (
             <React.Fragment>
-            <Pet current_user={this.props.current_user} pet={pet} users={this.props.users} removeAPet={this.props.removeAPet}/><div id="comments">
+            <ReactToPrint
+          trigger={() => <a href="#">Print this out!</a>}
+          content={() => this.componentRef}
+        />
+            <Pet current_user={this.props.current_user} pet={pet} users={this.props.users} removeAPet={this.props.removeAPet} ref={el => (this.componentRef = el)}/><div id="comments">
             <CommentBox pet_id={pet.id} current_user={this.props.current_user} users={this.props.users}/></div>
             </React.Fragment>
           ) : (
             <NoMatch/>
           )}
           </React.Fragment>
-          
+
       );
     }
 };

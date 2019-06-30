@@ -33,7 +33,7 @@ class Register extends Component {
       password_confirmation: "",
       phone_number: "",
       alerts: false,
-
+      errors: [],
       street_number: "",
       street_name: "",
       apartment: "",
@@ -97,14 +97,14 @@ class Register extends Component {
       })
       .catch(err => {
         console.log(" register user error: ", err.response.data);
-        // this.showAlerts(err)
+        this.setState({
+          errors: err.response.data
+        })
       });
   };
 
-  // showAlerts = errors => { return ( <Alert variant="dark"> Hello </Alert> ) }
-
-
   render() {
+    const { errors } = this.state;
     if (this.state.redirectToLogin === true) {
       return <Redirect to={`/Login`} />;
     } else {
