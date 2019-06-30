@@ -31,11 +31,12 @@ const Navigationbar = ({ current_user, clearCurrentUser, updateToken}) => {
            
               {currentUser ? (
                 <React.Fragment>
-                <p>Signed in as {currentUser.name}</p>
+                
                 <LinkContainer to={`/Users/${currentUser.id}`}>
                 <Nav.Link>View my profile</Nav.Link>
                 </LinkContainer>
                 <Nav.Link onClick={logoutUser}>Logout</Nav.Link>
+                <p>Signed in as {currentUser.name}</p>
                 </React.Fragment>
               ) : (
                 <React.Fragment>
