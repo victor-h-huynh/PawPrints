@@ -5,7 +5,6 @@ import TimeAgo from 'react-timeago';
 import { Map, Marker, GoogleApiWrapper } from 'google-maps-react';
 import axios from 'axios'
 import { Form } from 'react-bootstrap';
-import { Badge } from 'react-bootstrap';
 
 class Pet extends Component {
   constructor(props) {
@@ -254,6 +253,14 @@ render() {
     width: '75vw',
     height: '200px',
   };
+  let status;
+  if (pet.status === "Found") {
+    status = "success"
+  } else if (pet.status === "Lost") {
+    status = "danger"
+  } else if (pet.status === "Spotted") {
+    status = "info"
+  }
 return (
 
 <div className="petProfilePage">
@@ -267,7 +274,7 @@ return (
             <Card.Body>
               <div className="petinfo">
                 <Card.Title>{pet.name}, a {pet.status} {pet.species} in {pet.address.city}, {pet.address.postal_code}</Card.Title>
-                <Badge pill variant="danger" className="button button3">{pet.status}</Badge>
+                <span class={`badge badge-pill badge-${status}`}>{pet.status}</span>
               </div>
               <Card.Text>
                 <p>Breed: {pet.description.breed}</p>

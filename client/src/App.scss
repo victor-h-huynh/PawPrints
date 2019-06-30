@@ -48,6 +48,15 @@ body {
   .btn-primary {
     background-color: $teal;
     border-color: $teal;
+    &:hover {
+      background-color: $teal;
+    border-color: $teal;
+    }
+  }
+
+  .btn-primary :hover{
+    background-color: $teal;
+    border-color: $teal;
   }
   
   .map {

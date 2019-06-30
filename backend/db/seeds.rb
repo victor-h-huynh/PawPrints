@@ -264,7 +264,7 @@ ActiveRecord::Base.connection.disable_referential_integrity do
   Pet.create!({
     name: "Chew Barka",
     species: 'Dog',
-    status: "Reunited",
+    status: "Spotted",
     date_lost: Faker::Date.between(7.days.ago, Date.today),
     picture: pet_images[2],
     picture_merged: pet_images[2],
