@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Form } from 'react-bootstrap'; 
-import { Jumbotron as Jumbo, Container } from 'react-bootstrap';
+import { Container } from 'react-bootstrap';
 import "react-awesome-button/dist/styles.css"
 import axios from 'axios'
 import { Redirect } from 'react-router-dom';
@@ -103,7 +103,7 @@ class Login extends Component {
 
                 <Button type="submit" variant="contained" color="primary" className="login-button">
                   <VpnKey className="vpnKeyIcon"/>
-                  Sign-in
+                  Sign in
                 </Button>
 
               </Form>
