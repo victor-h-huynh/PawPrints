@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Form } from 'react-bootstrap'; 
+import { Jumbotron as Jumbo, Container } from 'react-bootstrap';
 import "react-awesome-button/dist/styles.css"
 import axios from 'axios'
 import { Redirect } from 'react-router-dom';
@@ -10,10 +11,14 @@ import loginCat from './assets/loginCat.jpg';
 // Material UI
 
 import { TextField, Grid, Button } from '@material-ui/core/';
-import AccountCircle from '@material-ui/icons/AccountCircle';
-import Lock from '@material-ui/icons/Lock';
-
-
+import Email from '@material-ui/icons/EmailTwoTone';
+import Lock from '@material-ui/icons/LockTwoTone';
+import Face from '@material-ui/icons/FaceTwoTone';
+import VpnKey from '@material-ui/icons/VpnKey';
+// import FormControlLabel from '@material-ui/core/FormControlLabel';
+// import Favorite from '@material-ui/icons/Favorite';
+// import FavoriteBorder from '@material-ui/icons/FavoriteBorder';
+// import Checkbox from '@material-ui/core/Checkbox';
 
 class Login extends Component {
     state = {
@@ -57,61 +62,57 @@ class Login extends Component {
        else {
         return (
         <React.Fragment>
-          <section className="container-fluid">
-            <div className="row align-items-center">
-              <div className="col-lg-6">
-                <div id="headingGroup" class="text-white text-center d-none d-lg-block">
-                  <h1 className="">PAW PRINT</h1>
-                </div>
-              </div>
+          <div fluid className="loginContainer">
+            <div className="loginOverlay">
+              <Container>
+                <Image className="loginCat"src={loginCat} fluided/>
+              </Container>
             </div>
-            <div className="col-lg-6">
-              <Image src="login-cat.jpg" fluid />
-            </div>
-          </section>
-        
-
-          
-          <div className="login-form">
-            <Form onSubmit={this.onHandleSubmit}>
-
-              <div className="email">
-                <Grid container spacing={1} alignItems="flex-end">
-                  <Grid item>
-                    <AccountCircle />
-                  </Grid>
-                  <Grid item>
-                    <TextField id="standard-email-input" className="email-control" type="email" margin="normal" onChange={this.handleChange} name='email' label="Enter Email" required/>
-                  </Grid>
-                </Grid>
-              </div>
-
-              <div className="password-form">
-                <Grid container spacing={1} alignItems="flex-end">
-                  <Grid item>
-                    <Lock />
-                  </Grid>
-                  <Grid item>
-                    <TextField id="standard-password-input" label="Password" className="login-control" type="password" autoComplete="current-password" margin="normal" onChange={this.handleChange} name="password" required />
-                  </Grid>
-                </Grid>
-              </div>
-
-              <Button type="submit" variant="contained" color="primary" className="login-button">
-                Sign-in
-              </Button>
-
-            </Form>
-            
           </div>
-          </React.Fragment>
-        
+              <div className="login-form">
+                <h2 className="login-title">Sign in</h2>
+                <Face className="loginFaceIcon"/>
+              <Form onSubmit={this.onHandleSubmit}>
+                <div className="email">
+                  <Grid container spacing={1} alignItems="flex-end">
+                    <Grid item>
+                      <Email className="loginEmail"/>
+                    </Grid>
+                    <Grid item>
+                      <TextField id="standard-email-input" className="email-text" type="email" margin="normal" onChange={this.handleChange} name='email' label="Enter Email" required/>
+                    </Grid>
+                  </Grid>
+                </div>
 
+                <div className="password-form">
+                  <Grid container spacing={1} alignItems="flex-end">
+                    <Grid item>
+                      <Lock className="loginLockIcon"/>
+                    </Grid>
+                    <Grid item>
+                      <TextField id="standard-password-input" label="Password" className="password-text" type="password" autoComplete="current-password" margin="normal" onChange={this.handleChange} name="password" required />
+                    </Grid>
+                  </Grid>
+                </div>
 
+                {/* <div className="heartCheckBox">
+                  <FormControlLabel
+                    control={<Checkbox icon={<FavoriteBorder />} checkedIcon={<Favorite />} value="checkedH" />}
+                    label="Custom icon"
+                  />
+                </div> */}
+
+                <Button type="submit" variant="contained" color="primary" className="login-button">
+                  <VpnKey className="vpnKeyIcon"/>
+                  Sign-in
+                </Button>
+
+              </Form>
+            </div>
+        </React.Fragment>
       )
     }
-
-    }
+  }
 }
 
 
