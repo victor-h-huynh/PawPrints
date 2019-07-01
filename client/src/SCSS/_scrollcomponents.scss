@@ -47,7 +47,7 @@ div.Pets {
 
     .card {
       display: grid;
-      grid-template-columns: 150px 350px;
+      grid-template-columns: 200px 350px;
       height: auto;
       margin: 5% auto;
       background: white;
@@ -72,6 +72,9 @@ div.Pets {
       position: relative;
       border-top-right-radius: 5px;
       border-bottom-right-radius: 5px;
+    }
+    .card > .container {
+    display: flex;
     }
 
     .card > .entry > .container > .text {
@@ -112,12 +115,12 @@ div.Pets {
     }
 
     .card > .image > img {
-      height: 100%;
-      width: 100%;
+      height: 200px; 
+      width: 200px; 
+      overflow: hidden;  
       border-top-left-radius: 5px;
       border-bottom-left-radius: 5px;
-      max-height: 300px;
-      max-width: 300px;
+      
     }
   }
 
