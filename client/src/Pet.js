@@ -7,7 +7,6 @@ import {
   withScriptjs,
   GoogleMap,
   Marker,
-  InfoWindow,
   Circle
 } from 'react-google-maps';
 import axios from 'axios';

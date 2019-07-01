@@ -1,39 +1,94 @@
- // REPORT A PET
- .report-a-pet {
+$ink: #193446;
 
-    width: 100%;
-    max-width: 1000px;
+
+// REPORT A PET
+#root > div.report-a-pet {
+    color: $ink;
+    width: 85vw;
+    margin-top: 5vh;
+    margin-bottom: 5vh;
     min-width: auto;
-    padding: 15px;
-    padding-top: 80px;
+    padding: 30px 2vw;
     margin: auto;
     height: 100%;
     text-align: center;
+    border-radius: 5px;
     box-shadow: 0px 9px 0px 0px rgba(255, 255, 255, 0), 0px -9px 0px 0px rgba(255, 255, 255, 0), 10px 0px 30px 0px rgba(0, 0, 0, 0.15), -10px 0px 30px 0px rgba(0, 0, 0, 0.15);
-  }
+  
+  
+    .flextheform {
+      display:flex;
+      flex-wrap: wrap;
+      justify-content: space-evenly;
+      align-items: center;
+  
+      .spaced {
+        min-width: 250px;
+        max-width: 80vw;
+      }
+  
+      .status, .species, .sex, .colour{
+        margin-top: 8px;
+      }
+    }
+  
+    .alltheform > div > div > div {
+      border-radius: 5px;
+    }
 
-  .flextheform {
-    display:flex;
-    flex: wrap;
-    // justify-content: space-evenly;
-  }
+    .additional {
+      margin-top: 20px;
+      margin-bottom: 20px;
+    }
+  
+    .picture {
+      margin-bottom: 20px;
+    }
+  
+  
+  
 
-  .species {
-    width: 8rem;
-  }
 
-  .date_lost {
-    width: 15rem;
+  .addressConfirmation{
+    margin-top: 80px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+
+    .streetNumber {
+      max-width: 80vw;
+      min-width: 150px;
+    }
+
+    .streetName, .city, .province, .postalCode {
+      max-width: 80vw;
+      min-width: 200px;
+    }
+
+    .formControl {
+      margin: 8px;
+
+      .form-control {
+        width: inherit;
+      }
+    }
   }
   
-  .report-a-pet-control {
-    width: 10rem; 
-    text-align-last: center;
-    border: solid 1px black;
+
   }
+
+
+
+
   
-  .report-a-pet-comment {
-    width: 50rem;
-    height: 10rem;
-    border: solid 1px black;
-  }
+  // .report-a-pet-control {
+  //   width: 10rem; 
+  //   text-align-last: center;
+  //   border: solid 1px black;
+  // }
+  
+  // .report-a-pet-comment {
+  //   width: 50rem;
+  //   height: 10rem;
+  //   border: solid 1px black;
+  // }
