@@ -27,7 +27,6 @@ div.Pets {
     margin-bottom: 25px;
     height: 200px;
 
-
     // CARD VIEW
 
     .button3 {
@@ -55,6 +54,7 @@ div.Pets {
       box-shadow: 0px 7px 9px grey;
       position: relative;
       width: auto;
+      max-width: 500px;
     }
 
     .card > .entry {
@@ -63,18 +63,20 @@ div.Pets {
       background: white;
     }
 
-
-
     .card > .entry,
     .card > .entry > .container > .text {
-      right: 0;
-      top: 0;
       position: relative;
       border-top-right-radius: 5px;
       border-bottom-right-radius: 5px;
+      display: flex;
+      flex-wrap: wrap;
+
     }
+    
     .card > .container {
     display: flex;
+    height: auto;
+    width: auto;
     }
 
     .card > .entry > .container > .text {
@@ -99,11 +101,6 @@ div.Pets {
       margin-bottom: 5px;
     }
 
-    .card > .entry > .container > .text h1,
-    .card > .entry > .container > .text p {
-      padding: 5px 15px;
-    }
-
     .card > .image {
 
       position: relative;
@@ -117,6 +114,7 @@ div.Pets {
     .card > .image > img {
       height: 100%; 
       width: auto;
+      max-width: 200px;
       max-height: 200px; 
       overflow: hidden;  
       border-top-left-radius: 5px;
