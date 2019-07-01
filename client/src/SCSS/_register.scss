@@ -1,27 +1,27 @@
+
+$ink: #193446;
+
 .registerContainer {
-  background: no-repeat fixed bottom;
-  background-size: cover;
-  color: #ccc;
-  position: relative;
+  display: flex;
+  flex-wrap: wrap;
 }
 
 .registerOverlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 31rem;
+  margin-right: 1vw;
+  flex: '1 0 auto',
 }
 
 .registerCat {
-  width: 60rem;
-  height: 42.5rem;
+  display: block;
+  max-width: 55vw;
+  height: auto;
+  width: auto;
   opacity: 0.8;
 }
 
 .MuiSvgIcon-root.registerLoyaltyIcon {
-  width: 8rem;
-  height: 8rem;
+  width: 3rem;
+  height: 3rem;
 }
 
 .MuiSvgIcon-root.registerNameIcon {
@@ -44,38 +44,74 @@
   height: 3rem;
 }
 
+div.registerAlerts.form-check {
+  width: 90vw;
+}
 .registerForm {
-  margin-left: 60rem;
-  width: 100%;
-  max-width: 40rem;
-  min-width: auto;
+  width: 40vw;
   text-align: center;
+  margin-left: 2vw;
+
+  .form-check {
+    position: inherit;
+
+  }
+
+  .btn-primary {
+    margin-top:20px;
+  }
 }
 
-.registerNameText {
-  width: 35rem;
+.inputFields > div {
+  min-width: 280px;
+  max-width: 80vw;
 }
 
-.registerEmailText {
-  width: 35rem;
+.noFlex > div{
+  flex-wrap: nowrap;
 }
+// .registerNameText {
+//   min-width: 300px;
+//   max-width: 80vw;
+// }
 
-.registerPasswordText {
-  width: 35rem;
-}
+// .registerEmailText {
+//   width: 35rem;
+// }
 
-.registerPasswordConfirmationText {
-  width: 35rem;
-}
+// .registerPasswordText {
+//   width: 35rem;
+// }
 
-.registerPhoneNumberText {
-  width: 35rem;
-}
+// .registerPasswordConfirmationText {
+//   width: 35rem;
+// }
+
+// .registerPhoneNumberText {
+//   width: 35rem;
+// }
+
+
+// .Notifications {
+//   position: inherit;
+//   margin-right: 0px;
+
+//   //checkbox text
+//   span.MuiTypography-root {
+//   // line-height: 0.5em;
+//   // margin-top: 18px;
+// }
+// }
+
 
 .registerAlerts {
   margin-top: 2rem;
-  padding-left: 6.5rem;
   text-align: left;
+}
+
+label.form-check-label {
+  position: inherit;
+  color: $ink;
 }
 
 .registerAlertsText {

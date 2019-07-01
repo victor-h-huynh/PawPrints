@@ -18,6 +18,9 @@ import LockOpen from '@material-ui/icons/LockOpenTwoTone';
 import PhoneIphone from '@material-ui/icons/PhoneIphoneTwoTone';
 import Loyalty from '@material-ui/icons/LoyaltyTwoTone';
 import Create from '@material-ui/icons/CreateTwoTone';
+import Hidden from '@material-ui/core/Hidden';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import Checkbox from '@material-ui/core/Checkbox';
 
 
 class Register extends Component {
@@ -112,91 +115,108 @@ class Register extends Component {
         <React.Fragment>
         {/* {this.showAlerts()} */}
 
-      <div fluid className="registerContainer">
-        <div className="registerOverlay">
-            <Image className="registerCat"src={registerCat} fluided/>
-        </div>
-      </div>
+          <div fluid className="registerContainer">
 
-              <div className="registerForm">
-                  <h2 className="registerTitle">Register</h2>
-                  <Loyalty className="registerLoyaltyIcon"/>
-                <Form onSubmit={this.handleSubmit}>
+            <Hidden className="registerOverlay" smDown>
+                <Image className="registerCat"src={registerCat} fluided/>
+            </Hidden>
 
-                  <div className="registersName">
-                    <Grid container spacing={1} alignItems="flex-end">
-                      <Grid item>
-                        <PermIdentity className="registerNameIcon"/>
-                      </Grid>
-                      <Grid item>
-                        <TextField id="standard-name-input" className="registerNameText" type="name" margin="normal" value={this.state.name} onChange={this.handleChange} name='name' label="Name" required/>
-                      </Grid>
+            <div className="registerForm">
+                <h2 className="registerTitle">Register</h2>
+                <Loyalty className="registerLoyaltyIcon"/>
+              <Form onSubmit={this.handleSubmit}>
+
+                <div className="noFlex">
+                  <Grid container spacing={1} alignItems="flex-end">
+                    <Grid item>
+                      <PermIdentity className="registerNameIcon"/>
                     </Grid>
-                  </div>
-
-                  <div className="registerEmail">
-                    <Grid container spacing={1} alignItems="flex-end">
-                      <Grid item>
-                        <Email className="registerEmailIcon"/>
-                      </Grid>
-                      <Grid item>
-                        <TextField id="standard-email-input" className="registerEmailText" type="email" margin="normal" value={this.state.email} onChange={this.handleChange} name="email" label="Email" required />
-                      </Grid>
+                    <Grid item className="inputFields">
+                      <TextField id="standard-name-input" className="registerNameText" type="name" margin="normal" value={this.state.name} onChange={this.handleChange} name='name' label="Name" required/>
                     </Grid>
-                  </div>
+                  </Grid>
+                </div>
 
-                  <div className="registerPassword">
-                    <Grid container spacing={1} alignItems="flex-end">
-                      <Grid item>
-                        <Lock className="registerPasswordIcon"/>
-                      </Grid>
-                      <Grid item>
-                        <TextField id="standard-password-input" className="registerPasswordText" type="password" margin="normal" value={this.state.password} onChange={this.handleChange} name="password" label="Password" required />
-                      </Grid>
+                <div className="noFlex">
+                  <Grid container spacing={1} alignItems="flex-end">
+                    <Grid item>
+                      <Email className="registerEmailIcon"/>
                     </Grid>
-                  </div>
-
-                  <div className="registerPasswordConfirmation">
-                    <Grid container spacing={1} alignItems="flex-end">
-                      <Grid item>
-                        <LockOpen className="registerPasswordIcon"/>
-                      </Grid>
-                      <Grid item>
-                        <TextField id="standard-password-confirmation-input" className="registerPasswordConfirmationText" type="password" margin="normal" value={this.state.password_confirmation} onChange={this.handleChange} name="password_confirmation" label="Confirm Password" required />
-                      </Grid>
+                    <Grid item className="inputFields">
+                      <TextField id="standard-email-input" className="registerEmailText" type="email" margin="normal" value={this.state.email} onChange={this.handleChange} name="email" label="Email" required />
                     </Grid>
-                  </div>
+                  </Grid>
+                </div>
 
-                  <div className="registerPhoneNumber">
-                    <Grid container spacing={1} alignItems="flex-end">
-                      <Grid item>
-                        <PhoneIphone className="registerPhoneIphoneIcon"/>
-                      </Grid>
-                      <Grid item>
-                        <TextField id="standard-phone-number-input" className="registerPhoneNumberText" type="phone" margin="normal" value={this.state.phone_number} onChange={this.handleChange} name="phone_number" label="Phone Number" required />
-                      </Grid>
+                <div className="noFlex">
+                  <Grid container spacing={1} alignItems="flex-end">
+                    <Grid item>
+                      <Lock className="registerPasswordIcon"/>
                     </Grid>
-                  </div>
+                    <Grid item className="inputFields">
+                      <TextField id="standard-password-input" className="registerPasswordText" type="password" margin="normal" value={this.state.password} onChange={this.handleChange} name="password" label="Password" required />
+                    </Grid>
+                  </Grid>
+                </div>
 
-              
-                  <Form.Group controlId="formGridAlerts">
-                    <Form.Check
+                <div className="noFlex">
+                  <Grid container spacing={1} alignItems="flex-end">
+                    <Grid item>
+                      <LockOpen className="registerPasswordIcon"/>
+                    </Grid>
+                    <Grid item className="inputFields">
+                      <TextField id="standard-password-confirmation-input" className="registerPasswordConfirmationText" type="password" margin="normal" value={this.state.password_confirmation} onChange={this.handleChange} name="password_confirmation" label="Confirm Password" required />
+                    </Grid>
+                  </Grid>
+                </div>
+
+                <div className="noFlex">
+                  <Grid container spacing={1} alignItems="flex-end">
+                    <Grid item>
+                      <PhoneIphone className="registerPhoneIphoneIcon"/>
+                    </Grid>
+                    <Grid item className="inputFields">
+                      <TextField id="standard-phone-number-input" className="registerPhoneNumberText" type="phone" margin="normal" value={this.state.phone_number} onChange={this.handleChange} name="phone_number" label="Phone Number" required />
+                    </Grid>
+                  </Grid>
+                </div>
+
+                {/* <div className="noFlex">
+                <FormControlLabel className="Notifications"
+                  control={
+                    <Checkbox
                       className="registerAlerts"
-                      type="checkbox"
-                      label="Alerts (receive a push notification when a pet is lost or found in your area)"
                       name="alerts"
+                      checked={state.checkedG}
                       onChange={this.handleChecked}
+                      value="checkedG"
+                      helperText = "To receive notifications, click allow when you receive the popup"
                     />
-                    <p className="registerAlertsText">To receive notifications, click allow when you receive the popup</p>
-                  </Form.Group>
+                  }
+                  label="Notifications (receive a push notification when a pet is lost or found in your area)"
+                />
+                </div> */}
             
+            <div className="noFlex">
+                <Form.Group controlId="formGridAlerts">
+                  <Form.Check
+                    className="registerAlerts"
+                    type="checkbox"
+                    label="Alerts (receive a push notification when a pet is lost or found in your area)"
+                    name="alerts"
+                    onChange={this.handleChecked}
+                  />
+                </Form.Group>
+                </div>
+          
 
-                <Button type="submit" variant="contained" color="primary" className="registerBtn">
-                  <Create className="registerCreateIcon"/>
-                  Register
-                </Button>
+              <Button type="submit" className="btn-primary">
+                <Create className="registerCreateIcon"/>
+                Register
+              </Button>
 
-              </Form>
+            </Form>
+          </div>
             </div>
         </React.Fragment>
       );
