@@ -25,11 +25,12 @@ $ink: #193446;
       .spaced {
         min-width: 250px;
         max-width: 80vw;
+        margin-left: 10px;
       }
   
-      .status, .species, .sex, .colour{
-        margin-top: 8px;
-      }
+      // .status, .species, .sex, .colour{
+      //   margin-top: 4px;
+      // }
     }
   
     .alltheform > div > div > div {

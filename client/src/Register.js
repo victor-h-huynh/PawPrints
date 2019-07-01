@@ -181,21 +181,6 @@ class Register extends Component {
                   </Grid>
                 </div>
 
-                {/* <div className="noFlex">
-                <FormControlLabel className="Notifications"
-                  control={
-                    <Checkbox
-                      className="registerAlerts"
-                      name="alerts"
-                      checked={state.checkedG}
-                      onChange={this.handleChecked}
-                      value="checkedG"
-                      helperText = "To receive notifications, click allow when you receive the popup"
-                    />
-                  }
-                  label="Notifications (receive a push notification when a pet is lost or found in your area)"
-                />
-                </div> */}
             
             <div className="noFlex">
                 <Form.Group controlId="formGridAlerts">

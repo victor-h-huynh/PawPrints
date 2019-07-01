@@ -80,6 +80,7 @@ class Api::UsersController < ApplicationController
         endpoint: nil,
         p256dh: nil,
         auth: nil,
+        alerts: false,
       )
     end
 
@@ -94,7 +95,7 @@ class Api::UsersController < ApplicationController
         endpoint: subscriber.endpoint,
         p256dh: subscriber.p256dh,
         auth: subscriber.auth,
-        ttl: 24 * 60 * 60 * 7,
+        ttl: 24 * 60 * 60,
         vapid: {
           subject: "http://localhost:3001",
           public_key: ENV['VAPID_PUBLIC_KEY'],
@@ -119,7 +120,7 @@ class Api::UsersController < ApplicationController
         endpoint: subscriber.endpoint,
         p256dh: subscriber.p256dh,
         auth: subscriber.auth,
-        ttl: 24 * 60 * 60 * 7,
+        ttl: 24 * 60 * 60,
         vapid: {
           subject: "http://localhost:3001",
           public_key: ENV['VAPID_PUBLIC_KEY'],
