@@ -44,7 +44,7 @@ class Api::UsersController < ApplicationController
         token = JsonWebToken.encode(user_id: @user.id)
         time = Time.now + 24.hours.to_i
 
-        render json: { token: token, exp: time.strftime("%m-%d-%Y %H:%M"),
+        render json: { user: @user, token: token, exp: time.strftime("%m-%d-%Y %H:%M"),
                        email: @user.email }, status: :ok
       else
         render status: :not_found, :json => @user.errors.full_messages

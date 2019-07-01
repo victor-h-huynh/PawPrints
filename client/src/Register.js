@@ -67,17 +67,16 @@ class Register extends Component {
 
   handleSubmit = event => {
     event.preventDefault();
-
     axios
       .post("http://localhost:3001/api/users", {
-        address: {
-          street_number: this.state.street_number,
-          street_name: this.state.street_name,
-          apartment: this.state.apartment,
-          city: this.state.city,
-          province: this.state.province,
-          postal_code: this.state.postal_code
-        },
+        // address: {
+        //   street_number: this.state.street_number,
+        //   street_name: this.state.street_name,
+        //   apartment: this.state.apartment,
+        //   city: this.state.city,
+        //   province: this.state.province,
+        //   postal_code: this.state.postal_code
+        // },
         user: {
           name: this.state.name,
           email: this.state.email,
@@ -88,7 +87,7 @@ class Register extends Component {
         }
       })
       .then(response => {
-        this.props.addAUser(response.data);
+        this.props.addAUser(response.data.user);
         localStorage.setItem('token', response.data.token);
         axios.defaults.headers.common['Authorization'] = response.data.token;
         this.props.updateToken(response.data.token);
