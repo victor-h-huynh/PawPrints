@@ -14,7 +14,8 @@ const Navigationbar = ({ current_user, clearCurrentUser, updateToken}) => {
   }
 
   return (
-      <Navbar fixed="" collapseOnSelect expand="lg">
+      <Navbar className="navbar" fixed="" collapseOnSelect expand="lg">
+
         <LinkContainer to="/">
           <Navbar.Brand>Paw Print</Navbar.Brand>
         </LinkContainer>
@@ -28,10 +29,10 @@ const Navigationbar = ({ current_user, clearCurrentUser, updateToken}) => {
               <Nav.Link>Success Stories!</Nav.Link>
             </LinkContainer>
 
-           
+
               {currentUser ? (
                 <React.Fragment>
-                
+
                 <LinkContainer to={`/Users/${currentUser.id}`}>
                 <Nav.Link>View my profile</Nav.Link>
                 </LinkContainer>
@@ -48,7 +49,7 @@ const Navigationbar = ({ current_user, clearCurrentUser, updateToken}) => {
             </LinkContainer>
             </React.Fragment>
               )}
-            
+
           </Nav>
         </Navbar.Collapse>
       </Navbar>
