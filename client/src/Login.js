@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Form } from 'react-bootstrap'; 
 import { Container } from 'react-bootstrap';
-import "react-awesome-button/dist/styles.css"
 import axios from 'axios'
 import { Redirect } from 'react-router-dom';
 import setupNotifications from './setupNotifications.js';

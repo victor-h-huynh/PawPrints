@@ -1,9 +1,7 @@
-import "react-awesome-button/dist/styles.css";
 import axios from "axios";
 import { Redirect } from "react-router-dom";
 import React, { Component } from 'react';
 import { Form, Alert, Container } from 'react-bootstrap';
-import 'react-awesome-button/dist/styles.css';
 import setupNotifications from './setupNotifications.js';
 import Image from 'react-bootstrap/Image'
 import registerCat from './assets/registerCat.jpg'

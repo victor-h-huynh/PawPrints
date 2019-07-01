@@ -14,7 +14,7 @@ const Navigationbar = ({ current_user, clearCurrentUser, updateToken}) => {
   }
 
   return (
-      <Navbar fixed="" collapseOnSelect expand="lg">
+      <Navbar>
         <LinkContainer to="/">
           <Navbar.Brand>Paw Print</Navbar.Brand>
         </LinkContainer>
