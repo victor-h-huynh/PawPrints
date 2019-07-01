@@ -15,28 +15,47 @@ $indianred: #C46168;
 
 
 div.pet.card {
-    width: 80vw;
+    width: 85vw;
     margin: auto;
-    margin-top: 10vh;
+    margin-top: 5vh;
     background: none;
+    padding: 20px;
     box-shadow: 0px 9px 0px 0px rgba(255, 255, 255, 0), 0px -9px 0px 0px rgba(255, 255, 255, 0), 10px 0px 30px 0px rgba(0, 0, 0, 0.15), -10px 0px 30px 0px rgba(0, 0, 0, 0.15);
+
+    div.card-body {
+      padding: 0px;
+      padding-top: 20px;
+
+      p.card-text{
+        p {
+          margin-bottom: -2px;
+        }
+      }
+
+
+      div.petMap > div.petMap {
+        height: 200px;
+      }
+
+      div.petMap > div.petMap > div.map {
+        height: 200px;
+        width: 80vw;
+        margin-left: 0px;
+    }
+
+    }
   
-    div.card-header {
-      background-color: $cerulean;
-      font-size: 2em;
-    }
-    p.card-text {
-      line-height: 0.5em;
-    }
     .petPic {
-      height: 200px;
-      width: 200px;
+      display: block;
+      max-height: 400px;
+      max-width: 75vw;
+      margin: auto;
+      width: auto;
+      height: auto;
     }
     div.petinfo {
       display: flex;
       justify-content: space-between;
     }
-    div.petMap {
-      height: 200px;
-    }
+
   }

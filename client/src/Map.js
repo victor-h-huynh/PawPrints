@@ -245,6 +245,7 @@ return (
 
 const MyMapComponent = withScriptjs(withGoogleMap((props) =>
   <GoogleMap
+
     ref={props.setMapRef}
     defaultZoom={11}
     defaultCenter={{lat: props.userLocation.lat, lng: props.userLocation.lng}}
