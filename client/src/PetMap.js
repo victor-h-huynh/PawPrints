@@ -115,6 +115,7 @@ class PetMap extends Component{
 
 
 	onMarkerDragEnd = ( event ) => {
+
 		let newLat = event.latLng.lat(),
 			newLng = event.latLng.lng();
 
@@ -193,7 +194,7 @@ class PetMap extends Component{
 		let map;
 		if( this.props.center.lat !== undefined ) {
 			map = <div>
-				<AsyncMap
+				<AsyncMap 
           googleMapURL={`https://maps.googleapis.com/maps/api/js?key=${process.env.REACT_APP_GOOGLE_API_KEY}&libraries=places`}
 					loadingElement={
 						<div style={{ height: `100%` }} />
@@ -205,6 +206,7 @@ class PetMap extends Component{
 						<div style={{ height: `100%` }} />
 					}
 					zoom={this.props.zoom}
+					className="PetMap"
 					onClose={this.onInfoWindowClose}
 					markerLat={this.props.parentState.markerPosition.lat}
 					markerLng={this.props.parentState.markerPosition.lng}
@@ -213,34 +215,47 @@ class PetMap extends Component{
 					onPlaceSelected={this.onPlaceSelected}
 					userLocation={this.props.userLocation}
 					/>
-					<p></p>
-					<br></br>
-					<br></br>
-				<div>
-					<p></p>
-					<div className="form-group">
-						<label htmlFor=""></label>
-						<input type="text" name="street_number" className="form-control" onChange={ this.onChange } readOnly="readOnly" value={ this.props.parentState.street_number }/>
-					</div>
-					<div className="form-group">
-						<label htmlFor=""></label>
-						<input type="text" name="street_name" className="form-control" onChange={ this.onChange } readOnly="readOnly" value={ this.props.parentState.street_name }/>
-					</div>
-					<div>
-					<div className="form-group">
-						<label htmlFor=""></label>
-						<input type="text" name="city" className="form-control" onChange={ this.onChange } readOnly="readOnly" value={ this.props.parentState.city }/>
-					</div>
 
-					<div className="form-group">
-						<label htmlFor=""></label>
-						<input type="text" name="province" className="form-control" onChange={ this.onChange } readOnly="readOnly" value={ this.props.parentState.province }/>
-					</div>
-					<div className="form-group">
-						<label htmlFor=""></label>
-						<input type="text" name="postal_code" className="form-control" onChange={ this.onChange } readOnly="readOnly" value={ this.props.parentState.postal_code }/>
-					</div>
-					</div>
+				<div className = "addressConfirmation">
+						<input 
+							type="text" 
+							name="street_number" 
+							className="formControl form-control streetNumber"
+							onChange={ this.onChange } 
+							readOnly="readOnly" 
+							value={ this.props.parentState.street_number }/>
+
+						<input 
+							type="text" 
+							name="street_name" 
+							className="formControl form-control streetName" 
+							onChange={ this.onChange } 
+							readOnly="readOnly" 
+							value={ this.props.parentState.street_name }/>
+
+						<input 
+							type="text" 
+							name="city" 
+							className="formControl form-control city" 
+							onChange={ this.onChange } 
+							readOnly="readOnly" 
+							value={ this.props.parentState.city }/>
+
+						<input 
+							type="text" 
+							name="province" 
+							className="formControl form-control province"
+							onChange={ this.onChange } 
+							readOnly="readOnly" 
+							value={ this.props.parentState.province }/>
+
+						<input 
+							type="text" 
+							name="postal_code" 
+							className="formControl form-control postalCode" 
+							onChange={ this.onChange } 
+							readOnly="readOnly" 
+							value={ this.props.parentState.postal_code }/>
 				</div>
 
 
@@ -288,6 +303,8 @@ export default PetMap;
 								paddingLeft: '16px',
 								marginTop: '20px',
 								marginBottom: '50px',
+								borderRadius: '5px ',
+								border: '1px solid lightgrey',
 							}}
 							onPlaceSelected={ props.onPlaceSelected }
 							types={['address']}

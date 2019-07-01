@@ -267,27 +267,34 @@ resize = picture => {
     this.imgPaw.src = paw
   }
 
+ 
+
   render() {
+    const cardStyle = {
+      marginTop: '5vh',
+      marginBottom: '5vh',
+    }
       const { errors } = this.state;
     if (this.state.redirectToProfile === true) {
       return <Redirect to={`/pets/${this.state.id}`} />;
     } else {
       return (
         <React.Fragment>
-        <div className="report-a-pet">
+        <div className="report-a-pet" style={cardStyle}>
           <h2 className="login-title">Report a lost, found or spotted pet</h2>
           
           
-          <Form onSubmit={this.handleSubmit} autoComplete="off">
+          <Form onSubmit={this.handleSubmit} autoComplete="off" className="alltheform">
             <div className="flextheform">
 
-            <FormControl required className="status">
-              <InputLabel name="status" margin="normal" htmlFor="status-native-helper">Status</InputLabel>
+            <FormControl required className="spaced status">
+              <InputLabel name="status">Status</InputLabel>
                 <NativeSelect
                   name="status"
                   value={this.state.age}
                   onChange={this.handleChange}
-                  input={<Input name="age" id="age-native-helper" />}
+                  margin="normal"
+                  // input={<Input name="age" id="age-native-helper" />}
                 >
                   <option value="" />
                   <option>Lost</option>
@@ -296,18 +303,22 @@ resize = picture => {
                 </NativeSelect>
             </FormControl>
 
-            <div className="name">
-                <Grid item>
-                  <TextField name="name" margin="normal" onChange={this.handleChange} label="Enter Pet's name" required/>
-                </Grid>
-            </div>
+            <TextField 
+            className="spaced name"
+            name="name" 
+            margin="normal" 
+            onChange={this.handleChange} 
+            label="Enter Pet's name" 
+            required/>
+ 
 
-            <FormControl required className="species">
-              <InputLabel name="species" margin="normal" htmlFor="species-native-helper">Species</InputLabel>
+            <FormControl required className="spaced species">
+              <InputLabel name="species" htmlFor="species-native-helper">Species</InputLabel>
                 <NativeSelect
                   name="species"
                   value={this.state.species}
                   onChange={this.handleChange}
+                  margin="normal"
                   input={<Input name="species" id="species-native-helper" />}
                 >
                   <option value="" />
@@ -316,18 +327,20 @@ resize = picture => {
                 </NativeSelect>
             </FormControl>
 
-            <div className="breed">
-                <Grid item>
-                  <TextField name="breed" margin="normal" onChange={this.handleChange} label="Breed"/>
-                </Grid>
-            </div>
+            <TextField 
+            className="spaced breed"
+            name="breed" 
+            margin="normal" 
+            onChange={this.handleChange} 
+            label="Breed"/>
 
-            <FormControl className="sex">
+            <FormControl className="spaced sex">
               <InputLabel name="sex"  margin="normal" htmlFor="sex-native-helper">Sex</InputLabel>
                 <NativeSelect
                   name="sex"
                   value={this.state.sex}
                   onChange={this.handleChange}
+                  margin="normal"
                   input={<Input name="sex" id="sex-native-helper" />}
                 >
                   <option value="" />
@@ -336,12 +349,13 @@ resize = picture => {
                 </NativeSelect>
             </FormControl>
 
-            <FormControl required className="colour">
+            <FormControl required className="spaced colour">
               <InputLabel name="colour" margin="normal" htmlFor="colour-native-helper">Colour</InputLabel>
                 <NativeSelect
                   name="colour"
                   value={this.state.colour}
                   onChange={this.handleChange}
+                  margin="normal"
                   input={<Input name="colour" id="colour-native-helper" />}
                 >
                   <option value="" />
@@ -355,11 +369,15 @@ resize = picture => {
                 </NativeSelect>
             </FormControl>
 
-            <div className="date_lost">
-                <Grid item>
-                  <TextField name="date_lost" margin="normal" onChange={this.handleChange} label="Date Lost/Spotted/Found" required/>
-                </Grid>
-            </div>
+            <TextField 
+              className="spaced date_lost"
+              name="date_lost" 
+              margin="normal" 
+              onChange={this.handleChange} 
+              label="Date" 
+              helperText="Date Lost/Spotted/Found"
+              margin="normal"
+              required/>
             </div>
 
                 {/* BUILT IN CALENDAR THAT MIGHT NEED MORE PACKAGES             */}
@@ -385,7 +403,7 @@ resize = picture => {
                 multiline
                 fullWidth
                 rows="4"
-                className="additional"
+                className="spaced additional"
                 name="additional"
                 value={this.state.additional}
                 onChange={this.handleChange}
@@ -393,7 +411,7 @@ resize = picture => {
                 variant="outlined"
               />
 
-            <div>
+            <div className="picture">
               <input
                 type='file'
                 name='picture'
@@ -412,7 +430,7 @@ resize = picture => {
                 userLocation={this.props.userLocation}
               />
 
-            <Button type="submit" variant="contained" color="primary" className="login-button">
+            <Button type="submit" className="btn-primary">
               Submit
             </Button>
           </Form>

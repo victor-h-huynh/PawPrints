@@ -17,8 +17,6 @@ Rails.application.routes.draw do
     post "/notification" => "users#send_notification"
     post "/user_notification" =>"users#send_usernotification"
     get '/subscriptions' => "users#get_subscriptions"
-    
-    # get "manifest.json" => "metadata#manifest", as: :manifest
   end
  
 end
