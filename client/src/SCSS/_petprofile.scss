@@ -25,6 +25,24 @@ div.pet.card {
     div.card-body {
       padding: 0px;
       padding-top: 20px;
+
+      p.card-text{
+        p {
+          margin-bottom: -2px;
+        }
+      }
+
+
+      div.petMap > div.petMap {
+        height: 200px;
+      }
+
+      div.petMap > div.petMap > div.map {
+        height: 200px;
+        width: 80vw;
+        margin-left: 0px;
+    }
+
     }
   
     .petPic {
@@ -39,8 +57,5 @@ div.pet.card {
       display: flex;
       justify-content: space-between;
     }
-    div.petMap {
-      height: 200px;
-      max-width: 80vw;
-    }
+
   }
