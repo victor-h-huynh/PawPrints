@@ -1,15 +1,11 @@
-$background: #f3f3f3;
-$teal: #08708A;
-$cerulean: #56b1bF;
-$hunter: #032b2f;
+
 $ink: #193446;
-$azul: #A0c1b8;
-$bolivia: #709fb0;
-$acaranda: #726A95;
-$malber: #351f39;
-$darkslategray: #365660;
-$indianred: #C46168;
 $global_button: #3f51b5;
+$background: #{linear-gradient(to left, rgb(255, 239, 186), rgb(255, 255, 255))};
+$orange: #F4976C;
+$darkblue: #303c6c;
+$medblue: #B4dfe5;
+$lightblue: #d2fdff;
 
 
 
@@ -25,9 +21,7 @@ body {
  
  .commentBox {
      box-shadow: 0px 9px 0px 0px rgba(255, 255, 255, 0), 0px -9px 0px 0px rgba(255, 255, 255, 0), 10px 0px 30px 0px rgba(0, 0, 0, 0.15), -10px 0px 30px 0px rgba(0, 0, 0, 0.15);
-     width: 80vw;
-     min-width: 600px;
-     min-height: 150px;
+     width: 85vw;
      position: relative;
      margin: 20px auto;
      padding: 20px;
@@ -36,63 +30,39 @@ body {
      border-radius: 5px;
  }
  
- .commentForm {
-     margin-bottom: 55px;
- }
  
- .group {
-     position: relative;
-     margin-top: 25px;
- }
- 
- .input {
-     padding: 10px 10px 10px 5px;
-     display: block;
-     border: none;
-     border-bottom: 1px solid #ccc;
-     width: 460px;
- 
-     color: $hunter;
-     font-family: "Helvetica Neue", arial, sans-serif;
-     font-size: 15px;
-     cursor: pointer;
-     outline: none;
- }
- 
+ //delete button
  .delete-button {
    font-size: 0.8em;
-   color: $background;
+   color:  $global_button;
    float: right;
-   border: 1px solid $background;
+   border: 1px solid $global_button;
    text-transform: uppercase;
-   background-color: $indianred;
+   background-color: transparent;
+   border-radius: 5px;
  }
+
+ .delete-button:hover {
+    color: #fff;
+    background-color: $global_button;
+}
  
- label {
-     color: #ccc;
-     font-size: 15px;
-     position: absolute;
-     pointer-events: none;
-     left: 5px;
-     top: 10px;
-     transition: 0.2s ease all;
- }
  
  /* active state */
  input:focus ~ label,
  .active {
      top: -18px;
      font-size: 12px;
-     color: $global_button;
+     color: $ink;
  }
 
 
- 
+ //comment submit button
  input[type='submit'] {
      border: 1px solid $global_button;
      color: $global_button;
      text-transform: uppercase;
-    //  font-weight: bold;
+     font-weight: bold;
      padding: 8px 10px;
      background-color: transparent;
      outline: 0;
@@ -106,14 +76,19 @@ body {
      color: #fff;
      background-color: $global_button;
  }
+
+
+.commentBody {
+    color: #fff;
+}
  
  .comment {
      padding: 15px;
      min-height: 48px;
      margin-bottom: 10px;
-     background-color: $indianred;
+     background-color: $medblue;
      font-size: 25px;
-     // display: flex;
+     border-radius: 5px;
  }
  
 //  .comment:hover {
@@ -127,12 +102,6 @@ body {
      // display: flex;
    }
    
-   .commentBody {
-     
-     color: #fff;
- }
-
-
 }
 
 //Comment form
@@ -150,8 +119,8 @@ body {
     display: block;
     border: none;
     border-bottom: 1px solid #ccc;
-    width: 485px;
-    color: $hunter;
+    width: 80vw;
+    color: $ink;
     font-family: "Helvetica Neue", arial, sans-serif;
     font-size: 15px;
     cursor: pointer;
@@ -168,42 +137,10 @@ label {
     transition: 0.2s ease all;
 }
 
-/* active state */
-input:focus ~ label,
-.active {
-    top: -10px;
-    font-size: 12px;
-    color: $indianred;
-}
 
 
 
-input[type='submit'] {
-    border: 1px solid $indianred;
-    color: $indianred;
-    text-transform: uppercase;
-    font-weight: bold;
-    padding: 8px 10px;
-    background-color: transparent;
-    outline: 0;
-    float: right;
-    margin-top: 15px;
-    cursor: pointer;
-}
 
-input[type='submit']:hover {
-    color: #fff;
-    background-color: $indianred;
-}
 
-.comment {
-    padding: 15px;
-    min-height: 48px;
-    margin-bottom: 10px;
-    background-color: $indianred;
-}
 
-.commentBody {
-    color: #fff;
-}
 
