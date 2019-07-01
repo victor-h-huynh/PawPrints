@@ -37,7 +37,6 @@ div.Pets {
 
     .button {
       background-color: #F4976C;
-
       color: white;
       padding: 8px;
       font-size: 15px;
@@ -46,10 +45,11 @@ div.Pets {
     }
 
     .card {
-      display: grid;
-      grid-template-columns: 200px 350px;
+      display: flex;
+      flex-direction: row;
       height: auto;
-      margin: 5% auto;
+      margin-bottom: 5%;
+      margin-right: 5%;
       background: white;
       border-radius: 5px;
       box-shadow: 0px 7px 9px grey;
@@ -116,7 +116,7 @@ div.Pets {
 
     .card > .image > img {
       height: 100%; 
-      width: 100%;
+      width: auto;
       max-height: 200px; 
       overflow: hidden;  
       border-top-left-radius: 5px;
