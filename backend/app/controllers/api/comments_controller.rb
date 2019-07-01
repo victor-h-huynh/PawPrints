@@ -7,8 +7,6 @@ class Api::CommentsController < ApplicationController
     def create
         pet = Pet.find_by id: params['pet_id']
         user = User.find_by id: params['user_id']
-        puts pet.inspect
-        puts user.inspect
         @comment = Comment.create!(
             comment: params['txt'],        
             pet_id: pet.id,
