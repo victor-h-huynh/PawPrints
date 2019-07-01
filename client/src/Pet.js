@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 import TimeAgo from 'react-timeago';
-import { Map, Marker, GoogleApiWrapper } from 'google-maps-react';
+import { withGoogleMap, withScriptjs, GoogleMap, Marker, InfoWindow, Circle } from "react-google-maps";
+
 import axios from 'axios'
 import { Form } from 'react-bootstrap';
 import ReactToPrint from 'react-to-print';
@@ -317,11 +318,22 @@ renderButtons = () => {
 }
 
 render() {
-  const pet = this.props.pet;
+
   const mapStyles = {
     width: '75vw',
     height: '200px',
   };
+
+
+  const pet = this.props.pet;
+
+  const timeLost = new Date(pet.date_lost).getTime()
+     const timeNow = Date.now()
+     const daySinceLost = Math.floor((timeNow - timeLost)/86400000)
+     let radius = 500 + (daySinceLost*500)
+     if (radius > 4000) {
+      radius = 4000
+     }
   let status;
   if (pet.status === "Found") {
     status = "success"
@@ -369,22 +381,53 @@ return (
               <Card.Text>
                   <span>{pet.name} was {pet.status.toLowerCase()} near {pet.address.street_name}, {pet.address.city}:</span>
               </Card.Text>
-              <div className="petMap">
-                <Map
-                    google={this.props.google}
-                    zoom={15}
-                    initialCenter={{
-                    lat: Number(pet.latitude),
-                    lng: Number(pet.longitude),
-                    }}
-                    style={mapStyles}>
-                    < Marker
-                    options={{ icon:
+
+
+<MyMapComponent
+  googleMapURL={`https://maps.googleapis.com/maps/api/js?key=${process.env.REACT_APP_GOOGLE_API_KEY}`}
+  loadingElement={<div className='loading' />}
+  containerElement={<div style={mapStyles} className='container-element' />}
+  mapElement={<div style={{ height: "100%" }} className={'map'}/>}
+  setMapRef={this.setMapRef}
+  pet={this.props.pet}
+
+
+>
+
+    <Marker
+      setMarkerRef={this.setMarkerRef}
+      key={pet.id}
+      position = {{lat: Number(pet.latitude), lng: Number(pet.longitude)}}
+      name = {pet.name}
+      options={{ icon:
                 { url: pet.picture_merged,
                   scaledSize: { width: 48, height: 48 },
-                  } }}/>
-                  </Map>
-                </div>
+                  } }}
+
+       >
+
+
+
+
+   {pet.status === "Lost" &&
+        <Circle
+          options={{
+            visible: true,
+            radius: radius,
+            fillColor:'#84bcaf',
+            strokeOpacity: 0,
+            fillOpacity: 0.4,
+            center: {lat: Number(pet.latitude),
+                            lng: Number(pet.longitude)}
+          }
+          }
+           />}
+         </Marker>
+
+
+</MyMapComponent>
+
+
               <hr></hr>
             </Card.Body>
           </Card>
@@ -394,9 +437,19 @@ return (
    }
 }
 
- export default GoogleApiWrapper({
-  apiKey: process.env.REACT_APP_GOOGLE_API_KEY
-})(Pet);
+
+const MyMapComponent = withScriptjs(withGoogleMap((props) =>
+  <GoogleMap
+    ref={props.setMapRef}
+    defaultZoom={15}
+    defaultCenter={{lat: Number(props.pet.latitude), lng: Number(props.pet.longitude)}}
+    onIdle={props.onMapIdle}
+  >
+    {props.children}
+  </GoogleMap>
+))
+
+ export default Pet
 
 
 
