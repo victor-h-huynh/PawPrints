@@ -237,6 +237,7 @@ class Pet extends Component {
       .catch(err => {
         console.log('report pet error: ', err);
       });
+
   };
 
   renderButtons = () => {
