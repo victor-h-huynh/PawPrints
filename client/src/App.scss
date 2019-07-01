@@ -62,10 +62,6 @@ body {
     }
   }
 
-  .btn-primary :hover{
-    background-color: $teal;
-    border-color: $teal;
-  }
 
   .map {
     height: 70vh;
@@ -83,6 +79,54 @@ body {
   h4 {
     margin: 25px;
   }
+
+.badge-Lost {
+  background-color: red;
+  display: inline-block;
+  padding: .25em .4em;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: baseline;
+  padding-right: .6em;
+  padding-left: .6em;
+  border-radius: 10px;
+}
+
+.badge-Found {
+  background-color: green;
+  display: inline-block;
+  padding: .25em .4em;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: baseline;
+  padding-right: .6em;
+  padding-left: .6em;
+  border-radius: 10px;
+}
+
+.badge-Found {
+  background-color: yellow;
+  display: inline-block;
+  padding: .25em .4em;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: baseline;
+  padding-right: .6em;
+  padding-left: .6em;
+  border-radius: 10px;
+}
+
+
+
 
 }
 

@@ -27,12 +27,13 @@ div.pet.card {
       padding-top: 20px;
     }
   
-    p.card-text {
-      line-height: 0.5em;
-    }
     .petPic {
-      height: 200px;
-      width: 200px;
+      display: block;
+      max-height: 400px;
+      max-width: 75vw;
+      margin: auto;
+      width: auto;
+      height: auto;
     }
     div.petinfo {
       display: flex;
@@ -40,5 +41,6 @@ div.pet.card {
     }
     div.petMap {
       height: 200px;
+      max-width: 80vw;
     }
   }

@@ -323,7 +323,7 @@ class Pet extends Component {
               <Card.Title>
                 A {pet.status} {pet.species} in {pet.address.city}
               </Card.Title>
-              <span className={`badge badge-pill badge-${pet.status}`}>
+              <span className={`badge-${pet.status}`}>
                 {pet.status}
               </span>
             </div>
