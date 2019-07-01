@@ -10,7 +10,7 @@ import paw from './paw.png';
 import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
 import FormControl from '@material-ui/core/FormControl';
-import { TextField, Grid, Button } from '@material-ui/core/';
+import { TextField, Button } from '@material-ui/core/';
 import NativeSelect from '@material-ui/core/NativeSelect';
 // import {
 //   MuiPickersUtilsProvider,
@@ -293,7 +293,7 @@ resize = picture => {
                   name="status"
                   value={this.state.age}
                   onChange={this.handleChange}
-                  margin="normal"
+                  // margin="normal"
                   // input={<Input name="age" id="age-native-helper" />}
                 >
                   <option value="" />
@@ -306,7 +306,7 @@ resize = picture => {
             <TextField 
             className="spaced name"
             name="name" 
-            margin="normal" 
+            // margin="normal" 
             onChange={this.handleChange} 
             label="Enter Pet's name" 
             required/>
@@ -318,7 +318,7 @@ resize = picture => {
                   name="species"
                   value={this.state.species}
                   onChange={this.handleChange}
-                  margin="normal"
+                  // margin="normal"
                   input={<Input name="species" id="species-native-helper" />}
                 >
                   <option value="" />
@@ -330,17 +330,17 @@ resize = picture => {
             <TextField 
             className="spaced breed"
             name="breed" 
-            margin="normal" 
+            // margin="normal" 
             onChange={this.handleChange} 
             label="Breed"/>
 
             <FormControl className="spaced sex">
-              <InputLabel name="sex"  margin="normal" htmlFor="sex-native-helper">Sex</InputLabel>
+              <InputLabel name="sex" htmlFor="sex-native-helper">Sex</InputLabel>
                 <NativeSelect
                   name="sex"
                   value={this.state.sex}
                   onChange={this.handleChange}
-                  margin="normal"
+                  // margin="normal"
                   input={<Input name="sex" id="sex-native-helper" />}
                 >
                   <option value="" />
@@ -350,12 +350,12 @@ resize = picture => {
             </FormControl>
 
             <FormControl required className="spaced colour">
-              <InputLabel name="colour" margin="normal" htmlFor="colour-native-helper">Colour</InputLabel>
+              <InputLabel name="colour" htmlFor="colour-native-helper">Colour</InputLabel>
                 <NativeSelect
                   name="colour"
                   value={this.state.colour}
                   onChange={this.handleChange}
-                  margin="normal"
+                  // margin="normal"
                   input={<Input name="colour" id="colour-native-helper" />}
                 >
                   <option value="" />
@@ -372,11 +372,10 @@ resize = picture => {
             <TextField 
               className="spaced date_lost"
               name="date_lost" 
-              margin="normal" 
               onChange={this.handleChange} 
               label="Date" 
               helperText="Date Lost/Spotted/Found"
-              margin="normal"
+              // margin="normal"
               required/>
             </div>
 
@@ -407,7 +406,7 @@ resize = picture => {
                 name="additional"
                 value={this.state.additional}
                 onChange={this.handleChange}
-                margin="normal"
+                // margin="normal"
                 variant="outlined"
               />
 

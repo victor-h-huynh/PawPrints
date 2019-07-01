@@ -66,17 +66,16 @@ class Register extends Component {
 
   handleSubmit = event => {
     event.preventDefault();
-
     axios
       .post("http://localhost:3001/api/users", {
-        address: {
-          street_number: this.state.street_number,
-          street_name: this.state.street_name,
-          apartment: this.state.apartment,
-          city: this.state.city,
-          province: this.state.province,
-          postal_code: this.state.postal_code
-        },
+        // address: {
+        //   street_number: this.state.street_number,
+        //   street_name: this.state.street_name,
+        //   apartment: this.state.apartment,
+        //   city: this.state.city,
+        //   province: this.state.province,
+        //   postal_code: this.state.postal_code
+        // },
         user: {
           name: this.state.name,
           email: this.state.email,
@@ -87,7 +86,7 @@ class Register extends Component {
         }
       })
       .then(response => {
-        this.props.addAUser(response.data);
+        this.props.addAUser(response.data.user);
         localStorage.setItem('token', response.data.token);
         axios.defaults.headers.common['Authorization'] = response.data.token;
         this.props.updateToken(response.data.token);
@@ -180,21 +179,6 @@ class Register extends Component {
                   </Grid>
                 </div>
 
-                {/* <div className="noFlex">
-                <FormControlLabel className="Notifications"
-                  control={
-                    <Checkbox
-                      className="registerAlerts"
-                      name="alerts"
-                      checked={state.checkedG}
-                      onChange={this.handleChecked}
-                      value="checkedG"
-                      helperText = "To receive notifications, click allow when you receive the popup"
-                    />
-                  }
-                  label="Notifications (receive a push notification when a pet is lost or found in your area)"
-                />
-                </div> */}
             
             <div className="noFlex">
                 <Form.Group controlId="formGridAlerts">

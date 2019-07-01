@@ -44,7 +44,7 @@ class Api::UsersController < ApplicationController
         token = JsonWebToken.encode(user_id: @user.id)
         time = Time.now + 24.hours.to_i
 
-        render json: { token: token, exp: time.strftime("%m-%d-%Y %H:%M"),
+        render json: { user: @user, token: token, exp: time.strftime("%m-%d-%Y %H:%M"),
                        email: @user.email }, status: :ok
       else
         render status: :not_found, :json => @user.errors.full_messages
@@ -80,6 +80,7 @@ class Api::UsersController < ApplicationController
         endpoint: nil,
         p256dh: nil,
         auth: nil,
+        alerts: false,
       )
     end
 
@@ -87,23 +88,29 @@ class Api::UsersController < ApplicationController
     def send_notification
       subscribers = User.where(alerts: true).where.not(endpoint: nil)
       subscribers.each do |subscriber|
-      Webpush.payload_send(
-        message: params[:message],
-        image: params[:image],
-        URL: params[:URL],
-        endpoint: subscriber.endpoint,
-        p256dh: subscriber.p256dh,
-        auth: subscriber.auth,
-        ttl: 24 * 60 * 60 * 7,
-        vapid: {
-          subject: "http://localhost:3001",
-          public_key: ENV['VAPID_PUBLIC_KEY'],
-          private_key: ENV['VAPID_PRIVATE_KEY'],
-        },
-        ssl_timeout: 25,
-        open_timeout: 25,
-        read_timeout: 25
-      )
+        begin
+          Webpush.payload_send(
+            message: params[:message],
+            image: params[:image],
+            URL: params[:URL],
+            endpoint: subscriber.endpoint,
+            p256dh: subscriber.p256dh,
+            auth: subscriber.auth,
+            # ttl: 23 * 60 * 60,
+            vapid: {
+              subject: "http://localhost:3001",
+              public_key: ENV['VAPID_PUBLIC_KEY'],
+              private_key: ENV['VAPID_PRIVATE_KEY'],
+              expiration: 60 * 60 * 12,
+            },
+            ssl_timeout: 25,
+            open_timeout: 25,
+            read_timeout: 25
+          )
+        rescue Exception
+        #ignore errors
+          puts "#{$!}"
+        end
       end
     end
 
@@ -119,7 +126,6 @@ class Api::UsersController < ApplicationController
         endpoint: subscriber.endpoint,
         p256dh: subscriber.p256dh,
         auth: subscriber.auth,
-        ttl: 24 * 60 * 60 * 7,
         vapid: {
           subject: "http://localhost:3001",
           public_key: ENV['VAPID_PUBLIC_KEY'],

@@ -17,6 +17,22 @@
 //       );
 //     });
 
+self.addEventListener('pushsubscriptionchange', function(event) {
+  console.log('Subscription expired');
+  event.waitUntil(
+    self.registration.pushManager.subscribe({ userVisibleOnly: true })
+    .then(function(subscription) {
+      console.log('Subscribed after expiration', subscription.endpoint);
+      axios.post('http://localhost:3001/api/subscribe', {
+        body: JSON.stringify({
+          endpoint: subscription.endpoint
+        })
+      });
+    })
+  );
+});
+
+
 
     self.addEventListener("push", (event) => {
       console.log("event in SW", event.data);

@@ -98,16 +98,16 @@ updateNavState = name => {
     this.setState({pets: [...this.state.pets, newPet]})
   }
 
+  addAUser = (newUser) => {
+    this.setState({users: [...this.state.users, newUser]})
+  }
+
   removeAPet = (reunitedPet) => {
     const newPets = this.state.pets.filter(pet => pet.id !== reunitedPet.id);
     console.log(newPets);
     this.setState({petsOnMap: newPets})
   }
 
-
-  addAUser = (newUser) => {
-    this.setState({users: [...this.state.users, newUser]})
-  }
 
 
 
