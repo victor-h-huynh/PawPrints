@@ -1,15 +1,72 @@
 .login-form {
-    width: 100%;
-    max-width: 300px;
-    min-width: auto;
-    padding: 15px;
-    margin: 5rem auto auto auto;
-    height: 100%;
-    border: solid 3px royalblue;
-    text-align: center;
-  }
+  width: 100%;
+  // max-width: 40rem;
+  // padding: 1rem 0 10rem 0;
+  margin: auto;
+  margin-top: 3rem;
+  height: 100%;
+  text-align: center;
+}
 
-  .login-control {
-    text-align: center;
-    border-radius: 5rem;
-  }
+.loginContainer {
+  background: no-repeat fixed bottom;
+  background-size: cover;
+  color: #ccc;
+  position: relative;
+}
+
+.loginOverlay {
+  position: absolute;
+  top: 0;
+  left: 39.05rem;
+  bottom: 0;
+  right: 0;
+}
+
+.password-form {
+  margin-bottom: 2rem;
+}
+
+.loginCat {
+  width: auto;
+  max-width: 200px;
+  height: auto;
+  max-height: 500px;
+  opacity: 0.8;
+}
+
+.MuiSvgIcon-root.loginFaceIcon {
+  width: 8rem;
+  height: 8rem;
+}
+
+.MuiSvgIcon-root.loginEmail {
+  width: 3rem;
+  height: 3rem;
+}
+
+.MuiSvgIcon-root.loginLockIcon {
+  width: 3rem;
+  height: 3rem;
+}
+.email-text {
+  width: 35rem;
+}
+
+.password-text {
+  width: 35rem;
+}
+
+// .heartCheckBox {
+//   border: solid 2px black;
+//   position: relative;
+//   display: contents;
+// }
+
+.vpnKeyIcon {
+  margin-right: 0.5rem;
+}
+
+.login-button {
+  width: 35rem;
+}

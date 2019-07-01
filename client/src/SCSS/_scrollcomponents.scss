@@ -10,22 +10,33 @@ $malber: #351f39;
 $darkslategray: #365660;
 $indianred: #C46168;
 
+$background: #fbe8a6;
+$orange: #F4976C;
+$darkblue: #303c6c;
+$medblue: #B4dfe5;
+$lightblue: #d2fdff;
+
 
 // Scroll component view
+
 div.Pets {
+
     position: relative;
     float: left;
     margin-left: 25px;
+    margin-bottom: 25px;
+    height: 200px;
+
 
     // CARD VIEW
 
     .button3 {
-      border-radius: 8px;
+      border-radius: 5px;
 
     }
 
     .button {
-      background-color: #C46168;
+      background-color: #F4976C;
 
       color: white;
       padding: 8px;
@@ -43,6 +54,7 @@ div.Pets {
       border-radius: 5px;
       box-shadow: 0px 7px 9px grey;
       position: relative;
+      width: auto;
     }
 
     .card > .entry {
@@ -74,7 +86,7 @@ div.Pets {
 
     .card > .entry .meta {
       font-size: 12px;
-      color: $bolivia;
+      color: #B4dfe5;
       padding-left: 10px;
       text-align: right;
     }

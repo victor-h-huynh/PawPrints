@@ -1,10 +1,23 @@
 import React, { Component } from 'react';
-import { Form, Button, Col, Alert } from 'react-bootstrap';
+import { Form } from 'react-bootstrap';
 import axios from 'axios';
 import PetMap from './PetMap.js';
 import { Redirect } from 'react-router-dom';
 import marker from './marker.png';
 import paw from './paw.png';
+
+
+import Input from '@material-ui/core/Input';
+import InputLabel from '@material-ui/core/InputLabel';
+import FormControl from '@material-ui/core/FormControl';
+import { TextField, Grid, Button } from '@material-ui/core/';
+import NativeSelect from '@material-ui/core/NativeSelect';
+// import {
+//   MuiPickersUtilsProvider,
+//   KeyboardTimePicker,
+//   KeyboardDatePicker,
+// } from '@material-ui/pickers';
+// import DateFnsUtils from '@date-io/date-fns';
 
 
 class ReportAPet extends Component {
@@ -260,157 +273,151 @@ resize = picture => {
       return <Redirect to={`/pets/${this.state.id}`} />;
     } else {
       return (
+        <React.Fragment>
         <div className="report-a-pet">
+          <h2 className="login-title">Report a lost, found or spotted pet</h2>
+          
+          
+          <Form onSubmit={this.handleSubmit} autoComplete="off">
+            <div className="flextheform">
 
-        <Form onSubmit={this.handleSubmit}>
+            <FormControl required className="status">
+              <InputLabel name="status" margin="normal" htmlFor="status-native-helper">Status</InputLabel>
+                <NativeSelect
+                  name="status"
+                  value={this.state.age}
+                  onChange={this.handleChange}
+                  input={<Input name="age" id="age-native-helper" />}
+                >
+                  <option value="" />
+                  <option>Lost</option>
+                  <option>Found</option>
+                  <option>Spotted</option>
+                </NativeSelect>
+            </FormControl>
 
+            <div className="name">
+                <Grid item>
+                  <TextField name="name" margin="normal" onChange={this.handleChange} label="Enter Pet's name" required/>
+                </Grid>
+            </div>
 
-        <Form.Row>
-          <Form.Group as={Col} controlId='formGridStatus'>
-              <Form.Label></Form.Label>
-              <Form.Control
-                className="report-a-pet-control"
-                as='select'
-                name='status'
-                value={this.state.status}
-                onChange={this.handleChange}
-              >
-                <option>Status</option>
-                <option>Lost</option>
-                <option>Found</option>
-                <option>Spotted</option>
-              </Form.Control>
-            </Form.Group>
+            <FormControl required className="species">
+              <InputLabel name="species" margin="normal" htmlFor="species-native-helper">Species</InputLabel>
+                <NativeSelect
+                  name="species"
+                  value={this.state.species}
+                  onChange={this.handleChange}
+                  input={<Input name="species" id="species-native-helper" />}
+                >
+                  <option value="" />
+                  <option>Cat</option>
+                  <option>Dog</option>
+                </NativeSelect>
+            </FormControl>
 
+            <div className="breed">
+                <Grid item>
+                  <TextField name="breed" margin="normal" onChange={this.handleChange} label="Breed"/>
+                </Grid>
+            </div>
 
+            <FormControl className="sex">
+              <InputLabel name="sex"  margin="normal" htmlFor="sex-native-helper">Sex</InputLabel>
+                <NativeSelect
+                  name="sex"
+                  value={this.state.sex}
+                  onChange={this.handleChange}
+                  input={<Input name="sex" id="sex-native-helper" />}
+                >
+                  <option value="" />
+                  <option>Male</option>
+                  <option>Female</option>
+                </NativeSelect>
+            </FormControl>
 
-            <Form.Group as={Col} controlId='formGridName'>
-              <Form.Label></Form.Label>
-              <Form.Control
-                className="report-a-pet-control"
-                type='name'
-                name='name'
-                placeholder='Enter name'
-                value={this.state.name}
-                onChange={this.handleChange}
-              />
-            </Form.Group>
+            <FormControl required className="colour">
+              <InputLabel name="colour" margin="normal" htmlFor="colour-native-helper">Colour</InputLabel>
+                <NativeSelect
+                  name="colour"
+                  value={this.state.colour}
+                  onChange={this.handleChange}
+                  input={<Input name="colour" id="colour-native-helper" />}
+                >
+                  <option value="" />
+                  <option>Black</option>
+                  <option>White</option>
+                  <option>Grey</option>
+                  <option>Orange</option>
+                  <option>Brown</option>
+                  <option>Beige</option>
+                  <option>Multicoloured</option>
+                </NativeSelect>
+            </FormControl>
 
-            <Form.Group as={Col} controlId='formGridSpecies'>
-              <Form.Label></Form.Label>
-              <Form.Control
-                className="report-a-pet-control"
-                as='select'
-                name='species'
-                value={this.state.species}
-                onChange={this.handleChange}
-              >
-                <option>Enter a Species</option>
-                <option>Cat</option>
-                <option>Dog</option>
-              </Form.Control>
-            </Form.Group>
+            <div className="date_lost">
+                <Grid item>
+                  <TextField name="date_lost" margin="normal" onChange={this.handleChange} label="Date Lost/Spotted/Found" required/>
+                </Grid>
+            </div>
+            </div>
 
-            <Form.Group as={Col} controlId='formGridBreed'>
-              <Form.Label></Form.Label>
-              <Form.Control
-                className="report-a-pet-control"
-                type='breed'
-                name='breed'
-                placeholder='Enter Breed'
-                value={this.state.breed}
-                onChange={this.handleChange}
-              />
-            </Form.Group>
-          </Form.Row>
+                {/* BUILT IN CALENDAR THAT MIGHT NEED MORE PACKAGES             */}
+              {/* <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                <Grid container className="date_lost" justify="space-around">
+                <KeyboardDatePicker
+                  margin="normal"
+                  id="mui-pickers-date"
+                  label="Date Lost/Found"
+                  value={this.state.date_lost}
+                  onChange={this.handleChange}
+                  KeyboardButtonProps={{
+                    'aria-label': 'change date',
+                  }}
+                />
+               </Grid>
+               </MuiPickersUtilsProvider> */}
+           
 
-          <Form.Row>
-            <Form.Group as={Col} controlId='formGridSex'>
-              <Form.Label></Form.Label>
-              <Form.Control
-                className="report-a-pet-control"
-                as='select'
-                name='sex'
-                value={this.state.sex}
-                onChange={this.handleChange}
-              >
-                <option>Sex</option>
-                <option>Male</option>
-                <option>Female</option>
-              </Form.Control>
-            </Form.Group>
-
-            <Form.Group as={Col} controlId='formGridColour'>
-              <Form.Label></Form.Label>
-              <Form.Control
-                className="report-a-pet-control"
-                as='select'
-                name='colour'
-                value={this.state.colour}
-                onChange={this.handleChange}
-              > <option>All</option>
-              <option>Black</option>
-              <option>White</option>
-              <option>Grey</option>
-              <option>Orange</option>
-              <option>Brown</option>
-              <option>Beige/Fawn</option>
-              <option>Multicoloured</option>
-                </Form.Control>
-            </Form.Group>
-
-            <Form.Group as={Col} controlId='formGridDateLost'>
-              <Form.Label></Form.Label>
-              <Form.Control
-                className="report-a-pet-control"
-                type='name'
-                name='date_lost'
-                placeholder='Date Lost'
-                value={this.state.date_lost}
-                onChange={this.handleChange}
-              />
-            </Form.Group>
-          </Form.Row>
-
-          <Form.Row>
-            <Form.Group as={Col} controlId='formGridAdditionalComments'>
-              <Form.Label></Form.Label>
-              <Form.Control
-                className="report-a-pet-comment"
-                placeholder='Additional Comments'
-                name='additional'
+             <TextField
+                id="outlined-multiline-static"
+                label="Additional"
+                multiline
+                fullWidth
+                rows="4"
+                className="additional"
+                name="additional"
                 value={this.state.additional}
                 onChange={this.handleChange}
+                margin="normal"
+                variant="outlined"
               />
-            </Form.Group>
-          </Form.Row>
 
-          <Form.Row>
-            <input
-              type='file'
-              name='picture'
-              onChange={this.fileSelectedHandler}
-            />
-          </Form.Row>
+            <div>
+              <input
+                type='file'
+                name='picture'
+                onChange={this.fileSelectedHandler}
+              />
+            </div>
+            
+              <PetMap
+                updateParentState={this.updateParentState}
+                parentState={this.state}
+                google={this.props.google}
+                center={{ lat: this.props.userLocation.lat, lng: this.props.userLocation.lng }}
+                height='300px'
+                width='100%'
+                zoom={15}
+                userLocation={this.props.userLocation}
+              />
 
-          <Form style={{ margin: '25px', marginBottom: '50px' }}>
-            <PetMap
-              updateParentState={this.updateParentState}
-              parentState={this.state}
-              google={this.props.google}
-              center={{ lat: this.props.userLocation.lat, lng: this.props.userLocation.lng }}
-              height='300px'
-              width='100%'
-              zoom={15}
-              userLocation={this.props.userLocation}
-            />
+            <Button type="submit" variant="contained" color="primary" className="login-button">
+              Submit
+            </Button>
           </Form>
-
-          <Button className="report-a-pet-btn" variant='primary' type='submit'>
-            Submit
-          </Button>
-        </Form>
         </div>
+      </React.Fragment>
       );
     }
   }

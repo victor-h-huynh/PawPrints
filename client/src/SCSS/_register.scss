@@ -1,15 +1,91 @@
-.register-form {
-    width: 100%;
-    max-width: 300px;
-    min-width: auto;
-    padding: 15px;
-    margin: 5rem auto auto auto;
-    border: solid 3px royalblue;
-    display: flex;
-  }
+.registerContainer {
+  background: no-repeat fixed bottom;
+  background-size: cover;
+  color: #ccc;
+  position: relative;
+}
 
-  .register-control {
-    text-align: center;
-    border-radius: 5rem;
-    width: 120%;
-  }
+.registerOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 31rem;
+}
+
+.registerCat {
+  width: 60rem;
+  height: 42.5rem;
+  opacity: 0.8;
+}
+
+.MuiSvgIcon-root.registerLoyaltyIcon {
+  width: 8rem;
+  height: 8rem;
+}
+
+.MuiSvgIcon-root.registerNameIcon {
+  width: 3rem;
+  height: 3rem;
+}
+
+.MuiSvgIcon-root.registerEmailIcon {
+  width: 3rem;
+  height: 3rem;
+}
+
+.MuiSvgIcon-root.registerPasswordIcon {
+  width: 3rem;
+  height: 3rem;
+}
+
+.MuiSvgIcon-root.registerPhoneIphoneIcon {
+  width: 3rem;
+  height: 3rem;
+}
+
+.registerForm {
+  margin-left: 60rem;
+  width: 100%;
+  max-width: 40rem;
+  min-width: auto;
+  text-align: center;
+}
+
+.registerNameText {
+  width: 35rem;
+}
+
+.registerEmailText {
+  width: 35rem;
+}
+
+.registerPasswordText {
+  width: 35rem;
+}
+
+.registerPasswordConfirmationText {
+  width: 35rem;
+}
+
+.registerPhoneNumberText {
+  width: 35rem;
+}
+
+.registerAlerts {
+  margin-top: 2rem;
+  padding-left: 6.5rem;
+  text-align: left;
+}
+
+.registerAlertsText {
+  margin-left: 1rem;
+}
+
+.registerCreateIcon {
+  margin-right: 0.5rem;
+}
+
+.registerBtn {
+  width: 37.2rem;
+}
