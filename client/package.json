@@ -17,6 +17,7 @@
     "react-bootstrap-sweetalert": "^4.4.1",
     "react-day-picker": "^7.3.0",
     "react-dom": "^16.8.6",
+    "react-facebook": "^8.0.4",
     "react-geocode": "^0.1.2",
     "react-google-autocomplete": "^1.1.0",
     "react-google-maps": "^9.4.5",

@@ -13,6 +13,7 @@ import axios from 'axios';
 import { Form } from 'react-bootstrap';
 import ReactToPrint from 'react-to-print';
 import PetTemplate from './PetTemplate.js';
+import Facebook from './Facebook.js'
 
 class Pet extends Component {
   constructor(props) {
@@ -418,6 +419,7 @@ class Pet extends Component {
             </div>
             <hr />
             {this.state.current_user && this.renderButtons()}
+            <Facebook/>
             <ReactToPrint
               trigger={() => <a href='#'>Print this out!</a>}
               content={() => this.componentRef}
