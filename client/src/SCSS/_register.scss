@@ -14,38 +14,43 @@
 }
 
 .registerCat {
-  width: 60rem;
-  height: 42.5rem;
-  opacity: 0.8;
+  height: 40rem;
+  border-radius: 20rem;
+  margin-left: 6.5rem;
 }
 
 .MuiSvgIcon-root.registerLoyaltyIcon {
   width: 8rem;
   height: 8rem;
+  padding: 2px;
 }
 
 .MuiSvgIcon-root.registerNameIcon {
   width: 3rem;
   height: 3rem;
+  padding: 2px;
 }
 
 .MuiSvgIcon-root.registerEmailIcon {
   width: 3rem;
   height: 3rem;
+  padding: 2px;
 }
 
 .MuiSvgIcon-root.registerPasswordIcon {
   width: 3rem;
   height: 3rem;
+  padding: 2px;
 }
 
 .MuiSvgIcon-root.registerPhoneIphoneIcon {
   width: 3rem;
   height: 3rem;
+  padding: 2px;
 }
 
 .registerForm {
-  margin-left: 60rem;
+  margin-left: 55rem;
   width: 100%;
   max-width: 40rem;
   min-width: auto;
@@ -73,9 +78,8 @@
 }
 
 .registerAlerts {
-  margin-top: 2rem;
-  padding-left: 6.5rem;
-  text-align: left;
+  right: 15rem;
+  top: 1.5rem;
 }
 
 .registerAlertsText {
