@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom'
 import TimeAgo from 'react-timeago';
 import InfiniteScroll from 'react-infinite-scroll-component';
-import { Badge } from 'react-bootstrap';
 
 class Pets extends Component {
 
