@@ -105,13 +105,20 @@ class ReportAPet extends Component {
 
   sendToDB = (picture) => {
     var date = new Date(this.state.date_lost).getTime();
+    const name = (this.state.name ? this.state.name : "Unknown");
+    const breed = (this.state.breed ? this.state.breed : "Unknown");
+    const sex = (this.state.sex ? this.state.sex : "Unknown");
+    const additional = (this.state.additional ? this.state.additional : "None");
+    console.log("state", this.state.sex);
+    console.log("sex", sex);
+   
     axios
     .post('http://localhost:3001/api/pets', {
       description: {
-        breed: this.state.breed,
+        breed: breed,
         colour: this.state.colour,
-        sex: this.state.sex,
-        additional: this.state.additional
+        sex: sex,
+        additional: additional
       },
       address: {
         street_number: this.state.street_number,
@@ -121,7 +128,7 @@ class ReportAPet extends Component {
         postal_code: this.state.postal_code,
       },
       pet: {
-        name: this.state.name,
+        name: name,
         species: this.state.species,
         status: this.state.status,
         date_lost: date,
