@@ -291,7 +291,6 @@ resize = picture => {
               <InputLabel name="status">Status</InputLabel>
                 <NativeSelect
                   name="status"
-                  value={this.state.age}
                   onChange={this.handleChange}
                   // margin="normal"
                   // input={<Input name="age" id="age-native-helper" />}
@@ -309,7 +308,7 @@ resize = picture => {
             // margin="normal" 
             onChange={this.handleChange} 
             label="Enter Pet's name" 
-            required/>
+            />
  
 
             <FormControl required className="spaced species">

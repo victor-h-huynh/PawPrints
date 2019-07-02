@@ -64,3 +64,35 @@ div.pet.card {
     }
 
   }
+
+
+
+  .printThis {
+    display: flex;
+    justify-content: center;
+
+    .print {
+      // background-color: #3f51b5;
+      // padding: 10px;
+      // border: 1px solid #3f51b5;
+      // border-radius: 5px;
+
+      border: 1px solid $global_button;
+      color: $global_button;
+      text-transform: uppercase;
+      font-weight: bold;
+      padding: 8px 10px;
+      background-color: transparent;
+      outline: 0;
+      cursor: pointer;
+      border-radius: 5px;
+
+
+      &:hover {
+        background-color: $global_button;
+        border-color: $global_button;
+        color: white;
+        text-decoration: none;
+      }
+    }
+}
