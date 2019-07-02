@@ -118,27 +118,25 @@ div.Pets {
       margin-bottom: 5px;
     }
 
-    .card > .image {
+    // .card > .image {
 
-      position: relative;
-      background: white;
-
-      border-top-left-radius: 5px;
-      border-bottom-left-radius: 5px;
-      
-    }
+    //   position: relative;
+    //   background: white;
+    //   border-top-left-radius: 5px;
+    //   border-bottom-left-radius: 5px;
+    //   width: 100%;
+    //   overflow: hidden;
+    // }
 
     .card > .image > img {
-      
       height: 100%;
       overflow: hidden;
-      width: 100%;
+      width: auto;
       max-width: 200px;
       max-height: 200px; 
       overflow: hidden;  
       border-top-left-radius: 5px;
       border-bottom-left-radius: 5px;
-      
     }
   }
 
