@@ -136,12 +136,12 @@ div.Pets {
   .map {
     width: 100% !important;
     height: 400px !important;
-    overflow: hidden !important;
+    max-width: 600px !important;
 
   }
   .infinite-scroll-component {
     float: left !important;
-    margin-left: calc(50% - 250px) !important;
+    // margin-left: calc(50% - 250px) !important;
     margin-top: 25px;
   }
 }
