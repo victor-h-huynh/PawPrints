@@ -37,7 +37,17 @@ $roboto: 'roboto', sans-serif;
 
   background-color: green;
   justify-content: center;
-  margin-bottom: 50px
+
+}
+
+.alerts {
+  justify-content: center;
+  display: flex;
+}
+
+.alert-button {
+  justify-content: center;
+  display: flex;
 }
 
 .levels-text {
@@ -54,15 +64,30 @@ justify-content: center;
 .badges {
   justify-content: center;
   display: flex;
+  margin-bottom: 15px;
 }
 
-.userProfile {
-
+.petAndOwner {
   display: flex;
+
+}
+.userProfile {
   justify-content: center;
+  display: flex;
 }
 
 .userInfo {
+  display: flex;
+  justify-content: right;
+  margin-top: 20px;
+}
+
+.userCardBody {
+  width: 35em;
+  display: flex;
+}
+
+.userCardBody2 {
   display: flex;
 
 }
@@ -71,7 +96,125 @@ justify-content: center;
   display: flex;
 }
 
+.userCardText {
+  display: flex;
+  justify-content: right;
+  padding-left: 10px;
+  padding-top: 10px;
+  line-height: 2;
+}
 
+div.petsUser {
+
+    position: relative;
+    float: left;
+    margin-left: 25px;
+    margin-top: 20px;
+    margin-bottom: 25px;
+    height: 200px;
+
+    // CARD VIEW
+
+    .button3 {
+      border-radius: 5px;
+
+    }
+
+    .button {
+      background-color: #F4976C;
+      color: white;
+      padding: 8px;
+      font-size: 15px;
+      margin: 4px 2px;
+      margin-left: 50px;
+    }
+
+    .card {
+      display: flex;
+      flex-direction: row;
+      flex: flex-wrap;
+      height: auto;
+      margin-bottom: 5%;
+      margin-right: 5%;
+      background: white;
+      border-radius: 5px;
+      box-shadow: 0px 7px 9px grey;
+      position: relative;
+      width: auto;
+      max-width: 575px;
+    }
+
+    .card > .entry {
+      height: auto;
+      position: relative;
+      background: white;
+    }
+
+    .card > .entry,
+    .card > .entry > .container > .text {
+      position: relative;
+      border-top-right-radius: 5px;
+      border-bottom-right-radius: 5px;
+      display: flex;
+      flex-wrap: wrap;
+
+    }
+
+    .card > .container {
+    display: flex;
+    height: auto;
+    width: auto;
+    }
+
+    .card > .entry > .container > .text {
+      left: 0;
+    }
+
+    .card > .entry h1,
+    .card > .entry p {
+      text-shadow: 0 0 0 #333;
+      transition-delay: 0.4s;
+      min-width: 100px;
+    }
+
+    .card > .entry .meta {
+      font-size: 12px;
+      color: #B4dfe5;
+      padding-left: 10px;
+      text-align: right;
+    }
+
+    h1 {
+      display: inline-block;
+      margin-bottom: 5px;
+    }
+
+    .card > .image {
+
+      position: relative;
+      background: white;
+      height: 100%;
+      border-top-left-radius: 5px;
+      border-bottom-left-radius: 5px;
+
+    }
+
+    .card > .image > img {
+      height: 100%;
+      width: auto;
+      max-width: 200px;
+      max-height: 200px;
+      overflow: hidden;
+      border-top-left-radius: 5px;
+      border-bottom-left-radius: 5px;
+
+    }
+  }
+
+
+html {
+  margin-bottom: 80px;
+}
 
 
 body {
@@ -120,9 +263,8 @@ body {
     margin: 25px;
   }
 
-.badge-Lost {
-  background-color: red;
-  color: white;
+.badge-Lost, .badge-Found, .badge-Reunited, .badge-Spotted {
+
   display: inline-block;
   padding: .4em;
   font-size: 18px;
@@ -134,41 +276,20 @@ body {
   margin-left: 5px;
 }
 
+.badge-Lost {
+  background-color: rgb(201, 51, 51);
+}
 .badge-Found {
-  background-color: green;
-  color: white;
-  display: inline-block;
-  padding: .50em .4em;
-  font-size: 20px;
-  font-weight: 700;
-  line-height: 1;
-  text-align: center;
-  white-space: nowrap;
-  vertical-align: baseline;
-  padding-right: .6em;
-  padding-left: .6em;
-  border-radius: 10px;
-  margin-left: 5px;
+  background-color: rgb(58, 146, 58);
 }
 
 .badge-Spotted {
-  background-color: yellow;
-  display: inline-block;
-  padding: .50em .4em;
-  font-size: 18px;
-  font-weight: 700;
-  line-height: 1;
-  text-align: center;
-  white-space: nowrap;
-  vertical-align: baseline;
-  padding-right: .6em;
-  padding-left: .6em;
-  border-radius: 10px;
-  margin-left: 5px;
+  background-color: rgb(243, 243, 83);
 }
 
-
-
+.badge-Reunited {
+  background-color: rgb(94, 94, 245);
+}
 
 }
 
