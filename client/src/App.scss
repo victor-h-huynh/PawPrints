@@ -36,6 +36,9 @@ $lightblue: #d2fdff;
 $roboto: 'roboto', sans-serif;
 
 
+html {
+  margin-bottom: 80px;
+}
 
 
 body {
@@ -67,6 +70,7 @@ body {
 
 
   .map {
+    display: flex;
     height: 70vh;
     width: 50vw;
     margin-left: 25px;
@@ -85,9 +89,10 @@ body {
 
 .badge-Lost {
   background-color: red;
+  color: white;
   display: inline-block;
-  padding: .50em .4em;
-  font-size: 20px;
+  padding: .65em .4em;
+  font-size: 18px;
   font-weight: 700;
   line-height: 1;
   text-align: center;
@@ -100,8 +105,9 @@ body {
 
 .badge-Found {
   background-color: green;
+  color: white;
   display: inline-block;
-  padding: .25em .4em;
+  padding: .50em .4em;
   font-size: 20px;
   font-weight: 700;
   line-height: 1;
@@ -116,8 +122,8 @@ body {
 .badge-Spotted {
   background-color: yellow;
   display: inline-block;
-  padding: .25em .4em;
-  font-size: 20px;
+  padding: .50em .4em;
+  font-size: 18px;
   font-weight: 700;
   line-height: 1;
   text-align: center;
