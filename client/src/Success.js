@@ -4,7 +4,6 @@ import petOwner2 from './assets/petOwner2.jpg';
 import petOwner3 from './assets/petOwner3.jpg';
 import dogIcon1 from  './assets/dogIcon1.svg';
 import dogIcon2 from  './assets/dogIcon2.svg';
-import dogIcon3 from  './assets/dogIcon3.svg';
 import './App.scss'
 
 class Success extends Component {
@@ -39,9 +38,9 @@ class Success extends Component {
               <div className="col-md-6 text-center order-1 order-md-2">
                 <div className="row justify-content-center">
                   <div className="col-10 col-lg-8 secondSection mb-5 mb-md-0">
-                  <h2>Santa Paws</h2>
+                  <h2>Justine Louise</h2>
                     <img className="successIcon d-none d-lg-inline" src={dogIcon1} alt="" ></img>
-                    <p className="lead">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+                    <p className="lead">"I recommend Paw Prints to anyone who misses their pet dearly. I cannot believe how quick and easy it was!" </p>
                   </div>
                 </div>
               </div>
@@ -51,9 +50,9 @@ class Success extends Component {
               <div className="col-md-6 text-center">
                 <div className="row justify-content-center">
                   <div className="col-10 col-lg-8 thirdSection mb-5 mb-md-0">
-                  <h2>Chew Barka</h2>
+                  <h2>Fred Douglas</h2>
                     <img className="successIcon d-none d-lg-inline" src={dogIcon2} alt=""></img>
-                    <p className="lead">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+                    <p className="lead">"I was so afraid that I lost Chew Barka, but thanks to Paw Prints we found him in a day!"</p>
                   </div>
                 </div>
               </div>

@@ -9,6 +9,7 @@
 @import '/SCSS/mobile-view';
 @import '/SCSS/loading-animation';
 @import '/SCSS/navbar';
+@import 'SCSS/user';
 
 
 $background: #{linear-gradient(to left, rgb(255, 239, 186), rgb(255, 255, 255))};
@@ -21,8 +22,6 @@ $acaranda: #726A95;
 $malber: #351f39;
 $darkslategray: #365660;
 $indianred: #C46168;
-
-
 
 $ink: #193446;
 $global_button: #3f51b5;
@@ -213,15 +212,11 @@ div.petsUser {
   }
 
 
-html {
-  margin-bottom: 80px;
-}
-
-
 body {
   font-family: $roboto;
   background: linear-gradient(to left, rgb(255, 239, 186), rgb(255, 255, 255));
   color: #193446;
+  height: 100%;
 
 
 
@@ -234,7 +229,7 @@ body {
     padding: 8px 10px;
     background-color: transparent;
     outline: 0;
-    margin-top: 15px;
+    margin: 15px;
     cursor: pointer;
     border-radius: 5px;
 
@@ -267,16 +262,14 @@ body {
 .badge-Lost, .badge-Found, .badge-Reunited, .badge-Spotted {
 
   display: inline-block;
-  padding: .65em .4em;
+  padding: .4em;
   font-size: 18px;
   font-weight: 700;
-  line-height: 1;
   text-align: center;
   white-space: nowrap;
   vertical-align: baseline;
-  padding-right: .6em;
-  padding-left: .6em;
   border-radius: 10px;
+  margin-left: 5px;
 }
 
 .badge-Lost {
@@ -293,9 +286,6 @@ body {
 .badge-Reunited {
   background-color: rgb(94, 94, 245);
 }
-
-
-
 
 }
 

@@ -22,7 +22,7 @@ class Pets extends Component {
         <InfiniteScroll dataLength={this.state.items.length}
         next={this.fetchMoreData}
         hasMore={this.state.hasMore}
-        height={733}
+        height={610}
         endMessage={
           <p style={{ textAlign: "center" }}>
             <b>Yay! You have seen it all</b>
@@ -30,25 +30,25 @@ class Pets extends Component {
         }>
             <div className="Pets">
             {this.props.pets.map(pet =>
-          <section key={pet.id}>
+              <section key={pet.id}>
 
-          <article className="card">
-  <div className="image">
-  <img key={pet.id} src={pet.picture} alt=""/>
-  </div>
-  <div className="entry">
-    <div className="container">
-      <div className="text">
-        <h1 className="card-title">{pet.name}</h1>
-        <span className="meta"> <TimeAgo date={pet.date_lost}/></span>
-        <span className={`badge-${pet.status}`}>{pet.status}</span>
-        {/* <Badge pill variant="danger" className="button button3">{pet.status}</Badge> */}
-        <p>{pet.species}, {pet.description.breed} </p> <Link to={`/pets/${pet.id}`} className="btn btn-primary">more details</Link>
-      </div>
-    </div>
-  </div>
-</article>
-</section>
+                <article className="card">
+                  <div className="image">
+                    <img key={pet.id} src={pet.picture} alt=""/>
+                  </div>
+                  <div className="entry">
+                    <div className="container">
+                      <div className="text">
+                        <h1 className="card-title">{pet.name}</h1>
+                        <span className="meta"> <TimeAgo date={pet.date_lost}/></span>
+                        <span className={`badge-${pet.status}`}>{pet.status}</span>
+                        {/* <Badge pill variant="danger" className="button button3">{pet.status}</Badge> */}
+                        <p>{pet.species}, {pet.description.breed} </p> <Link to={`/pets/${pet.id}`} className="btn btn-primary">more details</Link>
+                      </div>
+                    </div>
+                    </div>
+                  </article>
+                </section>
           )}
           </div>
           </InfiniteScroll>

@@ -64,3 +64,44 @@ div.pet.card {
     }
 
   }
+
+
+
+  .printThis {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    flex-wrap: wrap;
+    box-shadow: 0px 9px 0px 0px rgba(255, 255, 255, 0), 0px -9px 0px 0px rgba(255, 255, 255, 0), 10px 0px 30px 0px rgba(0, 0, 0, 0.15), -10px 0px 30px 0px rgba(0, 0, 0, 0.15);
+    width: 85vw;
+    margin: auto;
+    margin-bottom: 5vh;
+    margin-top: 5vh;
+    background: none;
+    padding: 2vw;
+
+    .print {
+      // background-color: #3f51b5;
+      // padding: 10px;
+      // border: 1px solid #3f51b5;
+      // border-radius: 5px;
+
+      border: 1px solid $global_button;
+      color: $global_button;
+      text-transform: uppercase;
+      font-weight: bold;
+      padding: 8px 10px;
+      background-color: transparent;
+      outline: 0;
+      cursor: pointer;
+      border-radius: 5px;
+
+
+      &:hover {
+        background-color: $global_button;
+        border-color: $global_button;
+        color: white;
+        text-decoration: none;
+      }
+    }
+}

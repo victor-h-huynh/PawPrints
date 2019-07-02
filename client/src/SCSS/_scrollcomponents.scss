@@ -24,6 +24,7 @@ div.infinite-scroll-component {
   justify-content: center;
   flex-wrap: wrap;
   width: auto;
+  
 }
 
 div.Pets {
@@ -54,7 +55,7 @@ div.Pets {
       display: flex;
       flex-direction: row;
       flex: flex-wrap;
-      height: auto;
+      height: 180px;
       margin-bottom: 5%;
       margin-right: 5%;
       background: white;
@@ -80,6 +81,11 @@ div.Pets {
       flex-wrap: wrap;
 
     }
+
+    .card-title {
+      width: 100%;
+      left: 10%;
+    }
     
     .card > .container {
     display: flex;
@@ -89,6 +95,8 @@ div.Pets {
 
     .card > .entry > .container > .text {
       left: 0;
+      display: flex;
+      flex-wrap: wrap;
     }
 
     .card > .entry h1,
@@ -108,27 +116,38 @@ div.Pets {
     h1 {
       display: inline-block;
       margin-bottom: 5px;
-    }
-
-    .card > .image {
-
-      position: relative;
-      background: white;
-      height: 100%;
-      border-top-left-radius: 5px;
-      border-bottom-left-radius: 5px;
-      
+      font-size: 36px;
     }
 
     .card > .image > img {
-      height: 100%; 
+      height: 100%;
+      overflow: hidden;
       width: auto;
       max-width: 200px;
       max-height: 200px; 
       overflow: hidden;  
       border-top-left-radius: 5px;
       border-bottom-left-radius: 5px;
-      
     }
   }
 
+@media screen and (max-width: 768px) {
+  .map {
+    width: 100% !important;
+    height: 400px !important;
+    max-width: 600px !important;
+
+  }
+  .infinite-scroll-component {
+    float: left !important;
+    // margin-left: calc(50% - 250px) !important;
+    margin-top: 25px;
+  }
+
+}
+
+@media screen and (max-width: 931px) {
+  .card {
+    height: auto !important;
+  }
+}
