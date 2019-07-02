@@ -52,7 +52,6 @@ class User extends Component {
     })
 
 
-    });
 
   }
 
@@ -158,7 +157,6 @@ class User extends Component {
 
     console.log(percentage)
 
-    };
 
 
     if (0 < percentage && percentage < 16.67) {
@@ -208,6 +206,7 @@ class User extends Component {
 
 
     return (
+      <React.Fragment>
       <React.Fragment>
       <React.Fragment>
         <h3 className="levels-text-2"> Level {levels}!  </h3>
@@ -278,6 +277,7 @@ class User extends Component {
       </React.Fragment>
 
                     <ProgressBar className="progressBar" label={`${percentage}%`} variant="success" animated now={percentage} />
+                    </React.Fragment>
 
 
       {this.props.current_user && this.state.current_user_id === this.state.id &&
