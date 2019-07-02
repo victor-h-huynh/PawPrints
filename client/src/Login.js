@@ -63,10 +63,10 @@ class Login extends Component {
         <React.Fragment>
           <div className="loginContainer">
               <Container>
-                <Image className="loginCat" src={loginCat} fluided/>
               </Container>
           </div>
               <div className="login-form">
+                <Image className="loginCat" src={loginCat} fluided/>
                 <h2 className="login-title">Sign in</h2>
                 <Face className="loginFaceIcon"/>
               <Form onSubmit={this.onHandleSubmit}>
