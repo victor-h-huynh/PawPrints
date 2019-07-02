@@ -36,8 +36,10 @@ class User extends Component {
       phone_number: this.props.user.phone_number,
       alerts: this.props.user.alerts,
       current_user_id: current_user_id,
-      userPet: userPet
+      userPet: userPet,
+      points: this.props.user.points
     })
+
   }
 
   handleSwitchChange = (checked) => {
@@ -102,8 +104,6 @@ class User extends Component {
 
 
   render() {
-
-
     const { errors } = this.state;
     const user = this.props.user;
     let badge1;
@@ -130,48 +130,58 @@ class User extends Component {
     const levels = Math.floor(this.props.user.points/1000)
     const progress = (this.props.user.points - levels*1000)
     const missingPoints = Math.floor(1000 - progress)
+    let percentage = (Math.round((this.state.points/7000) * 100) / 100)*100
+    console.log(percentage)
+    console.log(this.state.points)
+    if (percentage === Infinity) {
+      percentage = 0
+    } else if (percentage > 100){
+      percentage = 100
+    }
 
-      if (levels === 0) {
+    console.log(percentage)
+
+    if (0 < percentage && percentage < 16.67) {
       badge1 = <img id="badge1" style={currentBadgeStyle} alt="" src="https://firebasestorage.googleapis.com/v0/b/final-project-1561040119727.appspot.com/o/badgelvl0.png?alt=media&token=65a6f1a6-4ef7-4619-ba04-8e8a84a14bad" />;
      currentBadge = badge1
     } else {
       badge1 = <img id="badge1" style={badgeStyle} alt="" src="https://firebasestorage.googleapis.com/v0/b/final-project-1561040119727.appspot.com/o/badgelvl0.png?alt=media&token=65a6f1a6-4ef7-4619-ba04-8e8a84a14bad" />;
     }
-    if (levels === 1) {
+    if (16.68 < percentage && percentage < 33.33) {
       badge2 = <img id="badge2" style={currentBadgeStyle} alt="" src="https://firebasestorage.googleapis.com/v0/b/final-project-1561040119727.appspot.com/o/Badgelvl1.png?alt=media&token=136b63ac-e990-4642-aa28-2fe5415087d5" />
       currentBadge = badge2
     } else {
       badge2 = <img id="badge2" style={badgeStyle} alt="" src="https://firebasestorage.googleapis.com/v0/b/final-project-1561040119727.appspot.com/o/Badgelvl1.png?alt=media&token=136b63ac-e990-4642-aa28-2fe5415087d5" />
     }
-    if (levels === 2) {
+    if (33.33 < percentage && percentage < 50) {
       badge3 = <img id="badge3" style={currentBadgeStyle} alt="" src="https://firebasestorage.googleapis.com/v0/b/final-project-1561040119727.appspot.com/o/badgelvl2.png?alt=media&token=0d572115-5875-4605-a2b9-5bf05f7a6ea6" />
       currentBadge = badge3
     } else {
       badge3 = <img id="badge3" style={badgeStyle} alt="" src="https://firebasestorage.googleapis.com/v0/b/final-project-1561040119727.appspot.com/o/badgelvl2.png?alt=media&token=0d572115-5875-4605-a2b9-5bf05f7a6ea6" />
     }
-    if (levels === 3) {
-      badge4 = <img id="badge4" style={currentBadgeStyle} alt="" src="https://firebasestorage.googleapis.com/v0/b/final-project-1561040119727.appspot.com/o/badgelvl4.png?alt=media&token=67b3dfd2-683e-4b88-ac06-2f094902e073" />
+    if (50.01 < percentage && percentage < 66.67) {
+      badge4 = <img id="badge4" style={currentBadgeStyle} alt="" src="https://firebasestorage.googleapis.com/v0/b/final-project-1561040119727.appspot.com/o/badgelvl3.png?alt=media&token=d5a155f7-812e-4204-b2e1-e04d7f03a5b9" />
       currentBadge = badge4
     } else {
-      badge4 = <img id="badge4" style={badgeStyle} alt="" src="https://firebasestorage.googleapis.com/v0/b/final-project-1561040119727.appspot.com/o/badgelvl4.png?alt=media&token=67b3dfd2-683e-4b88-ac06-2f094902e073" />
+      badge4 = <img id="badge4" style={badgeStyle} alt="" src="https://firebasestorage.googleapis.com/v0/b/final-project-1561040119727.appspot.com/o/badgelvl3.png?alt=media&token=d5a155f7-812e-4204-b2e1-e04d7f03a5b9" />
     }
-    if (levels === 4) {
+    if (66.68 < percentage && percentage < 83.33) {
       badge5 = <img id="badge5" style={currentBadgeStyle} alt="" src="https://firebasestorage.googleapis.com/v0/b/final-project-1561040119727.appspot.com/o/badgelvl5.png?alt=media&token=7f821419-b0b2-4676-8cd4-e82ec1c2f9bf" />
       currentBadge = badge5
     } else {
       badge5 = <img id="badge5" style={badgeStyle} alt="" src="https://firebasestorage.googleapis.com/v0/b/final-project-1561040119727.appspot.com/o/badgelvl5.png?alt=media&token=7f821419-b0b2-4676-8cd4-e82ec1c2f9bf" />
     }
-    if (levels === 5) {
-      badge6 = <img id="badge5" style={currentBadgeStyle} alt="" src="https://firebasestorage.googleapis.com/v0/b/final-project-1561040119727.appspot.com/o/badgelvl6.png?alt=media&token=e5f7dcac-33c4-41ac-9e05-8f640b4e5d87" />
+    if (83.34 < percentage && percentage <= 99.99) {
+      badge6 = <img id="badge7" style={currentBadgeStyle} alt="" src="https://firebasestorage.googleapis.com/v0/b/final-project-1561040119727.appspot.com/o/badgelvl6.png?alt=media&token=e5f7dcac-33c4-41ac-9e05-8f640b4e5d87" />
       currentBadge = badge6
     } else {
-      badge6 = <img id="badge5" style={badgeStyle} alt="" src="https://firebasestorage.googleapis.com/v0/b/final-project-1561040119727.appspot.com/o/badgelvl6.png?alt=media&token=e5f7dcac-33c4-41ac-9e05-8f640b4e5d87" />
+      badge6 = <img id="badge7" style={badgeStyle} alt="" src="https://firebasestorage.googleapis.com/v0/b/final-project-1561040119727.appspot.com/o/badgelvl6.png?alt=media&token=e5f7dcac-33c4-41ac-9e05-8f640b4e5d87" />
     }
-    if (levels >= 6) {
-      badge7 = <im id="badge5" style={currentBadgeStyle} alt="" src="https://firebasestorage.googleapis.com/v0/b/final-project-1561040119727.appspot.com/o/badgelvl7.png?alt=media&token=54ae2e9a-dd5d-4048-95a9-494ed615931e" />
+    if (percentage >= 100) {
+      badge7 = <img id="badge7" style={currentBadgeStyle} alt="" src="https://firebasestorage.googleapis.com/v0/b/final-project-1561040119727.appspot.com/o/badgelvl7.png?alt=media&token=54ae2e9a-dd5d-4048-95a9-494ed615931e" />
       currentBadge = badge7
     } else {
-      badge7 = <img id="badge5" style={badgeStyle} alt="" src="https://firebasestorage.googleapis.com/v0/b/final-project-1561040119727.appspot.com/o/badgelvl7.png?alt=media&token=54ae2e9a-dd5d-4048-95a9-494ed615931e" />
+      badge7 = <img id="badge7" style={badgeStyle} alt="" src="https://firebasestorage.googleapis.com/v0/b/final-project-1561040119727.appspot.com/o/badgelvl7.png?alt=media&token=54ae2e9a-dd5d-4048-95a9-494ed615931e" />
     }
 
 
@@ -185,7 +195,7 @@ class User extends Component {
       <React.Fragment>
       <React.Fragment>
         <h3 className="levels-text-2"> Level {levels}!  </h3>
-        <h3 className="levels-text"> Level {levels}! You need {missingPoints} points to reach level {levels + 1} </h3>
+        <h3 className="levels-text"> You need {missingPoints} points to reach level {levels+1} </h3>
         <div className="badges">
          Level 0
          {badge1}
@@ -207,7 +217,7 @@ class User extends Component {
 
       </React.Fragment>
 
-                    <ProgressBar className="progressBar" label={`${progress/10}%`} variant="success" animated now={progress/10} />
+                    <ProgressBar className="progressBar" label={`${percentage}%`} variant="success" animated now={percentage} />
 
 
       {this.props.current_user && this.state.current_user_id === this.state.id &&
@@ -239,7 +249,6 @@ class User extends Component {
                   value={this.state.phone_number}
                   onChange={this.handleChange}
                 />
-                        <ProgressBar className="progressBar" label={`${progress/10}%`} variant="success" animated now={progress/10} />
 
               </Form.Group>
 

@@ -36,10 +36,7 @@ $lightblue: #d2fdff;
 $roboto: 'roboto', sans-serif;
 
 .progressBar {
-
   background-color: green;
-  justify-content: center;
-
 }
 
 .alerts {
@@ -50,6 +47,8 @@ $roboto: 'roboto', sans-serif;
 .alert-button {
   justify-content: center;
   display: flex;
+  margin-left: 94px;
+  margin-top: 15px;
 }
 
 .levels-text {
