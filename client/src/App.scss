@@ -35,11 +35,6 @@ $lightblue: #d2fdff;
 @import url(https://fonts.googleapis.com/css?family=Roboto);
 $roboto: 'roboto', sans-serif;
 
-<<<<<<< HEAD
-// html {
-//   margin-bottom: 80px;
-// }
-=======
 .progressBar {
 
   background-color: green;
@@ -81,7 +76,6 @@ justify-content: center;
 html {
   margin-bottom: 80px;
 }
->>>>>>> master
 
 
 body {
@@ -137,13 +131,13 @@ body {
   padding: .65em .4em;
   font-size: 18px;
   font-weight: 700;
-  line-height: 1;
   text-align: center;
   white-space: nowrap;
   vertical-align: baseline;
   padding-right: .6em;
   padding-left: .6em;
   border-radius: 10px;
+  margin-left: 5px;
 }
 
 .badge-Found {
@@ -160,6 +154,7 @@ body {
   padding-right: .6em;
   padding-left: .6em;
   border-radius: 10px;
+  margin-left: 5px;
 }
 
 .badge-Spotted {
@@ -175,6 +170,7 @@ body {
   padding-right: .6em;
   padding-left: .6em;
   border-radius: 10px;
+  margin-left: 5px;
 }
 
 

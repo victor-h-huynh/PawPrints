@@ -24,6 +24,7 @@ div.infinite-scroll-component {
   justify-content: center;
   flex-wrap: wrap;
   width: auto;
+  
 }
 
 div.Pets {
@@ -80,6 +81,11 @@ div.Pets {
       flex-wrap: wrap;
 
     }
+
+    .card-title {
+      width: 100%;
+      left: 10%;
+    }
     
     .card > .container {
     display: flex;
@@ -89,6 +95,8 @@ div.Pets {
 
     .card > .entry > .container > .text {
       left: 0;
+      display: flex;
+      flex-wrap: wrap;
     }
 
     .card > .entry h1,
@@ -114,15 +122,17 @@ div.Pets {
 
       position: relative;
       background: white;
-      height: 100%;
+
       border-top-left-radius: 5px;
       border-bottom-left-radius: 5px;
       
     }
 
     .card > .image > img {
-      height: 100%; 
-      width: auto;
+      
+      height: 100%;
+      overflow: hidden;
+      width: 100%;
       max-width: 200px;
       max-height: 200px; 
       overflow: hidden;  
