@@ -141,7 +141,7 @@ class User extends Component {
 
     console.log(percentage)
 
-    if (0 < percentage && percentage < 16.67) {
+    if (0 <= percentage && percentage < 16.67) {
       badge1 = <img id="badge1" style={currentBadgeStyle} alt="" src="https://firebasestorage.googleapis.com/v0/b/final-project-1561040119727.appspot.com/o/badgelvl0.png?alt=media&token=65a6f1a6-4ef7-4619-ba04-8e8a84a14bad" />;
      currentBadge = badge1
     } else {
@@ -228,7 +228,8 @@ class User extends Component {
       {currentBadge}
     </Col>
             <Form>
-            Email: {this.state.email}
+            <div className="email-user">Email: {this.state.email}</div>
+            <hr/>
               <Form.Group controlId="formGridName">
                 <Form.Label/>
                 <Form.Control

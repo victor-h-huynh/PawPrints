@@ -292,29 +292,35 @@ class Pet extends Component {
           </div>
         );
       }
-    } else if (this.state.current_user.id !== this.props.pet.user_id) {
+    }  else if (this.state.pending.includes(this.state.current_user.id && this.state.current_user.id !== this.props.pet.user_id)) {
       return (
-        <Form onSubmit={this.thisIsMyPet}>
-          <Button variant='primary' type='submit'>
-            This is my pet!
-          </Button>
-        </Form>
-      );
-    } else if (this.state.pending.includes(this.state.current_user.id)) {
-      return (
+      <React.Fragment>
         <Form onSubmit={this.petFound}>
           <Button variant='primary' type='submit' disabled>
             I think I found your pet!
           </Button>
         </Form>
+        <Form onSubmit={this.thisIsMyPet}>
+          <Button variant='primary' type='submit'>
+            This is my pet!
+          </Button>
+        </Form>
+        </React.Fragment>
       );
-    } else if (!this.state.pending.includes(this.state.current_user.id)) {
+    } else if (!this.state.pending.includes(this.state.current_user.id) && this.state.current_user.id !== this.props.pet.user_id) {
       return (
+      <React.Fragment>
         <Form onSubmit={this.petFound}>
           <Button variant='primary' type='submit'>
             I think I found your pet!
           </Button>
         </Form>
+        <Form onSubmit={this.thisIsMyPet}>
+          <Button variant='primary' type='submit'>
+            This is my pet!
+          </Button>
+        </Form>
+        </React.Fragment>
       );
     }
   };
