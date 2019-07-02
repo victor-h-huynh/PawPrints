@@ -73,9 +73,9 @@ class Map extends Component {
      const timeLost = new Date(pet.date_lost).getTime()
      const timeNow = Date.now()
      const daySinceLost = Math.floor((timeNow - timeLost)/86400000)
-     let radius = 500 + (daySinceLost*500)
-     if (radius > 4000) {
-      radius = 4000
+     let radius = 200 + (daySinceLost*200)
+     if (radius > 1500) {
+      radius = 1500
      }
     return (
 

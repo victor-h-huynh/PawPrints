@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.scss';
-import { ProgressBar, Card, Button, Form, Alert, Badge } from 'react-bootstrap';
+import { ProgressBar, Card, Button, Form, Alert, Badge, Image, Col } from 'react-bootstrap';
 import Switch from "react-switch";
 import axios from "axios";
 import setupNotifications from './setupNotifications.js';
@@ -157,10 +157,15 @@ class User extends Component {
         ))}
       <React.Fragment>
         <div> 0 ------- Level {levels}! You need {missingPoints} points to reach level {levels + 1} ------- 1000
+         Level 1
          {badge1}
+         Level 2
          {badge2}
+         Level 3
          {badge3}
+         Level 4
          {badge4}
+         Level 5
          {badge5}
         </div>
 
@@ -170,6 +175,8 @@ class User extends Component {
 
       {this.props.current_user && this.state.current_user_id === this.state.id &&
       <div className="userProfilePage">
+
+
 
             <Card className="user">
             <Card.Body>
@@ -206,6 +213,10 @@ class User extends Component {
 
           {this.state.current_user_id !== this.state.id &&
             <div className="userProfile">
+
+            <Col xs={6} md={4}>
+      <Image src="http://www.seosmarty.com/wp-content/uploads/2011/08/profile-picture.jpg" roundedCircle fluid />
+    </Col>
             <Card className="user">
             <Card.Body>
               <Card.Text>
