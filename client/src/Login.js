@@ -61,14 +61,12 @@ class Login extends Component {
        else {
         return (
         <React.Fragment>
-          <div fluid className="loginContainer">
-            <div className="loginOverlay">
+          <div className="loginContainer">
               <Container>
-                <Image className="loginCat"src={loginCat} fluided/>
               </Container>
-            </div>
           </div>
               <div className="login-form">
+                <Image className="loginCat" src={loginCat} fluided/>
                 <h2 className="login-title">Sign in</h2>
                 <Face className="loginFaceIcon"/>
               <Form onSubmit={this.onHandleSubmit}>
