@@ -55,7 +55,7 @@ div.Pets {
       display: flex;
       flex-direction: row;
       flex: flex-wrap;
-      height: auto;
+      height: 180px;
       margin-bottom: 5%;
       margin-right: 5%;
       background: white;
@@ -116,17 +116,8 @@ div.Pets {
     h1 {
       display: inline-block;
       margin-bottom: 5px;
+      font-size: 36px;
     }
-
-    // .card > .image {
-
-    //   position: relative;
-    //   background: white;
-    //   border-top-left-radius: 5px;
-    //   border-bottom-left-radius: 5px;
-    //   width: 100%;
-    //   overflow: hidden;
-    // }
 
     .card > .image > img {
       height: 100%;
@@ -151,5 +142,12 @@ div.Pets {
     float: left !important;
     // margin-left: calc(50% - 250px) !important;
     margin-top: 25px;
+  }
+
+}
+
+@media screen and (max-width: 931px) {
+  .card {
+    height: auto !important;
   }
 }
