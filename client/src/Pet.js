@@ -39,7 +39,6 @@ class Pet extends Component {
   }
 
   petReunited = event => {
-    console.log(this.props);
     event.preventDefault();
     const previousPending = this.props.pending;
     previousPending.length = 0;
@@ -185,9 +184,6 @@ class Pet extends Component {
 
   thisIsMyPet = event => {
     event.preventDefault();
-    console.log("this pet", this.props.pet)
-    this.props.changeStatus(this.props.pet);
-    this.props.removeAPet(this.props.pet);
     
     const previousPending = this.state.pending;
     previousPending.length = 0;
@@ -207,22 +203,22 @@ class Pet extends Component {
         URL: `http:localhost/users${this.props.pet.user_id}`
       });
     }
-    console.log("pet id", this.props.pet.id)
+  
     axios
       .put(`http://localhost:3001/api/pets/${this.props.pet.id}`, {
         update: 5,
         id: this.props.pet.id,
         pending: previousPending,
         reunited: date,
-        status: 'reunited'
+        status: 'Reunited'
       })
       .then(response => {
-        console.log("This is my pet data", response.data)
+        this.props.removeAPet(this.props.pet, response.data);
         this.setState({
           redirectToCongratulations: true,
           status: response.data.status,
           reunited: date,
-          pending: response.data.pending
+          pending: response.data.pending,
         });
       })
       .catch(err => {
@@ -345,7 +341,11 @@ class Pet extends Component {
               <Card.Title>
                 A {pet.status} {pet.species} in {pet.address.city}
               </Card.Title>
-              <span class={`badge-${pet.status}`}>{pet.status}</span>
+              {pet.date_reunited ? (
+                <span class={`badge-${pet.status}`}>{pet.status}</span>
+              ) : (
+                <span class={`badge-${this.state.status}`}>{this.state.status}</span>
+              )}
             </div>
             <Card.Text>
               <p>Name: {pet.name}</p>

@@ -72,7 +72,7 @@ class App extends Component {
     .then(axios.spread((user, addressesRes, petsRes, usersRes, descriptionsRes) => {
       this.setState({
         addresses: addressesRes.data,
-        pets: this.filterReunited(petsRes.data),
+        pets: petsRes.data,
         users: usersRes.data,
         descriptions: descriptionsRes.data,
         current_user: user.data,
@@ -101,23 +101,16 @@ updateNavState = name => {
     this.setState({users: [...this.state.users, newUser]})
   }
 
-  removeAPet = (reunitedPet) => {
-    const newPets = this.state.pets.filter(pet => pet.id !== reunitedPet.id);
-    console.log(newPets);
-    this.setState({petsOnMap: newPets})
+  removeAPet = (reunitedPet, response) => {
+    axios.get('/api/pets.json')
+    .then(response => {
+      console.log(response.data)
+      this.setState({
+        pets: response.data,
+      })
+    })
+    .catch(error => console.log(error));
   }
-
-  filterReunited = (allPets) => {
-    const lostPets = allPets.filter(pet => pet.status !== "Reunited");
-    console.log(lostPets);
-    return lostPets
-  }
-
-  changeStatus = (pet) => {
-    this.setState({status: pet.status});
-  }
-
-
 
 
   render() {
