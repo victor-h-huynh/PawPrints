@@ -134,9 +134,8 @@ body {
     margin: 25px;
   }
 
-.badge-Lost {
-  background-color: red;
-  color: white;
+.badge-Lost, .badge-Found, .badge-Reunited, .badge-Spotted {
+  
   display: inline-block;
   padding: .65em .4em;
   font-size: 18px;
@@ -150,35 +149,19 @@ body {
   border-radius: 10px;
 }
 
+.badge-Lost {
+  background-color: rgb(201, 51, 51);
+}
 .badge-Found {
-  background-color: green;
-  color: white;
-  display: inline-block;
-  padding: .50em .4em;
-  font-size: 20px;
-  font-weight: 700;
-  line-height: 1;
-  text-align: center;
-  white-space: nowrap;
-  vertical-align: baseline;
-  padding-right: .6em;
-  padding-left: .6em;
-  border-radius: 10px;
+  background-color: rgb(58, 146, 58);
 }
 
 .badge-Spotted {
-  background-color: yellow;
-  display: inline-block;
-  padding: .50em .4em;
-  font-size: 18px;
-  font-weight: 700;
-  line-height: 1;
-  text-align: center;
-  white-space: nowrap;
-  vertical-align: baseline;
-  padding-right: .6em;
-  padding-left: .6em;
-  border-radius: 10px;
+  background-color: rgb(243, 243, 83);
+}
+
+.badge-Reunited {
+  background-color: rgb(94, 94, 245);
 }
 
 
