@@ -51,9 +51,6 @@ class User extends Component {
       points: this.props.user.points
     })
 
-
-    });
-
   }
 
   handleSwitchChange = checked => {
@@ -157,8 +154,6 @@ class User extends Component {
     }
 
     console.log(percentage)
-
-    };
 
 
     if (0 < percentage && percentage < 16.67) {
