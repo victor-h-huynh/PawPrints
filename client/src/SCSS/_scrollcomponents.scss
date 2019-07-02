@@ -19,6 +19,13 @@ $lightblue: #d2fdff;
 
 // Scroll component view
 
+div.infinite-scroll-component {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  width: auto;
+}
+
 div.Pets {
 
     position: relative;
@@ -46,6 +53,7 @@ div.Pets {
     .card {
       display: flex;
       flex-direction: row;
+      flex: flex-wrap;
       height: auto;
       margin-bottom: 5%;
       margin-right: 5%;
@@ -54,7 +62,7 @@ div.Pets {
       box-shadow: 0px 7px 9px grey;
       position: relative;
       width: auto;
-      max-width: 500px;
+      max-width: 575px;
     }
 
     .card > .entry {
@@ -87,6 +95,7 @@ div.Pets {
     .card > .entry p {
       text-shadow: 0 0 0 #333;
       transition-delay: 0.4s;
+      min-width: 100px;
     }
 
     .card > .entry .meta {

@@ -35,6 +35,10 @@ $lightblue: #d2fdff;
 @import url(https://fonts.googleapis.com/css?family=Roboto);
 $roboto: 'roboto', sans-serif;
 
+html {
+  margin-bottom: 80px;
+}
+
 body {
   font-family: $roboto;
   background: linear-gradient(to left, rgb(255, 239, 186), rgb(255, 255, 255));
@@ -66,7 +70,7 @@ body {
     display: flex;
     height: 70vh;
     width: 50vw;
-    margin-left: 75px;
+    margin-left: 25px;
     float: left;
     border-radius: 5px;
   }

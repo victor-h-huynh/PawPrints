@@ -21,9 +21,8 @@ class Pets extends Component {
       return (
         <InfiniteScroll dataLength={this.state.items.length}
         next={this.fetchMoreData}
-        className="sdlfjhjlsd"
         hasMore={this.state.hasMore}
-        height={500}
+        height={733}
         endMessage={
           <p style={{ textAlign: "center" }}>
             <b>Yay! You have seen it all</b>
