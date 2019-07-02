@@ -30,7 +30,7 @@ class PetProfile extends Component {
           trigger={() => <a href="#">Print this out!</a>}
           content={() => this.componentRef}
         />
-            <Pet current_user={this.props.current_user} pet={pet} users={this.props.users} removeAPet={this.props.removeAPet} ref={el => (this.componentRef = el)}/><div id="comments">
+            <Pet current_user={this.props.current_user} pet={pet} users={this.props.users} removeAPet={this.props.removeAPet} changeStatus={this.props.changeStatus} ref={el => (this.componentRef = el)}/><div id="comments">
             <CommentBox pet_id={pet.id} current_user={this.props.current_user} users={this.props.users}/></div>
             </React.Fragment>
           ) : (

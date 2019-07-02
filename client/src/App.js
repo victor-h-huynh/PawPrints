@@ -70,10 +70,9 @@ class App extends Component {
       axios.get('/api/descriptions.json'),
     ])
     .then(axios.spread((user, addressesRes, petsRes, usersRes, descriptionsRes) => {
-
       this.setState({
         addresses: addressesRes.data,
-        pets: petsRes.data,
+        pets: this.filterReunited(petsRes.data),
         users: usersRes.data,
         descriptions: descriptionsRes.data,
         current_user: user.data,
@@ -108,6 +107,16 @@ updateNavState = name => {
     this.setState({petsOnMap: newPets})
   }
 
+  filterReunited = (allPets) => {
+    const lostPets = allPets.filter(pet => pet.status !== "Reunited");
+    console.log(lostPets);
+    return lostPets
+  }
+
+  changeStatus = (pet) => {
+    this.setState({status: pet.status});
+  }
+
 
 
 
@@ -116,68 +125,68 @@ updateNavState = name => {
     if (this.state.loading) {
       return (
     <React.Fragment>
-<div class="paw-print-1">
-    <div class="pad large"></div>
-    <div class="pad small-1"></div>
-    <div class="pad small-2"></div>
-    <div class="pad small-3"></div>
-    <div class="pad small-4"></div>
+<div className="paw-print-1">
+    <div className="pad large"></div>
+    <div className="pad small-1"></div>
+    <div className="pad small-2"></div>
+    <div className="pad small-3"></div>
+    <div className="pad small-4"></div>
 </div>
 
-<div class="paw-print-2">
-    <div class="pad large"></div>
-    <div class="pad small-1"></div>
-    <div class="pad small-2"></div>
-    <div class="pad small-3"></div>
-    <div class="pad small-4"></div>
+<div className="paw-print-2">
+    <div className="pad large"></div>
+    <div className="pad small-1"></div>
+    <div className="pad small-2"></div>
+    <div className="pad small-3"></div>
+    <div className="pad small-4"></div>
 </div>
 
-<div class="paw-print-3">
-    <div class="pad large"></div>
-    <div class="pad small-1"></div>
-    <div class="pad small-2"></div>
-    <div class="pad small-3"></div>
-    <div class="pad small-4"></div>
+<div className="paw-print-3">
+    <div className="pad large"></div>
+    <div className="pad small-1"></div>
+    <div className="pad small-2"></div>
+    <div className="pad small-3"></div>
+    <div className="pad small-4"></div>
 </div>
 
-<div class="paw-print-4">
-    <div class="pad large"></div>
-    <div class="pad small-1"></div>
-    <div class="pad small-2"></div>
-    <div class="pad small-3"></div>
-    <div class="pad small-4"></div>
+<div className="paw-print-4">
+    <div className="pad large"></div>
+    <div className="pad small-1"></div>
+    <div className="pad small-2"></div>
+    <div className="pad small-3"></div>
+    <div className="pad small-4"></div>
 </div>
 
-<div class="paw-print-5">
-    <div class="pad large"></div>
-    <div class="pad small-1"></div>
-    <div class="pad small-2"></div>
-    <div class="pad small-3"></div>
-    <div class="pad small-4"></div>
+<div className="paw-print-5">
+    <div className="pad large"></div>
+    <div className="pad small-1"></div>
+    <div className="pad small-2"></div>
+    <div className="pad small-3"></div>
+    <div className="pad small-4"></div>
 </div>
 
-<div class="paw-print-6">
-    <div class="pad large"></div>
-    <div class="pad small-1"></div>
-    <div class="pad small-2"></div>
-    <div class="pad small-3"></div>
-    <div class="pad small-4"></div>
+<div className="paw-print-6">
+    <div className="pad large"></div>
+    <div className="pad small-1"></div>
+    <div className="pad small-2"></div>
+    <div className="pad small-3"></div>
+    <div className="pad small-4"></div>
 </div>
 
-<div class="paw-print-7">
-    <div class="pad large"></div>
-    <div class="pad small-1"></div>
-    <div class="pad small-2"></div>
-    <div class="pad small-3"></div>
-    <div class="pad small-4"></div>
+<div className="paw-print-7">
+    <div className="pad large"></div>
+    <div className="pad small-1"></div>
+    <div className="pad small-2"></div>
+    <div className="pad small-3"></div>
+    <div className="pad small-4"></div>
 </div>
 
-<div class="paw-print-8">
-    <div class="pad large"></div>
-    <div class="pad small-1"></div>
-    <div class="pad small-2"></div>
-    <div class="pad small-3"></div>
-    <div class="pad small-4"></div>
+<div className="paw-print-8">
+    <div className="pad large"></div>
+    <div className="pad small-1"></div>
+    <div className="pad small-2"></div>
+    <div className="pad small-3"></div>
+    <div className="pad small-4"></div>
 </div>
 
     </React.Fragment>
@@ -193,7 +202,7 @@ updateNavState = name => {
 
               <Route path="/Login" render={props => <Login {...props} updateToken={this.updateToken} token={this.state.token}/>}/>
               <Route path="/Register" render={props => <Register {...props} addAUser={this.addAUser} updateToken={this.updateToken} token={this.state.token}/>}/>
-              <Route path="/Pets/:id" render={props => <PetProfile {...props} pets={this.state.pets} users={this.state.users} addresses={this.state.addresses} current_user={this.state.current_user} removeAPet={this.removeAPet}/>}/>
+              <Route path="/Pets/:id" render={props => <PetProfile {...props} pets={this.state.pets} users={this.state.users} addresses={this.state.addresses} current_user={this.state.current_user} removeAPet={this.removeAPet} changeStatus={this.changeStatus}/>}/>
               <Route path="/Users/:id" render={props => <UserProfile {...props} pets={this.state.pets} users={this.state.users} current_user={this.state.current_user} updateNavState={this.updateNavState} addresses={this.state.addresses}/>}/>
               <Route path="/Success" component={Success}/>
               <Route component={NoMatch}/>

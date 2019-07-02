@@ -185,7 +185,10 @@ class Pet extends Component {
 
   thisIsMyPet = event => {
     event.preventDefault();
-    console.log('Hello there');
+    console.log("this pet", this.props.pet)
+    this.props.changeStatus(this.props.pet);
+    this.props.removeAPet(this.props.pet);
+    
     const previousPending = this.state.pending;
     previousPending.length = 0;
     const givePointsTo = this.props.users.filter(
@@ -204,15 +207,17 @@ class Pet extends Component {
         URL: `http:localhost/users${this.props.pet.user_id}`
       });
     }
-
+    console.log("pet id", this.props.pet.id)
     axios
       .put(`http://localhost:3001/api/pets/${this.props.pet.id}`, {
         update: 5,
         id: this.props.pet.id,
         pending: previousPending,
-        reunited: date
+        reunited: date,
+        status: 'reunited'
       })
       .then(response => {
+        console.log("This is my pet data", response.data)
         this.setState({
           redirectToCongratulations: true,
           status: response.data.status,
@@ -223,6 +228,7 @@ class Pet extends Component {
       .catch(err => {
         console.log('report pet error: ', err);
       });
+
 
     axios
       .put(`http://localhost:3001/api/users/${this.props.pet.user_id}`, {
