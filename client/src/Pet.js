@@ -41,7 +41,10 @@ class Pet extends Component {
   petReunited = event => {
     event.preventDefault();
     const previousPending = this.props.pending;
+    if (previousPending) {
     previousPending.length = 0;
+    }
+
     const date = new Date();
     axios
       .put(`http://localhost:3001/api/pets/${this.props.pet.id}`, {
@@ -184,7 +187,7 @@ class Pet extends Component {
 
   thisIsMyPet = event => {
     event.preventDefault();
-    
+
     const previousPending = this.state.pending;
     previousPending.length = 0;
     const givePointsTo = this.props.users.filter(
@@ -203,7 +206,7 @@ class Pet extends Component {
         URL: `http:localhost/users${this.props.pet.user_id}`
       });
     }
-  
+
     axios
       .put(`http://localhost:3001/api/pets/${this.props.pet.id}`, {
         update: 5,

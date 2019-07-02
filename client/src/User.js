@@ -111,9 +111,14 @@ class User extends Component {
     let badge3;
     let badge4;
     let badge5;
+    let badge6;
+    let badge7;
+    let currentBadge;
 
     let badgeStyle = {
-      opacity: 0.5,
+      opacity: 0.3,
+      width: "192px",
+      height: "192px"
     };
 
     let currentBadgeStyle = {
@@ -127,30 +132,50 @@ class User extends Component {
     const missingPoints = Math.floor(1000 - progress)
 
       if (levels === 0) {
-      badge1 = <img id="badge1" style={currentBadgeStyle} alt="" src="https://gamepedia.cursecdn.com/dota2_gamepedia/thumb/8/85/SeasonalRank1-1.png/140px-SeasonalRank1-1.png?version=ce7c6eea36971495cdad1f06e7ef3709"  />;
+      badge1 = <img id="badge1" style={currentBadgeStyle} alt="" src="https://firebasestorage.googleapis.com/v0/b/final-project-1561040119727.appspot.com/o/badgelvl0.png?alt=media&token=65a6f1a6-4ef7-4619-ba04-8e8a84a14bad" />;
+     currentBadge = badge1
     } else {
-      badge1 = <img id="badge1" style={badgeStyle} alt="" src="https://gamepedia.cursecdn.com/dota2_gamepedia/thumb/8/85/SeasonalRank1-1.png/140px-SeasonalRank1-1.png?version=ce7c6eea36971495cdad1f06e7ef3709" />;
+      badge1 = <img id="badge1" style={badgeStyle} alt="" src="https://firebasestorage.googleapis.com/v0/b/final-project-1561040119727.appspot.com/o/badgelvl0.png?alt=media&token=65a6f1a6-4ef7-4619-ba04-8e8a84a14bad" />;
     }
     if (levels === 1) {
-      badge2 = <img id="badge2" style={currentBadgeStyle} alt="" src="https://gamepedia.cursecdn.com/dota2_gamepedia/thumb/7/76/SeasonalRank4-1.png/140px-SeasonalRank4-1.png?version=7a9db7f22e02de4a58923f40da38b9db" />
+      badge2 = <img id="badge2" style={currentBadgeStyle} alt="" src="https://firebasestorage.googleapis.com/v0/b/final-project-1561040119727.appspot.com/o/Badgelvl1.png?alt=media&token=136b63ac-e990-4642-aa28-2fe5415087d5" />
+      currentBadge = badge2
     } else {
-      badge2 = <img id="badge2" style={badgeStyle} alt="" src="https://gamepedia.cursecdn.com/dota2_gamepedia/thumb/7/76/SeasonalRank4-1.png/140px-SeasonalRank4-1.png?version=7a9db7f22e02de4a58923f40da38b9db" />
+      badge2 = <img id="badge2" style={badgeStyle} alt="" src="https://firebasestorage.googleapis.com/v0/b/final-project-1561040119727.appspot.com/o/Badgelvl1.png?alt=media&token=136b63ac-e990-4642-aa28-2fe5415087d5" />
     }
     if (levels === 2) {
-      badge3 = <img id="badge3" style={currentBadgeStyle} alt="" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSKTm7OMsVnQuvqDvo-6p-HxzZ0i_dqtxxPfofU2WikW60LYIfPHg" />
+      badge3 = <img id="badge3" style={currentBadgeStyle} alt="" src="https://firebasestorage.googleapis.com/v0/b/final-project-1561040119727.appspot.com/o/badgelvl2.png?alt=media&token=0d572115-5875-4605-a2b9-5bf05f7a6ea6" />
+      currentBadge = badge3
     } else {
-      badge3 = <img id="badge3" style={badgeStyle} alt="" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSKTm7OMsVnQuvqDvo-6p-HxzZ0i_dqtxxPfofU2WikW60LYIfPHg" />
+      badge3 = <img id="badge3" style={badgeStyle} alt="" src="https://firebasestorage.googleapis.com/v0/b/final-project-1561040119727.appspot.com/o/badgelvl2.png?alt=media&token=0d572115-5875-4605-a2b9-5bf05f7a6ea6" />
     }
     if (levels === 3) {
-      badge4 = <img id="badge4" style={currentBadgeStyle} alt="" src="https://gamepedia.cursecdn.com/dota2_gamepedia/thumb/1/1c/SeasonalRank6-2.png/140px-SeasonalRank6-2.png?version=87515796db90be81886c62cad9faf87f" />
+      badge4 = <img id="badge4" style={currentBadgeStyle} alt="" src="https://firebasestorage.googleapis.com/v0/b/final-project-1561040119727.appspot.com/o/badgelvl4.png?alt=media&token=67b3dfd2-683e-4b88-ac06-2f094902e073" />
+      currentBadge = badge4
     } else {
-      badge4 = <img id="badge4" style={badgeStyle} alt="" src="https://gamepedia.cursecdn.com/dota2_gamepedia/thumb/1/1c/SeasonalRank6-2.png/140px-SeasonalRank6-2.png?version=87515796db90be81886c62cad9faf87f" />
+      badge4 = <img id="badge4" style={badgeStyle} alt="" src="https://firebasestorage.googleapis.com/v0/b/final-project-1561040119727.appspot.com/o/badgelvl4.png?alt=media&token=67b3dfd2-683e-4b88-ac06-2f094902e073" />
     }
-    if (levels >= 4) {
-      badge5 = <img id="badge5" style={currentBadgeStyle} alt="" src="https://gamepedia.cursecdn.com/dota2_gamepedia/thumb/d/df/SeasonalRankTop1.png/140px-SeasonalRankTop1.png?version=dccf8399e340ddf775a825e610cc5ad3" />
+    if (levels === 4) {
+      badge5 = <img id="badge5" style={currentBadgeStyle} alt="" src="https://firebasestorage.googleapis.com/v0/b/final-project-1561040119727.appspot.com/o/badgelvl5.png?alt=media&token=7f821419-b0b2-4676-8cd4-e82ec1c2f9bf" />
+      currentBadge = badge5
     } else {
-      badge5 = <img id="badge5" style={badgeStyle} alt="" src="https://gamepedia.cursecdn.com/dota2_gamepedia/thumb/d/df/SeasonalRankTop1.png/140px-SeasonalRankTop1.png?version=dccf8399e340ddf775a825e610cc5ad3" />
+      badge5 = <img id="badge5" style={badgeStyle} alt="" src="https://firebasestorage.googleapis.com/v0/b/final-project-1561040119727.appspot.com/o/badgelvl5.png?alt=media&token=7f821419-b0b2-4676-8cd4-e82ec1c2f9bf" />
     }
+    if (levels === 5) {
+      badge6 = <img id="badge5" style={currentBadgeStyle} alt="" src="https://firebasestorage.googleapis.com/v0/b/final-project-1561040119727.appspot.com/o/badgelvl6.png?alt=media&token=e5f7dcac-33c4-41ac-9e05-8f640b4e5d87" />
+      currentBadge = badge6
+    } else {
+      badge6 = <img id="badge5" style={badgeStyle} alt="" src="https://firebasestorage.googleapis.com/v0/b/final-project-1561040119727.appspot.com/o/badgelvl6.png?alt=media&token=e5f7dcac-33c4-41ac-9e05-8f640b4e5d87" />
+    }
+    if (levels >= 6) {
+      badge7 = <im id="badge5" style={currentBadgeStyle} alt="" src="https://firebasestorage.googleapis.com/v0/b/final-project-1561040119727.appspot.com/o/badgelvl7.png?alt=media&token=54ae2e9a-dd5d-4048-95a9-494ed615931e" />
+      currentBadge = badge7
+    } else {
+      badge7 = <img id="badge5" style={badgeStyle} alt="" src="https://firebasestorage.googleapis.com/v0/b/final-project-1561040119727.appspot.com/o/badgelvl7.png?alt=media&token=54ae2e9a-dd5d-4048-95a9-494ed615931e" />
+    }
+
+
+
 
     return(
 <React.Fragment>
@@ -161,34 +186,39 @@ class User extends Component {
       <React.Fragment>
         <h3 className="levels-text-2"> Level {levels}!  </h3>
         <h3 className="levels-text"> Level {levels}! You need {missingPoints} points to reach level {levels + 1} </h3>
-        <ProgressBar className="progressBar" label={`${progress/10}%`} variant="success" animated now={progress/10} />
         <div className="badges">
-         Level 1
+         Level 0
          {badge1}
-         Level 2
+         Level 1
          {badge2}
-         Level 3
+         Level 2
          {badge3}
-         Level 4
+         Level 3
          {badge4}
-         Level 5
+         Level 4
          {badge5}
+         Level 5
+         {badge6}
+         Level 6++
+         {badge7}
         </div>
         </React.Fragment>
 
 
       </React.Fragment>
 
+                    <ProgressBar className="progressBar" label={`${progress/10}%`} variant="success" animated now={progress/10} />
+
 
       {this.props.current_user && this.state.current_user_id === this.state.id &&
-      <div className="userProfilePage">
-
-
-
-            <Card className="user">
-            <Card.Body>
-            <Card.Text> Email: {this.state.email}</Card.Text>
+        <div className="userProfile">
+            <Card className="userInfo">
+            <Card.Body className="userCardBody2">
+            <Col className="userPicture" xs={0} md={0}>
+      {currentBadge}
+    </Col>
             <Form>
+            Email: {this.state.email}
               <Form.Group controlId="formGridName">
                 <Form.Label/>
                 <Form.Control
@@ -209,39 +239,18 @@ class User extends Component {
                   value={this.state.phone_number}
                   onChange={this.handleChange}
                 />
+                        <ProgressBar className="progressBar" label={`${progress/10}%`} variant="success" animated now={progress/10} />
+
               </Form.Group>
+
               <div className="alerts" >Alerts : {user.alerts}<Switch onChange={this.handleSwitchChange} checked={this.state.checked}/> </div>
               <Button className="alert-button" onClick={this.handleSubmit} variant="success"> Update Profile </Button>
               </Form>
             </Card.Body>
           </Card>
-          </div>}
-
-
-          {this.state.current_user_id !== this.state.id &&
-            <div className="userProfile">
-
-            <Col className="userPicture" xs={0} md={0}>
-      <Image src="http://www.seosmarty.com/wp-content/uploads/2011/08/profile-picture.jpg" roundedCircle fluid />
-    </Col>
-            <Card className="userInfo">
-            <Card.Body>
-              <Card.Text>
-              <div>Name: {this.state.name}</div>
-              <div>Email: {this.state.email}</div>
-                <div>Phone Number: {this.state.phone_number}</div>
-                {badge1}
-              </Card.Text>
-            </Card.Body>
-          </Card>
-          </div>}
-
-
-
-          <div className="Pets">
+          <div className="petsUser" >
             {this.state.userPet.map(pet =>
           <section key={pet.id}>
-
           <article className="card">
   <div className="image">
   <img alt="No picture" key={pet.id} src={pet.picture} alt=""/>
@@ -259,6 +268,50 @@ class User extends Component {
 </section>
           )}
           </div>
+          </div>
+          }
+
+
+          {this.state.current_user_id !== this.state.id &&
+            <div className="userProfile">
+
+
+            <Card className="userInfo">
+
+            <Card.Body className="userCardBody">
+            <Col className="userPicture" xs={0} md={0}>
+      {currentBadge}
+    </Col>
+              <Card.Text className="userCardText">
+              <div>Name: {this.state.name} <br/> Email: {this.state.email} <br/> Phone Number: {this.state.phone_number} </div>
+              </Card.Text>
+            </Card.Body>
+
+          </Card>
+          <div className="petsUser">
+            {this.state.userPet.map(pet =>
+          <section key={pet.id}>
+          <article className="card">
+  <div className="image">
+  <img alt="No picture" key={pet.id} src={pet.picture} alt=""/>
+  </div>
+  <div className="entry">
+    <div className="container">
+      <div className="text">
+        <h1 className="card-title">{pet.name}</h1>
+        <span className="meta"> <TimeAgo date={pet.date_lost}/></span><Badge pill variant="danger" className="button button3">{pet.status}</Badge>
+        <p>{pet.species}, {pet.description.breed} </p> <Link to={`/pets/${pet.id}`} className="btn btn-primary">more details</Link>
+      </div>
+    </div>
+  </div>
+</article>
+</section>
+          )}
+          </div>
+          </div>}
+
+
+
 
 
 
