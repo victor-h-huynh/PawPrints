@@ -135,9 +135,13 @@ div.Pets {
 @media screen and (max-width: 768px) {
   .map {
     width: 100% !important;
+    height: 400px !important;
+    overflow: hidden !important;
+
   }
   .infinite-scroll-component {
     float: left !important;
     margin-left: calc(50% - 250px) !important;
+    margin-top: 25px;
   }
 }
