@@ -113,10 +113,10 @@ class Register extends Component {
         <React.Fragment>
         {/* {this.showAlerts()} */}
 
-          <div fluid className="registerContainer">
+          <div className="registerContainer">
 
             <Hidden className="registerOverlay" smDown>
-                <Image className="registerCat"src={registerCat} fluided/>
+                <Image className="registerCat"src={registerCat}/>
             </Hidden>
 
             <div className="registerForm">

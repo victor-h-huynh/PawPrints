@@ -101,7 +101,7 @@ updateNavState = name => {
     this.setState({users: [...this.state.users, newUser]})
   }
 
-  removeAPet = (reunitedPet, response) => {
+  removeAPet = () => {
     axios.get('/api/pets.json')
     .then(response => {
       console.log(response.data)

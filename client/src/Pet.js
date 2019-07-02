@@ -63,7 +63,7 @@ class Pet extends Component {
       .catch(err => {
         console.log('report pet error: ', err);
       });
-    this.props.removeAPet(this.props.pet);
+    this.props.removeAPet();
   };
 
   petFound = event => {
@@ -216,7 +216,7 @@ class Pet extends Component {
         status: 'Reunited'
       })
       .then(response => {
-        this.props.removeAPet(this.props.pet, response.data);
+        this.props.removeAPet();
         this.setState({
           redirectToCongratulations: true,
           status: response.data.status,
