@@ -102,6 +102,8 @@ class User extends Component {
 
 
   render() {
+
+
     const { errors } = this.state;
     const user = this.props.user;
     let badge1;
@@ -156,7 +158,11 @@ class User extends Component {
           <Alert variant="danger" key={error}>Error: {error}</Alert>
         ))}
       <React.Fragment>
-        <div> 0 ------- Level {levels}! You need {missingPoints} points to reach level {levels + 1} ------- 1000
+      <React.Fragment>
+        <h3 className="levels-text-2"> Level {levels}!  </h3>
+        <h3 className="levels-text"> Level {levels}! You need {missingPoints} points to reach level {levels + 1} </h3>
+        <ProgressBar className="progressBar" label={`${progress/10}%`} variant="success" animated now={progress/10} />
+        <div className="badges">
          Level 1
          {badge1}
          Level 2
@@ -168,8 +174,9 @@ class User extends Component {
          Level 5
          {badge5}
         </div>
+        </React.Fragment>
 
-        <ProgressBar variant="success" animated now={progress/10} />
+
       </React.Fragment>
 
 
@@ -214,15 +221,16 @@ class User extends Component {
           {this.state.current_user_id !== this.state.id &&
             <div className="userProfile">
 
-            <Col xs={6} md={4}>
+            <Col className="userPicture" xs={0} md={0}>
       <Image src="http://www.seosmarty.com/wp-content/uploads/2011/08/profile-picture.jpg" roundedCircle fluid />
     </Col>
-            <Card className="user">
+            <Card className="userInfo">
             <Card.Body>
               <Card.Text>
               <div>Name: {this.state.name}</div>
               <div>Email: {this.state.email}</div>
                 <div>Phone Number: {this.state.phone_number}</div>
+                {badge1}
               </Card.Text>
             </Card.Body>
           </Card>
@@ -236,7 +244,7 @@ class User extends Component {
 
           <article className="card">
   <div className="image">
-  <img key={pet.id} src={pet.picture} alt=""/>
+  <img alt="No picture" key={pet.id} src={pet.picture} alt=""/>
   </div>
   <div className="entry">
     <div className="container">
