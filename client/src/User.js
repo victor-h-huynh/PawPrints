@@ -210,8 +210,8 @@ class User extends Component {
                   onChange={this.handleChange}
                 />
               </Form.Group>
-              <div>Alerts : {user.alerts}<Switch onChange={this.handleSwitchChange} checked={this.state.checked}/> </div>
-              <Button onClick={this.handleSubmit} variant="success"> Update Profile </Button>
+              <div className="alerts" >Alerts : {user.alerts}<Switch onChange={this.handleSwitchChange} checked={this.state.checked}/> </div>
+              <Button className="alert-button" onClick={this.handleSubmit} variant="success"> Update Profile </Button>
               </Form>
             </Card.Body>
           </Card>
