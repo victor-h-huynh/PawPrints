@@ -27,7 +27,7 @@ class PetProfile extends Component {
           {pet ? (
             <React.Fragment>
             <ReactToPrint
-          trigger={() => <a href="#">Print this out!</a>}
+          trigger={() => <a className="print" href="#">Print this out!</a>}
           content={() => this.componentRef}
         />
             <Pet current_user={this.props.current_user} pet={pet} users={this.props.users} removeAPet={this.props.removeAPet} ref={el => (this.componentRef = el)}/><div id="comments">

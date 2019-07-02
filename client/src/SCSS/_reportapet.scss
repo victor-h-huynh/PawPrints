@@ -2,6 +2,12 @@ $ink: #193446;
 
 
 // REPORT A PET
+.print {
+  color: red;
+}
+
+
+
 #root > div.report-a-pet {
     color: $ink;
     width: 85vw;
@@ -14,25 +20,25 @@ $ink: #193446;
     text-align: center;
     border-radius: 5px;
     box-shadow: 0px 9px 0px 0px rgba(255, 255, 255, 0), 0px -9px 0px 0px rgba(255, 255, 255, 0), 10px 0px 30px 0px rgba(0, 0, 0, 0.15), -10px 0px 30px 0px rgba(0, 0, 0, 0.15);
-  
-  
+
+
     .flextheform {
       display:flex;
       flex-wrap: wrap;
       justify-content: space-evenly;
       align-items: center;
-  
+
       .spaced {
         min-width: 250px;
         max-width: 80vw;
         margin-left: 10px;
       }
-  
+
       // .status, .species, .sex, .colour{
       //   margin-top: 4px;
       // }
     }
-  
+
     .alltheform > div > div > div {
       border-radius: 5px;
     }
@@ -41,13 +47,13 @@ $ink: #193446;
       margin-top: 20px;
       margin-bottom: 20px;
     }
-  
+
     .picture {
       margin-bottom: 20px;
     }
-  
-  
-  
+
+
+
 
 
   .addressConfirmation{
@@ -74,20 +80,20 @@ $ink: #193446;
       }
     }
   }
-  
+
 
   }
 
 
 
 
-  
+
   // .report-a-pet-control {
-  //   width: 10rem; 
+  //   width: 10rem;
   //   text-align-last: center;
   //   border: solid 1px black;
   // }
-  
+
   // .report-a-pet-comment {
   //   width: 50rem;
   //   height: 10rem;

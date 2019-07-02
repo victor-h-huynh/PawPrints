@@ -35,16 +35,62 @@ $lightblue: #d2fdff;
 @import url(https://fonts.googleapis.com/css?family=Roboto);
 $roboto: 'roboto', sans-serif;
 
+<<<<<<< HEAD
 // html {
 //   margin-bottom: 80px;
 // }
+=======
+.progressBar {
+
+  background-color: green;
+  justify-content: center;
+  margin-bottom: 50px
+}
+
+.levels-text {
+display: flex;
+justify-content: center;
+margin-bottom: 10px;
+}
+
+.levels-text-2 {
+display: flex;
+justify-content: center;
+}
+
+.badges {
+  justify-content: center;
+  display: flex;
+}
+
+.userProfile {
+
+  display: flex;
+  justify-content: center;
+}
+
+.userInfo {
+  display: flex;
+
+}
+
+.userPicture {
+  display: flex;
+}
+
+html {
+  margin-bottom: 80px;
+}
+>>>>>>> master
+
 
 body {
   font-family: $roboto;
   background: linear-gradient(to left, rgb(255, 239, 186), rgb(255, 255, 255));
   color: #193446;
 
- 
+
+
 
   .btn-primary {
     border: 1px solid $global_button;
@@ -58,7 +104,7 @@ body {
     cursor: pointer;
     border-radius: 5px;
 
-    
+
     &:hover {
       background-color: $global_button;
       border-color: $global_button;
