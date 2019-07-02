@@ -8,20 +8,21 @@ class Api::PetsController < ApplicationController
 
     def update
       pet = Pet.find_by id: params['id']
+      puts params['update']
       if params['update'] == 1
-      pet.update(status: 'Reunited')
-      pet.update(date_reunited: params['reunited'])
-      pet.update(pending: params['pending'])
+        pet.update(status: 'Reunited')
+        pet.update(date_reunited: params['reunited'])
+        pet.update(pending: params['pending'])
       elsif params['update'] == 2
-      pet.update(pending: params['pending'])
+        pet.update(pending: params['pending'])
       elsif params['update'] == 3
-      pet.update(pending: params['pending'])
+        pet.update(pending: params['pending'])
       elsif params['update'] == 4
-      pet.update(pending: params['pending'])
-    elsif params['update'] == 5
-      pet.update(pending: params['pending'])
-      pet.update(status: 'Reunited')
-      pet.update(date_reunited: params['reunited'])
+        pet.update(pending: params['pending'])
+      elsif params['update'] == 5
+        pet.update(pending: params['pending'])
+        pet.update(status: params[:status])
+        pet.update(date_reunited: params['reunited'])
 
 
       end

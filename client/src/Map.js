@@ -44,6 +44,7 @@ class Map extends Component {
       (pet.status === this.state.status || this.state.status === "All") &&
       (pet.description.colour === this.state.colour || this.state.colour === "All") &&
       (pet.species === this.state.species || this.state.species === "All") &&
+      (pet.status !== "Reunited") &&
       Number(pet.latitude) > this.state.sw.lat() &&
       Number(pet.latitude) < this.state.ne.lat() &&
       Number(pet.longitude) > this.state.sw.lng() &&
@@ -219,6 +220,7 @@ return (
               (pet.status === this.state.status || this.state.status === "All") &&
               (pet.description.colour === this.state.colour || this.state.colour === "All") &&
               (pet.species === this.state.species || this.state.species === "All") &&
+              (pet.status !== "Reunited") &&
               Number(pet.latitude) > this.state.sw.lat() &&
               Number(pet.latitude) < this.state.ne.lat() &&
               Number(pet.longitude) > this.state.sw.lng() &&
