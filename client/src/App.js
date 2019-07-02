@@ -94,7 +94,7 @@ updateNavState = name => {
 }
 
   addAPet = (newPet) => {
-    this.setState({pets: [...this.state.pets, newPet]})
+    this.setState({pets: [newPet, ...this.state.pets]})
   }
 
   addAUser = (newUser) => {

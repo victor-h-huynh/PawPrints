@@ -3,7 +3,7 @@ class Api::PetsController < ApplicationController
 
     def index
       pets = Pet.all
-      render :json => pets, :include=> [:address, :user, :description]
+      render :json => pets.reverse, :include=> [:address, :user, :description]
     end
 
     def update

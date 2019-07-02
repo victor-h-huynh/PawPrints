@@ -19,6 +19,13 @@ $lightblue: #d2fdff;
 
 // Scroll component view
 
+div.infinite-scroll-component {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  width: auto;
+}
+
 div.Pets {
 
     position: relative;
@@ -26,7 +33,6 @@ div.Pets {
     margin-left: 25px;
     margin-bottom: 25px;
     height: 200px;
-
 
     // CARD VIEW
 
@@ -37,7 +43,6 @@ div.Pets {
 
     .button {
       background-color: #F4976C;
-
       color: white;
       padding: 8px;
       font-size: 15px;
@@ -46,15 +51,18 @@ div.Pets {
     }
 
     .card {
-      display: grid;
-      grid-template-columns: 150px 350px;
+      display: flex;
+      flex-direction: row;
+      flex: flex-wrap;
       height: auto;
-      margin: 5% auto;
+      margin-bottom: 5%;
+      margin-right: 5%;
       background: white;
       border-radius: 5px;
       box-shadow: 0px 7px 9px grey;
       position: relative;
       width: auto;
+      max-width: 575px;
     }
 
     .card > .entry {
@@ -63,15 +71,20 @@ div.Pets {
       background: white;
     }
 
-
-
     .card > .entry,
     .card > .entry > .container > .text {
-      right: 0;
-      top: 0;
       position: relative;
       border-top-right-radius: 5px;
       border-bottom-right-radius: 5px;
+      display: flex;
+      flex-wrap: wrap;
+
+    }
+    
+    .card > .container {
+    display: flex;
+    height: auto;
+    width: auto;
     }
 
     .card > .entry > .container > .text {
@@ -82,6 +95,7 @@ div.Pets {
     .card > .entry p {
       text-shadow: 0 0 0 #333;
       transition-delay: 0.4s;
+      min-width: 100px;
     }
 
     .card > .entry .meta {
@@ -96,11 +110,6 @@ div.Pets {
       margin-bottom: 5px;
     }
 
-    .card > .entry > .container > .text h1,
-    .card > .entry > .container > .text p {
-      padding: 5px 15px;
-    }
-
     .card > .image {
 
       position: relative;
@@ -112,12 +121,14 @@ div.Pets {
     }
 
     .card > .image > img {
-      height: 100%;
-      width: 100%;
+      height: 100%; 
+      width: auto;
+      max-width: 200px;
+      max-height: 200px; 
+      overflow: hidden;  
       border-top-left-radius: 5px;
       border-bottom-left-radius: 5px;
-      max-height: 300px;
-      max-width: 300px;
+      
     }
   }
 
