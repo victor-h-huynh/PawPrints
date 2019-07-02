@@ -42,7 +42,9 @@ class Pet extends Component {
     console.log(this.props);
     event.preventDefault();
     const previousPending = this.props.pending;
+    if (previousPending) {
     previousPending.length = 0;
+    }
     const date = new Date();
     axios
       .put(`http://localhost:3001/api/pets/${this.props.pet.id}`, {

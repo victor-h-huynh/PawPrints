@@ -225,7 +225,7 @@ ActiveRecord::Base.connection.disable_referential_integrity do
 
   puts "Re-creating Pets ..."
 
-  pet_images = ['https://placedog.net/500', 'https://placedog.net/499', 'https://placedog.net/498', 'https://placedog.net/497', 'https://placedog.net/496']
+  pet_images = ['http://placekitten.com/200/300', 'http://placekitten.com/199/299', 'http://placekitten.com/198/299', 'http://placekitten.com/197/299', 'http://placekitten.com/197/299']
 
   Pet.destroy_all
 

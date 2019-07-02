@@ -121,3 +121,12 @@ div.Pets {
     }
   }
 
+@media screen and (max-width: 768px) {
+  .map {
+    width: 100% !important;
+  }
+  .infinite-scroll-component {
+    float: left !important;
+    margin-left: calc(50% - 250px) !important;
+  }
+}
