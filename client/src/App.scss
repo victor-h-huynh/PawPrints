@@ -9,6 +9,7 @@
 @import '/SCSS/mobile-view';
 @import '/SCSS/loading-animation';
 @import '/SCSS/navbar';
+@import 'SCSS/user';
 
 
 $background: #{linear-gradient(to left, rgb(255, 239, 186), rgb(255, 255, 255))};
@@ -34,44 +35,6 @@ $lightblue: #d2fdff;
 
 @import url(https://fonts.googleapis.com/css?family=Roboto);
 $roboto: 'roboto', sans-serif;
-
-.progressBar {
-
-  background-color: green;
-  justify-content: center;
-  margin-bottom: 50px
-}
-
-.levels-text {
-display: flex;
-justify-content: center;
-margin-bottom: 10px;
-}
-
-.levels-text-2 {
-display: flex;
-justify-content: center;
-}
-
-.badges {
-  justify-content: center;
-  display: flex;
-}
-
-.userProfile {
-
-  display: flex;
-  justify-content: center;
-}
-
-.userInfo {
-  display: flex;
-
-}
-
-.userPicture {
-  display: flex;
-}
 
 html {
   margin-bottom: 80px;

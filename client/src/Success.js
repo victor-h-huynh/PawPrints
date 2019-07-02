@@ -4,7 +4,6 @@ import petOwner2 from './assets/petOwner2.jpg';
 import petOwner3 from './assets/petOwner3.jpg';
 import dogIcon1 from  './assets/dogIcon1.svg';
 import dogIcon2 from  './assets/dogIcon2.svg';
-import dogIcon3 from  './assets/dogIcon3.svg';
 import './App.scss'
 
 class Success extends Component {
