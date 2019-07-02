@@ -327,9 +327,9 @@ class Pet extends Component {
     const timeLost = new Date(pet.date_lost).getTime();
     const timeNow = Date.now();
     const daySinceLost = Math.floor((timeNow - timeLost) / 86400000);
-    let radius = 500 + daySinceLost * 500;
-    if (radius > 4000) {
-      radius = 4000;
+    let radius = 200 + daySinceLost * 200;
+    if (radius > 1500) {
+      radius = 1500;
     }
 
     return (
@@ -424,18 +424,7 @@ class Pet extends Component {
             </div>
             <hr />
             {this.state.current_user && this.renderButtons()}
-            <ReactToPrint
-              trigger={() => <a href='#'>Print this out!</a>}
-              content={() => this.componentRef}
-            />
-            <PetTemplate
-              print={this.props.print}
-              current_user={this.props.current_user}
-              pet={pet}
-              users={this.props.users}
-              removeAPet={this.props.removeAPet}
-              ref={el => (this.componentRef = el)}
-            />
+
           </Card.Body>
         </Card>
       </div>
@@ -548,3 +537,33 @@ export default Pet;
 //     status: pending | confirm | wrong
 //   }
 // }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// <ReactToPrint
+//               trigger={() => <a href='#'>Print this out!</a>}
+//               content={() => this.componentRef}
+//             />
+//             <PetTemplate
+//               print={this.props.print}
+//               current_user={this.props.current_user}
+//               pet={pet}
+//               users={this.props.users}
+//               removeAPet={this.props.removeAPet}
+//               ref={el => (this.componentRef = el)}
+//             />

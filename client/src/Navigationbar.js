@@ -16,7 +16,16 @@ const Navigationbar = ({ current_user, clearCurrentUser, updateToken}) => {
   return (
       <Navbar fixed="" collapseOnSelect expand="lg">
         <LinkContainer to="/">
-          <Navbar.Brand>Paw Print</Navbar.Brand>
+          <Navbar.Brand href="#home">
+      <img
+        src="https://firebasestorage.googleapis.com/v0/b/final-project-1561040119727.appspot.com/o/dog.jpg?alt=media&token=3bf752ef-a6b5-44b7-bb73-6e067f5e0bca"
+        width="60"
+        height="60"
+        className="d-inline-block align-top"
+        alt=""
+      />
+
+      </Navbar.Brand>
         </LinkContainer>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
@@ -28,15 +37,15 @@ const Navigationbar = ({ current_user, clearCurrentUser, updateToken}) => {
               <Nav.Link>Success Stories!</Nav.Link>
             </LinkContainer>
 
-           
+
               {currentUser ? (
                 <React.Fragment>
-                
+
                 <LinkContainer to={`/Users/${currentUser.id}`}>
                 <Nav.Link>View my profile</Nav.Link>
                 </LinkContainer>
                 <Nav.Link onClick={logoutUser}>Logout</Nav.Link>
-                <p>Signed in as {currentUser.name}</p>
+                <Navbar.Text>Signed in as {currentUser.name}</Navbar.Text>
                 </React.Fragment>
               ) : (
                 <React.Fragment>
@@ -48,7 +57,7 @@ const Navigationbar = ({ current_user, clearCurrentUser, updateToken}) => {
             </LinkContainer>
             </React.Fragment>
               )}
-            
+
           </Nav>
         </Navbar.Collapse>
       </Navbar>

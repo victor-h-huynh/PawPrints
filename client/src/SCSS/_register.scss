@@ -4,6 +4,7 @@ $ink: #193446;
 .registerContainer {
   display: flex;
   flex-wrap: wrap;
+  overflow: hidden;
 }
 
 .registerOverlay {
