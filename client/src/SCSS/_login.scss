@@ -11,20 +11,40 @@
 
 
 .login-form {
-  width: 40vw;
+  max-width: 40vw;
   text-align: center;
-  margin-right: 2vw;
+  margin-top: 5vw;
+  margin-right: 10vw;
+  margin-left: 10vw;
 
   .btn-primary {
-    margin-top:20px;
+    margin-top: 25px;
+    width: 24em;
   }
 }
 
 
 .MuiSvgIcon-root.loginFaceIcon {
   max-width: 10vw;
-  width: 5rem;
-  height: 5rem;
+  width: 4em;
+  height: 4em;
+}
+
+.MuiSvgIcon-root.loginEmailIcon {
+  width: 2em;
+  height: 2em;
+  padding: 1px;
+}
+
+.MuiSvgIcon-root.loginLockIcon {
+  width: 2em;
+  height: 2em;
+  padding: 1px;
+}
+
+.MuiSvgIcon-root.loginVpnIcon {
+  width: 2em;
+  height: 2em;
 }
 
 .inputFields > div {
@@ -38,9 +58,14 @@
 
 .loginCat {
   display: block;
+  // height: auto;
+  // width: auto;
+  // opacity: 0.8;
+  border-radius: 25em;
+  height: 39em;
+  width: 39em;
   max-width: 55vw;
-  height: auto;
-  width: auto;
-  opacity: 0.8;
+  margin-right: 5em;
+  margin-left: 5em;
 }
 

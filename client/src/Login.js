@@ -78,7 +78,7 @@ class Login extends Component {
                 <div className="noFlex">
                   <Grid container spacing={1} alignItems="flex-end">
                     <Grid item>
-                      <Email className="loginEmail"/>
+                      <Email className="loginEmailIcon"/>
                     </Grid>
                     <Grid item className="inputFields">
                       <TextField id="standard-email-input" className="email-text" type="email" margin="normal" onChange={this.handleChange} value={this.state.email} name='email' label="Enter Email" required/>
