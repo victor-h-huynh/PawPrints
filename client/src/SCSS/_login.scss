@@ -1,17 +1,44 @@
+
+.loginContainer {
+  display: flex;
+  flex-direction: row-reverse;
+}
+
+.loginOverlay {
+  margin-left: 1vw;
+  flex: '1 0 auto',
+}
+
+
 .login-form {
-  width: 100%;
-  margin: auto;
-  margin-top: 3rem;
-  height: 100%;
+  width: 40vw;
   text-align: center;
+  margin-right: 2vw;
+
+  .btn-primary {
+    margin-top:20px;
+  }
+}
+
+
+.MuiSvgIcon-root.loginFaceIcon {
+  width: 10vw;
+}
+
+.inputFields > div {
+  min-width: 280px;
+  max-width: 80vw;
+}
+
+.noFlex > div{
+  flex-wrap: nowrap;
 }
 
 .loginCat {
-  width: 50%;
-  height: 100%;
-  float: right;
-  max-width: 500px;
-  max-height: 500px;
+  display: block;
+  max-width: 55vw;
+  height: auto;
+  width: auto;
   opacity: 0.8;
 }
 

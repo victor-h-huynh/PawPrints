@@ -105,13 +105,19 @@ class ReportAPet extends Component {
 
   sendToDB = (picture) => {
     var date = new Date(this.state.date_lost).getTime();
+    const name = (this.state.name ? this.state.name : "Unknown");
+    const breed = (this.state.breed ? this.state.breed : "Unknown");
+    const sex = (this.state.sex ? this.state.sex : "Unknown");
+    const additional = (this.state.additional ? this.state.additional : "None");
+    console.log("date", this.state.date_lost);
+   
     axios
     .post('http://localhost:3001/api/pets', {
       description: {
-        breed: this.state.breed,
+        breed: breed,
         colour: this.state.colour,
-        sex: this.state.sex,
-        additional: this.state.additional
+        sex: sex,
+        additional: additional
       },
       address: {
         street_number: this.state.street_number,
@@ -121,7 +127,7 @@ class ReportAPet extends Component {
         postal_code: this.state.postal_code,
       },
       pet: {
-        name: this.state.name,
+        name: name,
         species: this.state.species,
         status: this.state.status,
         date_lost: date,
@@ -373,8 +379,13 @@ resize = picture => {
               name="date_lost" 
               onChange={this.handleChange} 
               label="Date" 
+              type="date"
               helperText="Date Lost/Spotted/Found"
-              // margin="normal"
+              // defaultValue="yyyy-mm-dd"
+              value={this.state.date_lost}
+              InputLabelProps={{
+                shrink: true,
+              }}
               required/>
             </div>
 
@@ -384,7 +395,7 @@ resize = picture => {
                 <KeyboardDatePicker
                   margin="normal"
                   id="mui-pickers-date"
-                  label="Date Lost/Found"
+                  label="Date Lost/Found/Spotte"
                   value={this.state.date_lost}
                   onChange={this.handleChange}
                   KeyboardButtonProps={{
@@ -393,6 +404,19 @@ resize = picture => {
                 />
                </Grid>
                </MuiPickersUtilsProvider> */}
+
+            {/* <form className="date_lost" noValidate>
+                  <TextField
+                    id="date"
+                    label="Date Lost/Found/Spotted"
+                    type="date"
+                    name="date_lost"
+                    defaultValue="yyyy-mm-dd"
+                    InputLabelProps={{
+                      shrink: true,
+                    }}
+                  />
+            </form> */}
            
 
              <TextField

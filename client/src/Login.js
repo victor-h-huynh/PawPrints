@@ -15,6 +15,7 @@ import Email from '@material-ui/icons/EmailTwoTone';
 import Lock from '@material-ui/icons/LockTwoTone';
 import Face from '@material-ui/icons/FaceTwoTone';
 import VpnKey from '@material-ui/icons/VpnKey';
+import Hidden from '@material-ui/core/Hidden';
 // import FormControlLabel from '@material-ui/core/FormControlLabel';
 // import Favorite from '@material-ui/icons/Favorite';
 // import FavoriteBorder from '@material-ui/icons/FavoriteBorder';
@@ -62,32 +63,37 @@ class Login extends Component {
         return (
         <React.Fragment>
           <div className="loginContainer">
-              <Container>
-              </Container>
-          </div>
+
+
+          <Hidden className="registerOverlay" smDown>
+              <Image className="loginCat" src={loginCat}/>
+            </Hidden>
+
               <div className="login-form">
-                <Image className="loginCat" src={loginCat} fluided/>
                 <h2 className="login-title">Sign in</h2>
                 <Face className="loginFaceIcon"/>
+              
+              
               <Form onSubmit={this.onHandleSubmit}>
-                <div className="email">
+
+                <div className="noFlex">
                   <Grid container spacing={1} alignItems="flex-end">
                     <Grid item>
                       <Email className="loginEmail"/>
                     </Grid>
-                    <Grid item>
-                      <TextField id="standard-email-input" className="email-text" type="email" margin="normal" onChange={this.handleChange} name='email' label="Enter Email" required/>
+                    <Grid item className="inputFields">
+                      <TextField id="standard-email-input" className="email-text" type="email" margin="normal" onChange={this.handleChange} value={this.state.email} name='email' label="Enter Email" required/>
                     </Grid>
                   </Grid>
                 </div>
 
-                <div className="password-form">
+                <div className="noFlex">
                   <Grid container spacing={1} alignItems="flex-end">
                     <Grid item>
                       <Lock className="loginLockIcon"/>
                     </Grid>
-                    <Grid item>
-                      <TextField id="standard-password-input" label="Password" className="password-text" type="password" autoComplete="current-password" margin="normal" onChange={this.handleChange} name="password" required />
+                    <Grid item className="inputFields">
+                      <TextField id="standard-password-input" label="Password" className="password-text" type="password" autoComplete="current-password" margin="normal" value={this.state.password} onChange={this.handleChange} name="password" required />
                     </Grid>
                   </Grid>
                 </div>
@@ -99,12 +105,13 @@ class Login extends Component {
                   />
                 </div> */}
 
-                <Button type="submit" variant="contained" color="primary" className="login-button">
+                <Button type="submit" className="btn-primary">
                   <VpnKey className="vpnKeyIcon"/>
                   Sign in
                 </Button>
 
               </Form>
+            </div>
             </div>
         </React.Fragment>
       )

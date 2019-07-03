@@ -32,6 +32,15 @@ $ink: #193446;
         min-width: 250px;
         max-width: 80vw;
         margin-left: 10px;
+       
+      }
+
+      .date_lost {
+        margin-top: 20px;
+
+          input {
+            color: grey;
+          }
       }
 
       // .status, .species, .sex, .colour{

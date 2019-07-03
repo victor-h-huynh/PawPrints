@@ -51,7 +51,7 @@ class Api::PetsController < ApplicationController
       @description = Description.create!(
         breed: params['description']['breed'],
         colour: params['description']['colour'],
-        sex: params['description']['sex]'],
+        sex: params['description']['sex'],
         additional: params['description']['additional'],
       )
       @pet = Pet.new(
