@@ -261,18 +261,18 @@ class Pet extends Component {
 
           return (
             <React.Fragment>
-              <div>
-                {userNamesArray[index]} thinks he may have found your pet{' '}
+              <div className="toLeft">
+                {userNamesArray[index]} thinks he may have found your pet:{' '}
               </div>
               <React.Fragment>
                 <Form onSubmit={event => this.someoneFoundMyPet(event, id)}>
                   <Button variant='primary' type='submit'>
-                    This guy found my pet!
+                    Yes! This is my pet
                   </Button>
                 </Form>
                 <Form onSubmit={event => this.notMyPet(event, id)}>
-                  <Button variant='primay' type='submit'>
-                    Not my pet
+                  <Button variant='primary' type='submit'>
+                    No! this isn't my pet
                   </Button>
                 </Form>
               </React.Fragment>
@@ -280,9 +280,9 @@ class Pet extends Component {
           );
         });
         return (
-          <div>
+          <div className="gamify">
             {!this.state.reunited && (
-              <Form onSubmit={this.petReunited}>
+              <Form className="foundMyPet" onSubmit={this.petReunited}>
                 <Button variant='primary' type='submit'>
                   I found my pet!
                 </Button>
