@@ -258,24 +258,29 @@ class User extends Component {
               </Form>
             </Card.Body>
           </Card>
-          <div className="petsUser" >
-            {this.state.userPet.map(pet =>
-          <section key={pet.id}>
-          <article className="card">
-  <div className="image">
-  <img alt="No picture" key={pet.id} src={pet.picture} alt=""/>
-  </div>
-  <div className="entry">
-    <div className="container">
-      <div className="text">
-        <h1 className="card-title">{pet.name}</h1>
-        <span className="meta"> <TimeAgo date={pet.date_lost}/></span><Badge pill variant="danger" className="button button3">{pet.status}</Badge>
-        <p>{pet.species}, {pet.description.breed} </p> <Link to={`/pets/${pet.id}`} className="btn btn-primary">more details</Link>
-      </div>
-    </div>
-  </div>
-</article>
-</section>
+          <div className="Pets">
+            {this.props.pets.map(pet =>
+              <section key={pet.id}>
+
+                <article onClick={event => this.handleSubmit(pet.id)} className="petcard">
+
+                  <div className="image">
+                    <img key={pet.id} src={pet.picture} alt=""/>
+                  </div>
+
+                    <div className="fixcontainer">
+
+                      <div className="fixtext">
+                        <h1 className={`fixcard-title ${pet.status}`}>{pet.status} {pet.species}</h1>
+                        <p className="fixmeta"> {pet.status} <TimeAgo date={pet.date_lost}/></p>
+                        <p className="fix">Name: {pet.name}</p>
+                        <p>Colour: {pet.description.colour}</p>
+                      </div>
+
+                    </div>
+
+                  </article>
+                </section>
           )}
           </div>
           </div>

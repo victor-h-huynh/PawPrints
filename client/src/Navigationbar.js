@@ -45,7 +45,7 @@ const Navigationbar = ({ current_user, clearCurrentUser, updateToken}) => {
             </LinkContainer>
             <div className="slashes"> / </div>
             <LinkContainer to="/Success">
-              <Nav.Link><h5 className="navSuccess">Success Stories!</h5></Nav.Link>
+              <Nav.Link className="navSuccess">Success Stories!</Nav.Link>
             </LinkContainer>
                         <div className="slashes"> / </div>
 
@@ -55,7 +55,7 @@ const Navigationbar = ({ current_user, clearCurrentUser, updateToken}) => {
                 <React.Fragment>
 
                 <LinkContainer to={`/Users/${currentUser.id}`}>
-                <Nav.Link><h5>View my profile</h5></Nav.Link>
+                <Nav.Link>View my profile</Nav.Link>
                 </LinkContainer>
                             <div className="slashes"> / </div>
 
@@ -66,11 +66,11 @@ const Navigationbar = ({ current_user, clearCurrentUser, updateToken}) => {
               ) : (
                 <React.Fragment>
                 <LinkContainer to="/Login">
-                <Nav.Link className="login"><h5 className="">Login</h5></Nav.Link>
+                <Nav.Link className="login">Login</Nav.Link>
                 </LinkContainer>
                 <div className="slashes"> / </div>
             <LinkContainer to="/Register">
-              <Nav.Link className="register"><h5 className="">Register</h5></Nav.Link>
+              <Nav.Link className="register">Register</Nav.Link>
             </LinkContainer>
             </React.Fragment>
               )}
