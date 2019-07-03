@@ -345,16 +345,17 @@ class Pet extends Component {
       <div className='petProfilePage'>
         <Card className='pet'>
           <Card.Img className='petPic' variant='top' src={pet.picture} />
+          {pet.date_reunited ? (
+                <span class={`badge-${pet.status}`}>{pet.status}</span>
+              ) : (
+                <span class={`badge-${this.state.status}`}>{this.state.status}</span>
+              )}
           <Card.Body>
             <div className='petinfo'>
               <Card.Title>
                 A {pet.status} {pet.species} in {pet.address.city}
               </Card.Title>
-              {pet.date_reunited ? (
-                <span class={`badge-${pet.status}`}>{pet.status}</span>
-              ) : (
-                <span class={`badge-${this.state.status}`}>{this.state.status}</span>
-              )}
+
             </div>
             <Card.Text>
               <p>Name: {pet.name}</p>

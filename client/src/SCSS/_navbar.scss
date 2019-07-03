@@ -3,13 +3,14 @@
     min-height: 60px;
     background-color: #fbc123;
     color: #4f4d58;
+    font-size: 20px;
 
 }
 
 
 .navbar-light .navbar-nav .active>.nav-link, .navbar-light .navbar-nav .nav-link.active, .navbar-light .navbar-nav .nav-link.show, .navbar-light .navbar-nav .show>.nav-link {
     color: black;
-    font-size: 16px;
+    font-size: 20px;
     font-weight:bold;
 }
 
@@ -21,6 +22,12 @@
 }
 
 .slashes {
-
   margin-top: 7px;
+}
+
+@media screen and (max-width: 1392px) {
+
+ .slashes {
+   opacity: 0;
+ }
 }

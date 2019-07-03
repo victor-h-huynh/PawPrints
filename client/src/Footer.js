@@ -37,9 +37,9 @@ const Footer = () => {
   </div>
   <div class="footer-right col-md-4 col-sm-6">
     <h2><span> <img
-        src="https://firebasestorage.googleapis.com/v0/b/final-project-1561040119727.appspot.com/o/logoN.png?alt=media&token=6465fa96-29a3-404f-973a-e302a351c19d"
-        width="223"
-        height="119"
+        src="https://firebasestorage.googleapis.com/v0/b/final-project-1561040119727.appspot.com/o/PPFINAL_FOREAL.png?alt=media&token=415a72bd-1052-4142-9672-c3fad50ea0fa"
+        width="133"
+        height="67"
         className="d-inline-block align-top"
         alt=""
       /></span></h2>
