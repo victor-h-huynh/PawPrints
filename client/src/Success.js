@@ -15,13 +15,7 @@ class Success extends Component {
             <div className="row align-items-center">
               <div className="col-lg-6">
                 <div id="headingGroup" className="text-black text-center d-none d-lg-block mt-5">
-                  <h1 className="display-2">Success<span>/</span>Stories</h1>
-                  <h1 className="display-2">Success<span>/</span>Stories</h1>
-                  <h1 className="display-2">Success<span>/</span>Stories</h1>
-                  <h1 className="display-2">Success<span>/</span>Stories</h1>
-                  <h1 className="display-2">Success<span>/</span>Stories</h1>
-                  <h1 className="display-2">Success<span>/</span>Stories</h1>
-                  <h1 className="display-2">Success<span>/</span>Stories</h1>
+                  <h1 className="display-2">Success Stories</h1>
                 </div>
               </div>
               <div className="col-lg-6">
