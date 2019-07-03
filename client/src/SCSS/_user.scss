@@ -1,3 +1,15 @@
+
+div.userProfile .petsUser {
+
+    position: relative;
+    float: left;
+    margin-left: 25px;
+    margin-top: 20px;
+    margin-bottom: 25px;
+    height: auto;
+
+  }
+
 .progressBar {
   background-color: green;
   margin-bottom: 50px
@@ -27,6 +39,7 @@ justify-content: center;
 
 .userInfo {
   display: flex;
+  height: 50%;
 
 }
 
@@ -109,3 +122,4 @@ margin-top: 20px;
   padding-top: 10px;
   line-height: 2;
 }
+

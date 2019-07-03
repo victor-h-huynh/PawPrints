@@ -11,8 +11,7 @@ const Footer = () => {
       <footer class="footer">
   <div class="footer-left col-md-4 col-sm-6">
     <p class="about">
-      <span> About the company</span> Ut congue augue non tellus bibendum, in varius tellus condimentum. In scelerisque nibh tortor, sed rhoncus odio condimentum in. Sed sed est ut sapien ultrices eleifend. Integer tellus est, vehicula eu lectus tincidunt,
-      ultricies feugiat leo. Suspendisse tellus elit, pharetra in hendrerit ut, aliquam quis augue. Nam ut nibh mollis, tristique ante sed, viverra massa.
+      <span> About us</span> We're a bunch of freshly-out-of-bootcamp junior developers who gave themselves the mission to reunite every lost pets and their owners in Montreal. And we will not stop until we reach our goal!
     </p>
     <div class="icons">
       <a href="#"><i class="fab fa-facebook"></i></a>
@@ -25,28 +24,32 @@ const Footer = () => {
   <div class="footer-center col-md-4 col-sm-6">
     <div>
       <i class="fa fa-map-marker"></i>
-      <p><span> Street name and number</span> City, Country</p>
+      <p><span> 5455 rue de Gaspé</span> Montréal, Québec</p>
     </div>
     <div>
       <i class="fa fa-phone"></i>
-      <p> (+00) 0000 000 000</p>
+      <p> (+01) 555-527-8431</p>
     </div>
     <div>
       <i class="fa fa-envelope"></i>
-      <p><a href="#"> office@company.com</a></p>
+      <p><a href="#"> pawprints@gmail.com</a></p>
     </div>
   </div>
   <div class="footer-right col-md-4 col-sm-6">
-    <h2> Company<span> logo</span></h2>
+    <h2><span> <img
+        src="https://firebasestorage.googleapis.com/v0/b/final-project-1561040119727.appspot.com/o/logoN.png?alt=media&token=6465fa96-29a3-404f-973a-e302a351c19d"
+        width="223"
+        height="119"
+        className="d-inline-block align-top"
+        alt=""
+      /></span></h2>
     <p class="menu">
-      <a href="#"> Home</a> |
-      <a href="#"> About</a> |
-      <a href="#"> Services</a> |
-      <a href="#"> Portfolio</a> |
-      <a href="#"> News</a> |
-      <a href="#"> Contact</a>
+      <a href="#"> Home&nbsp;&nbsp;</a>
+      <a href="#"> About&nbsp;&nbsp;</a>
+      <a href="#"> Services&nbsp;&nbsp;</a>
+      <a href="#"> Contact&nbsp;&nbsp;</a>
     </p>
-    <p class="name"> Company Name &copy; 2016</p>
+    <p class="name"> Paw Prints &copy; 2019</p>
   </div>
 </footer>
   );
