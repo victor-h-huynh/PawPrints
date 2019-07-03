@@ -185,7 +185,7 @@ class Register extends Component {
                   <Form.Check
                     className="registerAlerts"
                     type="checkbox"
-                    label="Alerts (receive a push notification when a pet is lost or found in your area)"
+                    label="Alerts (receive a notification when a pet is lost or found in your area)"
                     name="alerts"
                     onChange={this.handleChecked}
                   />
