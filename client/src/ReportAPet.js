@@ -110,7 +110,7 @@ class ReportAPet extends Component {
     const sex = (this.state.sex ? this.state.sex : "Unknown");
     const additional = (this.state.additional ? this.state.additional : "None");
     console.log("date", this.state.date_lost);
-   
+
     axios
     .post('http://localhost:3001/api/pets', {
       description: {
@@ -199,7 +199,7 @@ resize = picture => {
     else if (!originalPicture && this.state.species === "Cat") {
        this.setState({
         picture: "https://firebasestorage.googleapis.com/v0/b/final-project-1561040119727.appspot.com/o/cat.png?alt=media&token=defd9f60-3f31-4864-a7d1-6d488972705d",
-        picture_merged: "https://firebasestorage.googleapis.com/v0/b/final-project-1561040119727.appspot.com/o/cat.png?alt=media&token=defd9f60-3f31-4864-a7d1-6d488972705d"
+        picture_merged: "https://firebasestorage.googleapis.com/v0/b/final-project-1561040119727.appspot.com/o/placeholdercatmarker.png?alt=media&token=f451797f-4afa-4d3b-bf20-13c53a894a8c"
       }, () => this.sendToDB())
     }
     else if (originalPicture && this.state.species) {
@@ -273,7 +273,7 @@ resize = picture => {
     this.imgPaw.src = paw
   }
 
- 
+
 
   render() {
     const cardStyle = {
@@ -288,8 +288,8 @@ resize = picture => {
         <React.Fragment>
         <div className="report-a-pet" style={cardStyle}>
           <h2 className="login-title">Report a lost, found or spotted pet</h2>
-          
-          
+
+
           <Form onSubmit={this.handleSubmit} autoComplete="off" className="alltheform">
             <div className="flextheform">
 
@@ -308,14 +308,14 @@ resize = picture => {
                 </NativeSelect>
             </FormControl>
 
-            <TextField 
+            <TextField
             className="spaced name"
-            name="name" 
-            // margin="normal" 
-            onChange={this.handleChange} 
-            label="Enter Pet's name" 
+            name="name"
+            // margin="normal"
+            onChange={this.handleChange}
+            label="Enter Pet's name"
             />
- 
+
 
             <FormControl required className="spaced species">
               <InputLabel name="species" htmlFor="species-native-helper">Species</InputLabel>
@@ -332,11 +332,11 @@ resize = picture => {
                 </NativeSelect>
             </FormControl>
 
-            <TextField 
+            <TextField
             className="spaced breed"
-            name="breed" 
-            // margin="normal" 
-            onChange={this.handleChange} 
+            name="breed"
+            // margin="normal"
+            onChange={this.handleChange}
             label="Breed"/>
 
             <FormControl className="spaced sex">
@@ -374,11 +374,11 @@ resize = picture => {
                 </NativeSelect>
             </FormControl>
 
-            <TextField 
+            <TextField
               className="spaced date_lost"
-              name="date_lost" 
-              onChange={this.handleChange} 
-              label="Date" 
+              name="date_lost"
+              onChange={this.handleChange}
+              label="Date"
               type="date"
               helperText="Date Lost/Spotted/Found"
               // defaultValue="yyyy-mm-dd"
@@ -417,7 +417,7 @@ resize = picture => {
                     }}
                   />
             </form> */}
-           
+
 
              <TextField
                 id="outlined-multiline-static"
@@ -440,7 +440,7 @@ resize = picture => {
                 onChange={this.fileSelectedHandler}
               />
             </div>
-            
+
               <PetMap
                 updateParentState={this.updateParentState}
                 parentState={this.state}
