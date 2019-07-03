@@ -1,11 +1,11 @@
 import React from 'react'
 import { Jumbotron as Jumbo, Container } from 'react-bootstrap';
 import styled from 'styled-components';
-import catImageCropped from './assets/catImageCropped.jpg'
+import dogman from './assets/dogheaderresized.jpg'
 
 const Styles = styled.div`
   .jumbo {
-    background: url(${catImageCropped}) no-repeat fixed bottom;
+    background: url(${dogman}) no-repeat fixed bottom;
     background-size: cover;
     color: #ccc;
     height: 20rem;
@@ -29,8 +29,8 @@ export const Jumbotron = () => (
     <Jumbo fluid className="jumbo">
       <div className="overlay"></div>
         <Container>
-          <h1>Paw Prints</h1>
-          <p>Reuniting pets with their owners</p>
+          <h2>Reuniting pets</h2>
+          <h2>with their owners</h2>
         </Container>
     </Jumbo>
   </Styles>
