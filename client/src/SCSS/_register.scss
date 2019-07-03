@@ -24,45 +24,51 @@ $ink: #193446;
   max-width: 55vw;
   margin-right: 12em;
   margin-left: 5em;
+  border: 1px solid black;
 }
 
 .MuiSvgIcon-root.registerLoyaltyIcon {
-  width: 4em;
-  height: 4em;
+  width: 2em;
+  height: 2em;
 }
 
 .MuiSvgIcon-root.registerNameIcon {
   width: 2em;
   height: 2em;
-  padding: 1px;
+  padding: 5px;
 }
 
 .MuiSvgIcon-root.registerEmailIcon {
   width: 2em;
   height: 2em;
-  padding: 1px;
+  padding: 5px;
 }
 
 .MuiSvgIcon-root.registerPasswordIcon {
   width: 2em;
   height: 2em;
-  padding: 1px;
+  padding: 5px;
 }
 
 .MuiSvgIcon-root.registerPhoneIphoneIcon {
   width: 2em;
   height: 2em;
-  padding: 1px;
+  padding: 5px;
 }
 
 div.registerAlerts.form-check {
-  width: 90vw;
+  width: 80vw;
+  text-align: left;
 }
 .registerForm {
-  width: 40vw;
+  width: 25vw;
   text-align: center;
-  margin-left: 2vw;
+  margin-left: 1vw;
   bottom: 5em;
+  box-shadow: 0px 9px 0px 0px rgba(255, 255, 255, 0), 0px -9px 0px 0px rgba(255, 255, 255, 0), 10px 0px 30px 0px rgba(0, 0, 0, 0.15), -10px 0px 30px 0px rgba(0, 0, 0, 0.15);
+  height: 10%;
+  border-radius: 1em;
+  margin-top: 1vw;
 
   .form-check {
     position: inherit;
@@ -71,7 +77,10 @@ div.registerAlerts.form-check {
 
   .btn-primary {
     margin-top: 3px;
-    width: 45em;
+    width: 10vw;
+    display: flex;
+    justify-content: left;
+    text-align: center;
   }
 }
 
@@ -86,23 +95,23 @@ div.registerAlerts.form-check {
 .registerNameText {
   min-width: 300px;
   max-width: 80vw;
-  width: 35em;
+  width: 10vw;
 }
 
 .registerEmailText {
-  width: 35em;
+  width: 10vw;
 }
 
 .registerPasswordText {
-  width: 35em;
+  width: 10vw;
 }
 
 .registerPasswordConfirmationText {
-  width: 35em;
+  width: 10vw;
 }
 
 .registerPhoneNumberText {
-  width: 35em;
+  width: 10vw;
 }
 
 
@@ -134,8 +143,4 @@ label.form-check-label {
 
 .registerCreateIcon {
   margin-right: 0.5rem;
-}
-
-.registerBtn {
-  bottom: 20px;
 }

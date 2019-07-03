@@ -13,9 +13,12 @@
 .login-form {
   max-width: 40vw;
   text-align: center;
-  margin-top: 5vw;
+  margin-top: 6vw;
   margin-right: 10vw;
   margin-left: 10vw;
+  box-shadow: 0px 9px 0px 0px rgba(255, 255, 255, 0), 0px -9px 0px 0px rgba(255, 255, 255, 0), 10px 0px 30px 0px rgba(0, 0, 0, 0.15), -10px 0px 30px 0px rgba(0, 0, 0, 0.15);
+  border-radius: 1em;
+  height: 100%;
 
   .btn-primary {
     margin-top: 25px;
@@ -33,13 +36,13 @@
 .MuiSvgIcon-root.loginEmailIcon {
   width: 2em;
   height: 2em;
-  padding: 1px;
+  padding: 5px;
 }
 
 .MuiSvgIcon-root.loginLockIcon {
   width: 2em;
   height: 2em;
-  padding: 1px;
+  padding: 5px;
 }
 
 .MuiSvgIcon-root.loginVpnIcon {
@@ -67,5 +70,6 @@
   max-width: 55vw;
   margin-right: 5em;
   margin-left: 5em;
+  border: 2px solid black;
 }
 
