@@ -84,6 +84,7 @@ margin-top: 20px;
   justify-content: center;
   display: flex;
   margin-bottom: 15px;
+  flex-wrap: wrap;
 }
 
 .petAndOwner {
@@ -123,3 +124,10 @@ margin-top: 20px;
   line-height: 2;
 }
 
+.userProfile .petcard .fixtext {
+  text-align: center;
+}
+
+.userProfile .Pets {
+  height: auto;
+}

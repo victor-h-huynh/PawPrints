@@ -5,7 +5,7 @@ import Switch from "react-switch";
 import axios from "axios";
 import setupNotifications from './setupNotifications.js';
 import TimeAgo from 'react-timeago';
-import { Link } from 'react-router-dom'
+import { Link, Redirect } from 'react-router-dom'
 
 class User extends Component {
   state = {
@@ -17,6 +17,7 @@ class User extends Component {
     current_user_id: 0,
     userPet: [],
     errors: [],
+    redirect: false
   }
 
   componentDidMount() {
@@ -37,7 +38,8 @@ class User extends Component {
       alerts: this.props.user.alerts,
       current_user_id: current_user_id,
       userPet: userPet,
-      points: this.props.user.points
+      points: this.props.user.points,
+      redirect: false
     })
 
   }
@@ -102,8 +104,20 @@ class User extends Component {
         });
   };
 
+   handlePetSubmit = (id) => {
+       this.setState({
+        redirect: true,
+        pet_id: id
+       })
+      }
+
 
   render() {
+
+    if (this.state.redirect) {
+       return <Redirect to={`/pets/${this.state.pet_id}`}/>;
+     }
+
     const { errors } = this.state;
     const user = this.props.user;
     let badge1;
@@ -131,15 +145,11 @@ class User extends Component {
     const progress = (this.props.user.points - levels*1000)
     const missingPoints = Math.floor(1000 - progress)
     let percentage = (Math.round((this.state.points/7000) * 100) / 100)*100
-    console.log(percentage)
-    console.log(this.state.points)
     if (percentage === Infinity) {
       percentage = 0
     } else if (percentage > 100){
       percentage = 100
     }
-
-    console.log(percentage)
 
     if (0 <= percentage && percentage < 16.67) {
       badge1 = <img id="badge1" style={currentBadgeStyle} alt="" src="https://firebasestorage.googleapis.com/v0/b/final-project-1561040119727.appspot.com/o/badgelvl0.png?alt=media&token=65a6f1a6-4ef7-4619-ba04-8e8a84a14bad" />;
@@ -258,24 +268,29 @@ class User extends Component {
               </Form>
             </Card.Body>
           </Card>
-          <div className="petsUser" >
-            {this.state.userPet.map(pet =>
-          <section key={pet.id}>
-          <article className="card">
-  <div className="image">
-  <img alt="No picture" key={pet.id} src={pet.picture} alt=""/>
-  </div>
-  <div className="entry">
-    <div className="container">
-      <div className="text">
-        <h1 className="card-title">{pet.name}</h1>
-        <span className="meta"> <TimeAgo date={pet.date_lost}/></span><Badge pill variant="danger" className="button button3">{pet.status}</Badge>
-        <p>{pet.species}, {pet.description.breed} </p> <Link to={`/pets/${pet.id}`} className="btn btn-primary">more details</Link>
-      </div>
-    </div>
-  </div>
-</article>
-</section>
+          <div className="Pets">
+            {this.props.pets.map(pet =>
+              <section key={pet.id}>
+
+                <article onClick={event => this.handlePetSubmit(pet.id)} className="petcard">
+
+                  <div className="image">
+                    <img key={pet.id} src={pet.picture} alt=""/>
+                  </div>
+
+                    <div className="fixcontainer">
+
+                      <div className="fixtext">
+                        <h1 className={`fixcard-title ${pet.status}`}>{pet.status} {pet.species}</h1>
+                        <p className="fixmeta"> {pet.status} <TimeAgo date={pet.date_lost}/></p>
+                        <p className="fix">Name: {pet.name}</p>
+                        <p>Colour: {pet.description.colour}</p>
+                      </div>
+
+                    </div>
+
+                  </article>
+                </section>
           )}
           </div>
           </div>
@@ -298,24 +313,29 @@ class User extends Component {
             </Card.Body>
 
           </Card>
-          <div className="petsUser">
-            {this.state.userPet.map(pet =>
-          <section key={pet.id}>
-          <article className="card">
-  <div className="image">
-  <img alt="No picture" key={pet.id} src={pet.picture} alt=""/>
-  </div>
-  <div className="entry">
-    <div className="container">
-      <div className="text">
-        <h1 className="card-title">{pet.name}</h1>
-        <span className="meta"> <TimeAgo date={pet.date_lost}/></span><Badge pill variant="danger" className="button button3">{pet.status}</Badge>
-        <p>{pet.species}, {pet.description.breed} </p> <Link to={`/pets/${pet.id}`} className="btn btn-primary">more details</Link>
-      </div>
-    </div>
-  </div>
-</article>
-</section>
+          <div className="Pets">
+            {this.props.pets.map(pet =>
+              <section key={pet.id}>
+
+                <article onClick={event => this.handlePetSubmit(pet.id)} className="petcard">
+
+                  <div className="image">
+                    <img key={pet.id} src={pet.picture} alt=""/>
+                  </div>
+
+                    <div className="fixcontainer">
+
+                      <div className="fixtext">
+                        <h1 className={`fixcard-title ${pet.status}`}>{pet.status} {pet.species}</h1>
+                        <p className="fixmeta"> {pet.status} <TimeAgo date={pet.date_lost}/></p>
+                        <p className="fix">Name: {pet.name}</p>
+                        <p>Colour: {pet.description.colour}</p>
+                      </div>
+
+                    </div>
+
+                  </article>
+                </section>
           )}
           </div>
           </div>}

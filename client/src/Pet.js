@@ -57,8 +57,8 @@ class Pet extends Component {
         this.setState({
           redirectToCongratulations: true,
           status: response.data.status,
-          reunited: date
-        });
+          reunited: response.data.date_reunited
+        }, () => console.log('==>',this.state));
       })
       .catch(err => {
         console.log('report pet error: ', err);
@@ -157,13 +157,15 @@ class Pet extends Component {
         update: 4,
         id: this.props.pet.id,
         pending: previousPending,
-        reunited: date
+        reunited: date,
+        status: 'Reunited'
       })
       .then(response => {
+        console.log(response)
         this.setState({
           redirectToCongratulations: true,
           status: response.data.status,
-          reunited: date,
+          reunited: response.data.date_reunited,
           pending: response.data.pending
         });
       })
@@ -183,6 +185,8 @@ class Pet extends Component {
       .catch(err => {
         console.log('report pet error: ', err);
       });
+
+      this.props.removeAPet();
   };
 
   thisIsMyPet = event => {
@@ -220,7 +224,7 @@ class Pet extends Component {
         this.setState({
           redirectToCongratulations: true,
           status: response.data.status,
-          reunited: date,
+          reunited: response.data.date_reunited,
           pending: response.data.pending,
         });
       })
@@ -241,6 +245,7 @@ class Pet extends Component {
       .catch(err => {
         console.log('report pet error: ', err);
       });
+      this.props.removeAPet();
 
   };
 
@@ -292,7 +297,7 @@ class Pet extends Component {
           </div>
         );
       }
-    }  else if (this.state.pending.includes(this.state.current_user.id && this.state.current_user.id !== this.props.pet.user_id)) {
+    }  else if (this.state.pending.includes(this.state.current_user.id) && this.state.current_user.id !== this.props.pet.user_id) {
       return (
       <React.Fragment>
         <Form onSubmit={this.petFound}>
@@ -300,11 +305,12 @@ class Pet extends Component {
             I think I found your pet!
           </Button>
         </Form>
+        {this.state.status === "Found" &&
         <Form onSubmit={this.thisIsMyPet}>
           <Button variant='primary' type='submit'>
             This is my pet!
           </Button>
-        </Form>
+        </Form>}
         </React.Fragment>
       );
     } else if (!this.state.pending.includes(this.state.current_user.id) && this.state.current_user.id !== this.props.pet.user_id) {
@@ -315,11 +321,12 @@ class Pet extends Component {
             I think I found your pet!
           </Button>
         </Form>
+        {this.state.status === "Found" &&
         <Form onSubmit={this.thisIsMyPet}>
           <Button variant='primary' type='submit'>
             This is my pet!
           </Button>
-        </Form>
+        </Form>}
         </React.Fragment>
       );
     }
@@ -361,14 +368,14 @@ class Pet extends Component {
               <p>Breed: {pet.description.breed}</p>
               <p>Colour: {pet.description.colour}</p>
               <p>Sex: {pet.description.sex}</p>
-              {!pet.date_reunited && (
+              {!this.state.reunited && (
                 <p>
-                  {this.state.status} <TimeAgo date={pet.date_lost} />
+                  {this.state.status}: <TimeAgo date={pet.date_lost} />
                 </p>
               )}
-              {pet.date_reunited && (
+              {this.state.reunited && (
                 <p>
-                  {this.state.status} <TimeAgo date={pet.date_reunited} />
+                  {this.state.status}: <TimeAgo date={this.state.reunited} />
                 </p>
               )}
 
@@ -437,6 +444,52 @@ class Pet extends Component {
           </Card.Body>
         </Card>
       </div>
+
+
+    );
+  }
+}
+
+const MyMapComponent = withScriptjs(
+  withGoogleMap(props => (
+    <GoogleMap
+      ref={props.setMapRef}
+      defaultZoom={15}
+      defaultCenter={{
+        lat: Number(props.pet.latitude),
+        lng: Number(props.pet.longitude)
+      }}
+      onIdle={props.onMapIdle}
+    >
+      {props.children}
+    </GoogleMap>
+  ))
+);
+
+export default Pet;
+
+//   spotted :
+// {
+//   uid1 : {
+//     userId:XX,
+//     uid: uid1,
+//     status: pending | confirm | wrong
+//   }
+// }
+
+
+// <ReactToPrint
+//               trigger={() => <a href='#'>Print this out!</a>}
+//               content={() => this.componentRef}
+//             />
+//             <PetTemplate
+//               print={this.props.print}
+//               current_user={this.props.current_user}
+//               pet={pet}
+//               users={this.props.users}
+//               removeAPet={this.props.removeAPet}
+//               ref={el => (this.componentRef = el)}
+//             />
 
       //     return (
       //       <div className='petProfilePage'>
@@ -516,63 +569,3 @@ class Pet extends Component {
       //           </Card.Body>
       //         </Card>
       //       </div>
-    );
-  }
-}
-
-const MyMapComponent = withScriptjs(
-  withGoogleMap(props => (
-    <GoogleMap
-      ref={props.setMapRef}
-      defaultZoom={15}
-      defaultCenter={{
-        lat: Number(props.pet.latitude),
-        lng: Number(props.pet.longitude)
-      }}
-      onIdle={props.onMapIdle}
-    >
-      {props.children}
-    </GoogleMap>
-  ))
-);
-
-export default Pet;
-
-//   spotted :
-// {
-//   uid1 : {
-//     userId:XX,
-//     uid: uid1,
-//     status: pending | confirm | wrong
-//   }
-// }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// <ReactToPrint
-//               trigger={() => <a href='#'>Print this out!</a>}
-//               content={() => this.componentRef}
-//             />
-//             <PetTemplate
-//               print={this.props.print}
-//               current_user={this.props.current_user}
-//               pet={pet}
-//               users={this.props.users}
-//               removeAPet={this.props.removeAPet}
-//               ref={el => (this.componentRef = el)}
-//             />
