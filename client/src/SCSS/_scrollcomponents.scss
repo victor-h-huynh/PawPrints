@@ -151,3 +151,52 @@ div.Pets {
     height: auto !important;
   }
 }
+
+.image {
+  max-width: 150px;
+  overflow: hidden;
+}
+.fixcontainer {
+  flex: 1;
+  min-width: 200px;
+
+  .fixtext {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+
+    .fixcard-title {
+      color: white;
+      padding: 0.4rem
+    }
+
+    .fixmeta {
+      line-height: 0.9em;
+    }
+  }
+}
+
+.btn-primay {
+  margin: none;
+}
+
+.scroll {
+  align-self: center;
+  text-decoration: none;
+}
+
+.Lost {
+background-color: rgb(201, 51, 51);
+}
+
+.Found {
+  background-color: rgb(58, 146, 58);
+}
+
+.Spotted {
+  background-color: rgb(243, 243, 83);
+}
+
+.Reunited {
+  background-color: rgb(94, 94, 245);
+}
