@@ -64,7 +64,6 @@ class Login extends Component {
         <React.Fragment>
           <div className="loginContainer">
 
-
           <Hidden className="registerOverlay" smDown>
               <Image className="loginCat" src={loginCat}/>
             </Hidden>
@@ -98,13 +97,6 @@ class Login extends Component {
                   </Grid>
                 </div>
 
-                {/* <div className="heartCheckBox">
-                  <FormControlLabel
-                    control={<Checkbox icon={<FavoriteBorder />} checkedIcon={<Favorite />} value="checkedH" />}
-                    label="Custom icon"
-                  />
-                </div> */}
-
                 <Button type="submit" className="btn-primary">
                   <VpnKey className="vpnKeyIcon"/>
                   Sign in
@@ -112,7 +104,7 @@ class Login extends Component {
 
               </Form>
             </div>
-            </div>
+          </div>
         </React.Fragment>
       )
     }

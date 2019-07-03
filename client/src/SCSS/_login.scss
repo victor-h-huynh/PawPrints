@@ -22,7 +22,9 @@
 
 
 .MuiSvgIcon-root.loginFaceIcon {
-  width: 10vw;
+  max-width: 10vw;
+  width: 5rem;
+  height: 5rem;
 }
 
 .inputFields > div {

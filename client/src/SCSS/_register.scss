@@ -15,39 +15,45 @@ $ink: #193446;
 
 .registerCat {
   display: block;
+  // max-width: 55vw;
+  // height: auto;
+  // width: auto;
+  // opacity: 0.8;
+  border-radius: 25em;
+  height: 39em;
+  width: 39em;
   max-width: 55vw;
-  height: auto;
-  width: auto;
-  opacity: 0.8;
+  margin-right: 12em;
+  margin-left: 5em;
 }
 
 .MuiSvgIcon-root.registerLoyaltyIcon {
-  width: 3rem;
-  height: 3rem;
+  width: 4em;
+  height: 4em;
 }
 
 .MuiSvgIcon-root.registerNameIcon {
-  width: 3rem;
-  height: 3rem;
-  padding: 2px;
+  width: 2em;
+  height: 2em;
+  padding: 1px;
 }
 
 .MuiSvgIcon-root.registerEmailIcon {
-  width: 3rem;
-  height: 3rem;
-  padding: 2px;
+  width: 2em;
+  height: 2em;
+  padding: 1px;
 }
 
 .MuiSvgIcon-root.registerPasswordIcon {
-  width: 3rem;
-  height: 3rem;
-  padding: 2px;
+  width: 2em;
+  height: 2em;
+  padding: 1px;
 }
 
 .MuiSvgIcon-root.registerPhoneIphoneIcon {
-  width: 3rem;
-  height: 3rem;
-  padding: 2px;
+  width: 2em;
+  height: 2em;
+  padding: 1px;
 }
 
 div.registerAlerts.form-check {
@@ -57,6 +63,7 @@ div.registerAlerts.form-check {
   width: 40vw;
   text-align: center;
   margin-left: 2vw;
+  bottom: 5em;
 
   .form-check {
     position: inherit;
@@ -64,7 +71,8 @@ div.registerAlerts.form-check {
   }
 
   .btn-primary {
-    margin-top:20px;
+    margin-top: 3px;
+    width: 45em;
   }
 }
 
@@ -76,26 +84,27 @@ div.registerAlerts.form-check {
 .noFlex > div{
   flex-wrap: nowrap;
 }
-// .registerNameText {
-//   min-width: 300px;
-//   max-width: 80vw;
-// }
+.registerNameText {
+  min-width: 300px;
+  max-width: 80vw;
+  width: 35em;
+}
 
-// .registerEmailText {
-//   width: 35rem;
-// }
+.registerEmailText {
+  width: 35em;
+}
 
-// .registerPasswordText {
-//   width: 35rem;
-// }
+.registerPasswordText {
+  width: 35em;
+}
 
-// .registerPasswordConfirmationText {
-//   width: 35rem;
-// }
+.registerPasswordConfirmationText {
+  width: 35em;
+}
 
-// .registerPhoneNumberText {
-//   width: 35rem;
-// }
+.registerPhoneNumberText {
+  width: 35em;
+}
 
 
 // .Notifications {
@@ -121,7 +130,7 @@ label.form-check-label {
 }
 
 .registerAlertsText {
-  margin-left: 1rem;
+  margin-left: 2rem;
 }
 
 .registerCreateIcon {
@@ -129,5 +138,5 @@ label.form-check-label {
 }
 
 .registerBtn {
-  width: 37.2rem;
+  bottom: 20px;
 }
