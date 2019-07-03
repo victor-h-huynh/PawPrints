@@ -5,7 +5,7 @@ import Switch from "react-switch";
 import axios from "axios";
 import setupNotifications from './setupNotifications.js';
 import TimeAgo from 'react-timeago';
-import { Link } from 'react-router-dom'
+import { Link, Redirect } from 'react-router-dom'
 
 class User extends Component {
   state = {
@@ -17,6 +17,7 @@ class User extends Component {
     current_user_id: 0,
     userPet: [],
     errors: [],
+    redirect: false
   }
 
   componentDidMount() {
@@ -37,7 +38,8 @@ class User extends Component {
       alerts: this.props.user.alerts,
       current_user_id: current_user_id,
       userPet: userPet,
-      points: this.props.user.points
+      points: this.props.user.points,
+      redirect: false
     })
 
   }
@@ -102,8 +104,20 @@ class User extends Component {
         });
   };
 
+   handlePetSubmit = (id) => {
+       this.setState({
+        redirect: true,
+        pet_id: id
+       })
+      }
+
 
   render() {
+
+    if (this.state.redirect) {
+       return <Redirect to={`/pets/${this.state.pet_id}`}/>;
+     }
+
     const { errors } = this.state;
     const user = this.props.user;
     let badge1;
@@ -131,15 +145,11 @@ class User extends Component {
     const progress = (this.props.user.points - levels*1000)
     const missingPoints = Math.floor(1000 - progress)
     let percentage = (Math.round((this.state.points/7000) * 100) / 100)*100
-    console.log(percentage)
-    console.log(this.state.points)
     if (percentage === Infinity) {
       percentage = 0
     } else if (percentage > 100){
       percentage = 100
     }
-
-    console.log(percentage)
 
     if (0 <= percentage && percentage < 16.67) {
       badge1 = <img id="badge1" style={currentBadgeStyle} alt="" src="https://firebasestorage.googleapis.com/v0/b/final-project-1561040119727.appspot.com/o/badgelvl0.png?alt=media&token=65a6f1a6-4ef7-4619-ba04-8e8a84a14bad" />;
@@ -262,7 +272,7 @@ class User extends Component {
             {this.props.pets.map(pet =>
               <section key={pet.id}>
 
-                <article onClick={event => this.handleSubmit(pet.id)} className="petcard">
+                <article onClick={event => this.handlePetSubmit(pet.id)} className="petcard">
 
                   <div className="image">
                     <img key={pet.id} src={pet.picture} alt=""/>
@@ -307,7 +317,7 @@ class User extends Component {
             {this.props.pets.map(pet =>
               <section key={pet.id}>
 
-                <article onClick={event => this.handleSubmit(pet.id)} className="petcard">
+                <article onClick={event => this.handlePetSubmit(pet.id)} className="petcard">
 
                   <div className="image">
                     <img key={pet.id} src={pet.picture} alt=""/>
