@@ -125,3 +125,24 @@ div.pet.card {
       }
     }
 }
+
+div.petProfilePage {
+
+  .badge-Lost, .badge-Found, .badge-Reunited, .badge-Spotted {
+
+  display: inline-block;
+  padding: .4em;
+  font-size: 18px;
+  font-weight: 700;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: baseline;
+  border-radius: 10px;
+  margin-left: 5px;
+  max-width: 100px;
+
+  }
+
+
+
+}
