@@ -1,6 +1,5 @@
 .progressBar {
   background-color: green;
-  justify-content: center;
   margin-bottom: 50px
 }
 
@@ -33,4 +32,80 @@ justify-content: center;
 
 .userPicture {
   display: flex;
+}
+
+.progressBar {
+  background-color: green;
+}
+
+.email-user {
+
+  padding-top: 10px;
+}
+
+.alerts {
+  justify-content: center;
+  display: flex;
+}
+
+.alert-button {
+  justify-content: center;
+  display: flex;
+  margin-left: 94px;
+  margin-top: 15px;
+}
+
+.levels-text {
+display: flex;
+justify-content: center;
+margin-bottom: 20px;
+}
+
+.levels-text-2 {
+display: flex;
+justify-content: center;
+margin-top: 20px;
+}
+
+.badges {
+  justify-content: center;
+  display: flex;
+  margin-bottom: 15px;
+}
+
+.petAndOwner {
+  display: flex;
+
+}
+.userProfile {
+  justify-content: center;
+  display: flex;
+}
+
+.userInfo {
+  display: flex;
+  justify-content: right;
+  margin-top: 20px;
+}
+
+.userCardBody {
+  width: 35em;
+  display: flex;
+}
+
+.userCardBody2 {
+  display: flex;
+
+}
+
+.userPicture {
+  display: flex;
+}
+
+.userCardText {
+  display: flex;
+  justify-content: right;
+  padding-left: 10px;
+  padding-top: 10px;
+  line-height: 2;
 }

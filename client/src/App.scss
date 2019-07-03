@@ -9,10 +9,11 @@
 @import '/SCSS/mobile-view';
 @import '/SCSS/loading-animation';
 @import '/SCSS/navbar';
-@import 'SCSS/user';
+@import '/SCSS/user';
+@import '/SCSS/footer';
 
 
-$background: #{linear-gradient(to left, rgb(255, 239, 186), rgb(255, 255, 255))};
+// $background: #{linear-gradient(to left, rgb(255, 239, 186), rgb(255, 255, 255))};
 $teal: #08708A;
 $cerulean: #56b1bF;
 $hunter: #032b2f;
@@ -25,7 +26,6 @@ $indianred: #C46168;
 
 $ink: #193446;
 $global_button: #3f51b5;
-$background: #{linear-gradient(to left, rgb(255, 239, 186), rgb(255, 255, 255))};
 $orange: #F4976C;
 $darkblue: #303c6c;
 $medblue: #B4dfe5;
@@ -34,80 +34,7 @@ $lightblue: #d2fdff;
 @import url(https://fonts.googleapis.com/css?family=Roboto);
 $roboto: 'roboto', sans-serif;
 
-.progressBar {
-  background-color: green;
-}
 
-.email-user {
-
-  padding-top: 10px;
-}
-
-.alerts {
-  justify-content: center;
-  display: flex;
-}
-
-.alert-button {
-  justify-content: center;
-  display: flex;
-  margin-left: 94px;
-  margin-top: 15px;
-}
-
-.levels-text {
-display: flex;
-justify-content: center;
-margin-bottom: 10px;
-}
-
-.levels-text-2 {
-display: flex;
-justify-content: center;
-}
-
-.badges {
-  justify-content: center;
-  display: flex;
-  margin-bottom: 15px;
-}
-
-.petAndOwner {
-  display: flex;
-
-}
-.userProfile {
-  justify-content: center;
-  display: flex;
-}
-
-.userInfo {
-  display: flex;
-  justify-content: right;
-  margin-top: 20px;
-}
-
-.userCardBody {
-  width: 35em;
-  display: flex;
-}
-
-.userCardBody2 {
-  display: flex;
-
-}
-
-.userPicture {
-  display: flex;
-}
-
-.userCardText {
-  display: flex;
-  justify-content: right;
-  padding-left: 10px;
-  padding-top: 10px;
-  line-height: 2;
-}
 
 div.petsUser {
 
@@ -219,9 +146,13 @@ div.petsUser {
 
 body {
   font-family: $roboto;
-  background: linear-gradient(to left, rgb(255, 239, 186), rgb(255, 255, 255));
+  background: #F2F2F0;
   color: #193446;
   height: 100%;
+  // background-image: url("./beige-tiles.png");
+  // background-repeat: repeat-y;
+  // background-repeat: repeat-x;
+
 
 
 
@@ -317,7 +248,4 @@ body {
     font-family: "Helvetica Neue", arial, sans-serif;
     font-size: 15px;
 }
-
-
-
 

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom'
+import { Link, Redirect } from 'react-router-dom'
 import TimeAgo from 'react-timeago';
 import InfiniteScroll from 'react-infinite-scroll-component';
 
@@ -7,7 +7,9 @@ class Pets extends Component {
 
     state = {
       items: Array.from({ length: 20 }),
-      hasMore: true
+      hasMore: true,
+      redirect: false,
+      pet_id: 0
     };
 
     fetchMoreData = () => {
@@ -17,7 +19,18 @@ class Pets extends Component {
       }
     };
 
+    handleSubmit = (id) => {
+       this.setState({
+        redirect: true,
+        pet_id: id
+       })
+      }
+
     render() {
+
+       if (this.state.redirect) {
+       return <Redirect to={`/pets/${this.state.pet_id}`}/>;
+     }
       return (
         <InfiniteScroll dataLength={this.state.items.length}
         next={this.fetchMoreData}
@@ -32,7 +45,7 @@ class Pets extends Component {
             {this.props.pets.map(pet =>
               <section key={pet.id}>
 
-                <article className="card">
+                <article onClick={event => this.handleSubmit(pet.id)} className="card">
                   <div className="image">
                     <img key={pet.id} src={pet.picture} alt=""/>
                   </div>
@@ -40,8 +53,8 @@ class Pets extends Component {
                     <div className="container">
                       <div className="text">
                         <h1 className="card-title">{pet.name}</h1>
-                        <span className="meta"> <TimeAgo date={pet.date_lost}/></span>
                         <span className={`badge-${pet.status}`}>{pet.status}</span>
+                        <span className="meta"> <TimeAgo date={pet.date_lost}/></span>
                         {/* <Badge pill variant="danger" className="button button3">{pet.status}</Badge> */}
                         <p>{pet.species}, {pet.description.breed} </p> <Link to={`/pets/${pet.id}`} className="btn btn-primary">more details</Link>
                       </div>
