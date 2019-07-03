@@ -12,6 +12,7 @@ import PetProfile from './PetProfile.js';
 import Navigationbar from './Navigationbar.js';
 import { PrivateRoute }  from './PrivateRoute';
 import NoMatch from './NoMatch';
+import Footer from './Footer.js'
 
 
 
@@ -200,6 +201,7 @@ updateNavState = name => {
               <Route path="/Success" component={Success}/>
               <Route component={NoMatch}/>
           </Switch>
+          <Footer/>
       </React.Fragment>
     );
     }
