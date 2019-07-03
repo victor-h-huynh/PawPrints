@@ -146,7 +146,7 @@ div.petsUser {
 
 body {
   font-family: $roboto;
-  background: #F9F9F3;
+  background: #F2F2F0;
   color: #193446;
   height: 100%;
   // background-image: url("./beige-tiles.png");
@@ -228,7 +228,7 @@ body {
   // found in PetMap.js
 .form-control {
   text-align: center;
-  width: 20rem;
+  width: auto;
   margin: auto;
   text-align-last:center;
   border: solid 1px black;
