@@ -64,7 +64,6 @@ class Login extends Component {
         <React.Fragment>
           <div className="loginContainer">
 
-
           <Hidden className="registerOverlay" smDown>
               <Image className="loginCat" src={loginCat}/>
             </Hidden>
@@ -79,7 +78,7 @@ class Login extends Component {
                 <div className="noFlex">
                   <Grid container spacing={1} alignItems="flex-end">
                     <Grid item>
-                      <Email className="loginEmail"/>
+                      <Email className="loginEmailIcon"/>
                     </Grid>
                     <Grid item className="inputFields">
                       <TextField id="standard-email-input" className="email-text" type="email" margin="normal" onChange={this.handleChange} value={this.state.email} name='email' label="Enter Email" required/>
@@ -98,13 +97,6 @@ class Login extends Component {
                   </Grid>
                 </div>
 
-                {/* <div className="heartCheckBox">
-                  <FormControlLabel
-                    control={<Checkbox icon={<FavoriteBorder />} checkedIcon={<Favorite />} value="checkedH" />}
-                    label="Custom icon"
-                  />
-                </div> */}
-
                 <Button type="submit" className="btn-primary">
                   <VpnKey className="vpnKeyIcon"/>
                   Sign in
@@ -112,7 +104,7 @@ class Login extends Component {
 
               </Form>
             </div>
-            </div>
+          </div>
         </React.Fragment>
       )
     }

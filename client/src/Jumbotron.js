@@ -8,18 +8,16 @@ const Styles = styled.div`
     background: url(${catImageCropped}) no-repeat fixed bottom;
     background-size: cover;
     color: #ccc;
-    height: 15rem;
+    height: 20rem;
     position: relative;
     z-index: -2;
   }
 
-  .overlay {
-    background-color: #000;
-    opacity: 0.6;
+  .overlay {    
     position: absolute;
     top: 0;
     left: 0;
-    bottom: 0;
+    bottom: 25rem;
     right: 0;
     z-index: -1;
   }

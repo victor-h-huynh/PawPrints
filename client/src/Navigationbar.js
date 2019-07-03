@@ -1,8 +1,17 @@
 import React from "react";
-import { Nav, Navbar } from "react-bootstrap";
+import { Nav, Navbar, Form } from "react-bootstrap";
 import styled from "styled-components";
 import { LinkContainer } from "react-router-bootstrap";
 import { Redirect } from "react-router-dom";
+
+// import React from 'react';
+// import { makeStyles } from '@material-ui/core/styles';
+// import AppBar from '@material-ui/core/AppBar';
+// import Toolbar from '@material-ui/core/Toolbar';
+// import Typography from '@material-ui/core/Typography';
+// import Button from '@material-ui/core/Button';
+// import IconButton from '@material-ui/core/IconButton';
+// import MenuIcon from '@material-ui/icons/Menu';
 
 const Navigationbar = ({ current_user, clearCurrentUser, updateToken}) => {
   const currentUser = current_user;
@@ -24,9 +33,10 @@ const Navigationbar = ({ current_user, clearCurrentUser, updateToken}) => {
         className="d-inline-block align-top"
         alt=""
       />
-
       </Navbar.Brand>
         </LinkContainer>
+
+
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="mr-auto">
@@ -35,7 +45,7 @@ const Navigationbar = ({ current_user, clearCurrentUser, updateToken}) => {
             </LinkContainer>
             <div className="slashes"> / </div>
             <LinkContainer to="/Success">
-              <Nav.Link>Success Stories!</Nav.Link>
+              <Nav.Link><h5 className="navSuccess">Success Stories!</h5></Nav.Link>
             </LinkContainer>
                         <div className="slashes"> / </div>
 
@@ -45,7 +55,7 @@ const Navigationbar = ({ current_user, clearCurrentUser, updateToken}) => {
                 <React.Fragment>
 
                 <LinkContainer to={`/Users/${currentUser.id}`}>
-                <Nav.Link>View my profile</Nav.Link>
+                <Nav.Link><h5>View my profile</h5></Nav.Link>
                 </LinkContainer>
                             <div className="slashes"> / </div>
 
@@ -56,11 +66,11 @@ const Navigationbar = ({ current_user, clearCurrentUser, updateToken}) => {
               ) : (
                 <React.Fragment>
                 <LinkContainer to="/Login">
-                <Nav.Link className="login">Login</Nav.Link>
+                <Nav.Link className="login"><h5 className="">Login</h5></Nav.Link>
                 </LinkContainer>
                 <div className="slashes"> / </div>
             <LinkContainer to="/Register">
-              <Nav.Link className="register">Register</Nav.Link>
+              <Nav.Link className="register"><h5 className="">Register</h5></Nav.Link>
             </LinkContainer>
             </React.Fragment>
               )}
@@ -68,6 +78,20 @@ const Navigationbar = ({ current_user, clearCurrentUser, updateToken}) => {
           </Nav>
         </Navbar.Collapse>
       </Navbar>
+
+    //   <div className="">
+    //   <AppBar position="static">
+    //     <Toolbar>
+    //       <IconButton edge="start" className="" color="inherit" aria-label="Menu">
+    //         <MenuIcon />
+    //       </IconButton>
+    //       <Typography variant="h6" className="">
+    //         News
+    //       </Typography>
+    //       <Button color="inherit">Login</Button>
+    //     </Toolbar>
+    //   </AppBar>
+    // </div>
   );
 };
 
