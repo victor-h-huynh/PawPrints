@@ -17,7 +17,6 @@
   margin-top: 6vw;
   margin-left: auto;
   margin-right: auto;
-  box-shadow: 0px 9px 0px 0px rgba(255, 255, 255, 0), 0px -9px 0px 0px rgba(255, 255, 255, 0), 10px 0px 30px 0px rgba(0, 0, 0, 0.15), -10px 0px 30px 0px rgba(0, 0, 0, 0.15);
   border-radius: 1em;
   height: 100%;
 
@@ -60,15 +59,9 @@
 
 .loginCat {
   display: block;
-  // height: auto;
-  // width: auto;
-  // opacity: 0.8;
-  border-radius: 25em;
-  height: 39em;
-  width: 39em;
+  height: auto;
+  width: auto;
+  opacity: 0.8;
   max-width: 55vw;
-  margin-right: 5em;
-  margin-left: 5em;
-  border: 2px solid black;
 }
 
