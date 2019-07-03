@@ -109,8 +109,7 @@ class ReportAPet extends Component {
     const breed = (this.state.breed ? this.state.breed : "Unknown");
     const sex = (this.state.sex ? this.state.sex : "Unknown");
     const additional = (this.state.additional ? this.state.additional : "None");
-    console.log("state", this.state.sex);
-    console.log("sex", sex);
+    console.log("date", this.state.date_lost);
    
     axios
     .post('http://localhost:3001/api/pets', {
@@ -380,8 +379,13 @@ resize = picture => {
               name="date_lost" 
               onChange={this.handleChange} 
               label="Date" 
+              type="date"
               helperText="Date Lost/Spotted/Found"
-              // margin="normal"
+              // defaultValue="yyyy-mm-dd"
+              value={this.state.date_lost}
+              InputLabelProps={{
+                shrink: true,
+              }}
               required/>
             </div>
 
@@ -391,7 +395,7 @@ resize = picture => {
                 <KeyboardDatePicker
                   margin="normal"
                   id="mui-pickers-date"
-                  label="Date Lost/Found"
+                  label="Date Lost/Found/Spotte"
                   value={this.state.date_lost}
                   onChange={this.handleChange}
                   KeyboardButtonProps={{
@@ -400,6 +404,19 @@ resize = picture => {
                 />
                </Grid>
                </MuiPickersUtilsProvider> */}
+
+            {/* <form className="date_lost" noValidate>
+                  <TextField
+                    id="date"
+                    label="Date Lost/Found/Spotted"
+                    type="date"
+                    name="date_lost"
+                    defaultValue="yyyy-mm-dd"
+                    InputLabelProps={{
+                      shrink: true,
+                    }}
+                  />
+            </form> */}
            
 
              <TextField
