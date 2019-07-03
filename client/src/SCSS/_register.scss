@@ -15,13 +15,12 @@ $ink: #193446;
 
 .registerCat {
   display: block;
-  // height: auto;
-  // width: auto;
+  height: 50vw;
+  width: 50vw;
   // opacity: 0.8;
   border-radius: 25em;
-  height: 39em;
-  width: 39em;
   max-width: 55vw;
+  margin-top: 5vh;
   margin-right: 12em;
   margin-left: 5em;
   border: 1px solid black;
@@ -69,6 +68,7 @@ div.registerAlerts.form-check {
   height: 10%;
   border-radius: 1em;
   margin-top: 1vw;
+  min-width: 350px;
 
   .form-check {
     position: inherit;

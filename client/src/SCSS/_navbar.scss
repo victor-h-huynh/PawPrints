@@ -4,13 +4,32 @@
     color: black;
     display: flex;
     justify-content: flex-end;
+    background-color: #fbc123;
+    color: #4f4d58;
+
 }
 
+
 .navbar-light .navbar-nav .active>.nav-link, .navbar-light .navbar-nav .nav-link.active, .navbar-light .navbar-nav .nav-link.show, .navbar-light .navbar-nav .show>.nav-link {
-    color: rgba(0,0,0,.5);
+    color: black;
     font-size: 16px;
+    font-weight: bold;
 }
 
 // .navSuccess {
 //     margin-right: 51em;
 // }
+//     font-weight:bold;
+// }
+
+.navbar-light .navbar-nav .nav-link {
+    color: black;
+    text-transform: uppercase;
+    margin: 0 40px;
+
+}
+
+.slashes {
+
+  margin-top: 7px;
+}
