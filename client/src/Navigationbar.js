@@ -27,9 +27,9 @@ const Navigationbar = ({ current_user, clearCurrentUser, updateToken}) => {
         <LinkContainer to="/">
           <Navbar.Brand href="#home">
       <img
-        src="https://firebasestorage.googleapis.com/v0/b/final-project-1561040119727.appspot.com/o/logoN.png?alt=media&token=6465fa96-29a3-404f-973a-e302a351c19d"
-        width="111"
-        height="59"
+        src="https://firebasestorage.googleapis.com/v0/b/final-project-1561040119727.appspot.com/o/PPFINAL_FOREAL.png?alt=media&token=415a72bd-1052-4142-9672-c3fad50ea0fa"
+        width="133"
+        height="67"
         className="d-inline-block align-top"
         alt=""
       />
@@ -68,6 +68,7 @@ const Navigationbar = ({ current_user, clearCurrentUser, updateToken}) => {
                 <LinkContainer to="/Login">
                 <Nav.Link className="login"><h5 className="">Login</h5></Nav.Link>
                 </LinkContainer>
+                <div className="slashes"> / </div>
             <LinkContainer to="/Register">
               <Nav.Link className="register"><h5 className="">Register</h5></Nav.Link>
             </LinkContainer>
