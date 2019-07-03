@@ -2,6 +2,18 @@ import React, { Component } from 'react';
 import { withGoogleMap, GoogleMap, withScriptjs, InfoWindow, Marker,} from "react-google-maps";
 import Geocode from "react-geocode";
 import Autocomplete from 'react-google-autocomplete';
+
+// Material UI 
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemText from '@material-ui/core/ListItemText';
+import ListItemAvatar from '@material-ui/core/ListItemAvatar';
+import Avatar from '@material-ui/core/Avatar';
+import ImageIcon from '@material-ui/icons/Image';
+import WorkIcon from '@material-ui/icons/Work';
+import BeachAccessIcon from '@material-ui/icons/BeachAccess';
+import Divider from '@material-ui/core/Divider'
+
 Geocode.setApiKey(process.env.REACT_APP_GOOGLE_API_KEY);
 Geocode.enableDebug();
 
@@ -256,6 +268,54 @@ class PetMap extends Component{
 							onChange={ this.onChange } 
 							readOnly="readOnly" 
 							value={ this.props.parentState.postal_code }/>
+
+<List className="infoMap">
+      <ListItem>
+        <ListItemAvatar>
+          <Avatar>
+            <ImageIcon />
+          </Avatar>
+        </ListItemAvatar>
+        <ListItemText primary="Street Number" secondary={ this.props.parentState.street_number } onChange={ this.onChange }/>
+      </ListItem>
+      <Divider variant="inset" component="li" />
+      <ListItem>
+        <ListItemAvatar>
+          <Avatar>
+            <WorkIcon />
+          </Avatar>
+        </ListItemAvatar>
+        <ListItemText primary="Street Name" secondary={ this.props.parentState.street_name } onChange={ this.onChange }/>
+      </ListItem>
+      <Divider variant="inset" component="li" />
+      <ListItem>
+        <ListItemAvatar>
+          <Avatar>
+            <BeachAccessIcon />
+          </Avatar>
+        </ListItemAvatar>
+        <ListItemText primary="City" secondary={ this.props.parentState.city } onChange={ this.onChange }/>
+      </ListItem>
+			<Divider variant="inset" component="li" />
+			<ListItem>
+        <ListItemAvatar>
+          <Avatar>
+            <ImageIcon />
+          </Avatar>
+        </ListItemAvatar>
+        <ListItemText primary="Province" secondary={ this.props.parentState.province } onChange={ this.onChange }/>
+      </ListItem>
+			<Divider variant="inset" component="li" />
+			<ListItem>
+        <ListItemAvatar>
+          <Avatar>
+            <ImageIcon />
+          </Avatar>
+        </ListItemAvatar>
+        <ListItemText primary="Postal Code" secondary={ this.props.parentState.postal_code } onChange={ this.onChange }/>
+      </ListItem>
+			<Divider variant="inset" component="li" />
+    </List>
 				</div>
 
 

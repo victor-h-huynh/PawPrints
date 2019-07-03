@@ -10,7 +10,7 @@ import {
   Circle
 } from 'react-google-maps';
 import axios from 'axios';
-import { Form } from 'react-bootstrap';
+import { Form, Badge } from 'react-bootstrap';
 import ReactToPrint from 'react-to-print';
 import PetTemplate from './PetTemplate.js';
 
@@ -351,6 +351,7 @@ class Pet extends Component {
                 A {pet.status} {pet.species} in {pet.address.city}
               </Card.Title>
               {pet.date_reunited ? (
+                
                 <span class={`badge-${pet.status}`}>{pet.status}</span>
               ) : (
                 <span class={`badge-${this.state.status}`}>{this.state.status}</span>
