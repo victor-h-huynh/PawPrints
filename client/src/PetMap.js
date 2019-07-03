@@ -14,6 +14,12 @@ import WorkIcon from '@material-ui/icons/Work';
 import BeachAccessIcon from '@material-ui/icons/BeachAccess';
 import Divider from '@material-ui/core/Divider'
 
+import mapIcon1 from  './assets/mapIcon1.svg';
+import mapIcon2 from  './assets/mapIcon2.svg';
+import mapIcon3 from  './assets/mapIcon3.svg';
+import mapIcon4 from  './assets/mapIcon4.svg';
+import mapIcon5 from  './assets/mapIcon5.svg';
+
 Geocode.setApiKey(process.env.REACT_APP_GOOGLE_API_KEY);
 Geocode.enableDebug();
 
@@ -228,7 +234,7 @@ class PetMap extends Component{
 					userLocation={this.props.userLocation}
 					/>
 
-				<div className = "addressConfirmation">
+				{/* <div className = "addressConfirmation">
 						<input 
 							type="text" 
 							name="street_number" 
@@ -267,59 +273,47 @@ class PetMap extends Component{
 							className="formControl form-control postalCode" 
 							onChange={ this.onChange } 
 							readOnly="readOnly" 
-							value={ this.props.parentState.postal_code }/>
+							value={ this.props.parentState.postal_code }/> */}
 
 <List className="infoMap">
       <ListItem>
         <ListItemAvatar>
-          <Avatar>
-            <ImageIcon />
-          </Avatar>
+					<img className="mapIcons" src={mapIcon1} alt=""></img>
         </ListItemAvatar>
-        <ListItemText primary="Street Number" secondary={ this.props.parentState.street_number } onChange={ this.onChange }/>
+        <ListItemText primary="Street Number" secondary={ this.props.parentState.street_number } onChange={ this.onChange } type="text" name="street_number" className="" value ={ this.props.parentState.street_number } />
       </ListItem>
       <Divider variant="inset" component="li" />
       <ListItem>
         <ListItemAvatar>
-          <Avatar>
-            <WorkIcon />
-          </Avatar>
+					<img className="mapIcons" src={mapIcon2} alt=""></img>
         </ListItemAvatar>
-        <ListItemText primary="Street Name" secondary={ this.props.parentState.street_name } onChange={ this.onChange }/>
+        <ListItemText primary="Street Name" secondary={ this.props.parentState.street_name } onChange={ this.onChange } type="text" name="street_name" className="" value ={ this.props.parentState.street_name } />
       </ListItem>
       <Divider variant="inset" component="li" />
       <ListItem>
         <ListItemAvatar>
-          <Avatar>
-            <BeachAccessIcon />
-          </Avatar>
+					<img className="mapIcons" src={mapIcon3} alt=""></img> 
         </ListItemAvatar>
-        <ListItemText primary="City" secondary={ this.props.parentState.city } onChange={ this.onChange }/>
+        <ListItemText primary="City" secondary={ this.props.parentState.city } onChange={ this.onChange } type="text" name="city" className="" value ={ this.props.parentState.city }/>
       </ListItem>
 			<Divider variant="inset" component="li" />
 			<ListItem>
         <ListItemAvatar>
-          <Avatar>
-            <ImageIcon />
-          </Avatar>
+					<img className="mapIcons" src={mapIcon4} alt=""></img>
         </ListItemAvatar>
-        <ListItemText primary="Province" secondary={ this.props.parentState.province } onChange={ this.onChange }/>
+        <ListItemText primary="Province" secondary={ this.props.parentState.province } onChange={ this.onChange } type="text" name="province" value={ this.props.parentState.province }/>
       </ListItem>
 			<Divider variant="inset" component="li" />
 			<ListItem>
         <ListItemAvatar>
-          <Avatar>
-            <ImageIcon />
-          </Avatar>
+					<img className="mapIcons" src={mapIcon5} alt=""></img>
         </ListItemAvatar>
-        <ListItemText primary="Postal Code" secondary={ this.props.parentState.postal_code } onChange={ this.onChange }/>
+        <ListItemText primary="Postal Code" secondary={ this.props.parentState.postal_code } onChange={ this.onChange } type="text" name="postal_code" value={ this.props.parentState.postal_code }/>
       </ListItem>
 			<Divider variant="inset" component="li" />
     </List>
 				</div>
-
-
-			</div>
+			// </div>
 		} else {
 			map = <div style={{height: this.props.height}} />
 		}
