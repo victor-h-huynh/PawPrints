@@ -8,6 +8,10 @@ $ink: #193446;
   flex-wrap: wrap;
 }
 
+.registerTitle {
+  margin-top: 5vh;
+}
+
 .registerOverlay {
   margin-right: 1vw;
   flex: '1 0 auto',
@@ -48,6 +52,7 @@ $ink: #193446;
 
 div.registerAlerts.form-check {
   max-width: 90vw;
+  text-align: center;
 }
 .registerForm {
   width: 40vw;
