@@ -267,7 +267,7 @@ class Pet extends Component {
           return (
             <React.Fragment>
               <div className="toLeft">
-                {userNamesArray[index]} thinks he may have found your pet:{' '}
+                {userNamesArray[index]} thinks they may have found your pet:{' '}
               </div>
               <React.Fragment>
                 <Form onSubmit={event => this.someoneFoundMyPet(event, id)}>
@@ -277,7 +277,7 @@ class Pet extends Component {
                 </Form>
                 <Form onSubmit={event => this.notMyPet(event, id)}>
                   <Button variant='primary' type='submit'>
-                    No! this isn't my pet
+                    No! This isn't my pet
                   </Button>
                 </Form>
               </React.Fragment>
