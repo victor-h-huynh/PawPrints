@@ -277,7 +277,7 @@ class Pet extends Component {
                 </Form>
                 <Form onSubmit={event => this.notMyPet(event, id)}>
                   <Button variant='primary' type='submit'>
-                    No! this isn't my pet
+                    No! This isn't my pet
                   </Button>
                 </Form>
               </React.Fragment>
