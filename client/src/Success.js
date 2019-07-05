@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import petOwner1 from './assets/petOwner1.jpg';
+import petOwner1 from './assets/gabrielgfcat.jpg';
 import petOwner2 from './assets/petOwner2.jpg';
 import petOwner3 from './assets/petOwner3.jpg';
 import dogIcon1 from  './assets/dogIcon1.svg';
@@ -16,10 +16,12 @@ class Success extends Component {
               <div className="col-lg-6">
                 <div id="headingGroup" className="text-black text-center d-none d-lg-block mt-5">
                   <h1 className="display-2">Success Stories</h1>
+                  <p className="lead">Gabriel has been reunited with his cat Garfield! </p>
                 </div>
               </div>
               <div className="col-lg-6">
                 <img className="img-fluid1" src={petOwner1} alt="petOwner1"></img>
+                
               </div>
             </div>
           </section>
