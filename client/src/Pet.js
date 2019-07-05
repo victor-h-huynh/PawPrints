@@ -136,8 +136,12 @@ class Pet extends Component {
     event.preventDefault();
     const previousPending = this.state.pending;
     previousPending.length = 0;
-    const previousPoints = this.props.current_user.points;
+    const givePointsTo = this.props.users.filter(
+      el => el.id === id
+    );
+    const previousPoints = givePointsTo[0].points;    
     const newPoints = previousPoints + 1500;
+    console.log(newPoints)
     const date = new Date();
 
     //send notification
