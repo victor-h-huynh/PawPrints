@@ -10,12 +10,12 @@ Paw Prints is a full stack web application that helps reunites lost pets with th
 ### Getting Started
 
 ```
-Fork this repository, then clone your fork of this repository.
-Install dependencies using the npm install command in the client folder
-Install dependencies using the bundle install command in backend folder
-in BACKEND: bin/rails s -p 3001 -b 0.0.0.0
-in CLIENT: npm start
-open http://localhost:3000
+1. Fork this repository, then clone your fork of this repository.
+2. Install dependencies using the npm install command in the client folder
+3. Install dependencies using the bundle install command in backend folder
+4. in BACKEND: bin/rails s -p 3001 -b 0.0.0.0
+5. in CLIENT: npm start
+6. open http://localhost:3000
 ```
 
 ### Final Product
