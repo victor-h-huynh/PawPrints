@@ -13,6 +13,10 @@ in CLIENT: npm start
 open http://localhost:3000
 ```
 
-## Screenshot
+## Screenshots
 
-!["Screenshot of pawprints messages"](https://github.com/victor-h-huynh/PawPrints/blob/master/PawPrints.png?raw=true)
+!["Screenshot of pawprints messages"](https://github.com/victor-h-huynh/PawPrints/blob/master/PawPrintsLand.png?raw=true)
+
+!["Screenshot of pawprints messages"](https://github.com/victor-h-huynh/PawPrints/blob/master/PawPrintsSuccess.png?raw=true)
+
+!["Screenshot of pawprints messages"](https://github.com/victor-h-huynh/PawPrints/blob/master/PawPrintsRegister.png?raw=true)
