@@ -13,3 +13,6 @@ in CLIENT: npm start
 open http://localhost:3000
 ```
 
+## Screenshots
+
+!["Screenshot of pawprints messages"](https://github.com/victor-h-huynh/PawPrints/blob/master/PawPrints.png?raw=true)
