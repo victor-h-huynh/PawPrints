@@ -5,7 +5,7 @@ Main Contributors: Joshua Harris, Robin Westhaver, Gabriel Varadi, Victor Huynh
 
 # Overview
 
-Paw Prints is a full stack web application that helps reunites lost pets with their owners that uses Firebase, React, Rails, Ruby, Javascript, Google Maps, Google Push-Notifications, Sass, Material UI & React Bootstrap.
+Paw Prints is a full stack web application that helps reunites lost pets with their owners.
 
 ### Getting Started
 
@@ -18,10 +18,24 @@ in CLIENT: npm start
 open http://localhost:3000
 ```
 
-## Final Product
+### Final Product
 
 !["Screenshot of pawprints messages"](https://github.com/victor-h-huynh/PawPrints/blob/master/PawPrintsLand.png?raw=true)
 
 !["Screenshot of pawprints messages"](https://github.com/victor-h-huynh/PawPrints/blob/master/PawPrintsSuccess.png?raw=true)
 
 !["Screenshot of pawprints messages"](https://github.com/victor-h-huynh/PawPrints/blob/master/PawPrintsRegister.png?raw=true)
+
+
+### Tech Stack
+* JavaScript
+* React
+* Bootstrap
+* Material UI
+* SASS
+* Google Maps API
+* Google Push-Notifications API
+* PostgreSQL
+* Ruby on Rails
+* Firebase
+* React Router
